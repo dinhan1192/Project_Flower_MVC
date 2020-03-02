@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Colorlib Listed Directory Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="~/Content/CustomCustomerPage/fonts/ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Content/CustomCustomerPage/fonts/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="~/Content/CustomCustomerPage/fonts/flaticon/font/flaticon.css">
+
+    @Styles.Render("~/bundles/customCustomerPageCSS")
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("CustomStyles", required: false)
+</head>
+<body>
+    @Html.Partial("_HeaderBar")
+    <!-- END section -->
+    @RenderBody()
+    @Html.Partial("_FooterBar")
+    <!-- END footer -->
+    <!-- loader -->
+    <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#f4b214" /></svg></div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/customCustomerPageJS")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

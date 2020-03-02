@@ -1,0 +1,36 @@
+﻿@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Logout", "Accounts", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right"}))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="navbar-nav navbar-right">
+            <li class="nav-item">
+                @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + "!", "Index", "Manages", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link active" })
+                @*@if (RolesUtil.IsInAnyRole(User, new string[] { Constant.Admin, Constant.Employee }))
+                    {
+                        <span> &nbsp; &nbsp; &nbsp;</span>
+                    }*@
+            </li>
+            <li class="nav-item">
+                @*<input type="submit" value="Log off"/>*@
+                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <ul class="navbar-nav navbar-right">
+        <li class="nav-item">
+            @*@Html.ActionLink("Đăng nhập", "Login", "Accounts", new { }, new { @class = "nav-link active" })*@
+            @Html.ActionLink("Đăng nhập", "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link active" })
+        </li>
+        <li class="nav-item">
+            @*@Html.ActionLink("Đăng ký", "Register", "Accounts", new { }, new { @class = "nav-link" })*@
+            @Html.ActionLink("Đăng ký", "Register", "Accounts", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })
+        </li>
+    </ul>
+}
+

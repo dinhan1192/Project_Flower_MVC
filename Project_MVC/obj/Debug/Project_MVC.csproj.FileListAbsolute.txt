@@ -1,0 +1,642 @@
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Project_MVC.dll.config
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Project_MVC.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Project_MVC.pdb
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csc.exe
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csc.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csc.rsp
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csi.exe
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csi.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csi.rsp
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.AppContext.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Collections.Immutable.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Console.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.Compression.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.FileSystem.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.Pipes.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Reflection.Metadata.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.AccessControl.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Claims.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.ValueTuple.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XPath.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\vbc.exe
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\vbc.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\vbc.rsp
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\VBCSCompiler.exe
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\VBCSCompiler.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Antlr3.Runtime.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\EntityFramework.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\EntityFramework.SqlServer.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Extensions.Primitives.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Web.Infrastructure.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\MySql.Data.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\MySql.Data.Entity.EF6.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Newtonsoft.Json.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Owin.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Buffers.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Memory.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Net.Http.Formatting.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Numerics.Vectors.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Helpers.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.WebHost.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Mvc.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Optimization.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Razor.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Deployment.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Razor.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\WebGrease.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\EntityFramework.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\EntityFramework.SqlServer.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Extensions.Primitives.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\MySql.Data.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\MySql.Data.Entity.EF6.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Buffers.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Memory.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Net.Http.Formatting.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Numerics.Vectors.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.WebHost.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Helpers.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Mvc.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Optimization.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Razor.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Deployment.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Razor.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Newtonsoft.Json.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Antlr3.Runtime.pdb
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.Migrations.InitializeDatabases.resources
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csproj.GenerateResource.cache
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csproj.CopyComplete
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.dll
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.pdb
+D:\Lap Trinh\T1808A\MVC\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csprojAssemblyReference.cache
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Project_MVC.dll.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Project_MVC.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Project_MVC.pdb
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\csc.exe
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\csc.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\csc.rsp
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\csi.exe
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\csi.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\csi.rsp
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.AppContext.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Collections.Immutable.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Console.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.Compression.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.FileSystem.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.Pipes.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Reflection.Metadata.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.AccessControl.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Claims.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.ValueTuple.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XPath.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\vbc.exe
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\vbc.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\vbc.rsp
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\VBCSCompiler.exe
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\roslyn\VBCSCompiler.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Antlr3.Runtime.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\EntityFramework.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\EntityFramework.SqlServer.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Extensions.Primitives.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.IdentityModel.Logging.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.IdentityModel.Tokens.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Google.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Web.Infrastructure.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\MySql.Data.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\MySql.Data.Entity.EF6.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Newtonsoft.Json.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Owin.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Buffers.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Memory.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Net.Http.Formatting.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Numerics.Vectors.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.Helpers.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.WebHost.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.Mvc.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.Optimization.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.Razor.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Deployment.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Razor.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Twilio.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\WebGrease.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\WebMatrix.Data.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\EntityFramework.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\EntityFramework.SqlServer.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Extensions.Primitives.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.IdentityModel.Tokens.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Google.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\MySql.Data.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\MySql.Data.Entity.EF6.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Buffers.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.IdentityModel.Tokens.Jwt.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Memory.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Net.Http.Formatting.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Numerics.Vectors.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.WebHost.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.Helpers.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.Mvc.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.Optimization.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.Razor.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Deployment.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Razor.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Newtonsoft.Json.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Twilio.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Antlr3.Runtime.pdb
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\WebMatrix.Data.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csproj.CopyComplete
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.pdb
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.Migrations.InitializeDatabase.resources
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csproj.GenerateResource.cache
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csprojAssemblyReference.cache
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Project_MVC.dll.config
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Project_MVC.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Project_MVC.pdb
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csc.exe
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csc.exe.config
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csc.rsp
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csi.exe
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csi.exe.config
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csi.rsp
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.Managed.Core.targets
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.AppContext.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Console.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.Compression.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.Pipes.AccessControl.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.Pipes.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.AccessControl.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Claims.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Encoding.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Primitives.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Principal.Windows.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Text.Encoding.CodePages.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.ValueTuple.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.ReaderWriter.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XmlDocument.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XPath.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XPath.XDocument.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\vbc.exe
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\vbc.exe.config
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\vbc.rsp
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\VBCSCompiler.exe
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Antlr3.Runtime.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\EntityFramework.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\EntityFramework.SqlServer.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Core.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Owin.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Extensions.Primitives.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.IdentityModel.Logging.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.IdentityModel.Tokens.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Host.SystemWeb.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Cookies.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Facebook.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Google.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.OAuth.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\MySql.Data.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\MySql.Data.Entity.EF6.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Newtonsoft.Json.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Owin.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Buffers.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Memory.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Net.Http.Formatting.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Numerics.Vectors.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Runtime.CompilerServices.Unsafe.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Helpers.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.WebHost.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Mvc.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Optimization.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Razor.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Deployment.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Razor.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Twilio.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\WebGrease.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\WebMatrix.Data.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\EntityFramework.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\EntityFramework.SqlServer.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Core.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Owin.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Extensions.Primitives.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.IdentityModel.Tokens.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Host.SystemWeb.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Cookies.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Facebook.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Google.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.OAuth.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\MySql.Data.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\MySql.Data.Entity.EF6.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Buffers.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Memory.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Net.Http.Formatting.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Numerics.Vectors.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Runtime.CompilerServices.Unsafe.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.WebHost.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Helpers.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Mvc.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Optimization.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Razor.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Deployment.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Razor.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Newtonsoft.Json.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Twilio.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Antlr3.Runtime.pdb
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\WebMatrix.Data.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csprojAssemblyReference.cache
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.Migrations.InitializeDatabase.resources
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csproj.GenerateResource.cache
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csproj.CopyComplete
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.dll
+C:\Users\dohoa\OneDrive\Desktop\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.pdb
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Project_MVC.dll.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Project_MVC.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Project_MVC.pdb
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csc.exe
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csc.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csc.rsp
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csi.exe
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csi.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\csi.rsp
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.AppContext.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Collections.Immutable.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Console.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.Compression.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.FileSystem.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.IO.Pipes.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Reflection.Metadata.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.AccessControl.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Claims.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.ValueTuple.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XPath.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\vbc.exe
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\vbc.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\vbc.rsp
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\VBCSCompiler.exe
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\roslyn\VBCSCompiler.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Antlr3.Runtime.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\EntityFramework.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\EntityFramework.SqlServer.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Extensions.Primitives.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.IdentityModel.Logging.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.IdentityModel.Tokens.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Google.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Web.Infrastructure.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\MySql.Data.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\MySql.Data.Entity.EF6.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Newtonsoft.Json.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Owin.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Buffers.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Memory.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Net.Http.Formatting.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Numerics.Vectors.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Helpers.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.WebHost.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Mvc.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Optimization.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Razor.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Deployment.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Razor.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Twilio.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\WebGrease.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\WebMatrix.Data.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\EntityFramework.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\EntityFramework.SqlServer.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Extensions.Primitives.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.IdentityModel.Tokens.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Google.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\MySql.Data.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\MySql.Data.Entity.EF6.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Buffers.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.IdentityModel.Tokens.Jwt.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Memory.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Net.Http.Formatting.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Numerics.Vectors.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Http.WebHost.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Helpers.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Mvc.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Optimization.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.Razor.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Deployment.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\System.Web.WebPages.Razor.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Newtonsoft.Json.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Twilio.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Antlr3.Runtime.pdb
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\WebMatrix.Data.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csprojAssemblyReference.cache
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.Migrations.InitializeDatabase.resources
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csproj.GenerateResource.cache
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csproj.CopyComplete
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC\Project_MVC\Project_MVC\obj\Debug\Project_MVC.pdb
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Project_MVC.dll.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Project_MVC.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Project_MVC.pdb
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\csc.exe
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\csc.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\csc.rsp
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\csi.exe
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\csi.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\csi.rsp
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\Microsoft.Managed.Core.targets
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.AppContext.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Collections.Immutable.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Console.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Diagnostics.FileVersionInfo.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Diagnostics.StackTrace.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.IO.Compression.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.IO.FileSystem.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.IO.FileSystem.Primitives.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.IO.Pipes.AccessControl.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.IO.Pipes.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Reflection.Metadata.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Security.AccessControl.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Security.Claims.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Algorithms.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Encoding.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.Primitives.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Security.Cryptography.X509Certificates.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Security.Principal.Windows.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Text.Encoding.CodePages.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.ValueTuple.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Xml.ReaderWriter.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XmlDocument.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XPath.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\System.Xml.XPath.XDocument.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\vbc.exe
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\vbc.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\vbc.rsp
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\VBCSCompiler.exe
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\roslyn\VBCSCompiler.exe.config
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Antlr3.Runtime.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\EntityFramework.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\EntityFramework.SqlServer.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Core.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Owin.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Extensions.Primitives.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.IdentityModel.Logging.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.IdentityModel.Tokens.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.Host.SystemWeb.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Cookies.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Facebook.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Google.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.OAuth.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Web.Infrastructure.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\MySql.Data.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\MySql.Data.Entity.EF6.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Newtonsoft.Json.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Owin.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Buffers.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.IdentityModel.Tokens.Jwt.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Memory.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Net.Http.Formatting.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Numerics.Vectors.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Runtime.CompilerServices.Unsafe.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.Helpers.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.Http.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.Http.WebHost.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.Mvc.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.Optimization.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.Razor.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.WebPages.Deployment.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.WebPages.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.WebPages.Razor.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Twilio.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\WebGrease.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\WebMatrix.Data.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\EntityFramework.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\EntityFramework.SqlServer.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Core.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.AspNet.Identity.Owin.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Extensions.Primitives.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.IdentityModel.Tokens.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.Host.SystemWeb.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Cookies.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Facebook.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.Google.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.Owin.Security.OAuth.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\MySql.Data.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\MySql.Data.Entity.EF6.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Buffers.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.IdentityModel.Tokens.Jwt.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Memory.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Net.Http.Formatting.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Numerics.Vectors.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Runtime.CompilerServices.Unsafe.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.Http.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.Http.WebHost.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.Helpers.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.Mvc.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.Optimization.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.Razor.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.WebPages.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.WebPages.Deployment.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\System.Web.WebPages.Razor.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Newtonsoft.Json.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Twilio.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Antlr3.Runtime.pdb
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\WebMatrix.Data.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csprojAssemblyReference.cache
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\obj\Debug\Project_MVC.Migrations.InitializeDatabase.resources
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csproj.GenerateResource.cache
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\obj\Debug\Project_MVC.csproj.CopyComplete
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\obj\Debug\Project_MVC.dll
+D:\Lap Trinh\T1808A\MVC\Project_Course_MVC\Project_MVC_Version04\Project_MVC\Project_MVC\obj\Debug\Project_MVC.pdb

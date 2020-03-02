@@ -1,0 +1,60 @@
+﻿@model Project_MVC.Models.ThisPage
+
+@{
+    int currentPage = Model.CurrentPage;
+    int previousPage = currentPage - 1;
+    int nextPage = currentPage + 1;
+    string currentPageInString = Convert.ToString(currentPage);
+    string previousPageInString = Convert.ToString(previousPage);
+    string nextPageInString = Convert.ToString(nextPage);
+
+    var totalPage = Model.TotalPage;
+    var type = Model.CurrentType;
+    var categoryCode = Model.ProductCategoryCode;
+    if (string.IsNullOrEmpty(type))
+    {
+        type = "";
+    }
+    if (string.IsNullOrEmpty(categoryCode))
+    {
+        categoryCode = "";
+    }
+}
+
+<div>
+    Page @currentPage of @totalPage
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        @if (currentPage > 1)
+        {
+            <li class="page-item">
+                @Html.ActionLink("First", "Index" + @type, new { page = 1, productCategoryCode = categoryCode }, new { @class = "page-link" })
+            </li>
+            <li class="page-item">
+                @Html.ActionLink("Previous", "Index" + @type, new { page = currentPage - 1, productCategoryCode = categoryCode }, new { @class = "page-link" })
+            </li>
+            <li class="page-item">
+                @Html.ActionLink(previousPageInString, "Index" + @type, new { page = currentPage - 1, productCategoryCode = categoryCode }, new { @class = "page-link" })
+            </li>
+        }
+        <li class="page-item active">
+            @*<a class="page-link" href="@Url.Content(~/Index?page = @currentPage)">@currentPage</a>*@
+            @Html.ActionLink(currentPageInString, "Index" + @type, new { page = currentPage, productCategoryCode = categoryCode }, new { @class = "page-link" })
+        </li>
+        @if (currentPage < totalPage)
+        {
+            <li class="page-item">
+                @Html.ActionLink(nextPageInString, "Index" + @type, new { page = currentPage + 1, productCategoryCode = categoryCode }, new { @class = "page-link" })
+            </li>
+            <li class="page-item">
+                @Html.ActionLink("Next", "Index" + @type, new { page = currentPage + 1, productCategoryCode = categoryCode }, new { @class = "page-link" })
+            </li>
+            <li class="page-item">
+                @Html.ActionLink("Final", "Index" + @type, new { page = totalPage, productCategoryCode = categoryCode }, new { @class = "page-link" })
+            </li>
+        }
+    </ul>
+</nav>
+
