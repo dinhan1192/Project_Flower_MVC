@@ -13,7 +13,7 @@ namespace Project_MVC.Services
         void UpdateRating(decimal rating, int? customerLectureInteractId);
         void UpdateProductRating(string productCode);
         string UpdateLectureRating(decimal rating, int? lectureId, string type);
-        CustomerLectureInteract DetailByLectureIdAndUserId(int? lectureId);
-        List<CustomerLectureInteract> GetListByLectureId(int? lectureId);
+        //CustomerLectureInteract DetailByLectureIdAndUserId(int? lectureId);
+        //List<CustomerLectureInteract> GetListByLectureId(int? lectureId);
     }
 }

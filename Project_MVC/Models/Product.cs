@@ -47,21 +47,7 @@ namespace Project_MVC.Models
         #region Images members
         public virtual ICollection<ProductImage> ProductImages { get; set; }
         #endregion
-        #region Lectures members
-        public virtual ICollection<Lecture> Lectures { get; set; }
-        #endregion
-        #region Owner of Course members
-
-        [ForeignKey("OwnerOfCourse")]
-        public string OwnerOfCourseCode { get; set; }
-        public virtual OwnerOfCourse OwnerOfCourse { get; set; }
-        [DisplayName("Owner Of Course")]
-        [NotMapped]
-        [RegularExpression(@"^[0-9A-Z]+\s-\s[0-9a-zA-Z\s+ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$", ErrorMessage = "Invalid Owner of Course")]
-        public string OwnerOfCourseNameAndCode { get; set; }
-
-        #endregion
-
+       
         #region User Products Members
 
         public virtual ICollection<UserProduct> UserProducts { get; set; }
