@@ -43,7 +43,6 @@ namespace Project_MVC.Models
         public DateTime? DeletedAt { get; set; }
 
         public virtual ICollection<UserProduct> UserProducts { get; set; }
-        public virtual ICollection<CustomerLectureInteract> CustomerVideos { get; set; }
 
         public enum GenderStatus
         {

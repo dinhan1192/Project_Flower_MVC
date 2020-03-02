@@ -24,9 +24,6 @@ namespace Project_MVC.Utils
         private static List<ProductCategory> _listLevelOneProductCategories;
         private static List<ProductCategory> _listProductCategories;
 
-        private static List<LevelOneMenu> _listLevelOneMenus;
-        private static List<LevelTwoMenu> _listLevelTwoMenus;
-
         public MenuUtil()
         {
             asm = Assembly.GetAssembly(typeof(Project_MVC.MvcApplication));
@@ -82,22 +79,6 @@ namespace Project_MVC.Utils
         //}
 
         #region Menu
-
-        public static List<LevelOneMenu> GetLevelOneMenus()
-        {
-            _listLevelOneMenus = DbContext.LevelOneMenus.ToList();
-            return _listLevelOneMenus;
-        }
-
-        public static List<LevelTwoMenu> GetLevelTwoMenus(string Code)
-        {
-            //if (_listProductCategories == null || _listProductCategories.Count == 0)
-            //{
-            //    _listProductCategories = DbContext.ProductCategories.Where(s => s.LevelOneProductCategory.Code == Code).ToList();
-            //}
-            _listLevelTwoMenus = DbContext.LevelTwoMenus.Where(s => s.LevelOneMenu.Code == Code).ToList();
-            return _listLevelTwoMenus;
-        }
 
         public static List<Type> GetControllerNames()
         {

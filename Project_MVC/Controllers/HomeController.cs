@@ -11,12 +11,9 @@ namespace Project_MVC.Controllers
     public class HomeController : Controller
     {
         private ICRUDService<Product> mySQLProductService;
-        private ICRUDService<OwnerOfCourse> mySQLOwnerOfCourseService;
 
         public HomeController()
         {
-            mySQLProductService = new MySQLProductService();
-            mySQLOwnerOfCourseService = new MySQLOwnerOfCourseService();
         }
 
         public ActionResult Index()
@@ -27,7 +24,7 @@ namespace Project_MVC.Controllers
 
         public ActionResult About()
         {
-            return View(mySQLOwnerOfCourseService.GetList());
+            return View();
         }
 
         public ActionResult Contact()
