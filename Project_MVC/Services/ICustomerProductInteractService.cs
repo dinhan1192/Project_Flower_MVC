@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Project_MVC.Services
 {
-    interface ICustomerLectureInteractService
+    interface ICustomerProductInteractService
     {
         void CreateRating(decimal rating, int? lectureId, string userId);
         void UpdateRating(decimal rating, int? customerLectureInteractId);
