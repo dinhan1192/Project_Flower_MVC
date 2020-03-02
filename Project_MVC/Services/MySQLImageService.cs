@@ -14,7 +14,7 @@ namespace Project_MVC.Services
     {
         private MyDbContext _db;
         private IUserService userService;
-        private ICustomerLectureInteractService customerLectureInteractService;
+        private ICustomerProductInteractService customerLectureInteractService;
 
         public MySQLImageService()
         {
