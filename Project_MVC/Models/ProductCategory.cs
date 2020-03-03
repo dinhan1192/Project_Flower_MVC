@@ -33,6 +33,7 @@ namespace Project_MVC.Models
         [DisplayName("Parent Code")]
         public string LevelOneProductCategoryCode { get; set; }
         //public virtual LevelOneProductCategory LevelOneProductCategory { get; set; }
+        public virtual ICollection<ProductImage> ProductCategoryImages { get; set; }
         [DisplayName("Parent Code")]
         [NotMapped]
         [RegularExpression(@"^[0-9A-Z]+\s-\s[0-9a-zA-Z\s+ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$", ErrorMessage = "Invalid Product Category")]
