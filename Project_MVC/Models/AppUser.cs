@@ -42,7 +42,7 @@ namespace Project_MVC.Models
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
 
-        public virtual ICollection<UserProduct> UserProducts { get; set; }
+        public virtual ICollection<RatingFlower> Ratings { get; set; }
 
         public enum GenderStatus
         {

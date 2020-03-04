@@ -17,7 +17,7 @@ namespace Project_MVC.Services
         }
         public bool ValidateUserProducts(string code, string id)
         {
-            var list = DbContext.UserProducts.Where(s => s.ProductCode.Contains(code) && s.UserId.Contains(id)).ToList();
+            var list = DbContext.RatingFlowers.Where(s => s.FlowerCode.Contains(code) && s.UserId.Contains(id)).ToList();
             if (list.Count != 0)
             {
                 return true;

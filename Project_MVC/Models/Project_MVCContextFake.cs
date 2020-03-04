@@ -19,10 +19,10 @@ namespace Project_MVC.Models
         {
         }
 
-        public System.Data.Entity.DbSet<Project_MVC.Models.ProductCategory> ProductCategories { get; set; }
+        public System.Data.Entity.DbSet<Project_MVC.Models.Category> ProductCategories { get; set; }
 
-        public System.Data.Entity.DbSet<Project_MVC.Models.Product> Products { get; set; }
+        public System.Data.Entity.DbSet<Project_MVC.Models.Flower> Products { get; set; }
 
-        public System.Data.Entity.DbSet<Project_MVC.Models.ProductImage> ProductImages { get; set; }
+        public System.Data.Entity.DbSet<Project_MVC.Models.FlowerImage> ProductImages { get; set; }
     }
 }

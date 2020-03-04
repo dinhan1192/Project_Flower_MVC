@@ -21,27 +21,27 @@ namespace Project_MVC.Utils
             get { return _db ?? HttpContext.Current.GetOwinContext().Get<MyDbContext>(); }
             set { _db = value; }
         }
-        private static List<ProductCategory> _listLevelOneProductCategories;
-        private static List<ProductCategory> _listProductCategories;
+        private static List<Category> _listLevelOneProductCategories;
+        private static List<Category> _listProductCategories;
 
         public MenuUtil()
         {
             asm = Assembly.GetAssembly(typeof(Project_MVC.MvcApplication));
         }
 
-        public static List<ProductCategory> GetLevelOneProductCategories()
+        public static List<Category> GetLevelOneProductCategories()
         {
-            _listLevelOneProductCategories = DbContext.ProductCategories.ToList();
-            _listLevelOneProductCategories = _listLevelOneProductCategories.Where(s => string.IsNullOrEmpty(s.LevelOneProductCategoryCode) && s.Status == ProductCategory.ProductCategoryStatus.NotDeleted).ToList();
+            _listLevelOneProductCategories = DbContext.Categories.ToList();
+            _listLevelOneProductCategories = _listLevelOneProductCategories.Where(s => string.IsNullOrEmpty(s.ParentCode) && s.Status == Category.CategoryStatus.NotDeleted).ToList();
             return _listLevelOneProductCategories;
         }
 
-        public static void SetLevelOneProductCategories(List<ProductCategory> lstLevelOneProductCategories)
+        public static void SetLevelOneProductCategories(List<Category> lstLevelOneProductCategories)
         {
             _listLevelOneProductCategories = lstLevelOneProductCategories;
         }
 
-        public static List<ProductCategory> GetProductCategories(string Code)
+        public static List<Category> GetProductCategories(string Code)
         {
             //if (_listProductCategories == null || _listProductCategories.Count == 0)
             //{
@@ -49,16 +49,16 @@ namespace Project_MVC.Utils
             //}
             if (string.IsNullOrEmpty(Code))
             {
-                _listProductCategories = DbContext.ProductCategories.ToList();
+                _listProductCategories = DbContext.Categories.ToList();
             }
             else
             {
-                _listProductCategories = DbContext.ProductCategories.Where(s => s.LevelOneProductCategoryCode == Code && s.Status == ProductCategory.ProductCategoryStatus.NotDeleted).ToList();
+                _listProductCategories = DbContext.Categories.Where(s => s.ParentCode == Code && s.Status == Category.CategoryStatus.NotDeleted).ToList();
             }
             return _listProductCategories;
         }
 
-        public static void SetProductCategories(List<ProductCategory> lstProductCategories)
+        public static void SetProductCategories(List<Category> lstProductCategories)
         {
             _listProductCategories = lstProductCategories;
         }

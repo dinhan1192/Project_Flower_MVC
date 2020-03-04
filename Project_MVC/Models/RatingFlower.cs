@@ -7,18 +7,18 @@ using System.Web;
 
 namespace Project_MVC.Models
 {
-    public class UserProduct
+    public class RatingFlower
     {
         [Key]
         public int? Id { get; set; }
-        [ForeignKey("Product")]
-        public string ProductCode { get; set; }
+        [ForeignKey("Flower")]
+        public string FlowerCode { get; set; }
         [ForeignKey("AppUser")]
         public string UserId { get; set; }
         public virtual AppUser AppUser { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual Flower Flower { get; set; }
 
-        #region Rating
+        #region Rating Property
 
         public decimal Rating { get; set; }
 
