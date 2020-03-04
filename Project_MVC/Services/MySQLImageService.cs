@@ -27,6 +27,16 @@ namespace Project_MVC.Services
             set { _db = value; }
         }
 
+        public void DeleteImage(FlowerImage flowerImage)
+        {
+            DbContext.FlowerImages.Remove(flowerImage);
+        }
+
+        public FlowerImage DetailImage(int? id)
+        {
+            return DbContext.FlowerImages.Find(id);
+        }
+
         public bool Rating(decimal rating, int? lectureVideoId)
         {
             throw new NotImplementedException();
