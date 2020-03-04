@@ -76,8 +76,8 @@ namespace Project_MVC.Services
                                 case Constant.ProductImage:
                                     img.ProductCode = code;
                                     break;
-                                case Constant.OwnerOfCourseImage:
-                                    //img.OwnerOfCourseCode = code;
+                                case Constant.ProductCategoryImage:
+                                    img.ProductCategoryCode = code;
                                     break;
                                 default:
                                     break;

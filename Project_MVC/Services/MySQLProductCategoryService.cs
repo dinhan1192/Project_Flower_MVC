@@ -45,7 +45,7 @@ namespace Project_MVC.Services
                 item.Status = ProductCategory.ProductCategoryStatus.NotDeleted;
                 DbContext.ProductCategories.Add(item);
                 // add image to table ProductImages
-                item.ProductCategoryImages = mySQLImageService.SaveImage2List(item.Code, Constant.OwnerOfCourseImage, images);
+                item.ProductCategoryImages = mySQLImageService.SaveImage2List(item.Code, Constant.ProductCategoryImage, images);
                 //item.ProductVideos = mySQLImageService.SaveVideo2List(item.Code, videos);
                 //
                 DbContext.SaveChanges();
