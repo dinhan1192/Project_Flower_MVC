@@ -15,6 +15,8 @@ namespace Project_MVC.Services
         //List<LectureVideo> SaveVideo2List(int? id, IEnumerable<HttpPostedFileBase> videos, ModelStateDictionary state);
         //LectureVideo Detail(int? fileId);
         bool Rating(decimal rating, int? lectureVideoId);
+        FlowerImage DetailImage(int? id);
+        void DeleteImage(FlowerImage flowerImage);
         //bool Delete(LectureVideo existItem, ModelStateDictionary state);
         bool ValidateVideo(string videoName, ModelStateDictionary state);
         void ValidateVideoDisplayOrder(int displayOrder, int parentId, ModelStateDictionary state);
