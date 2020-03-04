@@ -47,31 +47,23 @@
                                 <li>
                                     <a><i class="fa fa-folder-open"></i> Manage Categories <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
-                                        <li>@Html.ActionLink("Create", "Create", "ProductCategories")</li>
-                                        <li>@Html.ActionLink("Categories ", "Index", "ProductCategories")</li>
+                                        <li>@Html.ActionLink("Create", "Create", "Categories")</li>
+                                        <li>@Html.ActionLink("Categories ", "Index", "Categories")</li>
                                     </ul>
                                 </li>
-                                <li>
-                                    <a><i class="fa fa-book"></i>Manage Courses <span class="fa fa-chevron-down"></span></a>
+                                @*<li>
+                                    <a><i class="fa fa-book"></i>Manage Flowers <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li>@Html.ActionLink("Create", "Create", "Products")</li>
                                         <li>@Html.ActionLink("Courses", "Index", "Products")</li>
                                     </ul>
-                                </li>
-                                 <li>
+                                </li>*@
+                                 @*<li>
                                     <a><i class="fa fa-book"></i>Manage Course Images <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li>@Html.ActionLink("Course Images", "Index", "ProductImages")</li>
                                     </ul>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-book"></i>Owners of Courses<span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-
-                                        <li>@Html.ActionLink("Create", "Create", "OwnerOfCourses")</li>
-                                        <li>@Html.ActionLink("Owner Of Courses", "Index", "OwnerOfCourses")</li>
-                                    </ul>
-                                </li>
+                                </li>*@
                                 <li>
                                     <a href="@Url.Action("Index", "Home")"><i class="fa fa-reply-all"></i>Back to Customer Page </a>
                                 </li>

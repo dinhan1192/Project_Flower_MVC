@@ -10,12 +10,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Project_MVC.Models
 {
-    public class Product
+    public class Flower
     {
         [Key]
-        [DisplayName("Product Code")]
+        [DisplayName("Flower Code")]
         public string Code { get; set; }
-        [DisplayName("Product Name")]
+        [DisplayName("Flower Name")]
         [Required]
         [RegularExpression(@"^[0-9a-zA-Z\s+ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$", ErrorMessage = "Invalid Product Name")]
         public string Name { get; set; }
@@ -33,35 +33,35 @@ namespace Project_MVC.Models
         public string CreatedBy { get; set; }
         public string UpdatedBy { get; set; }
         public string DeletedBy { get; set; }
-        public ProductStatus Status { get; set; }
-        [ForeignKey("ProductCategory")]
-        public string ProductCategoryCode { get; set; }
-        public virtual ProductCategory ProductCategory { get; set; }
-        [DisplayName("Product Category")]
+        public FlowerStatus Status { get; set; }
+        [ForeignKey("Category")]
+        public string CategoryCode { get; set; }
+        public virtual Category Category { get; set; }
+        [DisplayName("Category")]
         [NotMapped]
         [RegularExpression(@"^[0-9A-Z]+\s-\s[0-9a-zA-Z\s+ÀÁÂÃÈÉÊÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềếểỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹ]+$", ErrorMessage = "Invalid Product Category")]
-        public string ProductCategoryNameAndCode { get; set; }
+        public string CategoryNameAndCode { get; set; }
         //[NotMapped]
         //[DisplayName("Product Image")]
         //public HttpPostedFileBase ProductImageFile { get; set; }
         #region Images members
-        public virtual ICollection<ProductImage> ProductImages { get; set; }
+        public virtual ICollection<FlowerImage> FlowerImages { get; set; }
         #endregion
        
-        #region User Products Members
+        #region Rating Members
 
-        public virtual ICollection<UserProduct> UserProducts { get; set; }
+        public virtual ICollection<RatingFlower> RatingFlowers { get; set; }
 
         #endregion
 
-        public enum ProductStatus
+        public enum FlowerStatus
         {
             NotDeleted = 0, Deleted = -1
         }
 
         internal bool IsDeleted()
         {
-            return this.Status == ProductStatus.Deleted;
+            return this.Status == FlowerStatus.Deleted;
         }
     }
 }

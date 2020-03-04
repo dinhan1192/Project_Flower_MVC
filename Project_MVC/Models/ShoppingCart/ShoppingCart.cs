@@ -36,7 +36,7 @@ namespace Project_MVC.Models
          * Trong trường hợp tồn tại sản phẩm trong giỏ hàng thì update số lượng.
          * Trong trường hợp không tồn tại thì thêm mới.
          */
-        public void AddCart(Product product, int quantity)
+        public void AddCart(Flower product, int quantity)
         {
             if (_cartItems.ContainsKey(product.Code))
             {
@@ -47,16 +47,16 @@ namespace Project_MVC.Models
             }
             var cartItem = new CartItem
             {
-                ProductCode = product.Code,
-                ProductName = product.Name,
+                FlowerCode = product.Code,
+                FlowerName = product.Name,
                 Price = product.Price,
                 Quantity = quantity
             };
             // đưa cart item tương ứng với sản phẩm (ở trên) vào danh sách.
-            _cartItems.Add(cartItem.ProductCode, cartItem);
+            _cartItems.Add(cartItem.FlowerCode, cartItem);
         }
 
-        public void UpdateCart(Product product, int quantity)
+        public void UpdateCart(Flower product, int quantity)
         {
             if (_cartItems.ContainsKey(product.Code))
             {

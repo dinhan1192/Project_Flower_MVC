@@ -10,15 +10,16 @@ namespace Project_MVC.Controllers
 {
     public class HomeController : Controller
     {
-        private ICRUDService<Product> mySQLProductService;
+        private ICRUDService<Category> mySQLCategoryService;
 
         public HomeController()
         {
+            mySQLCategoryService = new MySQLCategoryService();
         }
 
         public ActionResult Index()
         {
-            var list = mySQLProductService.GetList();
+            var list = mySQLCategoryService.GetList();
             return View(list);
         }
 

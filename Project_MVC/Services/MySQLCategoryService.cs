@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Project_MVC.Services
 {
-    public class MySQLProductCategoryService : ICRUDService<ProductCategory>
+    public class MySQLCategoryService : ICRUDService<Category>
     {
         private MyDbContext _db;
         public MyDbContext DbContext
@@ -20,17 +20,17 @@ namespace Project_MVC.Services
         private IUserService userService;
         private IImageService mySQLImageService { get; set; }
 
-        public MySQLProductCategoryService()
+        public MySQLCategoryService()
         {
             userService = new UserService();
             mySQLImageService = new MySQLImageService();
         }
-        public bool Create(ProductCategory item, ModelStateDictionary state)
+        public bool Create(Category item, ModelStateDictionary state)
         {
             throw new NotImplementedException();
         }
 
-        public bool CreateWithImage(ProductCategory item, ModelStateDictionary state, IEnumerable<HttpPostedFileBase> images, IEnumerable<HttpPostedFileBase> videos)
+        public bool CreateWithImage(Category item, ModelStateDictionary state, IEnumerable<HttpPostedFileBase> images, IEnumerable<HttpPostedFileBase> videos)
         {
             Validate(item, state);
             if (state.IsValid)
@@ -42,10 +42,15 @@ namespace Project_MVC.Services
                 item.UpdatedBy = userService.GetCurrentUserName();
                 item.DeletedAt = null;
                 item.CreatedBy = userService.GetCurrentUserName();
-                item.Status = ProductCategory.ProductCategoryStatus.NotDeleted;
-                DbContext.ProductCategories.Add(item);
+                item.Status = Category.CategoryStatus.NotDeleted;
+                DbContext.Categories.Add(item);
                 // add image to table ProductImages
-                item.ProductCategoryImages = mySQLImageService.SaveImage2List(item.Code, Constant.ProductCategoryImage, images);
+                var lstImages = mySQLImageService.SaveImage2List(item.Code, Constant.CategoryImage, images);
+                foreach (var image in lstImages)
+                {
+                    item.ImageData = image.ImageData;
+                    break;
+                }
                 //item.ProductVideos = mySQLImageService.SaveVideo2List(item.Code, videos);
                 //
                 DbContext.SaveChanges();
@@ -57,12 +62,12 @@ namespace Project_MVC.Services
             return false;
         }
 
-        public bool Delete(ProductCategory item, ModelStateDictionary state)
+        public bool Delete(Category item, ModelStateDictionary state)
         {
             throw new NotImplementedException();
         }
 
-        public ProductCategory Detail(string id)
+        public Category Detail(string id)
         {
             throw new NotImplementedException();
         }
@@ -72,35 +77,35 @@ namespace Project_MVC.Services
             DbContext.Dispose();
         }
 
-        public IEnumerable<ProductCategory> GetList()
+        public IEnumerable<Category> GetList()
+        {
+            return DbContext.Categories.Where(s => s.Status == Category.CategoryStatus.NotDeleted).ToList();
+        }
+
+        public bool Update(Category existItem, Category item, ModelStateDictionary state)
         {
             throw new NotImplementedException();
         }
 
-        public bool Update(ProductCategory existItem, ProductCategory item, ModelStateDictionary state)
+        public bool UpdateWithImage(Category existItem, Category item, ModelStateDictionary state, IEnumerable<HttpPostedFileBase> images)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateWithImage(ProductCategory existItem, ProductCategory item, ModelStateDictionary state, IEnumerable<HttpPostedFileBase> images)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Validate(ProductCategory item, ModelStateDictionary state)
+        public void Validate(Category item, ModelStateDictionary state)
         {
             if (string.IsNullOrEmpty(item.Code))
             {
                 state.AddModelError("Code", "Product Category Code is required.");
             }
-            var list = DbContext.ProductCategories.Where(s => s.Code == item.Code).ToList();
+            var list = DbContext.Categories.Where(s => s.Code == item.Code).ToList();
             if (list.Count != 0)
             {
                 state.AddModelError("Code", "Product Category Code already exist.");
             }
         }
 
-        public void ValidateCategory(ProductCategory item, ModelStateDictionary state)
+        public void ValidateCategory(Category item, ModelStateDictionary state)
         {
             throw new NotImplementedException();
         }

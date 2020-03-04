@@ -25,8 +25,8 @@ namespace Project_MVC.Models
         
         #region Images
 
-        public const int ProductImage = 1;
-        public const int ProductCategoryImage = 2;
+        public const int FlowerImage = 1;
+        public const int CategoryImage = 2;
 
         #endregion
 

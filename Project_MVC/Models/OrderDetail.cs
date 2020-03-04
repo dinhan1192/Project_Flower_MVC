@@ -12,12 +12,12 @@ namespace Project_MVC.Models
         // Khóa chính của OrderDetail là kết hợp của ProductId và OrderId
         [Key]
         public int? Id { get; set; }
-        [ForeignKey("Product")]
-        public string ProductCode { get; set; }
+        [ForeignKey("Flower")]
+        public string FlowerCode { get; set; }
         [ForeignKey("Order")]
         public int? OrderId { get; set; }
         public virtual Order Order { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual Flower Flower { get; set; }
         public int Quantity { get; set; }
         public double UnitPrice { get; set; }
     }

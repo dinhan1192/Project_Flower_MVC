@@ -11,19 +11,37 @@ using Project_MVC.Services;
 
 namespace Project_MVC.Controllers
 {
-    public class ProductCategoriesController : Controller
+    public class CategoriesController : Controller
     {
-        private ICRUDService<ProductCategory> mySQLProductCategoryService;
+        private ICRUDService<Category> mySQLProductCategoryService;
 
-        public ProductCategoriesController()
+        public CategoriesController()
         {
-            mySQLProductCategoryService = new MySQLProductCategoryService();
+            mySQLProductCategoryService = new MySQLCategoryService();
+        }
+
+        public ActionResult GetListLevelOneProductCategories()
+        {
+            //Console.WriteLine("123");
+            //var list = db.ProductCategories.Where(s => s.Status != ProductCategoryStatus.Deleted).ToList();
+            //var list = mySQLProductCategoryService.GetList().Where(s => Regex.IsMatch(s.Code, "^[A-Z]+$"));
+            var list = mySQLProductCategoryService.GetList().Where(s => string.IsNullOrEmpty(s.ParentCode));
+            var newlist = list.Select(dep => new
+            {
+                dep.Code,
+                dep.Name
+            });
+            return new JsonResult()
+            {
+                Data = newlist,
+                JsonRequestBehavior = JsonRequestBehavior.AllowGet,
+            };
         }
 
         // GET: ProductCategories
         public ActionResult Index()
         {
-            return View();
+            return View(mySQLProductCategoryService.GetList());
         }
 
         // GET: ProductCategories/Details/5
@@ -33,7 +51,7 @@ namespace Project_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductCategory productCategory = mySQLProductCategoryService.Detail(id);
+            Category productCategory = mySQLProductCategoryService.Detail(id);
             if (productCategory == null)
             {
                 return HttpNotFound();
@@ -52,7 +70,7 @@ namespace Project_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Code,Name,Description,LevelOneProductCategoryCode")] ProductCategory productCategory, IEnumerable<HttpPostedFileBase> images)
+        public ActionResult Create([Bind(Include = "Code,Name,Description,ParentCode")] Category productCategory, IEnumerable<HttpPostedFileBase> images)
         {
             if (mySQLProductCategoryService.CreateWithImage(productCategory, ModelState, images, null))
             {
@@ -69,7 +87,7 @@ namespace Project_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProductCategory productCategory = mySQLProductCategoryService.Detail(id);
+            Category productCategory = mySQLProductCategoryService.Detail(id);
             if (productCategory == null)
             {
                 return HttpNotFound();
@@ -82,7 +100,7 @@ namespace Project_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Code,Name,Description,CreatedAt,UpdatedAt,DeletedAt,CreatedBy,UpdatedBy,DeletedBy,Status,LevelOneProductCategoryCode")] ProductCategory productCategory)
+        public ActionResult Edit([Bind(Include = "Code,Name,Description,CreatedAt,UpdatedAt,DeletedAt,CreatedBy,UpdatedBy,DeletedBy,Status,LevelOneProductCategoryCode")] Category productCategory)
         {
             //if (ModelState.IsValid)
             //{

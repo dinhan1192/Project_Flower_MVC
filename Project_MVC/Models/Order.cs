@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,7 +9,8 @@ namespace Project_MVC.Models
     public class Order
     {
         public int? Id { get; set; }
-        public int MemberId { get; set; }
+        [ForeignKey("AppUser")]
+        public string UserId { get; set; }
         public PaymentType PaymentTypeId { get; set; }
         public string ShipName { get; set; }
         public string ShipAddress { get; set; }
@@ -21,6 +23,7 @@ namespace Project_MVC.Models
         public string UpdatedBy { get; set; }
         public string DeletedBy { get; set; }
         public OrderStatus Status { get; set; }
+        public virtual AppUser AppUser { get; set; }
 
         public enum OrderStatus
         {

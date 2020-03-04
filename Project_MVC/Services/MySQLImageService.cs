@@ -14,7 +14,7 @@ namespace Project_MVC.Services
     {
         private MyDbContext _db;
         private IUserService userService;
-        private ICustomerProductInteractService customerLectureInteractService;
+        //private ICustomerProductInteractService customerLectureInteractService;
 
         public MySQLImageService()
         {
@@ -58,11 +58,11 @@ namespace Project_MVC.Services
         //    return false;
         //}
 
-        public List<ProductImage> SaveImage2List(string code, int? type, IEnumerable<HttpPostedFileBase> images)
+        public List<FlowerImage> SaveImage2List(string code, int? type, IEnumerable<HttpPostedFileBase> images)
         {
             if (images != null)
             {
-                var imageList = new List<ProductImage>();
+                var imageList = new List<FlowerImage>();
                 foreach (var image in images)
                 {
                     if (image != null)
@@ -70,14 +70,14 @@ namespace Project_MVC.Services
                         using (var br = new BinaryReader(image.InputStream))
                         {
                             var data = br.ReadBytes(image.ContentLength);
-                            var img = new ProductImage();
+                            var img = new FlowerImage();
                             switch (type)
                             {
-                                case Constant.ProductImage:
-                                    img.ProductCode = code;
+                                case Constant.FlowerImage:
+                                    img.FlowerCode = code;
                                     break;
-                                case Constant.ProductCategoryImage:
-                                    img.ProductCategoryCode = code;
+                                case Constant.CategoryImage:
+                                    //img = code;
                                     break;
                                 default:
                                     break;
