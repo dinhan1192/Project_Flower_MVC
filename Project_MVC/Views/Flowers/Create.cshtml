@@ -1,33 +1,32 @@
-﻿@model Project_MVC.Models.Category
+﻿@model Project_MVC.Models.Flower
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    var url = "/Categories/GetListLevelOneProductCategories";
-    var flowerCategory = "Category";
+    var url = "/Flowers/GetListProductCategories";
+    var category = "Category";
 }
 
-<h2>Edit</h2>
 
-@using (Html.BeginForm("Edit", "Categories", FormMethod.Post, new
+<h2>Create</h2>
+
+@using (Html.BeginForm("Create", "Flowers", FormMethod.Post, new
 { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Category</h4>
+    <h4>Flower</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Code)
-
-    @*<div class="form-group">
+    <div class="form-group">
         @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
         </div>
-    </div>*@
+    </div>
 
     <div class="form-group">
         @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -38,13 +37,10 @@
     </div>
 
     <div class="form-group">
-        @Html.LabelFor(model => model.ParentCode, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextBoxFor(model => model.ParentCode, new { @class = "form-control typeahead", @id = "AutoComplete", @name = "AutoComplete", data_provide = "typeahead", data_request_url = @url, data_type = flowerCategory })
-            @*<input id="ProductCategoryId" type="text" name="Autocomplete" value="" class="form-control typeahead" data-provide="typeahead" />*@
-            @*<input type="hidden" name="ProductCategoryId" id="hidProductCategoryId" />*@
-            @Html.HiddenFor(model => model.ParentCode, new { @id = "hidCode" + flowerCategory })
-            @Html.ValidationMessageFor(model => model.ParentCode, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -56,15 +52,17 @@
         </div>
     </div>
 
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.ParentNameAndCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ParentNameAndCode, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ParentNameAndCode, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
     <div class="form-group">
-        @Html.Label("Flower Categories Image", htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.CategoryNameAndCode, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.CategoryNameAndCode, new { @class = "form-control typeahead", @id = "AutoComplete", @name = "AutoComplete", data_provide = "typeahead", data_request_url = @url, data_type = category })
+            @Html.HiddenFor(model => model.CategoryCode, new { @id = "hidCode" + category })
+            @Html.ValidationMessageFor(model => model.CategoryNameAndCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Image", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             <input type='file' multiple id='fileUpload' name="images" accept="image/*" />
             @*@Html.TextBoxFor(model => model.ProductImageFile, null, new { htmlAttributes = new {  type="file", @class="input-file" } })*@
@@ -74,7 +72,7 @@
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+            <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>
 </div>
