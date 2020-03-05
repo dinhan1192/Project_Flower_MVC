@@ -37,6 +37,11 @@ namespace Project_MVC.Services
             return DbContext.FlowerImages.Find(id);
         }
 
+        public List<FlowerImage> GetList()
+        {
+            return DbContext.FlowerImages.ToList();
+        }
+
         public bool Rating(decimal rating, int? lectureVideoId)
         {
             throw new NotImplementedException();
