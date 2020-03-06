@@ -56,29 +56,9 @@ namespace Project_MVC.Services
                 item.FlowerImages = mySQLImageService.SaveImage2List(item.Code, Constant.FlowerImage, images);
                 //item.ProductVideos = mySQLImageService.SaveVideo2List(item.Code, videos);
 
-                var existCategory = DbContext.Categories.Find(item.CategoryCode);
-                var flowers = DbContext.Flowers.Where(s => s.CategoryCode == item.CategoryCode);
-                var maxFlowerPrice = (double?)flowers.Max(s => s.Price);
-                var minFlowerPrice = (double?)flowers.Min(s => s.Price);
-                if (maxFlowerPrice == null)
-                    maxFlowerPrice = 0;
-                if (minFlowerPrice == null)
-                    minFlowerPrice = 0;
-                if (item.Price > maxFlowerPrice)
-                {
-                    existCategory.MaxPrice = item.Price;
-                    existCategory.MinPrice = minFlowerPrice;
-                }
-                else if (item.Price < minFlowerPrice)
-                {
-                    existCategory.MaxPrice = maxFlowerPrice;
-                    existCategory.MinPrice = item.Price;
-                }
-                else
-                {
-                    existCategory.MaxPrice = maxFlowerPrice;
-                    existCategory.MinPrice = minFlowerPrice;
-                }
+                var existCategory = AddMaxMinPrice(item.CategoryCode, item.Price);
+                DbContext.Categories.AddOrUpdate(existCategory);
+
                 DbContext.SaveChanges();
                 //var existCategory = DbContext.Categories.Find(item.CategoryCode);
                 //existCategory.MaxPrice = DbContext.Flowers.Max(s => s.Price);
@@ -146,29 +126,8 @@ namespace Project_MVC.Services
                 var imageList = mySQLImageService.SaveImage2List(item.Code, Constant.FlowerImage, images);
                 DbContext.FlowerImages.AddRange(imageList);
                 //
-                var existCategory = DbContext.Categories.Find(existItem.CategoryCode);
-                var flowers = DbContext.Flowers.Where(s => s.CategoryCode == existItem.CategoryCode);
-                var maxFlowerPrice = (double?)flowers.Max(s => s.Price);
-                var minFlowerPrice = (double?)flowers.Min(s => s.Price);
-                if (maxFlowerPrice == null)
-                    maxFlowerPrice = 0;
-                if (minFlowerPrice == null)
-                    minFlowerPrice = 0;
-                if (existItem.Price > maxFlowerPrice)
-                {
-                    existCategory.MaxPrice = existItem.Price;
-                    existCategory.MinPrice = minFlowerPrice;
-                }
-                else if (existItem.Price < minFlowerPrice)
-                {
-                    existCategory.MaxPrice = maxFlowerPrice;
-                    existCategory.MinPrice = existItem.Price;
-                }
-                else
-                {
-                    existCategory.MaxPrice = maxFlowerPrice;
-                    existCategory.MinPrice = minFlowerPrice;
-                }
+                var existCategory = AddMaxMinPrice(existItem.CategoryCode, existItem.Price);
+                DbContext.Categories.AddOrUpdate(existCategory);
                 DbContext.SaveChanges();
 
                 return true;
@@ -201,6 +160,35 @@ namespace Project_MVC.Services
         public bool ValidateStringCode(string code)
         {
             throw new NotImplementedException();
+        }
+
+        private Category AddMaxMinPrice(string code, double price)
+        {
+            var existCategory = DbContext.Categories.Find(code);
+            var flowers = DbContext.Flowers.Where(s => s.CategoryCode == code);
+            var maxFlowerPrice = (double?)flowers.Max(s => s.Price);
+            var minFlowerPrice = (double?)flowers.Min(s => s.Price);
+            if (maxFlowerPrice == null)
+                maxFlowerPrice = 0;
+            if (minFlowerPrice == null)
+                minFlowerPrice = 0;
+            if (price > maxFlowerPrice)
+            {
+                existCategory.MaxPrice = price;
+                existCategory.MinPrice = minFlowerPrice;
+            }
+            else if (price < minFlowerPrice)
+            {
+                existCategory.MaxPrice = maxFlowerPrice;
+                existCategory.MinPrice = price;
+            }
+            else
+            {
+                existCategory.MaxPrice = maxFlowerPrice;
+                existCategory.MinPrice = minFlowerPrice;
+            }
+
+            return existCategory;
         }
     }
 }
