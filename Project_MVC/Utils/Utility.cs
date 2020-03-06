@@ -721,5 +721,20 @@ namespace Project_MVC.Utils
 
             return Convert.ToBase64String(byteHash);
         }
+
+        #region An Utility
+
+        public static string GenerateCode(string codeIdCount, int valueIdCount)
+        {
+            if (valueIdCount > 999)
+                return string.Format("{0}{1}", codeIdCount, valueIdCount.ToString());
+            else if(valueIdCount > 99)
+                return string.Format("{0}0{1}", codeIdCount, valueIdCount.ToString());
+            else if (valueIdCount > 9)
+                return string.Format("{0}00{1}", codeIdCount, valueIdCount.ToString());
+            else return string.Format("{0}000{1}", codeIdCount, valueIdCount.ToString());
+        } 
+
+        #endregion
     }
 }

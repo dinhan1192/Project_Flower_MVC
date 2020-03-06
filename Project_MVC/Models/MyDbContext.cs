@@ -28,5 +28,6 @@ namespace Project_MVC.Models
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<RatingFlower> RatingFlowers { get; set; }
+        public DbSet<IdCount> IdCounts { get; set; }
     }
 }
