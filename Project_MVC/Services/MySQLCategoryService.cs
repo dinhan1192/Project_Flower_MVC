@@ -2,9 +2,11 @@
 using Project_MVC.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static Project_MVC.Models.Category;
 
 namespace Project_MVC.Services
 {
@@ -62,14 +64,25 @@ namespace Project_MVC.Services
             return false;
         }
 
-        public bool Delete(Category item, ModelStateDictionary state)
+        public bool Delete(Category existCategory, ModelStateDictionary state)
         {
-            throw new NotImplementedException();
+            if (state.IsValid)
+            {
+                existCategory.Status = CategoryStatus.Deleted;
+                existCategory.DeletedAt = DateTime.Now;
+                existCategory.DeletedBy = userService.GetCurrentUserName();
+                DbContext.Categories.AddOrUpdate(existCategory);
+                DbContext.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
 
         public Category Detail(string id)
         {
-            throw new NotImplementedException();
+            return DbContext.Categories.Find(id);
         }
 
         public void DisposeDb()
@@ -84,30 +97,67 @@ namespace Project_MVC.Services
 
         public bool Update(Category existItem, Category item, ModelStateDictionary state)
         {
-            throw new NotImplementedException();
+            if (state.IsValid)
+            {
+                existItem.Name = item.Name;
+                existItem.Description = item.Description;
+                existItem.ParentNameAndCode = item.ParentNameAndCode;
+                existItem.UpdatedAt = DateTime.Now;
+                existItem.UpdatedBy = userService.GetCurrentUserName();
+                DbContext.Categories.AddOrUpdate(existItem);
+                DbContext.SaveChanges();
+
+                return true;
+            }
+
+            return false;
+            //throw new NotImplementedException();
         }
 
         public bool UpdateWithImage(Category existItem, Category item, ModelStateDictionary state, IEnumerable<HttpPostedFileBase> images)
         {
-            throw new NotImplementedException();
+            ValidateCategory(item, state);
+            if (state.IsValid)
+            {
+                existItem.Name = item.Name;
+                existItem.ParentCode = item.ParentCode;
+                existItem.Description = item.Description;
+                existItem.UpdatedAt = DateTime.Now;
+                existItem.UpdatedBy = userService.GetCurrentUserName();
+                var lstImages = mySQLImageService.SaveImage2List(item.Code, Constant.CategoryImage, images);
+                foreach (var image in lstImages)
+                {
+                    existItem.ImageData = image.ImageData;
+                    break;
+                }
+                DbContext.FlowerImages.AddRange(lstImages);
+                //
+                DbContext.SaveChanges();
+                return true;
+            }
+
+            return false;
         }
 
         public void Validate(Category item, ModelStateDictionary state)
         {
             if (string.IsNullOrEmpty(item.Code))
             {
-                state.AddModelError("Code", "Product Category Code is required.");
+                state.AddModelError("Code", "Flower Category Code is required.");
             }
             var list = DbContext.Categories.Where(s => s.Code == item.Code).ToList();
             if (list.Count != 0)
             {
-                state.AddModelError("Code", "Product Category Code already exist.");
+                state.AddModelError("Code", "Flower Category Code already exist.");
             }
         }
 
         public void ValidateCategory(Category item, ModelStateDictionary state)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrEmpty(item.ParentCode))
+            {
+                state.AddModelError("ParentNameAndCode", "Category is required.");
+            }
         }
 
         public bool ValidateStringCode(string code)

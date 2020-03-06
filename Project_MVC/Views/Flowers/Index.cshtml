@@ -1,11 +1,13 @@
-﻿@model IEnumerable<Project_MVC.Models.Category>
+﻿@model IEnumerable<Project_MVC.Models.Flower>
 @using Project_MVC.Models
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var thisPage = ViewBag.Page as ThisPage;
-    var url = "/Categories/Delete/";
+    //var functionType = Constant.CreateProduct;
+    var url = "/Flowers/Delete/";
+    //var urlPopup = "/Flowers/CreatePopup";
 
     string ids = "";
     var thisType = "AtView";
@@ -16,32 +18,38 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@using (Html.BeginForm("Index", "Categories", FormMethod.Get))
+@using (Html.BeginForm("Index", "Flowers", FormMethod.Get))
 {
     <p>
-        Find by Flower Category Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+        Find by Flower Name or Code: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
         <input type="submit" value="Search" />
     </p>
 }
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Category.Name)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Code)
         </th>
         <th>
-            @Html.ActionLink("Flower Category Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+            @Html.ActionLink("Flower Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.ParentCode)
+            @Html.ActionLink("Date of Update", "Index", new { sortOrder = ViewBag.DateSortParm })
         </th>
         <th>
-            Category Image
-        </th>
-        <th>
-            @Html.ActionLink("Created At", "Index", new { sortOrder = ViewBag.DateSortParm })
+            Flower Images
         </th>
         <th></th>
     </tr>
@@ -50,25 +58,31 @@
     {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Category.Name)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Code)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ParentCode)
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
             </td>
             <td>
-                @if (item.ImageData != null)
+                @foreach (var image in item.FlowerImages)
                 {
-                    <img src="data:image;base64,@System.Convert.ToBase64String(item.ImageData)" width="80" height="80" />
+                    <img src="data:image;base64,@System.Convert.ToBase64String(image.ImageData)" width="80" height="80" />
                 }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Code }) |
@@ -80,7 +94,9 @@
     }
 
 </table>
+
 @Html.Partial("_Paginate", thisPage)
+
 
 @Html.AntiForgeryToken()
 @section scripts{

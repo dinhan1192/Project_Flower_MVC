@@ -13,19 +13,73 @@ namespace Project_MVC.Controllers
 {
     public class CategoriesController : Controller
     {
-        private ICRUDService<Category> mySQLProductCategoryService;
+        private ICRUDService<Category> mySQLCategoryService;
 
         public CategoriesController()
         {
-            mySQLProductCategoryService = new MySQLCategoryService();
+            mySQLCategoryService = new MySQLCategoryService();
         }
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
+        {
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            // lúc đầu vừa vào thì sortOrder là null, cho nên gán NameSortParm = name_desc
+            // Ấn vào link Full name thì lúc đó NameSortParm có giá trị là name_desc, sortOrder trên view được gán = NameSortParm cho nên sortOrder != null
+            // và NameSortParm = ""
+            // Ấn tiếp vào link Full Name thì sortOrder = "" cho nên NameSortParm = name_desc
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var flowerCategories = mySQLCategoryService.GetList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                flowerCategories = flowerCategories.Where(s => s.Name.Contains(searchString));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    flowerCategories = flowerCategories.OrderByDescending(s => s.Name);
+                    break;
+                case "Date":
+                    flowerCategories = flowerCategories.OrderBy(s => s.UpdatedAt);
+                    break;
+                case "date_desc":
+                    flowerCategories = flowerCategories.OrderByDescending(s => s.UpdatedAt);
+                    break;
+                default:
+                    flowerCategories = flowerCategories.OrderBy(s => s.Name);
+                    break;
+            }
+
+            int pageSize = Constant.PageSize;
+            int pageNumber = (page ?? 1);
+            ThisPage thisPage = new ThisPage()
+            {
+                CurrentPage = pageNumber,
+                TotalPage = Math.Ceiling((double)flowerCategories.Count() / pageSize)
+            };
+            ViewBag.Page = thisPage;
+            // nếu page == null thì lấy giá trị là 1, nếu không thì giá trị là page
+            //return View(students.ToList().ToPagedList(pageNumber, pageSize));
+            return View(flowerCategories.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
+        }
         public ActionResult GetListLevelOneProductCategories()
         {
             //Console.WriteLine("123");
             //var list = db.ProductCategories.Where(s => s.Status != ProductCategoryStatus.Deleted).ToList();
             //var list = mySQLProductCategoryService.GetList().Where(s => Regex.IsMatch(s.Code, "^[A-Z]+$"));
-            var list = mySQLProductCategoryService.GetList().Where(s => string.IsNullOrEmpty(s.ParentCode));
+            var list = mySQLCategoryService.GetList().Where(s => string.IsNullOrEmpty(s.ParentCode));
             var newlist = list.Select(dep => new
             {
                 dep.Code,
@@ -38,11 +92,7 @@ namespace Project_MVC.Controllers
             };
         }
 
-        // GET: ProductCategories
-        public ActionResult Index()
-        {
-            return View(mySQLProductCategoryService.GetList());
-        }
+       
 
         // GET: ProductCategories/Details/5
         public ActionResult Details(string id)
@@ -51,12 +101,12 @@ namespace Project_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category productCategory = mySQLProductCategoryService.Detail(id);
-            if (productCategory == null)
+            Category flowerCategory = mySQLCategoryService.Detail(id);
+            if (flowerCategory == null || flowerCategory.IsDeleted())
             {
                 return HttpNotFound();
             }
-            return View(productCategory);
+            return View(flowerCategory);
         }
 
         // GET: ProductCategories/Create
@@ -70,14 +120,14 @@ namespace Project_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Code,Name,Description,ParentCode")] Category productCategory, IEnumerable<HttpPostedFileBase> images)
+        public ActionResult Create([Bind(Include = "Code,Name,Description,ParentCode")] Category category, IEnumerable<HttpPostedFileBase> images)
         {
-            if (mySQLProductCategoryService.CreateWithImage(productCategory, ModelState, images, null))
+            if (mySQLCategoryService.CreateWithImage(category, ModelState, images, null))
             {
                 return RedirectToAction("Index");
             }
 
-            return View(productCategory);
+            return View(category);
         }
 
         // GET: ProductCategories/Edit/5
@@ -87,12 +137,22 @@ namespace Project_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category productCategory = mySQLProductCategoryService.Detail(id);
-            if (productCategory == null)
+            var flowerCategory = mySQLCategoryService.Detail(id);
+            var levelOneCategory = mySQLCategoryService.Detail(flowerCategory.ParentNameAndCode);
+
+            if (levelOneCategory == null)
+            {
+                flowerCategory.ParentNameAndCode = "";
+            }
+            else
+            {
+                flowerCategory.ParentNameAndCode = levelOneCategory.Code + " - " + levelOneCategory.Name;
+            }
+            if (flowerCategory == null || flowerCategory.IsDeleted())
             {
                 return HttpNotFound();
             }
-            return View(productCategory);
+            return View(flowerCategory);
         }
 
         // POST: ProductCategories/Edit/5
@@ -100,15 +160,23 @@ namespace Project_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Code,Name,Description,CreatedAt,UpdatedAt,DeletedAt,CreatedBy,UpdatedBy,DeletedBy,Status,LevelOneProductCategoryCode")] Category productCategory)
+        public ActionResult Edit([Bind(Include = "Code,Name,Description,ParentCode")] Category flowerCategory, IEnumerable<HttpPostedFileBase> images)
         {
-            //if (ModelState.IsValid)
-            //{
-            //    db.Entry(productCategory).State = EntityState.Modified;
-            //    db.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            return View(productCategory);
+            if (flowerCategory == null || flowerCategory.Code == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var existFlowerCategory = mySQLCategoryService.Detail(flowerCategory.Code);
+            if (existFlowerCategory == null || existFlowerCategory.IsDeleted())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            if (mySQLCategoryService.UpdateWithImage(existFlowerCategory, flowerCategory, ModelState, images))
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(flowerCategory);
         }
 
         // GET: ProductCategories/Delete/5
@@ -131,9 +199,19 @@ namespace Project_MVC.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
-            //ProductCategory productCategory = db.ProductCategories.Find(id);
-            //db.ProductCategories.Remove(productCategory);
-            //db.SaveChanges();
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var existCategory = mySQLCategoryService.Detail(id);
+            if (existCategory == null || existCategory.IsDeleted())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            if (mySQLCategoryService.Delete(existCategory, ModelState))
+            {
+                return RedirectToAction("Index");
+            }
             return RedirectToAction("Index");
         }
 
@@ -141,7 +219,7 @@ namespace Project_MVC.Controllers
         {
             if (disposing)
             {
-                mySQLProductCategoryService.DisposeDb();
+                mySQLCategoryService.DisposeDb();
             }
             base.Dispose(disposing);
         }
