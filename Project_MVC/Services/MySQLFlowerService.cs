@@ -146,6 +146,29 @@ namespace Project_MVC.Services
                 var imageList = mySQLImageService.SaveImage2List(item.Code, Constant.FlowerImage, images);
                 DbContext.FlowerImages.AddRange(imageList);
                 //
+                var existCategory = DbContext.Categories.Find(existItem.CategoryCode);
+                var flowers = DbContext.Flowers.Where(s => s.CategoryCode == existItem.CategoryCode);
+                var maxFlowerPrice = (double?)flowers.Max(s => s.Price);
+                var minFlowerPrice = (double?)flowers.Min(s => s.Price);
+                if (maxFlowerPrice == null)
+                    maxFlowerPrice = 0;
+                if (minFlowerPrice == null)
+                    minFlowerPrice = 0;
+                if (existItem.Price > maxFlowerPrice)
+                {
+                    existCategory.MaxPrice = existItem.Price;
+                    existCategory.MinPrice = minFlowerPrice;
+                }
+                else if (existItem.Price < minFlowerPrice)
+                {
+                    existCategory.MaxPrice = maxFlowerPrice;
+                    existCategory.MinPrice = existItem.Price;
+                }
+                else
+                {
+                    existCategory.MaxPrice = maxFlowerPrice;
+                    existCategory.MinPrice = minFlowerPrice;
+                }
                 DbContext.SaveChanges();
 
                 return true;
