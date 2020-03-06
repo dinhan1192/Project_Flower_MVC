@@ -32,6 +32,12 @@
             @Html.ActionLink("Flower Category Name", "Index", new { sortOrder = ViewBag.NameSortParm })
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.MaxPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinPrice)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
@@ -54,6 +60,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MaxPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinPrice)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Description)
