@@ -12,7 +12,7 @@ namespace Project_MVC.Models
     public class Category
     {
         [Key]
-        [DisplayName("Code Number")]
+        [DisplayName("Category Code")]
         //[RegularExpression(@"^[A-Z]{1,3}\d{1,4}$", ErrorMessage = "Invalid Code")]
         [RegularExpression(@"^[A-Z]+$", ErrorMessage = "Invalid Code, Code only contain capital characters")]
         public string Code { get; set; }
@@ -23,8 +23,8 @@ namespace Project_MVC.Models
         public string Description { get; set; }
         [DisplayName("Category Image")]
         public byte[] ImageData { get; set; }
-        public decimal? MaxPrice { get; set; }
-        public decimal? MinPrice { get; set; }
+        public double? MaxPrice { get; set; }
+        public double? MinPrice { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }

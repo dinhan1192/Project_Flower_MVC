@@ -56,9 +56,36 @@ namespace Project_MVC.Services
                 item.FlowerImages = mySQLImageService.SaveImage2List(item.Code, Constant.FlowerImage, images);
                 //item.ProductVideos = mySQLImageService.SaveVideo2List(item.Code, videos);
 
+                var existCategory = DbContext.Categories.Find(item.CategoryCode);
+                var flowers = DbContext.Flowers.Where(s => s.CategoryCode == item.CategoryCode);
+                var maxFlowerPrice = (double?)flowers.Max(s => s.Price);
+                var minFlowerPrice = (double?)flowers.Min(s => s.Price);
+                if (maxFlowerPrice == null)
+                    maxFlowerPrice = 0;
+                if (minFlowerPrice == null)
+                    minFlowerPrice = 0;
+                if (item.Price > maxFlowerPrice)
+                {
+                    existCategory.MaxPrice = item.Price;
+                    existCategory.MinPrice = minFlowerPrice;
+                }
+                else if (item.Price < minFlowerPrice)
+                {
+                    existCategory.MaxPrice = maxFlowerPrice;
+                    existCategory.MinPrice = item.Price;
+                }
+                else
+                {
+                    existCategory.MaxPrice = maxFlowerPrice;
+                    existCategory.MinPrice = minFlowerPrice;
+                }
                 DbContext.SaveChanges();
+                //var existCategory = DbContext.Categories.Find(item.CategoryCode);
+                //existCategory.MaxPrice = DbContext.Flowers.Max(s => s.Price);
+                //existCategory.MinPrice = DbContext.Flowers.Min(s => s.Price);
+                //DbContext.Categories.AddOrUpdate(existCategory);
+                //DbContext.SaveChanges();
                 return true;
-
             }
 
             //ViewBag.ProductCategoryId = new SelectList(db.ProductCategories, "Id", "Name", product.ProductCategoryId);
