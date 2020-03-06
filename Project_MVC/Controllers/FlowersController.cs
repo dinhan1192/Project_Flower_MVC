@@ -143,7 +143,7 @@ namespace Project_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Code,Name,Price,Description,CategoryCode")] Flower flower, IEnumerable<HttpPostedFileBase> images)
+        public ActionResult Create([Bind(Include = "Name,Price,Description,CategoryCode")] Flower flower, IEnumerable<HttpPostedFileBase> images)
         {
             if (mySQLFlowerService.CreateWithImage(flower, ModelState, images, null))
             {

@@ -34,6 +34,11 @@ namespace Project_MVC.Services
 
         public bool CreateWithImage(Flower item, ModelStateDictionary state, IEnumerable<HttpPostedFileBase> images, IEnumerable<HttpPostedFileBase> videos)
         {
+            // add IdCount
+            var existIdCount = DbContext.IdCounts.Find(item.CategoryCode);
+            existIdCount.Value++;
+            DbContext.IdCounts.AddOrUpdate(existIdCount);
+            item.Code = Utils.Utility.GenerateCode(existIdCount.Code, existIdCount.Value);
             Validate(item, state);
             ValidateCategory(item, state);
             if (state.IsValid)
@@ -50,7 +55,7 @@ namespace Project_MVC.Services
                 // add image to table ProductImages
                 item.FlowerImages = mySQLImageService.SaveImage2List(item.Code, Constant.FlowerImage, images);
                 //item.ProductVideos = mySQLImageService.SaveVideo2List(item.Code, videos);
-                //
+
                 DbContext.SaveChanges();
                 return true;
 

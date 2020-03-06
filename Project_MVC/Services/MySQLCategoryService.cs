@@ -54,7 +54,14 @@ namespace Project_MVC.Services
                     break;
                 }
                 //item.ProductVideos = mySQLImageService.SaveVideo2List(item.Code, videos);
-                //
+
+                // add IdCounts
+                var idCount = new IdCount()
+                {
+                    Code = item.Code,
+                    Value = 0
+                };
+                DbContext.IdCounts.Add(idCount);
                 DbContext.SaveChanges();
                 return true;
 

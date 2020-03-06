@@ -14,7 +14,7 @@ namespace Project_MVC.Models
         [Key]
         [DisplayName("Code Number")]
         //[RegularExpression(@"^[A-Z]{1,3}\d{1,4}$", ErrorMessage = "Invalid Code")]
-        [RegularExpression(@"^[A-Z0-9]+$", ErrorMessage = "Invalid Code")]
+        [RegularExpression(@"^[A-Z]+$", ErrorMessage = "Invalid Code, Code only contain capital characters")]
         public string Code { get; set; }
         [DisplayName("Category Name")]
         [Required]
