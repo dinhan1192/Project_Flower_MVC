@@ -44,7 +44,7 @@ namespace Project_MVC
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
 
-
+            // layout admin
             bundles.Add(new StyleBundle("~/Css").Include(
                      //"~/Content/vendor/fontawesome-free/css/all.min.css",
                      //"~/Content/vendor/datatables/dataTables.bootstrap4.css",
@@ -107,6 +107,45 @@ namespace Project_MVC
             bundles.Add(new StyleBundle("~/Content/fonts").Include(
                     "~/Content/LayoutAdminPage/fontawesome.css"
                     ));
+            // end layout admin
+
+            //start layout user
+            bundles.Add(new StyleBundle("~/Css-frontend").Include(
+                 "~/Content/Front-end/css/font-awesome.min.css",
+                 "~/Content/Front-end/css/owl.carousel.css",
+                 "~/Content/Front-end/css/owl.my_theme.css",
+                 "~/Content/Front-end/css/owl.transitions.css",
+                 "~/Content/Front-end/css/nivo-slider.css",
+                 "~/Content/Front-end/css/animate.css",
+                 "~/Content/Front-end/css/jquery-ui.css",
+                 "~/Content/Front-end/css/jquery.fancybox.css",
+                 "~/Content/Front-end/css/normalize.css",
+                 "~/Content/Front-end/css/bootstrap.min.css",
+                 "~/Content/Front-end/css/custom.css",
+                 "~/Content/Front-end/css/meanmenu.min.css",
+                 "~/Content/Front-end/css/responsive.css",
+                 "~/Content/Front-end/css/main.css",
+                 "~/Content/Front-end/css/style.css"
+                 ));
+            bundles.Add(new ScriptBundle("~/Js-frontend").Include(
+                "~/Scripts/js-frontend/vendor/jquery-1.11.3.min.js",
+                "~/Scripts/js-frontend/bootstrap.min.js",
+                "~/Scripts/js-frontend/jquery.meanmenu.js",
+                "~/Scripts/js-frontend/jquery.knob.js",
+                "~/Scripts/js-frontend/jquery.fancybox.pack.js",
+                "~/Scripts/js-frontend/price-slider.js",
+                "~/Scripts/js-frontend/jquery.nivo.slider.pack.js",
+                "~/Scripts/js-frontend/wow.js",
+                "~/Scripts/js-frontend/nivo-plugin.js",
+                "~/Scripts/js-frontend/jquery.scrollUp.js",
+                "~/Scripts/js-frontend/owl.carousel.min.js",
+                "~/Scripts/js-frontend/plugins.js",
+                "~/Scripts/js-frontend/main.js"
+                ));
+            bundles.Add(new ScriptBundle("~/Modernizr").Include(
+                "~/Scripts/js-frontend/vendor/modernizr-2.8.3.min.js"
+                ));
+            //End layout user
 
 
             // BundleTable.EnableOptimizations = true;
