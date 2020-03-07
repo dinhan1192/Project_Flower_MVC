@@ -7,10 +7,18 @@
 
     var thisPage = ViewBag.Page as ThisPage;
     var url = "/ProductImages/Delete/";
+
+
 }
 <h2>Manage Product Images</h2>
 
-
+@using (Html.BeginForm("Index", "ProductImages", FormMethod.Get))
+{
+    <p>
+        Find by Flower Name or Code: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+        <input type="submit" value="Search" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -41,9 +49,10 @@
     }
 
 </table>
-@*@Html.Partial("_Paginate", thisPage)*@
+@Html.Partial("_Paginate", thisPage)
 
-@*@Html.AntiForgeryToken()*@
-@*@section scripts{
-    @Scripts.Render("~/bundles/custom");
-}*@
+
+    @Html.AntiForgeryToken()
+    @section scripts{
+        @Scripts.Render("~/bundles/custom");
+    }
