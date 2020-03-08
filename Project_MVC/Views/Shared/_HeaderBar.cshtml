@@ -102,52 +102,18 @@
                                     @foreach (var levelOneProductCategory in MenuUtil.GetLevelOneProductCategories())
                                     {
                                         <div class="single_megamenu">
-                                            <h2><a href="#">@levelOneProductCategory.Name</a></h2>
+                                            <h2><a href="@Url.Action("IndexCustomer", "Flowers", new { levelOneCategoryCode = levelOneProductCategory.Code })">@levelOneProductCategory.Name</a></h2>
                                             <div class="items_list">
                                                 @foreach (var category in MenuUtil.GetProductCategories(levelOneProductCategory.Code))
                                                 {
-                                                    <a href="@Url.Action("Index", "Categories")"><i class="fa fa-angle-right"></i>@category.Name</a>
+                                                    <a href="@Url.Action("IndexCustomer", "Flowers", new { categoryCode = category.Code  })"><i class="fa fa-angle-right"></i>@category.Name</a>
                                                 }
-
-                                                @*<a href="shop.html"><i class="fa fa-angle-right"></i>Daisy</a>
-                    <a href="shop.html"><i class="fa fa-angle-right"></i>Rose</a>
-                    <a href="shop.html"><i class="fa fa-angle-right"></i>Gladiolus</a>*@
                                             </div>
                                         </div>
                                     }
-                                        </div>
-                                        @*<div class="single_megamenu">
-                                            <h2><a href="shop.html">Lighting</a></h2>
-                                            <div class="items_list">
-                                                <a href="shop.html"><i class="fa fa-angle-right"></i>Carnation</a>
-                                                <a href="shop.html"><i class="fa fa-angle-right"></i>Daisy</a>
-                                                <a href="shop.html"><i class="fa fa-angle-right"></i>Rose</a>
-                                                <a href="shop.html"><i class="fa fa-angle-right"></i>Gladiolus</a>
-                                            </div>
-                                        </div>
-                                        <div class="single_megamenu">
-                                            <h2><a href="shop.html">Living Room</a></h2>
-                                            <div class="items_list">
-                                                <a href="shop.html"><i class="fa fa-angle-right"></i>Carnation</a>
-                                                <a href="shop.html"><i class="fa fa-angle-right"></i>Daisy</a>
-                                                <a href="shop.html"><i class="fa fa-angle-right"></i>Rose</a>
-                                                <a href="shop.html"><i class="fa fa-angle-right"></i>Gladiolus</a>
-                                            </div>
-                                        </div>
-                                        <div class="single_megamenu">
-                                            <h2><a href="shop.html">Lamp</a></h2>
-                                            <div class="items_list">
-                                                <a href="shop.html"><i class="fa fa-angle-right"></i>Carnation</a>
-                                                <a href="shop.html"><i class="fa fa-angle-right"></i>Daisy</a>
-                                                <a href="shop.html"><i class="fa fa-angle-right"></i>Rose</a>
-                                                <a href="shop.html"><i class="fa fa-angle-right"></i>Gladiolus</a>
-                                            </div>
-                                        </div>
-                                    </div>*@
+                                </div>
+                            </li>
 
-
-</li>
-                           
                             <!-- End Dropdown shop -->
 
                             <li>
@@ -205,87 +171,87 @@
                                 </div>
                             </li>
                         </ul>
-                        </div>
-                        <!--End desktop menu area -->
                     </div>
+                    <!--End desktop menu area -->
                 </div>
             </div>
-            <!--start Mobile Menu area -->
-            <div class="mobile-menu-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="mobile-menu">
-                                <nav id="dropdown">
-                                    <ul>
-                                        <li>
-                                            <a href="index.html">Home</a>
-                                            <ul>
-                                                <li><a href="index-2.html">Home 2</a></li>
-                                                <li><a href="index-3.html">Home 3</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Clothings</a>
-                                            <ul>
-                                                <li>
-                                                    <a href="shop.html">Learning</a>
-                                                    <ul>
-                                                        <li><a href="shop.html">Carnation</a></li>
-                                                        <li><a href="shop.html">Daisy</a></li>
-                                                        <li><a href="shop.html">Rose</a></li>
-                                                        <li><a href="shop.html">Gladiolus</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li>
-                                                    <a href="shop.html">Lighting</a>
-                                                    <ul>
-                                                        <li><a href="shop.html">Carnation</a></li>
-                                                        <li><a href="shop.html">Daisy</a></li>
-                                                        <li><a href="shop.html">Rose</a></li>
-                                                        <li><a href="shop.html">Gladiolus</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><a href="shop.html">Living Room</a></li>
-                                                <li><a href="shop.html">Lamp</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Lookbook</a>
-                                            <ul>
-                                                <li><a href="shop.html">Yellow Rose</a></li>
-                                                <li><a href="shop.html">White Ros</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="blog.html">Blog</a>
-                                            <ul>
-                                                <li><a href="single-blog.html">Single Blog</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="shop.html">Shop</a>
-                                            <ul>
-                                                <li><a href="cart.html">Cart</a></li>
-                                                <li><a href="product.html">Product</a></li>
-                                                <li><a href="checkout.html">Checkout</a></li>
-                                                <li><a href="my-account.html">My Account</a></li>
-                                            </ul>
-                                        </li>
-                                        <li>
-                                            <a href="about-us.html">Pages</a>
-                                            <ul>
-                                                <li><a href="about-us.html">About Us</a></li>
-                                                <li><a href="contact.html">Contact</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--End Mobile Menu area -->
         </div>
-    </header>
+        <!--start Mobile Menu area -->
+        <div class="mobile-menu-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="mobile-menu">
+                            <nav id="dropdown">
+                                <ul>
+                                    <li>
+                                        <a href="index.html">Home</a>
+                                        <ul>
+                                            <li><a href="index-2.html">Home 2</a></li>
+                                            <li><a href="index-3.html">Home 3</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="shop.html">Clothings</a>
+                                        <ul>
+                                            <li>
+                                                <a href="shop.html">Learning</a>
+                                                <ul>
+                                                    <li><a href="shop.html">Carnation</a></li>
+                                                    <li><a href="shop.html">Daisy</a></li>
+                                                    <li><a href="shop.html">Rose</a></li>
+                                                    <li><a href="shop.html">Gladiolus</a></li>
+                                                </ul>
+                                            </li>
+                                            <li>
+                                                <a href="shop.html">Lighting</a>
+                                                <ul>
+                                                    <li><a href="shop.html">Carnation</a></li>
+                                                    <li><a href="shop.html">Daisy</a></li>
+                                                    <li><a href="shop.html">Rose</a></li>
+                                                    <li><a href="shop.html">Gladiolus</a></li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="shop.html">Living Room</a></li>
+                                            <li><a href="shop.html">Lamp</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="shop.html">Lookbook</a>
+                                        <ul>
+                                            <li><a href="shop.html">Yellow Rose</a></li>
+                                            <li><a href="shop.html">White Ros</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="blog.html">Blog</a>
+                                        <ul>
+                                            <li><a href="single-blog.html">Single Blog</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="shop.html">Shop</a>
+                                        <ul>
+                                            <li><a href="cart.html">Cart</a></li>
+                                            <li><a href="product.html">Product</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="my-account.html">My Account</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="about-us.html">Pages</a>
+                                        <ul>
+                                            <li><a href="about-us.html">About Us</a></li>
+                                            <li><a href="contact.html">Contact</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--End Mobile Menu area -->
+    </div>
+</header>
