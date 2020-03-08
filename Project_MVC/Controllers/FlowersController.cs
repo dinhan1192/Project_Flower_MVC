@@ -51,6 +51,57 @@ namespace Project_MVC.Controllers
                 JsonRequestBehavior = JsonRequestBehavior.AllowGet,
             };
         }
+
+        public ActionResult IndexCustomer(string levelOneCategoryCode, string categoryCode, string searchString, string currentFilter, int? page)
+        {
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var flowers = mySQLFlowerService.GetList();
+
+            if (!String.IsNullOrEmpty(levelOneCategoryCode))
+            {
+                var categories = mySQLCategoryService.GetList().Where(s => s.ParentCode == levelOneCategoryCode);
+                flowers = categories.SelectMany(s => s.Flowers).ToList();
+            }
+
+            if (!String.IsNullOrEmpty(categoryCode))
+            {
+                flowers = flowers.Where(s => s.CategoryCode == categoryCode);
+                //var productCategory = mySQLCategoryService.Detail(categoryCode);
+                //var list = productCategory.OwnerOfCourses.ToList();
+                //ViewBag.Teachers = list;
+            }
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                flowers = flowers.Where(s => s.Name.Contains(searchString) || s.Code.Contains(searchString));
+            }
+
+            int pageSize = Constant.PageSizeOnCustomerPage;
+            int pageNumber = (page ?? 1);
+            ThisPage thisPage = new ThisPage()
+            {
+                CurrentPage = pageNumber,
+                TotalPage = Math.Ceiling((double)flowers.Count() / pageSize),
+                ProductCategoryCode = categoryCode,
+                CurrentType = Constant.Customer
+            };
+            ViewBag.Page = thisPage;
+
+            // nếu page == null thì lấy giá trị là 1, nếu không thì giá trị là page
+            //return View(students.ToList().ToPagedList(pageNumber, pageSize));
+            return View(flowers.Skip(pageSize * (pageNumber - 1)).Take(pageSize).OrderByDescending(s => s.UpdatedAt).ToList());
+        }
+
         //[Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         // GET: Products
         public ActionResult Index(string productCategoryCode, string sortOrder, string searchString, string currentFilter, int? page, string type)
