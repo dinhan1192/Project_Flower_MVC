@@ -6,64 +6,57 @@
     Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
 }
 
-<section class="site-hero site-hero-innerpage overlay" data-stellar-background-ratio="0.5" style="background-image: url(/images/big_image_1.jpg);">
+<div class="my_account_page_area">
     <div class="container">
-        <div class="row align-items-center site-hero-inner justify-content-center">
-            <div class="col-md-8 text-center">
-
-                <div class="mb-5 element-animate ">
-                    <h1>Đăng nhập</h1>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="create_account">
+                    <h2>Login or Create an Account</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="new_customer">
+                    <h3>NEW CUSTOMERS</h3>
+                    <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                </div>
+                <div class="create_button_area">
+                    <button type="submit" class="create_button">
+                        Create an Account
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                <div class="new_customer">
+                    <h3>Registered Customers</h3>
+                    <p>If you have an account with us, please log in.</p>
+                    <ul class="register_form">
+                        <li>Email Address<span>*</span></li>
+                        <li>
+                            <div class="email_address">
+                                <input type="text" class="email_test" />
+                            </div>
+                        </li>
+                        <li>Password<span>*</span></li>
+                        <li>
+                            <div class="email_address">
+                                <input type="text" class="password" />
+                            </div>
+                        </li>
+                        <li><h2><span>*</span>Required Fields</h2></li>
+                    </ul>
+                </div>
+                <div class="create_button_area">
+                    <a href="">Forgot Your Password?</a>
+                    <button type="submit" class="create_button">
+                        Login
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-</section>
-<!-- END section -->
-
-<section class="site-section bg-light">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-5 box">
-                <h2 class="mb-5">Log in with your account</h2>
-                @using (Html.BeginForm("Login", "Accounts", new { returnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="row">
-                        <div class="col-md-12 form-group">
-                            <label for="name">Username</label>
-                            @*<input type="text" id="name" class="form-control ">*@
-                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                    <div class="row mb-5">
-                        <div class="col-md-12 form-group">
-                            <label for="name">Password</label>
-                            @*<input type="password" id="name" class="form-control ">*@
-                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6 form-group">
-                            <input type="submit" value="Đăng nhập" class="btn btn-primary">
-                        </div>
-                        <div>
-                            @Html.ActionLink("Forgot Password ?", "ForgotPassword", "Accounts")
-                        </div>
-                        <div class="col-md-6 form-group">
-                            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-</section>
-<!-- END section -->
-
-@Html.Partial("_JohnDoe")
+</div>
 
 
 @*<div class="row">
