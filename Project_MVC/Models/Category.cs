@@ -22,7 +22,7 @@ namespace Project_MVC.Models
         public string Name { get; set; }
         public string Description { get; set; }
         [DisplayName("Category Image")]
-        public byte[] ImageData { get; set; }
+        public string ImageUrl { get; set; }
         public double? MaxPrice { get; set; }
         public double? MinPrice { get; set; }
         public DateTime? CreatedAt { get; set; }

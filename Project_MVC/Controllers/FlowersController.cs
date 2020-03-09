@@ -196,9 +196,9 @@ namespace Project_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name,Price,Description,CategoryCode")] Flower flower, IEnumerable<HttpPostedFileBase> images)
+        public ActionResult Create([Bind(Include = "Name,Price,Description,CategoryCode")] Flower flower, string strImageUrl)
         {
-            if (mySQLFlowerService.CreateWithImage(flower, ModelState, images, null))
+            if (mySQLFlowerService.CreateWithImage(flower, ModelState, strImageUrl, null))
             {
                 return RedirectToAction("Index");
             }
@@ -237,7 +237,7 @@ namespace Project_MVC.Controllers
         //[Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Code,Name,Price,Description,CategoryCode")] Flower flower, IEnumerable<HttpPostedFileBase> images)
+        public ActionResult Edit([Bind(Include = "Code,Name,Price,Description,CategoryCode")] Flower flower, string strImageUrl)
         {
             //ModelStateDictionary state = ModelState;
             if (flower == null || flower.Code == null)
@@ -249,7 +249,7 @@ namespace Project_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-            if (mySQLFlowerService.UpdateWithImage(existFlower, flower, ModelState, images))
+            if (mySQLFlowerService.UpdateWithImage(existFlower, flower, ModelState, strImageUrl))
             {
                 return RedirectToAction("Index");
             }

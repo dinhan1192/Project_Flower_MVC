@@ -13,9 +13,9 @@ namespace Project_MVC.Services
     {
         IEnumerable<T> GetList();
         bool Create(T item, ModelStateDictionary state);
-        bool CreateWithImage(T item, ModelStateDictionary state, IEnumerable<HttpPostedFileBase> images, IEnumerable<HttpPostedFileBase> videos);
+        bool CreateWithImage(T item, ModelStateDictionary state, string strImageUrl, IEnumerable<HttpPostedFileBase> videos);
         bool Update(T existItem, T item, ModelStateDictionary state);
-        bool UpdateWithImage(T existItem, T item, ModelStateDictionary state, IEnumerable<HttpPostedFileBase> images);
+        bool UpdateWithImage(T existItem, T item, ModelStateDictionary state, string strImageUrl);
         //bool UpdateNumber(T existItem, T item, ModelStateDictionary state);
         bool Delete(T item, ModelStateDictionary state);
         T Detail(string id);

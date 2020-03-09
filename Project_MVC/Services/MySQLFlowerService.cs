@@ -32,13 +32,16 @@ namespace Project_MVC.Services
             throw new NotImplementedException();
         }
 
-        public bool CreateWithImage(Flower item, ModelStateDictionary state, IEnumerable<HttpPostedFileBase> images, IEnumerable<HttpPostedFileBase> videos)
+        public bool CreateWithImage(Flower item, ModelStateDictionary state, string strImageUrl, IEnumerable<HttpPostedFileBase> videos)
         {
             // add IdCount
-            var existIdCount = DbContext.IdCounts.Find(item.CategoryCode);
-            existIdCount.Value++;
-            DbContext.IdCounts.AddOrUpdate(existIdCount);
-            item.Code = Utils.Utility.GenerateCode(existIdCount.Code, existIdCount.Value);
+            if (!string.IsNullOrEmpty(item.CategoryCode))
+            {
+                var existIdCount = DbContext.IdCounts.Find(item.CategoryCode);
+                existIdCount.Value++;
+                DbContext.IdCounts.AddOrUpdate(existIdCount);
+                item.Code = Utils.Utility.GenerateCode(existIdCount.Code, existIdCount.Value);
+            }
             Validate(item, state);
             ValidateCategory(item, state);
             if (state.IsValid)
@@ -53,11 +56,11 @@ namespace Project_MVC.Services
                 item.Status = FlowerStatus.NotDeleted;
                 DbContext.Flowers.Add(item);
                 // add image to table ProductImages
-                item.FlowerImages = mySQLImageService.SaveImage2List(item.Code, Constant.FlowerImage, images);
+                item.FlowerImages = mySQLImageService.SaveImage2List(item.Code, Constant.FlowerImage, strImageUrl);
                 //item.ProductVideos = mySQLImageService.SaveVideo2List(item.Code, videos);
 
-                var existCategory = AddMaxMinPrice(item.CategoryCode, item.Price);
-                DbContext.Categories.AddOrUpdate(existCategory);
+                //var existCategory = AddMaxMinPrice(item.CategoryCode, item.Price);
+                //DbContext.Categories.AddOrUpdate(existCategory);
 
                 DbContext.SaveChanges();
                 //var existCategory = DbContext.Categories.Find(item.CategoryCode);
@@ -108,7 +111,7 @@ namespace Project_MVC.Services
             throw new NotImplementedException();
         }
 
-        public bool UpdateWithImage(Flower existItem, Flower item, ModelStateDictionary state, IEnumerable<HttpPostedFileBase> images)
+        public bool UpdateWithImage(Flower existItem, Flower item, ModelStateDictionary state, string strImageUrl)
         {
             ValidateCategory(item, state);
             if (state.IsValid)
@@ -123,11 +126,11 @@ namespace Project_MVC.Services
                 //var list = existItem.ProductImages;
                 DbContext.Flowers.AddOrUpdate(existItem);
                 // add image to table ProductImages
-                var imageList = mySQLImageService.SaveImage2List(item.Code, Constant.FlowerImage, images);
+                var imageList = mySQLImageService.SaveImage2List(item.Code, Constant.FlowerImage, strImageUrl);
                 DbContext.FlowerImages.AddRange(imageList);
                 //
-                var existCategory = AddMaxMinPrice(existItem.CategoryCode, existItem.Price);
-                DbContext.Categories.AddOrUpdate(existCategory);
+                //var existCategory = AddMaxMinPrice(existItem.CategoryCode, existItem.Price);
+                //DbContext.Categories.AddOrUpdate(existCategory);
                 DbContext.SaveChanges();
 
                 return true;
@@ -162,33 +165,33 @@ namespace Project_MVC.Services
             throw new NotImplementedException();
         }
 
-        private Category AddMaxMinPrice(string code, double price)
-        {
-            var existCategory = DbContext.Categories.Find(code);
-            var flowers = DbContext.Flowers.Where(s => s.CategoryCode == code);
-            var maxFlowerPrice = (double?)flowers.Max(s => s.Price);
-            var minFlowerPrice = (double?)flowers.Min(s => s.Price);
-            if (maxFlowerPrice == null)
-                maxFlowerPrice = 0;
-            if (minFlowerPrice == null)
-                minFlowerPrice = 0;
-            if (price > maxFlowerPrice)
-            {
-                existCategory.MaxPrice = price;
-                existCategory.MinPrice = minFlowerPrice;
-            }
-            else if (price < minFlowerPrice)
-            {
-                existCategory.MaxPrice = maxFlowerPrice;
-                existCategory.MinPrice = price;
-            }
-            else
-            {
-                existCategory.MaxPrice = maxFlowerPrice;
-                existCategory.MinPrice = minFlowerPrice;
-            }
+        //private Category AddMaxMinPrice(string code, double price)
+        //{
+        //    var existCategory = DbContext.Categories.Find(code);
+        //    var flowers = DbContext.Flowers.Where(s => s.CategoryCode == code);
+        //    var maxFlowerPrice = (double?)flowers.Max(s => s.Price);
+        //    var minFlowerPrice = (double?)flowers.Min(s => s.Price);
+        //    if (maxFlowerPrice == null)
+        //        maxFlowerPrice = 0;
+        //    if (minFlowerPrice == null)
+        //        minFlowerPrice = 0;
+        //    if (price > maxFlowerPrice)
+        //    {
+        //        existCategory.MaxPrice = price;
+        //        existCategory.MinPrice = minFlowerPrice;
+        //    }
+        //    else if (price < minFlowerPrice)
+        //    {
+        //        existCategory.MaxPrice = maxFlowerPrice;
+        //        existCategory.MinPrice = price;
+        //    }
+        //    else
+        //    {
+        //        existCategory.MaxPrice = maxFlowerPrice;
+        //        existCategory.MinPrice = minFlowerPrice;
+        //    }
 
-            return existCategory;
-        }
+        //    return existCategory;
+        //}
     }
 }
