@@ -74,9 +74,9 @@
                 @Html.DisplayFor(modelItem => item.ParentCode)
             </td>
             <td>
-                @if (item.ImageData != null)
+                @if (!string.IsNullOrEmpty(item.ImageUrl))
                 {
-                    <img src="data:image;base64,@System.Convert.ToBase64String(item.ImageData)" width="80" height="80" />
+                    <img src="@item.ImageUrl" width="80" height="80" />
                 }
             </td>
             <td>

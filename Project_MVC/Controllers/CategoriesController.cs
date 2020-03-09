@@ -120,9 +120,9 @@ namespace Project_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Code,Name,Description,ParentCode")] Category category, IEnumerable<HttpPostedFileBase> images)
+        public ActionResult Create([Bind(Include = "Code,Name,Description,ParentCode")] Category category, string strImageUrl)
         {
-            if (mySQLCategoryService.CreateWithImage(category, ModelState, images, null))
+            if (mySQLCategoryService.CreateWithImage(category, ModelState, strImageUrl, null))
             {
                 return RedirectToAction("Index");
             }
@@ -160,7 +160,7 @@ namespace Project_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Code,Name,Description,ParentCode")] Category flowerCategory, IEnumerable<HttpPostedFileBase> images)
+        public ActionResult Edit([Bind(Include = "Code,Name,Description,ParentCode")] Category flowerCategory, string strImageUrl)
         {
             if (flowerCategory == null || flowerCategory.Code == null)
             {
@@ -171,7 +171,7 @@ namespace Project_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
-            if (mySQLCategoryService.UpdateWithImage(existFlowerCategory, flowerCategory, ModelState, images))
+            if (mySQLCategoryService.UpdateWithImage(existFlowerCategory, flowerCategory, ModelState, strImageUrl))
             {
                 return RedirectToAction("Index");
             }

@@ -32,7 +32,7 @@ namespace Project_MVC.Services
             throw new NotImplementedException();
         }
 
-        public bool CreateWithImage(Category item, ModelStateDictionary state, IEnumerable<HttpPostedFileBase> images, IEnumerable<HttpPostedFileBase> videos)
+        public bool CreateWithImage(Category item, ModelStateDictionary state, string strImageUrl, IEnumerable<HttpPostedFileBase> videos)
         {
             Validate(item, state);
             if (state.IsValid)
@@ -47,10 +47,10 @@ namespace Project_MVC.Services
                 item.Status = Category.CategoryStatus.NotDeleted;
                 DbContext.Categories.Add(item);
                 // add image to table ProductImages
-                var lstImages = mySQLImageService.SaveImage2List(item.Code, Constant.CategoryImage, images);
+                var lstImages = mySQLImageService.SaveImage2List(item.Code, Constant.CategoryImage, strImageUrl);
                 foreach (var image in lstImages)
                 {
-                    item.ImageData = image.ImageData;
+                    item.ImageUrl = image.ImageUrl;
                     break;
                 }
                 //item.ProductVideos = mySQLImageService.SaveVideo2List(item.Code, videos);
@@ -121,9 +121,9 @@ namespace Project_MVC.Services
             //throw new NotImplementedException();
         }
 
-        public bool UpdateWithImage(Category existItem, Category item, ModelStateDictionary state, IEnumerable<HttpPostedFileBase> images)
+        public bool UpdateWithImage(Category existItem, Category item, ModelStateDictionary state, string strImageUrl)
         {
-            ValidateCategory(item, state);
+            //ValidateCategory(item, state);
             if (state.IsValid)
             {
                 existItem.Name = item.Name;
@@ -131,13 +131,12 @@ namespace Project_MVC.Services
                 existItem.Description = item.Description;
                 existItem.UpdatedAt = DateTime.Now;
                 existItem.UpdatedBy = userService.GetCurrentUserName();
-                var lstImages = mySQLImageService.SaveImage2List(item.Code, Constant.CategoryImage, images);
+                var lstImages = mySQLImageService.SaveImage2List(item.Code, Constant.CategoryImage, strImageUrl);
                 foreach (var image in lstImages)
                 {
-                    existItem.ImageData = image.ImageData;
+                    existItem.ImageUrl = image.ImageUrl;
                     break;
                 }
-                DbContext.FlowerImages.AddRange(lstImages);
                 //
                 DbContext.SaveChanges();
                 return true;

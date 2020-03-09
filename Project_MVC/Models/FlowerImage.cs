@@ -15,7 +15,7 @@ namespace Project_MVC.Models
         //[ForeignKey("OwnerOfCourse")]
         //public string OwnerOfCourseCode { get; set; }
         [DisplayName("Image")]
-        public byte[] ImageData { get; set; }
+        public string ImageUrl { get; set; }
         public virtual Flower Flower { get; set; }
         //public virtual OwnerOfCourse OwnerOfCourse { get; set; }
         public DateTime? CreatedAt { get; set; }

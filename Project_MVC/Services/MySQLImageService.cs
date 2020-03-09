@@ -73,37 +73,24 @@ namespace Project_MVC.Services
         //    return false;
         //}
 
-        public List<FlowerImage> SaveImage2List(string code, int? type, IEnumerable<HttpPostedFileBase> images)
+        public List<FlowerImage> SaveImage2List(string code, int? type, string strImageUrl)
         {
-            if (images != null)
+            if (!string.IsNullOrEmpty(strImageUrl))
             {
+                string newStrlImageUrl = strImageUrl.Substring(1, strImageUrl.Length - 1);
+                string[] imageUrlList = newStrlImageUrl.Split(new char[] { ',' });
                 var imageList = new List<FlowerImage>();
-                foreach (var image in images)
+                foreach (var item in imageUrlList)
                 {
-                    if (image != null)
+                    imageList.Add(new FlowerImage()
                     {
-                        using (var br = new BinaryReader(image.InputStream))
-                        {
-                            var data = br.ReadBytes(image.ContentLength);
-                            var img = new FlowerImage();
-                            switch (type)
-                            {
-                                case Constant.FlowerImage:
-                                    img.FlowerCode = code;
-                                    break;
-                                case Constant.CategoryImage:
-                                    //img = code;
-                                    break;
-                                default:
-                                    break;
-                            }
-                            img.ImageData = data;
-                            img.CreatedAt = DateTime.Now;
-                            img.CreatedBy = userService.GetCurrentUserName();
-                            imageList.Add(img);
-                        }
-                    }
+                        FlowerCode = code,
+                        ImageUrl = item,
+                        CreatedAt = DateTime.Now,
+                        CreatedBy = userService.GetCurrentUserName()
+                    });
                 }
+
                 return imageList;
             }
 

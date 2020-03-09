@@ -81,7 +81,7 @@
             <td>
                 @foreach (var image in item.FlowerImages)
                 {
-                    <img src="data:image;base64,@System.Convert.ToBase64String(image.ImageData)" width="80" height="80" />
+                    <img src="@image.ImageUrl" width="80" height="80" />
                 }
             </td>
             <td>

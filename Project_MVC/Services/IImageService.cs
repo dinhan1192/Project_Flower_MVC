@@ -11,7 +11,7 @@ namespace Project_MVC.Services
 {
     interface IImageService
     {
-        List<FlowerImage> SaveImage2List(string code, int? type, IEnumerable<HttpPostedFileBase> images);
+        List<FlowerImage> SaveImage2List(string code, int? type, string strImageUrl);
         //List<LectureVideo> SaveVideo2List(int? id, IEnumerable<HttpPostedFileBase> videos, ModelStateDictionary state);
         //LectureVideo Detail(int? fileId);
         bool Rating(decimal rating, int? lectureVideoId);

@@ -58,7 +58,7 @@
                                         <li>@Html.ActionLink("Flowers", "Index", "Flowers")</li>
                                     </ul>
                                 </li>
-                                 <li>
+                                <li>
                                     <a><i class="fa fa-book"></i>Manage Images <span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li>@Html.ActionLink("Images", "Index", "ProductImages")</li>
@@ -176,6 +176,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/typeahead")
     @Scripts.Render("~/Js")
+    <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
