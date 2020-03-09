@@ -71,11 +71,13 @@ namespace Project_MVC.Controllers
             {
                 var categories = mySQLCategoryService.GetList().Where(s => s.ParentCode == levelOneCategoryCode);
                 flowers = categories.SelectMany(s => s.Flowers).ToList();
+                ViewBag.Categories = categories;
             }
 
             if (!String.IsNullOrEmpty(categoryCode))
             {
                 flowers = flowers.Where(s => s.CategoryCode == categoryCode);
+                ViewBag.Categories = mySQLCategoryService.GetList().Where(s => s.Code == categoryCode);
                 //var productCategory = mySQLCategoryService.Detail(categoryCode);
                 //var list = productCategory.OwnerOfCourses.ToList();
                 //ViewBag.Teachers = list;
