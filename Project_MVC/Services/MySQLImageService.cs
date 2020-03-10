@@ -30,6 +30,7 @@ namespace Project_MVC.Services
         public void DeleteImage(FlowerImage flowerImage)
         {
             DbContext.FlowerImages.Remove(flowerImage);
+            DbContext.SaveChanges();
         }
 
         public FlowerImage DetailImage(int? id)
