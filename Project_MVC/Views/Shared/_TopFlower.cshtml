@@ -1,0 +1,116 @@
+﻿@model IEnumerable<Project_MVC.Models.Flower>
+
+
+
+<div class="feature_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="feature_text">
+                    <h4>Featured Product</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model.OrderByDescending(s => s.Rating).Take(4))
+            {
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+                    <div class="product_list">
+                        <div class="single_product" >
+
+                            
+                            <a href="#" target="main">
+                                @*<img src="/images/webdesign.jpg" alt="Image placeholder">*@
+                                @if (item.FlowerImages != null && item.FlowerImages.Count > 0)
+                                {
+                                    <img style="width:258px; height:308px;" src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="Image placeholder" />
+                                }
+                            </a>
+                                <div class="product_details">
+                                    <h2>@item.Name</h2>
+                                    <p><span class="popular_price">@item.Price</span></p>
+                           
+                            </div>
+                            
+                            <div class="product_detail">
+                                <div class="star_icon">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star-half-o"></i>
+                                </div>
+                                <div class="product_button">
+                                    <div class="cart_details">
+                                        <a href="cart.html" target="blank">Add to cart</a>
+                                    </div>
+                                    <div class="cart_details">
+                                        <a href="#" target="expand"><i class="fa fa-expand"></i></a>
+                                    </div>
+                                    <div class="cart_details">
+                                        <a href="#" target="heart"><i class="fa fa-heart-o"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            </div>
+            
+        <div class="row">
+            <div class="product_bottom_area">
+                @foreach (var item in Model.OrderByDescending(s => s.Rating).Skip(4).Take(4))
+                {
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="product_list">
+                            <div class="single_product" >
+                                    <a href="#" target="main">
+                                        @*<img src="/images/webdesign.jpg" alt="Image placeholder">*@
+                                        @if (item.FlowerImages != null && item.FlowerImages.Count > 0)
+                                        {
+                                            <img style="width:258px; height:308px;" src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="Image placeholder" />
+                                        }
+                                    </a>
+                                        <div class="product_details">
+                                            <h2>@item.Name</h2>
+                                            <p><span class="popular_price">@item.Price</span></p>
+                                    
+                                </div>
+                                @*<a href="product.html" target="main"><img src="img/product/pr5.png" alt="" /></a>
+                        <div class="product_details">
+                            <h2>Traditional Sympathy Basket</h2>
+                            <p><span class="regular_price">$170.00</span> <span class="popular_price">$150.00</span></p>
+                        </div>*@
+                                <div class="product_detail">
+                                    <div class="star_icon">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star-half-o"></i>
+                                    </div>
+                                    <div class="product_button">
+                                        <div class="cart_details">
+                                            <a href="#" target="blank">Add to cart</a>
+                                        </div>
+                                        <div class="cart_details">
+                                            <a href="#" target="expand"><i class="fa fa-expand"></i></a>
+                                        </div>
+                                        <div class="cart_details">
+                                            <a href="#" target="heart"><i class="fa fa-heart-o"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                @*<div class="sale_product">
+                            <h5>Sale</h5>
+                        </div>*@
+                            </div>
+                        </div>
+                    </div>
+                }
+                </div>
+                
+        </div>
+    </div>
+</div>
