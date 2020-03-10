@@ -733,7 +733,12 @@ namespace Project_MVC.Utils
             else if (valueIdCount > 9)
                 return string.Format("{0}00{1}", codeIdCount, valueIdCount.ToString());
             else return string.Format("{0}000{1}", codeIdCount, valueIdCount.ToString());
-        } 
+        }
+        
+        public static double NewPrice(double price, double discount)
+        {
+            return price * (100 - discount) / 100;
+        }
 
         #endregion
     }
