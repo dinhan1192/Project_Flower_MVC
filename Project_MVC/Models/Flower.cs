@@ -26,6 +26,8 @@ namespace Project_MVC.Models
         [Required]
         [DisplayName("Price (VNĐ)")]
         public double Price { get; set; }
+        [DisplayName("Discount (%)")]
+        public double Discount { get; set; }
         public decimal? Rating { get; set; }
         public string Description { get; set; }
         public DateTime? CreatedAt { get; set; }
