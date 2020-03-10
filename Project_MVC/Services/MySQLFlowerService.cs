@@ -127,7 +127,10 @@ namespace Project_MVC.Services
                 DbContext.Flowers.AddOrUpdate(existItem);
                 // add image to table ProductImages
                 var imageList = mySQLImageService.SaveImage2List(item.Code, Constant.FlowerImage, strImageUrl);
-                DbContext.FlowerImages.AddRange(imageList);
+                if (imageList != null && imageList.Count != 0)
+                {
+                    DbContext.FlowerImages.AddRange(imageList);
+                }
                 //
                 //var existCategory = AddMaxMinPrice(existItem.CategoryCode, existItem.Price);
                 //DbContext.Categories.AddOrUpdate(existCategory);
