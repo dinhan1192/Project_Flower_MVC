@@ -3,7 +3,7 @@ $(document).ready(function () {
     var $input = $('.typeahead');
     //var u = $input[i].data('request-url');
     $input.each(function () {
-        debugger;
+        //debugger;
         var link = $(this).data('request-url');
         $(this).typeahead({
             autoSelect: true,
@@ -25,7 +25,6 @@ $(document).ready(function () {
         });
 
         $(this).change(function () {
-            debugger;
             var current = $(this).typeahead("getActive");
             if (current) {
                 var id = $(this).data('type');

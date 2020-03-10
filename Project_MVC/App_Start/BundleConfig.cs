@@ -29,7 +29,8 @@ namespace Project_MVC
                       "~/Scripts/Customs/checkboxselectallWithPopup.js",
                       "~/Scripts/Customs/twoDropDownListEvent.js",
                       "~/Scripts/Customs/createPopup.js",
-                      "~/Scripts/Customs/cloudinaryAddImage.js"
+                      "~/Scripts/Customs/cloudinaryAddImage.js",
+                      "~/Scripts/Customs/ckeditor.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/video").Include(
@@ -102,7 +103,8 @@ namespace Project_MVC
                      ));
 
             bundles.Add(new StyleBundle("~/customs").Include(
-                      "~/Content/Customs/completeAndInComplete.css"
+                      "~/Content/Customs/completeAndInComplete.css",
+                      "~/Content/Customs/ckeditor.css"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/fonts").Include(

@@ -237,7 +237,7 @@ namespace Project_MVC.Controllers
         //[Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Code,Name,Price,Description,CategoryCode")] Flower flower, string strImageUrl)
+        public ActionResult Edit([Bind(Include = "Code,Name,Price,Description,CategoryCode")] Flower flower, string strImageUrl, string editor)
         {
             //ModelStateDictionary state = ModelState;
             if (flower == null || flower.Code == null)
