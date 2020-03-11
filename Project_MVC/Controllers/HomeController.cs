@@ -10,16 +10,16 @@ namespace Project_MVC.Controllers
 {
     public class HomeController : Controller
     {
-        private ICRUDService<Category> mySQLCategoryService;
+        private ICRUDService<Flower> mySQLFlowerService;
 
         public HomeController()
         {
-            mySQLCategoryService = new MySQLCategoryService();
+            mySQLFlowerService = new MySQLFlowerService();
         }
 
         public ActionResult Index()
         {
-            var list = mySQLCategoryService.GetList();
+            var list = mySQLFlowerService.GetList();
             return View(list);
         }
 
