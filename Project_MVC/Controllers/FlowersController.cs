@@ -16,7 +16,7 @@ namespace Project_MVC.Controllers
         private ICRUDService<Flower> mySQLFlowerService;
         private ICRUDService<Category> mySQLCategoryService;
         //private ICRUDService<OwnerOfCourse> mySQLOwnerOfCourseService;
-        private IOrderService mySQLOrderService;
+        //private IOrderService mySQLOrderService;
         //private ICRUDService<UserProduct> mySQLUserProductService;
         private IUserService userService;
         private IImageService mySQLImageService;
@@ -171,6 +171,20 @@ namespace Project_MVC.Controllers
 
         // GET: Flowers/Details/5
         public ActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Flower flower = mySQLFlowerService.Detail(id);
+            if (flower == null || flower.IsDeleted())
+            {
+                return HttpNotFound();
+            }
+            return View(flower);
+        }
+
+        public ActionResult DetailCustomers(string id)
         {
             if (id == null)
             {
