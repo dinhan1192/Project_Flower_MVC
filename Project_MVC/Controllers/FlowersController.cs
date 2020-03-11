@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Project_MVC.Models;
 using Project_MVC.Services;
 
@@ -52,8 +53,18 @@ namespace Project_MVC.Controllers
             };
         }
 
-        public ActionResult IndexCustomer(string levelOneCategoryCode, string categoryCode, string searchString, string currentFilter, int? page)
+        private string GetLevelOneCategoryCode(IEnumerable<Flower> flowers)
         {
+            var categoryCodes = flowers.GroupBy(x => x.CategoryCode).Select(g => g.First()).Select(s => s.CategoryCode);
+            var lstCategories = mySQLCategoryService.GetList().Where(s => categoryCodes.ToList().Contains(s.Code));
+            return lstCategories.FirstOrDefault().ParentCode;
+        }
+
+        public ActionResult IndexCustomer(string amount, string sortFlower, string levelOneCategoryCode, string categoryCode,
+            string searchString, string currentFilter, int? page)
+        {
+            
+            
             if (searchString != null)
             {
                 page = 1;
@@ -66,18 +77,20 @@ namespace Project_MVC.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var flowers = mySQLFlowerService.GetList();
-
+           
             if (!String.IsNullOrEmpty(levelOneCategoryCode))
             {
                 var categories = mySQLCategoryService.GetList().Where(s => s.ParentCode == levelOneCategoryCode);
                 flowers = categories.SelectMany(s => s.Flowers).ToList();
                 ViewBag.Categories = categories;
+                //categoryCode = categories.FirstOrDefault().Code;
             }
 
             if (!String.IsNullOrEmpty(categoryCode))
             {
                 flowers = flowers.Where(s => s.CategoryCode == categoryCode);
-                ViewBag.Categories = mySQLCategoryService.GetList().Where(s => s.Code == categoryCode);
+                var category = mySQLCategoryService.Detail(categoryCode);
+                ViewBag.Categories = mySQLCategoryService.GetList().Where(s => s.ParentCode == category.ParentCode);
                 //var productCategory = mySQLCategoryService.Detail(categoryCode);
                 //var list = productCategory.OwnerOfCourses.ToList();
                 //ViewBag.Teachers = list;
@@ -88,6 +101,37 @@ namespace Project_MVC.Controllers
                 flowers = flowers.Where(s => s.Name.Contains(searchString) || s.Code.Contains(searchString));
             }
 
+            if (!String.IsNullOrEmpty(sortFlower))
+            {
+                switch (sortFlower)
+                {
+                    case "1":
+                        flowers = flowers.OrderBy(s => s.Name);
+                        break;
+                    case "2":
+                        flowers = flowers.OrderBy(s => s.Price);
+                        break;
+                    default:
+                        break;
+                }
+
+                levelOneCategoryCode = GetLevelOneCategoryCode(flowers);
+                var lstCategories = mySQLCategoryService.GetList().Where(s => s.ParentCode == levelOneCategoryCode);
+                ViewBag.Categories = lstCategories;
+            }
+
+            if (!String.IsNullOrEmpty(amount))
+            {
+                var amounts = amount.Replace(" ", string.Empty).Replace("VND", ",").Split(',');
+                amounts = amounts.Take(amounts.Count() - 1).ToArray();
+                var min = Double.Parse(amounts.First());
+                var max = Double.Parse(amounts.Last());
+                levelOneCategoryCode = GetLevelOneCategoryCode(flowers);
+                var lstCategories = mySQLCategoryService.GetList().Where(s => s.ParentCode == levelOneCategoryCode);
+                ViewBag.Categories = lstCategories;
+                flowers = flowers.Where(s => s.Price < max && s.Price > min);
+            }
+
             int pageSize = Constant.PageSizeOnCustomerPage;
             int pageNumber = (page ?? 1);
             ThisPage thisPage = new ThisPage()
@@ -95,13 +139,22 @@ namespace Project_MVC.Controllers
                 CurrentPage = pageNumber,
                 TotalPage = Math.Ceiling((double)flowers.Count() / pageSize),
                 ProductCategoryCode = categoryCode,
+                LevelOneCategoryCode = levelOneCategoryCode,
                 CurrentType = Constant.Customer
             };
             ViewBag.Page = thisPage;
 
+            //var flowerCategories = new List<Category>();
+            //foreach(var item in flowers)
+            //{
+            //    var category = mySQLCategoryService.Detail(item.CategoryCode);
+            //    flowerCategories.Add(category);
+            //}
+
             // nếu page == null thì lấy giá trị là 1, nếu không thì giá trị là page
             //return View(students.ToList().ToPagedList(pageNumber, pageSize));
-            return View(flowers.Skip(pageSize * (pageNumber - 1)).Take(pageSize).OrderByDescending(s => s.UpdatedAt).ToList());
+          
+            return View(flowers.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 
         //[Authorize(Roles = Constant.Admin + "," + Constant.Employee)]

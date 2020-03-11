@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace Project_MVC.Models
 {
@@ -29,6 +30,7 @@ namespace Project_MVC.Models
         [DisplayName("Discount (%)")]
         public double Discount { get; set; }
         public decimal? Rating { get; set; }
+        [AllowHtml]
         public string Description { get; set; }
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }

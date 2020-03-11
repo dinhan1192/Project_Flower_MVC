@@ -38,5 +38,11 @@ namespace Project_MVC.Models
             new SelectListItem{ Text= "Detail", Value = "4" },
             new SelectListItem{ Text= "Delete", Value = "5" },
         };
+
+        public static List<SelectListItem> ListSortFlower = new List<SelectListItem>()
+        {
+            new SelectListItem{ Text= "Name", Value = "1" },
+            new SelectListItem{ Text= "Price", Value = "2" },
+        };
     }
 }
