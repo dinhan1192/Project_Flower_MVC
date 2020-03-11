@@ -29,8 +29,11 @@ namespace Project_MVC
                       "~/Scripts/Customs/checkboxselectallWithPopup.js",
                       "~/Scripts/Customs/twoDropDownListEvent.js",
                       "~/Scripts/Customs/createPopup.js",
-                      "~/Scripts/Customs/cloudinaryAddImage.js",
                       "~/Scripts/Customs/ckeditor.js"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/cloudinaryAddImage").Include(
+                      "~/Scripts/Customs/cloudinaryAddImage.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/video").Include(

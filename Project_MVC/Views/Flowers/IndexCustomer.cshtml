@@ -139,7 +139,7 @@
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                         <div class="product_list">
                                             <div class="single_product repomsive_768">
-                                                <a href="@Url.Action("CourseIntroduction", "Products", new { productCode = item.Code })" target="main">
+                                                <a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Code })" target="main">
                                                     @if (item.FlowerImages != null && item.FlowerImages.Count > 0)
                                                     {
                                                         <img id="bigImage" style="width:258px; height:308px;" src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="Image placeholder" />
@@ -184,7 +184,7 @@
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                         <div class="product_list">
                                             <div class="single_product repomsive_768">
-                                                <a href="@Url.Action("CourseIntroduction", "Products", new { productCode = item.Code })" target="main">
+                                                <a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Code })" target="main">
                                                     @if (item.FlowerImages != null && item.FlowerImages.Count > 0)
                                                     {
                                                         <img id="bigImage" style="width:258px; height:308px;" src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="Image placeholder" />
@@ -228,7 +228,7 @@
                                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                         <div class="product_list">
                                             <div class="single_product repomsive_768">
-                                                <a href="@Url.Action("CourseIntroduction", "Products", new { productCode = item.Code })" target="main">
+                                                <a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Code })" target="main">
                                                     @if (item.FlowerImages != null && item.FlowerImages.Count > 0)
                                                     {
                                                         <img id="bigImage" style="width:258px; height:308px;" src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="Image placeholder" />
