@@ -36,7 +36,7 @@
                                         <h3>Registered Customers</h3>
                                         <p>If you have an account with us, please log in.</p>
                                         <ul class="register_form">
-                                            <li>Email Address<span>*</span></li>
+                                            <li>UserName<span>*</span></li>
                                             <li>
                                                 @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
@@ -46,7 +46,7 @@
                                                 @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
                                                 @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
                                             </li>
-                                            <li><h2><span>*</span>Required Fields</h2></li>
+                                            @*<li><h2><span>*</span>Required Fields</h2></li>*@
                                         </ul>
                                     </div>
                                     <div class="create_button_area">
