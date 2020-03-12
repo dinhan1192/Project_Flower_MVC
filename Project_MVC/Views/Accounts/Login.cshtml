@@ -8,60 +8,67 @@
 
     <div class="row">
         <div class="my_account_page_area">
-            <section id="loginForm">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="create_account">
-                                    <h2>Login or Create an Account</h2>
-                                </div>
+            <div id="loginForm">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="create_account">
+                                <h2>Login or Create an Account</h2>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                <div class="new_customer">
-                                    <h3>NEW CUSTOMERS</h3>
-                                    <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
-                                </div>
-                                <div class="create_button_area">
-                                    @*@Html.ActionLink("Create an Account", "Register")*@
-                                    <p><a href="@Url.Action("Register", "Accounts")" class="btn btn-default">Create an Account </a></p>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                @using (Html.BeginForm("Login", "Accounts", FormMethod.Post))
-                                {
-                                    @Html.AntiForgeryToken()
-                                    <div class="new_customer">
-                                        <h3>Registered Customers</h3>
-                                        <p>If you have an account with us, please log in.</p>
-                                        <ul class="register_form">
-                                            <li>UserName<span>*</span></li>
-                                            <li>
-                                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
-                                            </li>
-                                            <li>Password<span>*</span></li>
-                                            <li>
-                                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                            </li>
-                                            @*<li><h2><span>*</span>Required Fields</h2></li>*@
-                                        </ul>
-                                    </div>
-                                    <div class="create_button_area">
-                                        <p>
-                                            <a href="@Url.Action("ForgotPassword", "Accounts")" class="btn btn-default">ForgotPassword</a>
-                                            <input type="submit" value="Login" class="btn btn-default" />
-                                        </p>
-                                    </div>
-                                }
-                                </div>
                         </div>
                     </div>
-            </section>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            <div class="new_customer">
+                                <h3>NEW CUSTOMERS</h3>
+                                <p>By creating an account with our store, you will be able to move through the checkout process faster, store multiple shipping addresses, view and track your orders in your account and more.</p>
+                            </div>
+                            <div class="create_button_area">
+                                @*@Html.ActionLink("Create an Account", "Register")*@
+                                <p><a href="@Url.Action("Register", "Accounts")" class="btn btn-default">Create an Account </a></p>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                            @using (Html.BeginForm("Login", "Accounts", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="new_customer">
+                                    <h3>Registered Customers</h3>
+                                    <p>If you have an account with us, please log in.</p>
+                                    <ul class="register_form">
+                                        <li>UserName<span>*</span></li>
+                                        <li>
+                                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                        </li>
+                                        <li>Password<span>*</span></li>
+                                        <li>
+                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                        </li>
+                                        <li><h2><span>*</span>Required Fields</h2></li>
+                                    </ul>
+                                </div>
+                                <div class="create_button_area">
+
+                                    <p>
+                                        <input type="submit" value="Login" class="btn btn-default" />
+                                        <a href="@Url.Action("ForgotPassword", "Accounts")" class="">ForgotPassword</a>
+                                    </p>
+                                </div>
+                                <div class="">
+                                    <p>
+                                        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                                    </p>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+    
 
 
 
