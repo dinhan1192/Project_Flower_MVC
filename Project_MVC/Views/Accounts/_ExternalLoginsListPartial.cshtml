@@ -19,13 +19,13 @@
         using (Html.BeginForm("ExternalLogin", "Accounts", new { ReturnUrl = Model.ReturnUrl }))
         {
             @Html.AntiForgeryToken()
-            <div id="socialLoginList">
+            <div>
                 @foreach (AuthenticationDescription p in loginProviders)
                 {
-                    <div>
-                        <button type="submit" class="btn btn-primary" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">Đăng nhập bằng @p.AuthenticationType</button>
+                    <div class="btn btn-default">
+                        <button type="submit" class="" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">Đăng nhập bằng @p.AuthenticationType</button>
                     </div>
-                    <br />
+                    
                 }
             </div>
         }
