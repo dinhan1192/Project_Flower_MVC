@@ -78,8 +78,8 @@ namespace Project_MVC
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {
-                ClientId = "544277936381-hv3a52jpbc6e4ciadshmep28cameb863.apps.googleusercontent.com",
-                ClientSecret = "l64Kdwd-ETnx6vbRf-ND-EJv"
+                ClientId = "218795749125-dipvu2kgf66jgb6e7er0tqle2of09kml.apps.googleusercontent.com",
+                ClientSecret = "T7dFRZfOWKZe1fOy1zMKUTX9"
             });
         }
     }

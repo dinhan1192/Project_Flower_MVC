@@ -16,7 +16,7 @@
     }
     else
     {
-        using (Html.BeginForm("ExternalLogin", "Accounts", new { ReturnUrl = Model.ReturnUrl }))
+        using (Html.BeginForm("ExternalLogin", "Accounts", FormMethod.Post, new { ReturnUrl = Model.ReturnUrl }))
         {
             @Html.AntiForgeryToken()
             <div>
