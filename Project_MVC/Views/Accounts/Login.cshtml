@@ -56,12 +56,12 @@
                                         <a href="@Url.Action("ForgotPassword", "Accounts")" class="">ForgotPassword</a>
                                     </p>
                                 </div>
-                                <div class="">
-                                    <p>
-                                        @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                                    </p>
-                                </div>
                             }
+                            <div class="">
+                                <p>
+                                    @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

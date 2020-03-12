@@ -313,7 +313,8 @@ namespace Project_MVC.Controllers
         {
             if (User.Identity.IsAuthenticated)
             {
-                return RedirectToAction("Index", "Manage");
+                //return RedirectToAction("Index", "Home");
+                LogoutUser();
             }
 
             if (ModelState.IsValid)
@@ -532,10 +533,15 @@ namespace Project_MVC.Controllers
         [Authorize]
         public ActionResult Logout()
         {
+            LogoutUser();
+            return RedirectToAction("Login", "Accounts");
+        }
+
+        private void LogoutUser()
+        {
             var authenticationManager = System.Web.HttpContext.Current
                 .GetOwinContext().Authentication;
             authenticationManager.SignOut();
-            return RedirectToAction("Login", "Accounts");
         }
 
         private void AddErrors(IdentityResult result)
@@ -564,7 +570,7 @@ namespace Project_MVC.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("IndexCustomer", "Flowers");
+            return RedirectToAction("Index", "Home");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
