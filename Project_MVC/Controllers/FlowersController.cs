@@ -63,7 +63,10 @@ namespace Project_MVC.Controllers
         public ActionResult IndexCustomer(string amount, string sortFlower, string levelOneCategoryCode, string categoryCode,
             string searchString, string currentFilter, int? page)
         {
-            
+            if(string.IsNullOrEmpty(levelOneCategoryCode) || string.IsNullOrEmpty(categoryCode))
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
             
             if (searchString != null)
             {
