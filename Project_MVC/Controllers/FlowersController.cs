@@ -157,7 +157,7 @@ namespace Project_MVC.Controllers
             return View(flowers.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 
-        //[Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         // GET: Products
         public ActionResult Index(string productCategoryCode, string sortOrder, string searchString, string currentFilter, int? page, string type)
         {
@@ -222,6 +222,7 @@ namespace Project_MVC.Controllers
             return View(flowers.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         // GET: Flowers/Details/5
         public ActionResult Details(string id)
         {
@@ -251,6 +252,7 @@ namespace Project_MVC.Controllers
             return View(flower);
         }
 
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         // GET: Flowers/Create
         public ActionResult Create()
         {
@@ -261,6 +263,8 @@ namespace Project_MVC.Controllers
         // POST: Flowers/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Name,Price,Description,CategoryCode")] Flower flower, string strImageUrl)
@@ -274,7 +278,7 @@ namespace Project_MVC.Controllers
         }
 
         // GET: Flowers/Edit/5
-        //[Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -301,7 +305,7 @@ namespace Project_MVC.Controllers
         // POST: Flowers/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        //[Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "Code,Name,Price,Description,CategoryCode")] Flower flower, string strImageUrl, string editor)
@@ -340,6 +344,7 @@ namespace Project_MVC.Controllers
         //}
 
         // POST: Flowers/Delete/5
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)

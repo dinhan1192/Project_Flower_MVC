@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Project_MVC.Controllers
 {
-    ////[Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
+    [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
     public class ProductImagesController : Controller
     {
 
