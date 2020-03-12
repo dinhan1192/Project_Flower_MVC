@@ -11,6 +11,7 @@ using Project_MVC.Services;
 
 namespace Project_MVC.Controllers
 {
+    [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
     public class CategoriesController : Controller
     {
         private ICRUDService<Category> mySQLCategoryService;
@@ -19,6 +20,7 @@ namespace Project_MVC.Controllers
         {
             mySQLCategoryService = new MySQLCategoryService();
         }
+
         public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
             ViewBag.CurrentSort = sortOrder;

@@ -122,7 +122,7 @@ namespace Project_MVC.Controllers
         public ActionResult AddUserToRole(string accountId, string roleName)
         {
             UserManager.AddToRole(accountId, roleName);
-            return Redirect("/Products/Index");
+            return Redirect("/Flowers/Index");
         }
 
         // GET: Accounts
@@ -207,9 +207,9 @@ namespace Project_MVC.Controllers
                 switch (roleName)
                 {
                     case Constant.Admin:
-                        return Redirect("/Products/Index");
+                        return Redirect("/Flowers/Index");
                     case Constant.Employee:
-                        return Redirect("/Products/Index");
+                        return Redirect("/Flowers/Index");
                     default:
                         return Redirect("/Home/Index");
                 }
@@ -564,7 +564,7 @@ namespace Project_MVC.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("IndexCustomer", "Products");
+            return RedirectToAction("IndexCustomer", "Flowers");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
