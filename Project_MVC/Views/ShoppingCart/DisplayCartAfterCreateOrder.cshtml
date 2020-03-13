@@ -1,0 +1,99 @@
+﻿@model  Project_MVC.Models.Order
+
+@{
+    ViewBag.Title = "DisplayCartAfterCreateOrder";
+    Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
+}
+
+<h2>DisplayCartAfterCreateOrder</h2>
+
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.UserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PaymentTypeId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PaymentTypeId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipAddress)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipAddress)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ShipPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ShipPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Pay", "SelectVnPay", new { id = Model.Id }) |
+</p>
+

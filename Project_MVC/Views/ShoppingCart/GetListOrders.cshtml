@@ -1,0 +1,128 @@
+﻿@model IEnumerable<Project_MVC.Models.Order>
+
+@{
+    ViewBag.Title = "GetListOrders";
+    Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
+    int currentPage = (int)ViewBag.currentPage;
+    int previousPage = currentPage - 1;
+    int nextPage = currentPage + 1;
+    string currentPageInString = Convert.ToString(currentPage);
+    string previousPageInString = Convert.ToString(previousPage);
+    string nextPageInString = Convert.ToString(nextPage);
+
+    var totalPage = ViewBag.totalPage;
+}
+
+<h2>GetListOrders</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<p>
+    <input type="text" name="dateRange" />
+</p>
+<table class="table">
+    <tr>
+        <th>
+            MemberId
+        </th>
+        <th>
+            PaymentTypeId
+        </th>
+        <th>
+            Ho ten nguoi nhan
+        </th>
+        <th>
+            Dia chi nguoi nhan
+        </th>
+        <th>
+            Dien thoai nguoi nhan
+        </th>
+        <th>
+            @Html.ActionLink("Created At", "GetListOrders", new { sortOrder = ViewBag.DateSortParm })
+        </th>
+        <th>
+            Tong gia
+        </th>
+        <th>
+            Trang thai
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.UserId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.PaymentTypeId)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ShipName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ShipAddress)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.ShipPhone)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.CreatedAt)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.TotalPrice)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Status)
+    </td>
+    <td>
+        @Html.ActionLink("Details", "GetListProductsInOrder", new { id = item.Id }) |
+    </td>
+</tr>
+    }
+</table>
+
+<br />
+
+<div>
+    Page @currentPage of @totalPage
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        @if (currentPage > 1)
+        {
+<li class="page-item">
+    @Html.ActionLink("First", "GetListOrders", new { page = 1 })
+</li>
+<li class="page-item">
+    @Html.ActionLink("Previous", "GetListOrders", new { page = currentPage - 1 })
+</li>
+<li class="page-item">
+    @Html.ActionLink(previousPageInString, "GetListOrders", new { page = currentPage - 1 })
+</li>
+}
+        <li class="page-item">
+            @*<a class="page-link" href="@Url.Content(~/Index?page = @currentPage)">@currentPage</a>*@
+            @Html.ActionLink(currentPageInString, "GetListOrders", new { page = currentPage })
+        </li>
+        @if (currentPage < totalPage)
+        {
+<li class="page-item">
+    @Html.ActionLink(nextPageInString, "GetListOrders", new { page = currentPage + 1 })
+</li>
+<li class="page-item">
+    @Html.ActionLink("Next", "GetListOrders", new { page = currentPage + 1 })
+</li>
+<li class="page-item">
+    @Html.ActionLink("Final", "GetListOrders", new { page = totalPage })
+</li>
+}
+    </ul>
+</nav>
+
+@section scripts{
+    @Scripts.Render("~/bundles/custom")
+    }
