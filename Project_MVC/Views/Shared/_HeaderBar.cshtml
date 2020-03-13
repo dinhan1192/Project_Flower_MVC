@@ -170,15 +170,15 @@
                                     <a href="404.html">404 page</a>
                                 </div>
                             </li>
-                            @*@if (RolesUtil.IsInAnyRole(User, new string[] { Constant.Admin, Constant.Employee }))
+                            @if (RolesUtil.IsInAnyRole(User, new string[] { Constant.Admin, Constant.Employee }))
                             {
                                 <li>
                                     <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Đến trang Admin</span></a>
                                 </li>
-                            }*@
-                            <li>
+                            }
+                            @*<li>
                                 <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Đến trang Admin</span></a>
-                            </li>
+                            </li>*@
                         </ul>
                     </div>
                     <!--End desktop menu area -->
