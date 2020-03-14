@@ -71,7 +71,7 @@
             <div class="col-md-10">
                 @*<input type='file' multiple id='fileUpload' name="images" accept="image/*" />*@
                 <div id="upload_widget" class="cloudinary-button">Upload files</div>
-                <p id="filesCount"></p>
+                <div class="images"></div>
                 @Html.Hidden("strImageUrl")
                 @*@Html.TextBoxFor(model => model.ProductImageFile, null, new { htmlAttributes = new {  type="file", @class="input-file" } })*@
                 @*@Html.ValidationMessageFor(model => model.ProductImageFile, "", new { @class = "text-danger" })*@
@@ -89,6 +89,11 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+
+@section CustomStyles{
+    @Styles.Render("~/customs")
+}
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/custom")
