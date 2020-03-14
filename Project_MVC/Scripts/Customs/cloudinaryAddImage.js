@@ -2,26 +2,46 @@
 var strUrl = $('#strImageUrl').val();
 var arrUrl = [];
 if (strUrl != null && strUrl != '') {
-    arrUrl = strUrl.substring(1, strUrl.length - 1).split(',');
+    var str = strUrl.substring(1, strUrl.length);
+    arrUrl = str.split(',');
 }
 
-var i = arrUrl.length;
+$.each(arrUrl, function (i, val) {
+    debugger;
+    $('.images').prepend($('<img>', { id: 'theFlowerImg', src: val }))
+})
 
-document.getElementById("filesCount").innerHTML = i + ' files';
+
+//var i = arrUrl.length;
+
+//document.getElementById("filesCount").innerHTML = i + ' files';
 var myWidget = cloudinary.createUploadWidget({
     cloudName: 'debutwyfp',
     uploadPreset: 'ml_default'
 }, (error, result) => {
     if (!error && result && result.event === "success") {
         //console.log('Done! Here is the image info: ', result.info.secure_url);
+        debugger;
         strUrl = strUrl + ',' + result.info.secure_url;
         $('#strImageUrl').val(strUrl);
-        i++;
-        $('#filesCount').val(i)
-        document.getElementById("filesCount").innerHTML = i + ' files';
+        //$('.images').append("<img id='theImg' src='" + result.info.secure_url + "'/>")
+        $('.images').prepend($('<img>', { id: 'theFlowerImg', src: result.info.secure_url }))
+        //image(result.info.secure_url);
+        //i++;
+        //$('#filesCount').val(i)
+        //document.getElementById("filesCount").innerHTML = i + ' files';
     }
 }
 )
+
+function image(url) {
+    debugger;
+    var image = document.createElement("IMG");
+    image.alt = "Alt information for image";
+    image.setAttribute('class', 'photo');
+    image.src = url;
+    $('.images').html(image);
+}
 
 document.getElementById("upload_widget").addEventListener("click", function () {
     myWidget.open();
