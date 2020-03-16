@@ -56,14 +56,23 @@ namespace Project_MVC.Models
             _cartItems.Add(cartItem.FlowerCode, cartItem);
         }
 
-        public void UpdateCart(Flower product, int quantity)
+        public void UpdateCart(int[] intQuantites)
         {
-            if (_cartItems.ContainsKey(product.Code))
+            //if (_cartItems.ContainsKey(product.Id))
+            //{
+            //    var item = _cartItems[product.Id];
+            //    item.Quantity = quantity;
+            //    _cartItems[product.Id] = item;
+            //}
+            var lstCartItems = GetCartItems();
+            var count = 0;
+            foreach (var item in lstCartItems)
             {
-                var item = _cartItems[product.Code];
-                item.Quantity = quantity;
-                _cartItems[product.Code] = item;
+                item.Value.Quantity = intQuantites[count];
+                count++;
             }
+
+            SetCartItems(lstCartItems);
         }
 
         public void RemoveFromCart(string productCode)

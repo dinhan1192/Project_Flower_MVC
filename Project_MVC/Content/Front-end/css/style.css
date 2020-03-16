@@ -2166,7 +2166,7 @@ table.cart_items th:nth-last-of-type(6){
 	padding:10px 150px;
 }
 table.cart_items td:nth-last-of-type(6){
-	padding:10px 150px;
+	padding:0px;
 }
 table.cart_items td:nth-last-of-type(1){
 	font-weight:bold;
