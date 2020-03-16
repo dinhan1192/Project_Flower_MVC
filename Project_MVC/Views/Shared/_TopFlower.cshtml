@@ -19,7 +19,7 @@
                         <div class="single_product" >
 
                             
-                            <a href="#" target="main">
+                            <a href="@Url.Action("IndexCustomer", "Flowers", new { id = item.Code })" target="main">
                                 @*<img src="/images/webdesign.jpg" alt="Image placeholder">*@
                                 @if (item.FlowerImages != null && item.FlowerImages.Count > 0)
                                 {
@@ -28,7 +28,7 @@
                             </a>
                                 <div class="product_details">
                                     <h2>@item.Name</h2>
-                                    <p><span class="popular_price">@item.Price VNĐ</span></p>
+                                    <p><span class="popular_price">@string.Format("{0:C0}", item.Price) VNĐ</span></p>
                            
                             </div>
                             
@@ -65,7 +65,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="product_list">
                             <div class="single_product" >
-                                    <a href="#" target="main">
+                                    <a href="@Url.Action("IndexCustomer", "Flowers", new { id = item.Code })" target="main">
                                         @*<img src="/images/webdesign.jpg" alt="Image placeholder">*@
                                         @if (item.FlowerImages != null && item.FlowerImages.Count > 0)
                                         {
@@ -74,7 +74,7 @@
                                     </a>
                                         <div class="product_details">
                                             <h2>@item.Name</h2>
-                                            <p><span class="popular_price">@item.Price</span></p>
+                                            <p><span class="popular_price">@string.Format("{0:C0}", item.Price) VNĐ</span></p>
                                     
                                 </div>
                                 @*<a href="product.html" target="main"><img src="img/product/pr5.png" alt="" /></a>
