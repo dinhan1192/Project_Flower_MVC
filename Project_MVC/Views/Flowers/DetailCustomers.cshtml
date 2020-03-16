@@ -113,8 +113,9 @@
                 </div>
                 <div class="product_options_area">
                     <div class="add-to-cart">
-                        <input type="text" title="Qty" value="1" class="qty" />
-                        <button type="button" title="Add to Cart" class="cart_button"><span>Add to Cart</span></button>
+                        <input type="text" id="quantityFlower" title="Qty" value="1" class="qty" />
+                        @Html.HiddenFor(model => Model.Code)
+                        <a class="btn btn-primary" id="addCart"><span>Add to Cart</span></a>
                     </div>
                 </div>
             </div>
@@ -265,3 +266,14 @@
 <!-- Start Related products area -->
 @Html.Partial("_RelatedFlowers", relatedFlowers)
 <!-- End Related products area -->
+
+@section scripts{
+    <script>
+        $(document).ready(function(){
+    $("#addCart").click(function(event){
+       event.preventDefault();
+       window.location.href = "@Url.Action("AddCart", "ShoppingCart")" + "?code=" + $("#Code").val() + "&quantity=" + $("#quantityFlower").val();
+    });
+})
+    </script>
+}
