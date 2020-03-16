@@ -7,10 +7,12 @@ using Project_MVC.Utils;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 
 namespace Project_MVC.Controllers
 {
@@ -135,7 +137,7 @@ namespace Project_MVC.Controllers
         public async Task<ActionResult> Register(AppUser user)
         {
             Validate(user);
-            
+
             if (ModelState.IsValid)
             {
                 var account = new AppUser()
@@ -541,6 +543,8 @@ namespace Project_MVC.Controllers
         {
             var authenticationManager = System.Web.HttpContext.Current
                 .GetOwinContext().Authentication;
+            var shoppingCart = new ShoppingCartController();
+            shoppingCart.ClearShoppingCart();
             authenticationManager.SignOut();
         }
 

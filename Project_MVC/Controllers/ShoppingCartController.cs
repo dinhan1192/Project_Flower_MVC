@@ -37,19 +37,23 @@ namespace Project_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Product's' not found");
             }
+            
             // Lấy thông tin shopping cart từ session.
             var sc = LoadShoppingCart();
             // Thêm sản phẩm vào shopping cart.
             sc.AddCart(flower, quantity);
             // lưu thông tin cart vào session.
             SaveShoppingCart(sc);
-            return Redirect("/ShoppingCart/ShowCart");
+            return RedirectToAction("ShowCart", new { categoryCode = flower.CategoryCode });
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UpdateCart(FormCollection frc)
         {
             // Check số lượng có hợp lệ không?
             int i = 0;
+            string hidCategoryCode = Request["hidCategoryCode"];
             string[] strQuantities = frc.GetValues("quantity");
             int[] intQuantities = Array.ConvertAll(strQuantities, s => int.TryParse(s, out i) ? i : 0); 
             var check = intQuantities.Where(s => s <= 0).ToList();
@@ -69,7 +73,7 @@ namespace Project_MVC.Controllers
             sc.UpdateCart(intQuantities);
             // lưu thông tin cart vào session.
             SaveShoppingCart(sc);
-            return Redirect("/ShoppingCart/ShowCart");
+            return RedirectToAction("IndexCustomer", "Flowers", new { categoryCode = hidCategoryCode });
         }
         public ActionResult RemoveCart(string code)
         {
@@ -158,9 +162,10 @@ namespace Project_MVC.Controllers
 
             //return View(resultAsPagedList);
         }
-        public ActionResult ShowCart()
+        public ActionResult ShowCart(string categoryCode)
         {
             ViewBag.shoppingCart = LoadShoppingCart();
+            ViewBag.CategoryCode = categoryCode;
             return View();
         }
         public ActionResult DisplayCartAfterCreateOrder(int orderId)
@@ -169,6 +174,7 @@ namespace Project_MVC.Controllers
             return View(order);
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult CreateOrder(CartInformation cartInfo)
         {
             // load cart trong session.
