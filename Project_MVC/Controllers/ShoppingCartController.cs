@@ -316,8 +316,11 @@ namespace Project_MVC.Controllers
             //paypal.actionURL = "https://www.sandbox.paypal.com/cgi-bin/webscr";
             //paypal.no_shipping = "1";
             //paypal.quantity = order.OrderDetails.Sum(s => s.Quantity).ToString();
-            return View(paypal);
-        }
+            return Redirect(paypal.actionURL + "?cmd=" + paypal.cmd + "&business=" + paypal.business +
+                "&no_shipping=" + paypal.no_shipping + "&@return=" + paypal.@return + "&cancel_return=" + paypal.cancel_return +
+                "&notify_url=" + paypal.notify_url + "&currency_code" + paypal.currency_code + "&item_name=" + paypal.item_name +
+                "&amount=" + paypal.amount);
+    }
 
         #endregion
     }
