@@ -13,6 +13,18 @@
     {
         flowerImages = new List<FlowerImage>();
     }
+    var flowerImagesSkipTake = new List<FlowerImage>();
+    var flowerImageTake = new List<FlowerImage>();
+    if (flowerImages.ToList().Count >= 4)
+    {
+        flowerImagesSkipTake = flowerImages.Skip(1).Take(3).ToList();
+        flowerImageTake = flowerImages.Take(3).ToList();
+    }
+    else
+    {
+        flowerImagesSkipTake = flowerImages.Skip(1).ToList();
+        flowerImageTake = flowerImages.ToList();
+    }
 }
 
 <!-- breadcrumbs area -->
@@ -44,19 +56,19 @@
                                 <a class="fancybox" href="@flowerImages.FirstOrDefault().ImageUrl" data-fancybox-group="gallery" title="Ảnh hoa"><img src="@flowerImages.FirstOrDefault().ImageUrl" alt="" /></a>
                             </div>
                         </div>
-                        @for (var i = 1; i <= flowerImages.Skip(1).Take(3).ToList().Count; i++)
+                        @for (var i = 1; i <= flowerImagesSkipTake.Count; i++)
                         {
                             <div id="@string.Format("tab{0}", @i)" class="tab-pane fade">
                                 <div class="blog_tabs">
                                     <a class="fancybox" href="@flowerImages.ToList()[i].ImageUrl" data-fancybox-group="gallery" title="Ảnh hoa"><img src="@flowerImages.ToList()[i].ImageUrl" alt="" /></a>
                                 </div>
                             </div>
-                            
+
                         }
                     </div>
                     <div class="blog_view_list">
                         <ul class="tab_style tab_bottom">
-                            @for (var i = 0; i <= flowerImages.Take(3).ToList().Count; i++)
+                            @for (var i = 0; i < flowerImageTake.ToList().Count; i++)
                             {
                                 <li>
                                     <div class="blog_single_carousel">
@@ -84,7 +96,7 @@
                     </div>
                     <div class="pricing_rate">
                         <p class="stack">Availability:<span class="in-stock"> In stock</span></p>
-                        <p class="rating_dollor rating_margin"><span class="rating_value_one dollor_size">@Model.Price</span> <span class="rating_value_two">@Utility.NewPrice(Model.Price,Model.Discount)</span></p>
+                        <p class="rating_dollor rating_margin"><span class="rating_value_one dollor_size">@Model.Price</span> <span class="rating_value_two">@Utility.NewPrice(Model.Price, Model.Discount)</span></p>
                         <p class="blog_texts">@Model.Description</p>
                     </div>
                     <div class="product_blog_button">
@@ -100,10 +112,10 @@
                     </div>
                 </div>
                 <div class="product_options_area">
-                        <div class="add-to-cart">
-                            <input type="text" title="Qty" value="1" class="qty" />
-                            <button type="button" title="Add to Cart" class="cart_button"><span>Add to Cart</span></button>
-                        </div>
+                    <div class="add-to-cart">
+                        <input type="text" title="Qty" value="1" class="qty" />
+                        <button type="button" title="Add to Cart" class="cart_button"><span>Add to Cart</span></button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -248,82 +260,8 @@
 </div>
 <!-- End Product details tabs area -->
 <!-- Start upsell products area -->
-<div class="upsell_products">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="feature_text feature_upsell">
-                    <h4>Upsell Products</h4>
-                </div>
-                <div class="row">
-                    <div class="upsell_product_list">
-                        @foreach (var item in upsellFlowers.Take(5))
-                        {
-                            <div class="col-lg-3">
-                                <div class="single_upsell">
-                                    <a href="#"><img src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="" /></a>
-                                    <div class="upsell_details">
-                                        <h2><a href="">@item.Name</a></h2>
-                                        <div class="product_rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product_rating">
-                                            <a href="#">1 Review(s) <span>I</span></a>
-                                            <a href="#"> Add Your Review</a>
-                                        </div>
-                                        <p>@string.Format("{0:C0}", item.Price) VNĐ</p>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Partial("_UpsellFlowers", upsellFlowers)
 <!-- End upsell products area -->
 <!-- Start Related products area -->
-<div class="related_products_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="feature_text feature_upsell">
-                    <h4>Related Products</h4>
-                </div>
-                <div class="row">
-                    <div class="upsell_product_list">
-                        @foreach (var item in relatedFlowers.Take(5))
-                        {
-                            <div class="col-lg-3">
-                                <div class="single_upsell">
-                                    <a href="#"><img src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="" /></a>
-                                    <div class="upsell_details">
-                                        <h2><a href="">@item.Name</a></h2>
-                                        <div class="product_rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
-                                        <div class="product_rating">
-                                            <a href="#">1 Review(s) <span>I</span></a>
-                                            <a href="#"> Add Your Review</a>
-                                        </div>
-                                        <p>@string.Format("{0:C0}", item.Price) VNĐ</p>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+@Html.Partial("_RelatedFlowers", relatedFlowers)
 <!-- End Related products area -->
