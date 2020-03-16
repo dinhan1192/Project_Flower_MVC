@@ -46,23 +46,27 @@ namespace Project_MVC.Controllers
             return Redirect("/ShoppingCart/ShowCart");
         }
 
-        public ActionResult UpdateCart(string code, int quantity)
+        public ActionResult UpdateCart(FormCollection frc)
         {
             // Check số lượng có hợp lệ không?
-            if (quantity <= 0)
+            int i = 0;
+            string[] strQuantities = frc.GetValues("quantity");
+            int[] intQuantities = Array.ConvertAll(strQuantities, s => int.TryParse(s, out i) ? i : 0); 
+            var check = intQuantities.Where(s => s <= 0).ToList();
+            if (check.Count > 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid Quantity");
             }
             // Check sản phẩm có hợp lệ không?
-            var flower = db.Flowers.Find(code);
-            if (flower == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Product's' not found");
-            }
+            //var product = db.Products.Find(productId);
+            //if (product == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Product's' not found");
+            //}
             // Lấy thông tin shopping cart từ session.
             var sc = LoadShoppingCart();
             // Thêm sản phẩm vào shopping cart.
-            sc.UpdateCart(flower, quantity);
+            sc.UpdateCart(intQuantities);
             // lưu thông tin cart vào session.
             SaveShoppingCart(sc);
             return Redirect("/ShoppingCart/ShowCart");
@@ -81,6 +85,11 @@ namespace Project_MVC.Controllers
             // lưu thông tin cart vào session.
             SaveShoppingCart(sc);
             return Redirect("/ShoppingCart/ShowCart");
+        }
+        public ActionResult ClearShoppingCart()
+        {
+            ClearCart();
+            return RedirectToAction("ShowCart");
         }
         public ActionResult GetListOrders(int? page, string sortOrder, DateTime? start, DateTime? end)
         {
@@ -217,7 +226,7 @@ namespace Project_MVC.Controllers
         {
             Session.Remove(SHOPPING_CART_NAME);
         }
-
+        
         /**
          * Tham số nhận vào là một đối tượng shopping cart.
          * Hàm sẽ lưu đối tượng vào session với key được define từ trước.
