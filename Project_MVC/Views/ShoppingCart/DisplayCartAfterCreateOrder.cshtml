@@ -1,4 +1,5 @@
 ﻿@model  Project_MVC.Models.Order
+@using Project_MVC.Utils
 
 @{
     ViewBag.Title = "DisplayCartAfterCreateOrder";
@@ -63,24 +64,12 @@
             @Html.DisplayNameFor(model => model.TotalPrice)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
         <dt>
             @Html.DisplayNameFor(model => model.UpdatedAt)
         </dt>
 
         <dd>
             @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedAt)
         </dd>
 
         <dt>
@@ -93,7 +82,33 @@
 
     </dl>
 </div>
-<p>
-    @Html.ActionLink("Pay", "SelectVnPay", new { id = Model.Id }) |
-</p>
+
+@*<div>
+    <table>
+        <tr>
+            <th>
+                product Name:
+            </th>
+        </tr>
+
+        @foreach (var item in Model.OrderDetails)
+        {
+            <tr>
+                @{
+                    var flowerName = FlowerUtility.GetProductName(item.FlowerCode);
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => flowerName)
+                </td>
+            </tr>
+        }
+    </table>
+</div>*@
+<div>
+    Total Price: @Html.DisplayFor(modelItem => Model.TotalPrice)
+</div>
+<div>
+    @*<input type="submit" name="btnConfirm" value="Check Out with Paypal" />*@
+    @Html.ActionLink("Check Out with Paypal", "ValidateCommand", new { orderId = Model.Id })
+</div>
 

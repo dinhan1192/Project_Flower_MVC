@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Configuration;
 using static Project_MVC.Models.Order;
+using Project_MVC.Utils;
 
 namespace Project_MVC.Controllers
 {
@@ -272,5 +274,51 @@ namespace Project_MVC.Controllers
 
             return View(lstProduct);
         }
+
+        #region Paypal
+
+        public ActionResult RedirectFromPaypal()
+        {
+            return View();
+        }
+
+        public ActionResult CancelFromPaypal()
+        {
+            return View();
+        }
+
+        public ActionResult NotifyFromPaypal()
+        {
+            return RedirectToAction("Receive", "IPN");
+        }
+
+        public ActionResult ValidateCommand(int orderId)
+        {
+            bool useSandbox = Convert.ToBoolean(ConfigurationManager.AppSettings["IsSandbox"]);
+            var paypal = new PayPalModel(useSandbox);
+
+            var order = db.Orders.Find(orderId);
+            var lstPaypal = new List<string>();
+
+            foreach (var item in order.OrderDetails)
+            {
+                var flowerName = FlowerUtility.GetProductName(item.FlowerCode);
+                lstPaypal.Add(flowerName);
+                //paypal.amount += "amount_" + itemCount.ToString() + cartItem.Product.Price;
+                //paypal.quantity += "quantity_" + itemCount.ToString() + cartItem.Quantity;
+                //paypal.shipping += "shipping_" + itemCount.ToString() + cartItem.Product.Price;
+                //paypal.handling += "handling_" + itemCount.ToString() + "0";
+            }
+
+            paypal.item_name = lstPaypal.First();
+            paypal.amount = order.TotalPrice.ToString();
+            //paypal.notify_url = "https://localhost:44320/IPN/Receive";
+            //paypal.actionURL = "https://www.sandbox.paypal.com/cgi-bin/webscr";
+            //paypal.no_shipping = "1";
+            //paypal.quantity = order.OrderDetails.Sum(s => s.Quantity).ToString();
+            return View(paypal);
+        }
+
+        #endregion
     }
 }
