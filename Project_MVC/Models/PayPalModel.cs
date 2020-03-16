@@ -18,7 +18,7 @@ namespace Project_MVC.Models
         public string item_name { get; set; }
         public string amount { get; set; }
         public string actionURL { get; set; }
-        public string quantity { get; set; }
+        //public string quantity { get; set; }
         //public List<string> item_names { get; set; }
 
         public PayPalModel(bool useSandbox)
