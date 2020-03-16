@@ -252,6 +252,7 @@ namespace Project_MVC.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Flowers = mySQLFlowerService.GetList();
             return View(flower);
         }
 
