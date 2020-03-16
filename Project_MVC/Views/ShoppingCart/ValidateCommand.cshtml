@@ -11,9 +11,9 @@
         @Html.HiddenFor(model => model.currency_code)
         @Html.HiddenFor(model => model.item_name)
         @*@for (var i = 0; i < Model.item_names.Count; i++)
-        {
-            <input type="hidden" name=@string.Format("item_name_{0}", i)  value="@Model.item_names[i]">
-        }*@
+            {
+                <input type="hidden" name=@string.Format("item_name_{0}", i)  value="@Model.item_names[i]">
+            }*@
         @Html.HiddenFor(model => model.amount)
     </form>
 
@@ -24,11 +24,13 @@
         </h3>
     </p>
 </body>
-@Scripts.Render("~/bundles/jquery")
 
+@Scripts.Render("~/bundles/jquery")
 <script type="text/javascript" language="javascript">
     $(this.document).ready(function () {
-    var form = $("form");
-    form.submit();
+        var form = $("form");
+        form.submit();
     });
 </script>
+
+

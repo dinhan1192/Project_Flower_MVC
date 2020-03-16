@@ -61,10 +61,6 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </dt>
-
-        <dt>
             @Html.DisplayNameFor(model => model.UpdatedAt)
         </dt>
 
@@ -104,9 +100,7 @@
         }
     </table>
 </div>*@
-<div>
-    Total Price: @Html.DisplayFor(modelItem => Model.TotalPrice)
-</div>
+
 <div>
     @*<input type="submit" name="btnConfirm" value="Check Out with Paypal" />*@
     @Html.ActionLink("Check Out with Paypal", "ValidateCommand", new { orderId = Model.Id })

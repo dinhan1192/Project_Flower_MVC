@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Project_MVC.Models.Flower>
+
+<div class="related_products_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="feature_text feature_upsell">
+                    <h4>Related Products</h4>
+                </div>
+                <div class="row">
+                    <div class="upsell_product_list">
+                        @foreach (var item in Model.Take(5))
+                        {
+                            <div class="col-lg-3">
+                                <div class="single_upsell">
+                                    <a href="#"><img src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="" /></a>
+                                    <div class="upsell_details">
+                                        <h2><a href="">@item.Name</a></h2>
+                                        <div class="product_rating">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                        <div class="product_rating">
+                                            <a href="#">1 Review(s) <span>I</span></a>
+                                            <a href="#"> Add Your Review</a>
+                                        </div>
+                                        <p>@string.Format("{0:C0}", item.Price) VNĐ</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
