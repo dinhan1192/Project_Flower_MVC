@@ -543,8 +543,8 @@ namespace Project_MVC.Controllers
         {
             var authenticationManager = System.Web.HttpContext.Current
                 .GetOwinContext().Authentication;
-            var shoppingCart = new ShoppingCartController();
-            shoppingCart.ClearShoppingCart();
+            //var shoppingCart = new ShoppingCartController();
+            //shoppingCart.ClearShoppingCart();
             authenticationManager.SignOut();
         }
 
