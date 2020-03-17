@@ -128,7 +128,7 @@
                                 <option value="">36</option>
                             </select> per page
                         </div>*@
-                    
+
                     <div class="tab-content tab_content_style">
                         <div id="tab1" class="tab-pane fade in active">
                             <div class="row">
@@ -160,7 +160,8 @@
                                                     </div>
                                                     <div class="product_button">
                                                         <div class="cart_details">
-                                                            <a href="@Url.Action("AddCart", "ShoppingCart",new { code = item.Code, quantity = 1 }, null)" target="blank">Add to cart</a>
+                                                            @*<a id="addCart" href="@Url.Action("AddCart", "ShoppingCart",new { code = item.Code, quantity = 1 }, null)">Add to cart</a>*@
+                                                            <a href="javascript:void(0);" id="addCart" data-code="@item.Code" data-quantity="1">Add to cart</a>
                                                         </div>
                                                         <div class="cart_details">
                                                             <a href="#" target="expand"><i class="fa fa-expand"></i></a>
@@ -174,7 +175,6 @@
                                         </div>
                                     </div>
                                 }
-
                             </div>
                             <div class="row">
                                 @foreach (var item in Model.Skip(3).Take(3))
@@ -205,7 +205,7 @@
                                                     </div>
                                                     <div class="product_button">
                                                         <div class="cart_details">
-                                                            <a href="@Url.Action("AddCart", "ShoppingCart",new { code = item.Code, quantity = 1 }, null)" target="blank">Add to cart</a>
+                                                            <a id="addCart" href="@Url.Action("AddCart", "ShoppingCart",new { code = item.Code, quantity = 1 }, null)">Add to cart</a>
                                                         </div>
                                                         <div class="cart_details">
                                                             <a href="#" target="expand"><i class="fa fa-expand"></i></a>
@@ -249,7 +249,7 @@
                                                     </div>
                                                     <div class="product_button">
                                                         <div class="cart_details">
-                                                            <a href="@Url.Action("AddCart", "ShoppingCart",new { code = item.Code, quantity = 1 }, null)" target="blank">Add to cart</a>
+                                                            <a id="addCart" href="@Url.Action("AddCart", "ShoppingCart",new { code = item.Code, quantity = 1 }, null)">Add to cart</a>
                                                         </div>
                                                         <div class="cart_details">
                                                             <a href="#" target="expand"><i class="fa fa-expand"></i></a>
@@ -295,7 +295,43 @@
 
             $(this).attr("href", $(this).attr("href") + "?amount=" + $amount);
         })
-            //document.getElementById("amount").innerHTML = "$4 $2000";
+        //document.getElementById("amount").innerHTML = "$4 $2000";
+
+        var arrAddCart = document.querySelectorAll("#addCart");
+        debugger;
+        $.each(arrAddCart, function (i, val) {
+            $(this).click(function () {
+                debugger;
+                var $buttonClicked = $(this);
+                $.confirm({
+                    async: false,
+                    title: 'Confirm!',
+                    content: 'Simple confirm!',
+                    buttons: {
+                        confirm: function () {
+                            debugger;
+                            var code = $buttonClicked.attr('data-code');
+                            var quantity = $buttonClicked.attr('data-quantity');
+                            $.ajax({
+                                type: "POST",
+                                url: "/ShoppingCart/ShowCart",
+                                data: { "code": code, "quantity": quantity },
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (response) {
+                                    debugger;
+                                    return response;
+                                }
+                            });
+                        },
+                        cancel: function () {
+                            debugger;
+                            return false;
+                        },
+                    }
+                });
+            });
+        })
     </script>
 }
 
