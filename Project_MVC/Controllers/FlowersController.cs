@@ -134,7 +134,7 @@ namespace Project_MVC.Controllers
                 levelOneCategoryCode = GetLevelOneCategoryCode(flowers);
                 var lstCategories = mySQLCategoryService.GetList().Where(s => s.ParentCode == levelOneCategoryCode);
                 ViewBag.Categories = lstCategories;
-                flowers = flowers.Where(s => s.Price < max && s.Price > min);
+                flowers = flowers.Where(s => s.Price <= max && s.Price >= min);
             }
 
             int pageSize = Constant.PageSizeOnCustomerPage;
