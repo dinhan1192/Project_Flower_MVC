@@ -115,7 +115,7 @@
                     <div class="add-to-cart">
                         <input type="text" id="quantityFlower" title="Qty" value="1" class="qty" />
                         @Html.HiddenFor(model => Model.Code)
-                        <a class="btn btn-primary" id="addCart"><span>Add to Cart</span></a>
+                        <a class="btn btn-primary" id="addCart"><span>Add to Cart</span></a>&nbsp;<span id="errmsg"></span>
                     </div>
                 </div>
             </div>
@@ -272,8 +272,15 @@
         $(document).ready(function(){
     $("#addCart").click(function(event){
        event.preventDefault();
-       window.location.href = "@Url.Action("AddCart", "ShoppingCart")" + "?code=" + $("#Code").val() + "&quantity=" + $("#quantityFlower").val();
+       window.location.href = "@Url.Action("AddCart", "ShoppingCart")" + "?code=" + $("#Code").val() + "&strQuantity=" + $("#quantityFlower").val();
     });
+
+            $("#quantityFlower").keypress(function (e) {
+                    if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
+                        $("#errmsg").html("Enter digits only").show().fadeOut("slow");
+                        return false;
+                    }
+                })
 })
     </script>
 }

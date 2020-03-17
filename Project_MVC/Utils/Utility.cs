@@ -163,7 +163,10 @@ namespace Project_MVC.Utils
 
         public static int GetInt(string value)
         {
-            return Convert.ToInt32(value);
+            int intValue;
+            if (int.TryParse(value, out intValue))
+                return intValue;
+            return 0;
         }
 
         public static decimal? GetNullableDecimal(string value)
