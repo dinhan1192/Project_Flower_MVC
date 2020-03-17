@@ -15,7 +15,7 @@ namespace Project_MVC.Controllers
     //[Authorize]
     public class ShoppingCartController : Controller
     {
-        private static string SHOPPING_CART_NAME = "shoppingCart";
+        private static string SHOPPING_CART_NAME = Constant.ShoppingCart;
         private IUserService userService;
         private MyDbContext db = new MyDbContext();
         public ShoppingCartController()
@@ -85,12 +85,12 @@ namespace Project_MVC.Controllers
         }
 
         [Authorize]
-        public ActionResult RemoveCart(string code)
+        public ActionResult RemoveCart(string code, string returnUrl)
         {
             var flower = db.Flowers.Find(code);
             if (flower == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Product's' not found");
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Flower's' not found");
             }
             // Lấy thông tin shopping cart từ session.
             var sc = LoadShoppingCart();
@@ -98,7 +98,15 @@ namespace Project_MVC.Controllers
             sc.RemoveFromCart(flower.Code);
             // lưu thông tin cart vào session.
             SaveShoppingCart(sc);
-            return Redirect("/ShoppingCart/ShowCart");
+
+            if (string.IsNullOrEmpty(returnUrl))
+            {
+                return Redirect("/ShoppingCart/ShowCart");
+            }
+            else
+            {
+                return Redirect(returnUrl);
+            }
         }
 
         public ActionResult ClearShoppingCart(bool isLogout)
@@ -220,7 +228,11 @@ namespace Project_MVC.Controllers
                 ShipName = cartInfo.ShipName,
                 ShipPhone = cartInfo.ShipPhone,
                 ShipAddress = cartInfo.ShipAddress,
-                OrderDetails = new List<OrderDetail>()
+                OrderDetails = new List<OrderDetail>(),
+                CreatedAt = DateTime.Now,
+                CreatedBy = userService.GetCurrentUserName(),
+                UpdatedAt = DateTime.Now,
+                UpdatedBy = userService.GetCurrentUserName(),
             };
             // Tạo order detail từ cart item.
             foreach (var cartItem in shoppingCart.GetCartItems())
@@ -326,7 +338,7 @@ namespace Project_MVC.Controllers
 
             foreach (var item in order.OrderDetails)
             {
-                var flowerName = FlowerUtility.GetProductName(item.FlowerCode);
+                var flowerName = FlowerUtility.GetFlowerName(item.FlowerCode);
                 lstPaypal.Add(flowerName);
                 //paypal.amount += "amount_" + itemCount.ToString() + cartItem.Product.Price;
                 //paypal.quantity += "quantity_" + itemCount.ToString() + cartItem.Quantity;
