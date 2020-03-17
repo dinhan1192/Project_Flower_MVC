@@ -8,8 +8,13 @@ namespace Project_MVC.Models
 {
     public class ShoppingCart
     {
-        private Dictionary<string, CartItem> _cartItems = new Dictionary<string, CartItem>();
+        private Dictionary<string, CartItem> _cartItems;
         private double _totalPrice = 0;
+
+        public ShoppingCart()
+        {
+            _cartItems = new Dictionary<string, CartItem>();
+        }
 
         public double GetTotalPrice()
         {

@@ -12,7 +12,7 @@ using Project_MVC.Utils;
 
 namespace Project_MVC.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ShoppingCartController : Controller
     {
         private static string SHOPPING_CART_NAME = "shoppingCart";
@@ -23,11 +23,13 @@ namespace Project_MVC.Controllers
             userService = new UserService();
         }
         // GET: ShoppingCart
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public ActionResult AddCart(string code, string strQuantity)
         {
             int quantity = Utility.GetInt(strQuantity);
@@ -52,6 +54,7 @@ namespace Project_MVC.Controllers
             return RedirectToAction("ShowCart", new { categoryCode = flower.CategoryCode });
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateCart(FormCollection frc)
@@ -80,6 +83,8 @@ namespace Project_MVC.Controllers
             SaveShoppingCart(sc);
             return RedirectToAction("IndexCustomer", "Flowers", new { categoryCode = hidCategoryCode });
         }
+
+        [Authorize]
         public ActionResult RemoveCart(string code)
         {
             var flower = db.Flowers.Find(code);
@@ -95,11 +100,21 @@ namespace Project_MVC.Controllers
             SaveShoppingCart(sc);
             return Redirect("/ShoppingCart/ShowCart");
         }
-        public ActionResult ClearShoppingCart()
+
+        public ActionResult ClearShoppingCart(bool isLogout)
         {
             ClearCart();
-            return RedirectToAction("ShowCart");
+            if (isLogout == true)
+            {
+                return RedirectToAction("Login", "Accounts");
+            }
+            else
+            {
+                return RedirectToAction("ShowCart");
+            }
         }
+
+        [Authorize]
         public ActionResult GetListOrders(int? page, string sortOrder, DateTime? start, DateTime? end)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -167,17 +182,23 @@ namespace Project_MVC.Controllers
 
             //return View(resultAsPagedList);
         }
+
+        [Authorize]
         public ActionResult ShowCart(string categoryCode)
         {
             ViewBag.shoppingCart = LoadShoppingCart();
             ViewBag.CategoryCode = categoryCode;
             return View();
         }
+
+        [Authorize]
         public ActionResult DisplayCartAfterCreateOrder(int orderId)
         {
             var order = db.Orders.Find(orderId);
             return View(order);
         }
+
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateOrder(CartInformation cartInfo)
