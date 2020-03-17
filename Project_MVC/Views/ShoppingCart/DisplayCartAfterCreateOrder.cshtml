@@ -5,46 +5,94 @@
     Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
 }
 
-    <div class="shopping_cart_area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="cart_title">
-                        <h2>DisplayCartAfterCreateOrder</h2>
+<div class="container">
+    <div class="row">
+        <div class="title" style="text-align:center">
+            <h2><b>Thông tin đơn hàng</b></h2>
+        </div><br />
+        <div class="col-md-12" style="margin-left:160px">
+            <div class="col-md-6">
+                <div class="form-group">
+                    @Html.LabelFor(model => @HttpContext.Current.User.Identity.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DisplayFor(model => @HttpContext.Current.User.Identity.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => @HttpContext.Current.User.Identity.Name, "", new { @class = "text-danger" })
                     </div>
-                    <div class="shopping-cart-table">
-                        <table class="cart_items">
-                            <tr>
-                                <th>Tên người dùng</th>
-                                <th>@Html.DisplayNameFor(model => model.PaymentTypeId)</th>
-                                <th>@Html.DisplayNameFor(model => model.ShipName)</th>
-                                <th>@Html.DisplayNameFor(model => model.ShipAddress)</th>
-                                <th>@Html.DisplayNameFor(model => model.ShipPhone)</th>
-                                <th>@Html.DisplayNameFor(model => model.TotalPrice)</th>
-                                <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
-                                <th>@Html.DisplayNameFor(model => model.UpdatedAt)</th>
-                                <th>@Html.DisplayNameFor(model => model.Status)</th>
-                            </tr>
-                            <tr>
-                                <td>@HttpContext.Current.User.Identity.Name</td>
-                                <td>@Html.DisplayFor(model => model.PaymentTypeId)</td>
-                                <td>@Html.DisplayFor(model => model.ShipName)</td>
-                                <td>@Html.DisplayFor(model => model.ShipAddress)</td>
-                                <td>@Html.DisplayFor(model => model.ShipPhone)</td>
-                                <td>@Html.DisplayFor(model => model.TotalPrice)</td>
-                                <td>@Html.DisplayFor(model => model.CreatedAt)</td>
-                                <td>@Html.DisplayFor(model => model.UpdatedAt)</td>
-                                <td>@Html.DisplayFor(model => model.Status)</td>
-                            </tr>
-                        </table>
-                        <br />
-                        <div class="btn btn-outline-danger">
-                            @*<input type="submit" name="btnConfirm" value="Check Out with Paypal" />*@
-                            @Html.ActionLink("Check Out with Paypal", "ValidateCommand", new { orderId = Model.Id })
-                        </div>
+                </div>
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DisplayFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
                     </div>
+                </div>
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DisplayFor(model => model.PaymentTypeId, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.PaymentTypeId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.CreatedAt, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DisplayFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.CreatedAt, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DisplayFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
                     </div>
                 </div>
             </div>
-        </div>
 
+            <div class="col-md-6">
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ShipName, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DisplayFor(model => model.ShipName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ShipPhone, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DisplayFor(model => model.ShipPhone, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ShipPhone, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ShipAddress, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DisplayFor(model => model.ShipAddress, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.ShipAddress, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.UpdatedAt, htmlAttributes: new { @class = "control-label col-md-3" })
+                    <div class="col-md-9">
+                        @Html.DisplayFor(model => model.UpdatedAt, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.UpdatedAt, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div><br />
+            <div class="form-group  btn btn-success" style="margin-left:265px">
+                @*<input type="submit" name="btnConfirm" value="Check Out with Paypal" />*@
+                @Html.ActionLink("Thanh Toán", "ValidateCommand", new { orderId = Model.Id })
+            </div>
+        </div>
+    </div>
+            
+</div><br />

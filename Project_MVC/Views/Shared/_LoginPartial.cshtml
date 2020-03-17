@@ -1,33 +1,61 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
-{
-    using (Html.BeginForm("Logout", "Accounts", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right"}))
-    {
-        @Html.AntiForgeryToken()
 
-        <ul class="navbar-nav navbar-right">
-            <li class="nav-item">
-                @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + "!", "Index", "Manages", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link active" })
-                @*@if (RolesUtil.IsInAnyRole(User, new string[] { Constant.Admin, Constant.Employee }))
-                    {
-                        <span> &nbsp; &nbsp; &nbsp;</span>
-                    }*@
-            </li>
-            <li class="nav-item">
-                @*<input type="submit" value="Log off"/>*@
-                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a>
-            </li>
-        </ul>
+{
+    using (Html.BeginForm("Logout", "Accounts", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+
+        @Html.AntiForgeryToken()
+        <li>
+            @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + "!", "Index", "Manages", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link active" })
+            @*@if (RolesUtil.IsInAnyRole(User, new string[] { Constant.Admin, Constant.Employee }))
+                {
+                    <span> &nbsp; &nbsp; &nbsp;</span>
+                }*@
+            <div class="account_menu_list">
+                <div class="account_single_item">
+                    <h2>Setting</h2>
+                    <ul id="account_single_nav_1">
+                        <li>
+                            @*<input type="submit" value="Log off"/>*@
+                            <a class="nav-link" href="@Url.Action("Index", "Manages")">My Account</a>
+                        </li>
+                        <li>
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+        <li>
+            <a href="cart.html"><i class="fa fa-shopping-cart"></i>Cart <span class="cart_zero">2</span></a>
+            <div class="cart_down_area">
+                <div class="cart_single">
+                    <a href="#"><img src="~/img/cart/cart-1.jpg" alt="" /></a>
+                    <h2><a href="#">Pellentesque hendrerit</a> <a href="#"><span><i class="fa fa-trash"></i></span></a></h2>
+                    <p>1 x $11.00</p>
+                </div>
+                <div class="cart_single">
+                    <a href="#"><img src="~/img/cart/cart-2.jpg" alt="" /></a>
+                    <h2><a href="#">Pellentesque hendrerit</a> <a href="#"><span><i class="fa fa-trash"></i></span></a></h2>
+                    <p>1 x $22.00</p>
+                </div>
+                <div class="cart_shoptings">
+                    <a href="checkout.html">Checkout</a>
+                </div>
+            </div>
+        </li>
     }
 }
 else
 {
     <ul class="navbar-nav navbar-right">
         <li class="nav-item">
+        <li>
             @*@Html.ActionLink("Đăng nhập", "Login", "Accounts", new { }, new { @class = "nav-link active" })*@
-            @Html.ActionLink("Đăng nhập", "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link active" })
+            @Html.ActionLink("Đăng nhập", "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink" ,@class = "nav-link active" })
         </li>
-        <li class="nav-item">
+        <li>
             @*@Html.ActionLink("Đăng ký", "Register", "Accounts", new { }, new { @class = "nav-link" })*@
             @Html.ActionLink("Đăng ký", "Register", "Accounts", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })
         </li>
