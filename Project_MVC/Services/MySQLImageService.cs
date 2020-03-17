@@ -76,11 +76,11 @@ namespace Project_MVC.Services
 
         public List<FlowerImage> SaveImage2List(string code, int? type, string strImageUrl)
         {
+            var imageList = new List<FlowerImage>();
             if (!string.IsNullOrEmpty(strImageUrl))
             {
                 string newStrlImageUrl = strImageUrl.Substring(1, strImageUrl.Length - 1);
                 string[] imageUrlList = newStrlImageUrl.Split(new char[] { ',' });
-                var imageList = new List<FlowerImage>();
                 foreach (var item in imageUrlList)
                 {
                     imageList.Add(new FlowerImage()
@@ -91,11 +91,9 @@ namespace Project_MVC.Services
                         CreatedBy = userService.GetCurrentUserName()
                     });
                 }
-
-                return imageList;
             }
 
-            return null;
+            return imageList;
         }
 
         //public List<LectureVideo> SaveVideo2List(int? id, IEnumerable<HttpPostedFileBase> videos, ModelStateDictionary state)
