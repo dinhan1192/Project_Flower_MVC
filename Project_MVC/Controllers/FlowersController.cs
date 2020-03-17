@@ -67,6 +67,8 @@ namespace Project_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
+
+            ViewBag.CurrentUserName = userService.GetCurrentUserName();
             
             if (searchString != null)
             {
@@ -253,6 +255,7 @@ namespace Project_MVC.Controllers
                 return HttpNotFound();
             }
             ViewBag.Flowers = mySQLFlowerService.GetList();
+            ViewBag.CurrentUserName = userService.GetCurrentUserName();
             return View(flower);
         }
 

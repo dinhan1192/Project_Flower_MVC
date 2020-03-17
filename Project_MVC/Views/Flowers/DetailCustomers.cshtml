@@ -25,7 +25,11 @@
         flowerImagesSkipTake = flowerImages.Skip(1).ToList();
         flowerImageTake = flowerImages.ToList();
     }
+
+    var currentUserName = ViewBag.CurrentUserName;
 }
+
+@Html.Hidden("currentUserName", (object)currentUserName)
 
 <!-- breadcrumbs area -->
 <div class="breadcrumbs_area">
@@ -114,8 +118,7 @@
                 <div class="product_options_area">
                     <div class="add-to-cart">
                         <input type="text" id="quantityFlower" title="Qty" value="1" class="qty" />
-                        @Html.HiddenFor(model => Model.Code)
-                        <a class="btn btn-primary" id="addCart"><span>Add to Cart</span></a>&nbsp;<span id="errmsg"></span>
+                        <a class="btn btn-primary" data-code="@Model.Code" data-flowerName="@Model.Name" id="addCart"><span>Add to Cart</span></a>&nbsp;<span id="errmsg"></span>
                     </div>
                 </div>
             </div>
@@ -272,7 +275,55 @@
         $(document).ready(function(){
     $("#addCart").click(function(event){
        event.preventDefault();
-       window.location.href = "@Url.Action("AddCart", "ShoppingCart")" + "?code=" + $("#Code").val() + "&strQuantity=" + $("#quantityFlower").val();
+        @*window.location.href = "@Url.Action("AddCart", "ShoppingCart")" + "?code=" + $("#Code").val() + "&strQuantity=" + $("#quantityFlower").val();*@
+        var thisUserAccount = $("#currentUserName").val();
+                if (thisUserAccount != null && thisUserAccount != '') {
+                    var $buttonClicked = $(this);
+                    var code = $buttonClicked.attr('data-code');
+                    var quantity = $("#quantityFlower").val();
+                    var name = $buttonClicked.attr('data-flowerName');
+                    $.confirm({
+                        async: false,
+                        title: 'Chúc mừng chọn hoa!',
+                        content: 'Bạn đã chọn ' + name + '!',
+                        buttons: {
+                            okay: function () {
+                                window.location.href = `/ShoppingCart/AddCart/` + `?code=` + code + '&strQuantity=' + quantity;
+                                //$.ajax({
+                                //    type: "POST",
+                                //    url: "/ShoppingCart/AddCart",
+                                //    data: '{code: "' + code + '", quantity: "'+ quantity +'" }',
+                                //    contentType: "application/json; charset=utf-8",
+                                //    dataType: "json",
+                                //    success: function (response) {
+                                //        validation = response;
+                                //    }
+                                //});
+                            },
+                        }
+                    });
+                } else {
+                    $.confirm({
+                        async: false,
+                        title: 'Mời Login',
+                        content: 'Bạn phải đăng nhập trước khi chọn hoa!',
+                        buttons: {
+                            okay: function () {
+                                window.location.href = `/Accounts/Login/`;
+                                //$.ajax({
+                                //    type: "POST",
+                                //    url: "/ShoppingCart/AddCart",
+                                //    data: '{code: "' + code + '", quantity: "'+ quantity +'" }',
+                                //    contentType: "application/json; charset=utf-8",
+                                //    dataType: "json",
+                                //    success: function (response) {
+                                //        validation = response;
+                                //    }
+                                //});
+                            },
+                        }
+                    });
+                }
     });
 
             $("#quantityFlower").keypress(function (e) {
