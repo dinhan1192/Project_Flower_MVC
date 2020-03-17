@@ -155,7 +155,7 @@
             $.each(lstQuantities, function () {
                 $(this).keypress(function (e) {
                     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
-                        $("#errmsg").html("Enter digits only").show();
+                        $("#errmsg").html("Enter digits only").show().fadeOut("slow");
                         return false;
                     }
                 })

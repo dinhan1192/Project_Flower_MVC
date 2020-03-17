@@ -132,7 +132,8 @@ namespace Project_MVC
                  "~/Content/Front-end/css/meanmenu.min.css",
                  "~/Content/Front-end/css/responsive.css",
                  "~/Content/Front-end/css/main.css",
-                 "~/Content/Front-end/css/style.css"
+                 "~/Content/Front-end/css/style.css",
+                 "~/Content/css/jquery-confirmPopup.css"
                  ));
             bundles.Add(new ScriptBundle("~/Js-frontend").Include(
                 "~/Scripts/js-frontend/vendor/jquery-1.11.3.min.js",
@@ -147,7 +148,8 @@ namespace Project_MVC
                 "~/Scripts/js-frontend/jquery.scrollUp.js",
                 "~/Scripts/js-frontend/owl.carousel.min.js",
                 "~/Scripts/js-frontend/plugins.js",
-                "~/Scripts/js-frontend/main.js"
+                "~/Scripts/js-frontend/main.js",
+                "~/Scripts/Customs/jquery-confirmPopup.js"
                 ));
             bundles.Add(new ScriptBundle("~/Modernizr").Include(
                 "~/Scripts/js-frontend/vendor/modernizr-2.8.3.min.js"

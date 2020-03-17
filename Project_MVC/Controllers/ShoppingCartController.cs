@@ -12,6 +12,7 @@ using Project_MVC.Utils;
 
 namespace Project_MVC.Controllers
 {
+    [Authorize]
     public class ShoppingCartController : Controller
     {
         private static string SHOPPING_CART_NAME = "shoppingCart";
@@ -26,8 +27,10 @@ namespace Project_MVC.Controllers
         {
             return View();
         }
-        public ActionResult AddCart(string code, int quantity)
+
+        public ActionResult AddCart(string code, string strQuantity)
         {
+            int quantity = Utility.GetInt(strQuantity);
             // Check số lượng có hợp lệ không?
             if (quantity <= 0)
             {
