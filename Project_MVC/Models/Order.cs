@@ -35,8 +35,8 @@ namespace Project_MVC.Models
         }
         public Order()
         {
-            //CreatedAt = DateTime.Now;
-            //UpdatedAt = DateTime.Now;
+            CreatedAt = DateTime.Now;
+            UpdatedAt = DateTime.Now;
             Status = OrderStatus.Pending;
         }
 
