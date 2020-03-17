@@ -15,7 +15,7 @@ namespace Project_MVC.Controllers
     [Authorize]
     public class ShoppingCartController : Controller
     {
-        private static string SHOPPING_CART_NAME = "shoppingCart";
+        private static string SHOPPING_CART_NAME = Constant.ShoppingCart;
         private IUserService userService;
         private MyDbContext db = new MyDbContext();
         public ShoppingCartController()
@@ -42,7 +42,7 @@ namespace Project_MVC.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Product's' not found");
             }
-            
+
             // Lấy thông tin shopping cart từ session.
             var sc = LoadShoppingCart();
             // Thêm sản phẩm vào shopping cart.
@@ -60,7 +60,7 @@ namespace Project_MVC.Controllers
             int i = 0;
             string hidCategoryCode = Request["hidCategoryCode"];
             string[] strQuantities = frc.GetValues("quantity");
-            int[] intQuantities = Array.ConvertAll(strQuantities, s => int.TryParse(s, out i) ? i : 0); 
+            int[] intQuantities = Array.ConvertAll(strQuantities, s => int.TryParse(s, out i) ? i : 0);
             var check = intQuantities.Where(s => s <= 0).ToList();
             if (check.Count > 0)
             {
@@ -80,12 +80,13 @@ namespace Project_MVC.Controllers
             SaveShoppingCart(sc);
             return RedirectToAction("IndexCustomer", "Flowers", new { categoryCode = hidCategoryCode });
         }
-        public ActionResult RemoveCart(string code)
+
+        public ActionResult RemoveCart(string code, string returnUrl)
         {
             var flower = db.Flowers.Find(code);
             if (flower == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Product's' not found");
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Flower's' not found");
             }
             // Lấy thông tin shopping cart từ session.
             var sc = LoadShoppingCart();
@@ -93,13 +94,23 @@ namespace Project_MVC.Controllers
             sc.RemoveFromCart(flower.Code);
             // lưu thông tin cart vào session.
             SaveShoppingCart(sc);
-            return Redirect("/ShoppingCart/ShowCart");
+
+            if (string.IsNullOrEmpty(returnUrl))
+            {
+                return Redirect("/ShoppingCart/ShowCart");
+            }
+            else
+            {
+                return Redirect(returnUrl);
+            }
         }
+
         public ActionResult ClearShoppingCart()
         {
             ClearCart();
             return RedirectToAction("ShowCart");
         }
+
         public ActionResult GetListOrders(int? page, string sortOrder, DateTime? start, DateTime? end)
         {
             ViewBag.CurrentSort = sortOrder;
@@ -167,17 +178,20 @@ namespace Project_MVC.Controllers
 
             //return View(resultAsPagedList);
         }
+
         public ActionResult ShowCart(string categoryCode)
         {
             ViewBag.shoppingCart = LoadShoppingCart();
             ViewBag.CategoryCode = categoryCode;
             return View();
         }
+
         public ActionResult DisplayCartAfterCreateOrder(int orderId)
         {
             var order = db.Orders.Find(orderId);
             return View(order);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateOrder(CartInformation cartInfo)
@@ -199,7 +213,11 @@ namespace Project_MVC.Controllers
                 ShipName = cartInfo.ShipName,
                 ShipPhone = cartInfo.ShipPhone,
                 ShipAddress = cartInfo.ShipAddress,
-                OrderDetails = new List<OrderDetail>()
+                OrderDetails = new List<OrderDetail>(),
+                CreatedAt = DateTime.Now,
+                CreatedBy = userService.GetCurrentUserName(),
+                UpdatedAt = DateTime.Now,
+                UpdatedBy = userService.GetCurrentUserName(),
             };
             // Tạo order detail từ cart item.
             foreach (var cartItem in shoppingCart.GetCartItems())
@@ -231,13 +249,13 @@ namespace Project_MVC.Controllers
             return RedirectToAction("DisplayCartAfterCreateOrder", new { orderId = order.Id });
         }
 
-        
+
 
         private void ClearCart()
         {
             Session.Remove(SHOPPING_CART_NAME);
         }
-        
+
         /**
          * Tham số nhận vào là một đối tượng shopping cart.
          * Hàm sẽ lưu đối tượng vào session với key được define từ trước.
@@ -305,7 +323,7 @@ namespace Project_MVC.Controllers
 
             foreach (var item in order.OrderDetails)
             {
-                var flowerName = FlowerUtility.GetProductName(item.FlowerCode);
+                var flowerName = FlowerUtility.GetFlowerName(item.FlowerCode);
                 lstPaypal.Add(flowerName);
                 //paypal.amount += "amount_" + itemCount.ToString() + cartItem.Product.Price;
                 //paypal.quantity += "quantity_" + itemCount.ToString() + cartItem.Quantity;
@@ -323,7 +341,7 @@ namespace Project_MVC.Controllers
                 "&no_shipping=" + paypal.no_shipping + "&@return=" + paypal.@return + "&cancel_return=" + paypal.cancel_return +
                 "&notify_url=" + paypal.notify_url + "&currency_code" + paypal.currency_code + "&item_name=" + paypal.item_name +
                 "&amount=" + paypal.amount);
-    }
+        }
 
         #endregion
     }

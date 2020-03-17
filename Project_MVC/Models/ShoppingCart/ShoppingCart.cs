@@ -8,8 +8,13 @@ namespace Project_MVC.Models
 {
     public class ShoppingCart
     {
-        private Dictionary<string, CartItem> _cartItems = new Dictionary<string, CartItem>();
+        private Dictionary<string, CartItem> _cartItems;
         private double _totalPrice = 0;
+
+        public ShoppingCart()
+        {
+            _cartItems = new Dictionary<string, CartItem>();
+        }
 
         public double GetTotalPrice()
         {
@@ -36,20 +41,20 @@ namespace Project_MVC.Models
          * Trong trường hợp tồn tại sản phẩm trong giỏ hàng thì update số lượng.
          * Trong trường hợp không tồn tại thì thêm mới.
          */
-        public void AddCart(Flower product, int quantity)
+        public void AddCart(Flower flower, int quantity)
         {
-            if (_cartItems.ContainsKey(product.Code))
+            if (_cartItems.ContainsKey(flower.Code))
             {
-                var item = _cartItems[product.Code];
+                var item = _cartItems[flower.Code];
                 item.Quantity += quantity;
-                _cartItems[product.Code] = item;
+                _cartItems[flower.Code] = item;
                 return;
             }
             var cartItem = new CartItem
             {
-                FlowerCode = product.Code,
-                FlowerName = product.Name,
-                Price = product.Price,
+                FlowerCode = flower.Code,
+                FlowerName = flower.Name,
+                Price = Utility.NewPrice(flower.Price, flower.Discount),
                 Quantity = quantity
             };
             // đưa cart item tương ứng với sản phẩm (ở trên) vào danh sách.

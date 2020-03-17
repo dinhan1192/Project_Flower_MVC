@@ -186,6 +186,11 @@ namespace Project_MVC.Controllers
         [HttpPost]
         public ActionResult Login(AppUser appUser, string returnUrl)
         {
+            if (Request.IsAuthenticated)
+            {
+                FlowerUtility.ClearCart();
+            }
+
             var user = UserManager.Find(appUser.UserName, appUser.Password);
 
             if (user != null && user.EmailConfirmed == true)
@@ -536,15 +541,14 @@ namespace Project_MVC.Controllers
         public ActionResult Logout()
         {
             LogoutUser();
-            return RedirectToAction("Login", "Accounts");
+            return RedirectToAction("ClearShoppingCart", "ShoppingCart", new { isLogout = true });
         }
 
         private void LogoutUser()
         {
+            FlowerUtility.ClearCart();
             var authenticationManager = System.Web.HttpContext.Current
                 .GetOwinContext().Authentication;
-            //var shoppingCart = new ShoppingCartController();
-            //shoppingCart.ClearShoppingCart();
             authenticationManager.SignOut();
         }
 

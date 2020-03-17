@@ -1,5 +1,13 @@
 ﻿@using Project_MVC.Utils
 @using Project_MVC.Models
+
+@{
+    var shoppingCart = FlowerUtility.GetShoppingCart();
+    var count = shoppingCart.GetCartItems().Count;
+    var categoryCode = ViewBag.CategoryCode;
+    var returnUrl = Request.RawUrl;
+}
+
 <header role="banner">
     <div class="header_area_top">
         <div class="container">
@@ -36,11 +44,59 @@
                                         <h2>Setting</h2>
                                         <ul id="account_single_nav_1">
                                             <li><a href="@Url.Action("Index", "Manages")">My Account</a></li>
+<<<<<<< HEAD
                                             <li><a href="@Url.Action("Login", "Accounts")">Log In</a></li>
                                         </ul>
                                     </div>
                                 </div>*@
                             
+=======
+                                            <li><a href="">My Wishlist</a></li>
+                                            <li><a href="cart.html">My Cart</a></li>
+                                            <li><a href="checkout.html">Checkout</a></li>
+                                            <li><a href="#">Testimonial</a></li>
+                                            @if (Request.IsAuthenticated)
+                                            {
+                                                <li><a href="@Url.Action("Logout", "Accounts")">Log Out</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li><a href="@Url.Action("Login", "Accounts")">Log In</a></li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                @if (count != 0)
+                                {
+                                    <a href="@Url.Action("ShowCart", "ShoppingCart", new { categoryCode = categoryCode })"><i class="fa fa-shopping-cart"></i>Cart <span class="cart_zero">@count</span></a>
+                                    <div class="cart_down_area">
+                                        @foreach (var item in shoppingCart.GetCartItems())
+                                        {
+                                            <div class="cart_single">
+                                                <a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Value.FlowerCode })"><img style="width:50px;height:50px;" src="@FlowerUtility.GetFlowerImageUrl(item.Value.FlowerCode)" alt="" /></a>
+                                                <h2><a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Value.FlowerCode })">@item.Value.FlowerName</a> <a href="@Url.Action("RemoveCart", "ShoppingCart", new { code = item.Value.FlowerCode, returnUrl = returnUrl })"><span><i class="fa fa-trash"></i></span></a></h2>
+                                                <p>@item.Value.Quantity x @item.Value.Price</p>
+                                            </div>
+                                        }
+
+                                        @*<div class="cart_single">
+                                                <a href="#"><img src="~/img/cart/cart-2.jpg" alt="" /></a>
+                                                <h2><a href="#">Pellentesque hendrerit</a> <a href="#"><span><i class="fa fa-trash"></i></span></a></h2>
+                                                <p>1 x $22.00</p>
+                                            </div>*@
+                                        @*<div class="cart_shoptings">
+                                                <a href="checkout.html">Checkout</a>
+                                            </div>*@
+                                    </div>
+                                }
+                                else
+                                {
+                                    <a href="#"><i class="fa fa-shopping-cart"></i>Cart <span class="cart_zero">@count</span></a>
+                                }
+                            </li>
+>>>>>>> 474c199bc00f757b498de266663e7ab064f15699
                         </ul>
                     </div>
                     <!--End Header Right Cart area -->
@@ -142,8 +198,8 @@
                                 </li>
                             }
                             @*<li>
-                                <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Đến trang Admin</span></a>
-                            </li>*@
+                                    <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Đến trang Admin</span></a>
+                                </li>*@
                         </ul>
                     </div>
                     <!--End desktop menu area -->
