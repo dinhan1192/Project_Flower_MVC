@@ -188,8 +188,7 @@ namespace Project_MVC.Controllers
         {
             if (Request.IsAuthenticated)
             {
-                ModelState.AddModelError("UserName", "Mời đăng xuất trước khi đăng nhập");
-                return View(appUser);
+                FlowerUtility.ClearCart();
             }
 
             var user = UserManager.Find(appUser.UserName, appUser.Password);
@@ -547,6 +546,7 @@ namespace Project_MVC.Controllers
 
         private void LogoutUser()
         {
+            FlowerUtility.ClearCart();
             var authenticationManager = System.Web.HttpContext.Current
                 .GetOwinContext().Authentication;
             authenticationManager.SignOut();

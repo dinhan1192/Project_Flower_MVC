@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Project_MVC.Utils
 {
@@ -47,6 +48,7 @@ namespace Project_MVC.Utils
             return "";
         }
 
+        [Authorize]
         public static ShoppingCart GetShoppingCart()
         {
             // lấy thông tin giỏ hàng ra.
@@ -55,6 +57,12 @@ namespace Project_MVC.Utils
                 sc = new ShoppingCart();
             }
             return sc;
+        }
+
+        [Authorize]
+        public static void ClearCart()
+        {
+            HttpContext.Current.Session.Remove(Constant.ShoppingCart);
         }
     }
 }
