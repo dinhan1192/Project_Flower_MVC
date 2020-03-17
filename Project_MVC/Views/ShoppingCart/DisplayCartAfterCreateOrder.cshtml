@@ -1,108 +1,50 @@
 ﻿@model  Project_MVC.Models.Order
 @using Project_MVC.Utils
-
 @{
     ViewBag.Title = "DisplayCartAfterCreateOrder";
     Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
 }
 
-<h2>DisplayCartAfterCreateOrder</h2>
-
-<div>
-    <h4>Order</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.UserId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UserId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PaymentTypeId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PaymentTypeId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShipName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShipName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShipAddress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShipAddress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ShipPhone)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ShipPhone)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalPrice)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalPrice)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Status)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Status)
-        </dd>
-
-    </dl>
-</div>
-
-@*<div>
-    <table>
-        <tr>
-            <th>
-                product Name:
-            </th>
-        </tr>
-
-        @foreach (var item in Model.OrderDetails)
-        {
-            <tr>
-                @{
-                    var flowerName = FlowerUtility.GetProductName(item.FlowerCode);
-                }
-                <td>
-                    @Html.DisplayFor(modelItem => flowerName)
-                </td>
-            </tr>
-        }
-    </table>
-</div>*@
-
-<div>
-    @*<input type="submit" name="btnConfirm" value="Check Out with Paypal" />*@
-    @Html.ActionLink("Check Out with Paypal", "ValidateCommand", new { orderId = Model.Id })
-</div>
+    <div class="shopping_cart_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="cart_title">
+                        <h2>DisplayCartAfterCreateOrder</h2>
+                    </div>
+                    <div class="shopping-cart-table">
+                        <table class="cart_items">
+                            <tr>
+                                <th>Tên người dùng</th>
+                                <th>@Html.DisplayNameFor(model => model.PaymentTypeId)</th>
+                                <th>@Html.DisplayNameFor(model => model.ShipName)</th>
+                                <th>@Html.DisplayNameFor(model => model.ShipAddress)</th>
+                                <th>@Html.DisplayNameFor(model => model.ShipPhone)</th>
+                                <th>@Html.DisplayNameFor(model => model.TotalPrice)</th>
+                                <th>@Html.DisplayNameFor(model => model.CreatedAt)</th>
+                                <th>@Html.DisplayNameFor(model => model.UpdatedAt)</th>
+                                <th>@Html.DisplayNameFor(model => model.Status)</th>
+                            </tr>
+                            <tr>
+                                <td>@HttpContext.Current.User.Identity.Name</td>
+                                <td>@Html.DisplayFor(model => model.PaymentTypeId)</td>
+                                <td>@Html.DisplayFor(model => model.ShipName)</td>
+                                <td>@Html.DisplayFor(model => model.ShipAddress)</td>
+                                <td>@Html.DisplayFor(model => model.ShipPhone)</td>
+                                <td>@Html.DisplayFor(model => model.TotalPrice)</td>
+                                <td>@Html.DisplayFor(model => model.CreatedAt)</td>
+                                <td>@Html.DisplayFor(model => model.UpdatedAt)</td>
+                                <td>@Html.DisplayFor(model => model.Status)</td>
+                            </tr>
+                        </table>
+                        <br />
+                        <div class="btn btn-outline-danger">
+                            @*<input type="submit" name="btnConfirm" value="Check Out with Paypal" />*@
+                            @Html.ActionLink("Check Out with Paypal", "ValidateCommand", new { orderId = Model.Id })
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
