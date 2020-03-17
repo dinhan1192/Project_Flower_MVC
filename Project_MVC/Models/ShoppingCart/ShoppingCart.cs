@@ -79,5 +79,10 @@ namespace Project_MVC.Models
         {
             _cartItems.Remove(productCode);
         }
+
+        public void Clear()
+        {
+            _cartItems.Clear();
+        }
     }
 }
