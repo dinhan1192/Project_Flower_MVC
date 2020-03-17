@@ -12,6 +12,7 @@ using Project_MVC.Utils;
 
 namespace Project_MVC.Controllers
 {
+    [Authorize]
     public class ShoppingCartController : Controller
     {
         private static string SHOPPING_CART_NAME = "shoppingCart";
