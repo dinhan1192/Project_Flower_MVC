@@ -128,17 +128,21 @@ Search Box js active
     /*==========================
    Product Pricing js active
    ==========================*/
+    var minSliderPrice = 20000;
+    var maxSliderPrice = 1000000;
     $("#slider-range").slider({
         range: true,
         min: 20000,
         max: 1000000,
         values: [20000, 1000000],
         slide: function (event, ui) {
-            $("#amount").val(ui.values[0] + "VND" + "  " + ui.values[1] + "VND");
+            var min = ui.values[0].toLocaleString('vi', { style: 'currency', currency: 'VND' });
+            var max = ui.values[1].toLocaleString('vi', { style: 'currency', currency: 'VND' });
+            $("#amount").val(min + "  " + max);
         }
     });
-    $("#amount").val($("#slider-range").slider("values", 0) + "VND" +
-        "  " + $("#slider-range").slider("values", 1) + "VND");
+    $("#amount").val($("#slider-range").slider("values", 0).toLocaleString('vi', { style: 'currency', currency: 'VND' }) +
+        "  " + $("#slider-range").slider("values", 1).toLocaleString('vi', { style: 'currency', currency: 'VND' }));
 
 
 
