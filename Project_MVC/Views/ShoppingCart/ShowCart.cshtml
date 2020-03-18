@@ -6,7 +6,6 @@
     Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
     ViewBag.Title = "GetParameter";
     var cart = ViewBag.shoppingCart as ShoppingCart;
-    var cartInfo = new CartInformation();
     var flowerService = new MySQLFlowerService();
     var categoryCode = ViewBag.CategoryCode;
 }
@@ -64,7 +63,7 @@
                                     <td><input type="text" name="quantity" id="quantity" value="@item.Value.Quantity" /></td>
                                     <td>@item.Value.Price</td>
                                     <td>
-                                        <a onclick="return confirm('Ban co chac muon xoa san pham tuyet voi cua chung toi ra khoi gio hang khong.')" href="/ShoppingCart/RemoveCart?code=@item.Value.FlowerCode">Remove</a>
+                                        <a href="javascript:void(0);" id="removeFromCart" data-name="@item.Value.FlowerName" data-code="@item.Value.FlowerCode">Remove</a>
                                     </td>
                                 </tr>
                             }
@@ -98,38 +97,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-md-6 col-sm-12 col-xs-12">
-                <div class="shopping_details_des">
-                    @using (Html.BeginForm("CreateOrder", "ShoppingCart", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-
-                        <div class="shopping_form">
-                            <h4>Họ tên người nhận:</h4>
-                            @Html.EditorFor(m => cartInfo.ShipName)
-                            <h4>Điện thoại người nhận:</h4>
-                            @Html.EditorFor(m => cartInfo.ShipPhone)
-                            <h4>Địa chỉ người nhận:</h4>
-                            @Html.EditorFor(m => cartInfo.ShipAddress)
-                            <br />
-                            Loại thanh toán: @Html.DropDownListFor(m => cartInfo.PaymentTypeId, EnumHelper.GetSelectList(typeof(Order.PaymentType)))
-                            <br />
-                            @*Ngôn ngữ: @Html.DropDownListFor(m => cartInfo.Language, new SelectList(Utils.GetDict(), "Value", "Key"))*@
-                        </div>
-                        <input type="submit" value="Tạo đơn hàng" class="btn btn-danger" />
-                    }
-
-                    @*<h2>Estimate Shipping and Tax</h2>
-                        <h3>Enter your destination to get shipping and tax.</h3>
-                        <div class="shopping_form">
-                            <h4>Country<span>*</span></h4>
-                            <h4>Zip/Postal Code</h4>
-                            <input class="input-text validate-postcode" type="text" name="estimate_postcode" value="">
-                            <div class="review_button product_tag_add">
-                                <button type="submit" title="Submit Review" class="button">Get a Quote</button>
-                            </div>*@
-                </div>
             </div>
-
             <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <div class="total_price">
                     <table class="total_rate">
@@ -140,11 +108,9 @@
                     </table>
                 </div>
                 <div class="check_out_simble review_button">
-                    <button type="submit" title="Submit Review" class="button">Checkout</button>
-                    <h2><a href="">Checkout with Multiple Addresses</a></h2>
+                    <button onclick="location.href='@Url.Action("CreateOrder", "ShoppingCart")'" class="button">Tạo đơn hàng</button>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -160,6 +126,36 @@
                     }
                 })
             });
+
+            $("#removeFromCart").click(function () {
+                var code = $(this).attr("data-code");
+                var removeUrl = "/ShoppingCart/RemoveCart?code=" + code;
+                var name = $(this).attr("data-name")
+                $.confirm({
+                    async: false,
+                    title: 'Xóa khỏi giỏ hàng!',
+                    content: 'Bạn có muốn xóa sản phẩm "' + name + '" rất tuyệt vời ra khỏi giỏ hàng không ?',
+                    buttons: {
+                        confirm: function () {
+                            window.location.href = removeUrl;
+                            //$.ajax({
+                            //    type: "POST",
+                            //    url: "/ShoppingCart/AddCart",
+                            //    data: '{code: "' + code + '", quantity: "'+ quantity +'" }',
+                            //    contentType: "application/json; charset=utf-8",
+                            //    dataType: "json",
+                            //    success: function (response) {
+                            //        validation = response;
+                            //    }
+                            //});
+                        },
+                        cancel: function () {
+                            window.location.href = `/ShoppingCart/ShowCart/`;
+                        },
+                    }
+                });
+            });
         });
     </script>
+    @*onclick="return confirm('Ban co chac muon xoa san pham tuyet voi cua chung toi ra khoi gio hang khong.')"*@
 }
