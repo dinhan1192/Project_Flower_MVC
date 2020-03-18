@@ -37,45 +37,6 @@
                     <!--Start Header Right Cart area -->
                     <div class="account_card_area">
                         <ul id="account_nav">
-                            @*<a href=""><i class="fa fa-key"></i>Account</a>
-                            <div class="account_menu_list">
-                                <div class="account_single_item">
-                                    <h2>Setting</h2>
-                                    <ul id="account_single_nav_1">
-                                        <li><a href="@Url.Action("Index", "Manages")">My Account</a></li>
-                                        <li><a href="@Url.Action("Login", "Accounts")">Log In</a></li>
-                                    </ul>
-                                </div>
-                            </div>*@
-                            <li>
-                                @if (count != 0)
-                                {
-                                    <a href="@Url.Action("ShowCart", "ShoppingCart", new { categoryCode = categoryCode })"><i class="fa fa-shopping-cart"></i>Cart <span class="cart_zero">@count</span></a>
-                                    <div class="cart_down_area">
-                                        @foreach (var item in shoppingCart.GetCartItems())
-                                        {
-                                            <div class="cart_single">
-                                                <a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Value.FlowerCode })"><img style="width:50px;height:50px;" src="@FlowerUtility.GetFlowerImageUrl(item.Value.FlowerCode)" alt="" /></a>
-                                                <h2><a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Value.FlowerCode })">@item.Value.FlowerName</a> <a href="@Url.Action("RemoveCart", "ShoppingCart", new { code = item.Value.FlowerCode, returnUrl = returnUrl })"><span><i class="fa fa-trash"></i></span></a></h2>
-                                                <p>@item.Value.Quantity x @item.Value.Price</p>
-                                            </div>
-                                        }
-
-                                        @*<div class="cart_single">
-                                        <a href="#"><img src="~/img/cart/cart-2.jpg" alt="" /></a>
-                                        <h2><a href="#">Pellentesque hendrerit</a> <a href="#"><span><i class="fa fa-trash"></i></span></a></h2>
-                                        <p>1 x $22.00</p>
-                                        </div>*@
-                                        @*<div class="cart_shoptings">
-                                            <a href="checkout.html">Checkout</a>
-                                        </div>*@
-                                    </div>
-                                }
-                                else
-                                {
-                                    <a href="#"><i class="fa fa-shopping-cart"></i>Cart <span class="cart_zero">@count</span></a>
-                                }
-                            </li>
                             @Html.Partial("_LoginPartial")
                         </ul>
                     </div>
