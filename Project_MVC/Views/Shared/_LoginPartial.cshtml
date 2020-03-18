@@ -1,4 +1,13 @@
 ﻿@using Microsoft.AspNet.Identity
+@using Project_MVC.Utils
+@using Project_MVC.Models
+
+@{
+    var shoppingCart = FlowerUtility.GetShoppingCart();
+    var count = shoppingCart.GetCartItems().Count;
+    var categoryCode = ViewBag.CategoryCode;
+    var returnUrl = Request.RawUrl;
+}
 @if (Request.IsAuthenticated)
 
 {
@@ -27,7 +36,27 @@
                 </div>
             </div>
         </li>
-        
+        <li>
+            @if (count != 0)
+            {
+                <a href="@Url.Action("ShowCart", "ShoppingCart", new { categoryCode = categoryCode })"><i class="fa fa-shopping-cart"></i>Cart <span class="cart_zero">@count</span></a>
+                <div class="cart_down_area">
+                    @foreach (var item in shoppingCart.GetCartItems())
+                    {
+                        <div class="cart_single">
+                            <a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Value.FlowerCode })"><img style="width:50px;height:50px;" src="@FlowerUtility.GetFlowerImageUrl(item.Value.FlowerCode)" alt="" /></a>
+                            <h2><a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Value.FlowerCode })">@item.Value.FlowerName</a> <a href="@Url.Action("RemoveCart", "ShoppingCart", new { code = item.Value.FlowerCode, returnUrl = returnUrl })"><span><i class="fa fa-trash"></i></span></a></h2>
+                            <p>@item.Value.Quantity x @item.Value.Price</p>
+                        </div>
+                    }
+                </div>
+            }
+            else
+            {
+                <a href="#"><i class="fa fa-shopping-cart"></i>Cart <span class="cart_zero">@count</span></a>
+            }
+        </li>
+
     }
 }
 else
@@ -36,7 +65,7 @@ else
         <li class="nav-item">
         <li>
             @*@Html.ActionLink("Đăng nhập", "Login", "Accounts", new { }, new { @class = "nav-link active" })*@
-            @Html.ActionLink("Đăng nhập", "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink" ,@class = "nav-link active" })
+            @Html.ActionLink("Đăng nhập", "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link active" })
         </li>
         <li>
             @*@Html.ActionLink("Đăng ký", "Register", "Accounts", new { }, new { @class = "nav-link" })*@
