@@ -60,6 +60,21 @@ namespace Project_MVC.Controllers
             return lstCategories.FirstOrDefault().ParentCode;
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RatingFlower(string rating, string currentFlowerCode)
+        {
+            var rate = Convert.ToDecimal(rating);
+            //ModelStateDictionary state = ModelState;
+            if (mySQLImageService.Rating(rate, currentFlowerCode))
+            {
+                return RedirectToAction("DetailCustomers", new { id = currentFlowerCode });
+            }
+
+            return RedirectToAction("DetailCustomers", new { id = currentFlowerCode });
+        }
+
+
         public ActionResult IndexCustomer(string amount, string sortFlower, string levelOneCategoryCode, string categoryCode,
             string searchString, string currentFilter, int? page)
         {
@@ -256,6 +271,7 @@ namespace Project_MVC.Controllers
             }
             ViewBag.Flowers = mySQLFlowerService.GetList();
             ViewBag.CurrentUserName = userService.GetCurrentUserName();
+            ViewBag.CurrentRating = flower.Rating;
             return View(flower);
         }
 

@@ -14,7 +14,7 @@ namespace Project_MVC.Services
         List<FlowerImage> SaveImage2List(string code, int? type, string strImageUrl);
         //List<LectureVideo> SaveVideo2List(int? id, IEnumerable<HttpPostedFileBase> videos, ModelStateDictionary state);
         //LectureVideo Detail(int? fileId);
-        bool Rating(decimal rating, int? lectureVideoId);
+        bool Rating(decimal rating, string code);
         FlowerImage DetailImage(int? id);
         void DeleteImage(FlowerImage flowerImage);
         //bool Delete(LectureVideo existItem, ModelStateDictionary state);

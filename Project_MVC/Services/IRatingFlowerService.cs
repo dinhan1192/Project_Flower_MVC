@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Project_MVC.Services
 {
-    interface ICustomerProductInteractService
+    interface IRatingFlowerService
     {
-        void CreateRating(decimal rating, int? lectureId, string userId);
-        void UpdateRating(decimal rating, int? customerLectureInteractId);
-        void UpdateProductRating(string productCode);
-        string UpdateLectureRating(decimal rating, int? lectureId, string type);
+        void CreateRating(decimal rating, string flowerCode, string userId);
+        void UpdateRating(decimal rating, int? ratingFlowerId);
+        //void UpdateFlowerRating(string flowerCode);
+        string UpdateFlowerRating(decimal rating, string flowerCode, string type);
         //CustomerLectureInteract DetailByLectureIdAndUserId(int? lectureId);
         //List<CustomerLectureInteract> GetListByLectureId(int? lectureId);
     }

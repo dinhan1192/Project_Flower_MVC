@@ -13,18 +13,18 @@ namespace Project_MVC.Services
     public class MySQLImageService : IImageService
     {
         private MyDbContext _db;
-        private IUserService userService;
-        //private ICustomerProductInteractService customerLectureInteractService;
-
-        public MySQLImageService()
-        {
-            userService = new UserService();
-        }
-
         public MyDbContext DbContext
         {
             get { return _db ?? HttpContext.Current.GetOwinContext().Get<MyDbContext>(); }
             set { _db = value; }
+        }
+        private IUserService userService;
+        private IRatingFlowerService ratingFlowerService;
+
+        public MySQLImageService()
+        {
+            userService = new UserService();
+            ratingFlowerService = new RatingFlowerService();
         }
 
         public void DeleteImage(FlowerImage flowerImage)
@@ -43,9 +43,28 @@ namespace Project_MVC.Services
             return DbContext.FlowerImages.ToList();
         }
 
-        public bool Rating(decimal rating, int? lectureVideoId)
+        public bool Rating(decimal rating, string code)
         {
-            throw new NotImplementedException();
+            var userId = HttpContext.Current.User.Identity.GetUserId();
+            var ratingFlowersList = DbContext.RatingFlowers.Where(s => s.FlowerCode == code
+            && s.UserId == userId).ToList();
+            var type = "";
+
+            if (ratingFlowersList.Count == 0 || ratingFlowersList == null)
+            {
+                ratingFlowerService.CreateRating(rating, code, HttpContext.Current.User.Identity.GetUserId());
+                type = Constant.CreateRating;
+            }
+            else
+            {
+                ratingFlowerService.UpdateRating(rating, ratingFlowersList.FirstOrDefault().Id);
+                type = Constant.UpdateRating;
+            }
+
+            ratingFlowerService.UpdateFlowerRating(rating, code, type);
+            //existProduct.Rating = rating;
+
+            return true;
         }
 
         //public bool Rating(decimal rating, int? lectureId)
