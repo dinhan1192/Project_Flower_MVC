@@ -219,11 +219,8 @@ namespace Project_MVC.Controllers
                 ShipPhone = cartInfo.ShipPhone,
                 ShipAddress = cartInfo.ShipAddress,
                 OrderDetails = new List<OrderDetail>(),
-                CreatedAt = DateTime.Now,
                 CreatedBy = userService.GetCurrentUserName(),
-                UpdatedAt = DateTime.Now,
-                UpdatedBy = userService.GetCurrentUserName(),
-                Status = OrderStatus.Pending
+                UpdatedBy = userService.GetCurrentUserName()
             };
             // Tạo order detail từ cart item.
             foreach (var cartItem in shoppingCart.GetCartItems())
