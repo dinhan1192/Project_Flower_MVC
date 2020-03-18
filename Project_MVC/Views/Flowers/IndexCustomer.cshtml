@@ -9,11 +9,15 @@
     var thisPage = ViewBag.Page as ThisPage;
     var categories = ViewBag.Categories as IEnumerable<Category>;
     var sort = "";
+    var levelOneCategoryCode = thisPage.LevelOneCategoryCode;
+    var categoryCode = thisPage.ProductCategoryCode;
 
     var currentUserName = ViewBag.CurrentUserName;
 }
 
 @Html.Hidden("currentUserName", (object)currentUserName)
+@Html.Hidden("levelOneCategoryCode", (object)levelOneCategoryCode)
+@Html.Hidden("categoryCode", (object)categoryCode)
 
 <div class="clothing_product_area">
     <div class="container">
@@ -274,20 +278,25 @@
         //    debugger;
         //    $("#hidSort").val($(this).val());
         //});
+        var $levelOneCategoryCode = $("#levelOneCategoryCode").val();
+        var $categoryCode = $("#categoryCode").val();
 
         $("#linkSort").click(function () {
             debugger;
             var $sort = $("#sortFlower").val();
 
-            $(this).attr("href", $(this).attr("href") + "?sortFlower=" + $sort);
+            $(this).attr("href", $(this).attr("href") + "?sortFlower=" + $sort + "&levelOneCategoryCode="
+                + $levelOneCategoryCode + "&categoryCode=" + $categoryCode);
         })
 
         debugger;
         var amount = $("#amount").val();
+
         $("#search").click(function () {
             var $amount = $("#amount").val();
 
-            $(this).attr("href", $(this).attr("href") + "?amount=" + $amount);
+            $(this).attr("href", $(this).attr("href") + "?amount=" + $amount + "&levelOneCategoryCode="
+                + $levelOneCategoryCode + "&categoryCode=" + $categoryCode);
         })
         //document.getElementById("amount").innerHTML = "$4 $2000";
 
