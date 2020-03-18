@@ -223,6 +223,7 @@ namespace Project_MVC.Controllers
                 CreatedBy = userService.GetCurrentUserName(),
                 UpdatedAt = DateTime.Now,
                 UpdatedBy = userService.GetCurrentUserName(),
+                Status = OrderStatus.Pending
             };
             // Tạo order detail từ cart item.
             foreach (var cartItem in shoppingCart.GetCartItems())
