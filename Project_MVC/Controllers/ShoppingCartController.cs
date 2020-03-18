@@ -192,6 +192,11 @@ namespace Project_MVC.Controllers
             return View(order);
         }
 
+        public ActionResult CreateOrder()
+        {
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateOrder(CartInformation cartInfo)

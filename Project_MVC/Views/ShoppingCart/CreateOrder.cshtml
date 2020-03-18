@@ -1,0 +1,41 @@
+﻿@using Project_MVC.Models
+
+@{
+    ViewBag.Title = "CreateOrder";
+    Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
+
+    var cartInfo = new CartInformation();
+}
+
+<div class="shopping_details_des">
+    <h2>Tạo đơn hàng</h2>
+    @using (Html.BeginForm("CreateOrder", "ShoppingCart", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="shopping_form">
+            <h4>Họ tên người nhận:</h4>
+            @Html.EditorFor(m => cartInfo.ShipName)
+            <h4>Điện thoại người nhận:</h4>
+            @Html.EditorFor(m => cartInfo.ShipPhone)
+            <h4>Địa chỉ người nhận:</h4>
+            @Html.EditorFor(m => cartInfo.ShipAddress)
+            <br />
+            Loại thanh toán: @Html.DropDownListFor(m => cartInfo.PaymentTypeId, EnumHelper.GetSelectList(typeof(Order.PaymentType)))
+            <br />
+            @*Ngôn ngữ: @Html.DropDownListFor(m => cartInfo.Language, new SelectList(Utils.GetDict(), "Value", "Key"))*@
+        </div>
+        <input type="submit" value="Lưu đơn hàng" class="btn btn-danger" />
+    }
+
+    @*<h2>Estimate Shipping and Tax</h2>
+        <h3>Enter your destination to get shipping and tax.</h3>
+        <div class="shopping_form">
+            <h4>Country<span>*</span></h4>
+            <h4>Zip/Postal Code</h4>
+            <input class="input-text validate-postcode" type="text" name="estimate_postcode" value="">
+            <div class="review_button product_tag_add">
+                <button type="submit" title="Submit Review" class="button">Get a Quote</button>
+            </div>*@
+</div>
+
