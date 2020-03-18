@@ -160,29 +160,30 @@
                                 <ul id="Motorola">
                                     <li><a href="#">@Model.Name</a> Review by <span class="Motorola_cl">@currentUserName</span></li>
                                     <li>
-                                        <span>Quality</span>
+                                        <span>Mời click vào ngôi sao để đánh giá !</span>
+                                        <br />
+                                        <br />
                                         <div class="stars-outer ratingCourse">
                                             <div class="stars-inner">
                                             </div>
                                             <div class="stars-finalinner"></div>
                                         </div>
+                                        <br />
+                                        <br />
                                         <div style="text-align:left">
                                             @using (Html.BeginForm("RatingFlower", "Flowers", FormMethod.Post))
                                             {
                                                 @Html.AntiForgeryToken()
                                                 @Html.Hidden("rating")
-                                                @*@Html.Hidden("currentLectureId", thisPage.LectureId)
-                                                    @Html.Hidden("currentPage", thisPage.CurrentPage)*@
+                                                @Html.Hidden("currentFlowerCode", @Model.Code)
 
                                                 <div class="form-group">
-                                                    <div class="col-md-offset-2 col-md-10">
-                                                        <input type="submit" value="Đánh giá" class="btn btn-default" />
-                                                    </div>
+                                                    <input type="submit" value="Đánh giá" class="btn btn-default" />
                                                 </div>
                                             }
                                         </div>
                                     </li>
-                                    <li>@currentUserName (Posted on 11/2/2015)</li>
+                                    @*<li>@currentUserName (Posted on 11/2/2015)</li>*@
                                 </ul>
                                 <div class="fieldsets">
                                     @*<h3>You're reviewing: <span>@Model.Description</span></h3>
@@ -244,6 +245,9 @@
                                         string urlComment = string.Format("https://localhost:44390/Flowers/DetailCustomers?id={0}", @Model.Code);
                                     }
 
+                                    <div>
+                                        <h3>Bình luận!</h3>
+                                    </div>
                                     <div>
                                         <div id="fb-root"></div>
                                         <div class="fb-comments" data-href=@urlComment data-width="500" data-numposts="5"></div>
