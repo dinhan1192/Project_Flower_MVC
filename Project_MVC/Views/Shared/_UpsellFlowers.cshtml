@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-lg-12">
                 <div class="feature_text feature_upsell">
-                    <h4>Upsell Products</h4>
+                    <h4>Upsell Flowers</h4>
                 </div>
                 <div class="row">
                     <div class="upsell_product_list">
@@ -29,11 +29,10 @@
                                     <div class="upsell_details">
                                         <h2><a href="">@item.Name</a></h2>
                                         <div class="product_rating">
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star-o"></i>
+                                            <div class="stars-outer" data-rating="@item.Rating" data-type="AtPartialView">
+                                                <div class="stars-innerDisplay">
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="product_rating">
                                             <a href="#">1 Review(s) <span>I</span></a>
@@ -50,3 +49,7 @@
         </div>
     </div>
 </div>
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/Customs/displayMultipleRatingFlowers.js"></script>
+

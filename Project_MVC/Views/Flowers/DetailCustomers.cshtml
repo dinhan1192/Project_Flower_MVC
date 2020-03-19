@@ -6,8 +6,8 @@
     ViewBag.Title = "DetailCustomers";
     Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
     var flowers = ViewBag.Flowers as List<Flower>;
-    var upsellFlowers = flowers.Where(s => s.CategoryCode == Model.CategoryCode).OrderByDescending(s => s.Rating);
-    var relatedFlowers = flowers.Where(s => s.CategoryCode == Model.CategoryCode);
+    var upsellFlowers = flowers.Where(s => s.CategoryCode == Model.CategoryCode && s.Code != Model.Code).OrderByDescending(s => s.Rating);
+    var relatedFlowers = flowers.Where(s => s.CategoryCode == Model.CategoryCode && s.Code != Model.Code).OrderByDescending(s => s.Name);
     var flowerImages = Model.FlowerImages;
     if (flowerImages == null || flowerImages.Count == 0)
     {
@@ -94,286 +94,216 @@
                 <div class="blog_product_details">
                     <h2 class="blog_heading"><a href="">@Model.Name</a></h2>
                     <div class="product_rating">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
-                    <div class="product_rating">
-                        <a href="#">1 Review(s) <span>I</span></a>
-                        <a href="#"> Add Your Review</a>
-                    </div>
-                    <div class="pricing_rate">
-                        <p class="stack">Availability:<span class="in-stock"> In stock</span></p>
-                        <p class="rating_dollor rating_margin"><span class="rating_value_one dollor_size">@Model.Price</span> <span class="rating_value_two">@Utility.NewPrice(Model.Price, Model.Discount)</span></p>
-                        <p class="blog_texts">@Model.Description</p>
-                    </div>
-                    <div class="product_blog_button">
-                        <div class="cart_blog_details blog_icon_border">
-                            <a href="" target="blank"><i class="fa fa-heart-o"></i></a>
+                        <div class="stars-outer" data-type="AtDetailView">
+                            <div class="stars-innerDisplay">
+                            </div>
                         </div>
-                        <div class="cart_blog_details blog_icon_border">
-                            <a href="" target="expand"><i class="fa fa-retweet"></i></a>
+                        <div class="product_rating">
+                            <a href="#">1 Review(s) <span>I</span></a>
+                            <a href="#"> Add Your Review</a>
                         </div>
-                        <div class="cart_blog_details blog_icon_border">
-                            <a href="" target="heart"><i class="fa fa-envelope"></i></a>
+                        <div class="pricing_rate">
+                            <p class="stack">Availability:<span class="in-stock"> In stock</span></p>
+                            <p class="rating_dollor rating_margin"><span class="rating_value_one dollor_size">@Model.Price</span> <span class="rating_value_two">@Utility.NewPrice(Model.Price, Model.Discount)</span></p>
+                            <p class="blog_texts">@Model.Description</p>
+                        </div>
+                        <div class="product_blog_button">
+                            <div class="cart_blog_details blog_icon_border">
+                                <a href="" target="blank"><i class="fa fa-heart-o"></i></a>
+                            </div>
+                            <div class="cart_blog_details blog_icon_border">
+                                <a href="" target="expand"><i class="fa fa-retweet"></i></a>
+                            </div>
+                            <div class="cart_blog_details blog_icon_border">
+                                <a href="" target="heart"><i class="fa fa-envelope"></i></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="product_options_area">
-                    <div class="add-to-cart">
-                        <input type="text" id="quantityFlower" title="Qty" value="1" class="qty" />
-                        <a class="btn btn-primary" data-code="@Model.Code" data-flowerName="@Model.Name" id="addCart"><span>Add to Cart</span></a>&nbsp;<span id="errmsg"></span>
+                    <div class="product_options_area">
+                        <div class="add-to-cart">
+                            <input type="text" id="quantityFlower" title="Qty" value="1" class="qty" />
+                            <a class="btn btn-primary" data-code="@Model.Code" data-flowerName="@Model.Name" id="addCart"><span>Add to Cart</span></a>&nbsp;<span id="errmsg"></span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End preview Product details area -->
-<!-- Start Product details tabs area -->
-<div class="product_collateral_area">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="my_tabs_description">
-                    <ul class="tab_style">
-                        <li class="active">
-                            <a data-toggle="tab" href="#tab-1">Product Description</a>
-                        </li>
-                        <li>
-                            <a data-toggle="tab" href="#tab-2">Reviews</a>
-                        </li>
-                        @*<li>
-                                <a data-toggle="tab" href="#tab-3">Product Tags</a>
-                            </li>*@
-                    </ul>
-                    <div class="tab-content tab_content_style">
-                        <div id="tab-1" class="tab-pane fade in active">
-                            <div class="product_description">
-                                <p>@Model.Description</p>
-                            </div>
-                        </div>
-                        <div id="tab-2" class="tab-pane fade">
-                            <div class="product_description">
-                                <ul id="Motorola">
-                                    <li><a href="#">@Model.Name</a> Review by <span class="Motorola_cl">@currentUserName</span></li>
-                                    <li>
-                                        <span>Mời click vào ngôi sao để đánh giá !</span>
-                                        <br />
-                                        <br />
-                                        <div class="stars-outer ratingCourse">
-                                            <div class="stars-inner">
-                                            </div>
-                                            <div class="stars-finalinner"></div>
-                                        </div>
-                                        <br />
-                                        <br />
-                                        <div style="text-align:left">
-                                            @using (Html.BeginForm("RatingFlower", "Flowers", FormMethod.Post))
-                                            {
-                                                @Html.AntiForgeryToken()
-                                                @Html.Hidden("rating")
-                                                @Html.Hidden("currentFlowerCode", @Model.Code)
-
-                                                <div class="form-group">
-                                                    <input type="submit" value="Đánh giá" class="btn btn-default" />
-                                                </div>
-                                            }
-                                        </div>
-                                    </li>
-                                    @*<li>@currentUserName (Posted on 11/2/2015)</li>*@
-                                </ul>
-                                <div class="fieldsets">
-                                    @*<h3>You're reviewing: <span>@Model.Description</span></h3>
-                                        <h4>How do you rate this product?*</h4>
-                                        <div class="start_tab_pricing_area">
-                                            <fieldset>
-                                                <table class="star_pricing_tb">
-                                                    <tr>
-                                                        <th></th>
-                                                        <th>1 Star</th>
-                                                        <th>2 Stars</th>
-                                                        <th>3 Stars</th>
-                                                        <th>4 Stars</th>
-                                                        <th>5 Stars</th>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Quality</td>
-                                                        <td><input type="radio" name="ratings[1]" value="1" class="radio"></td>
-                                                        <td><input type="radio" name="ratings[1]" value="2" class="radio"></td>
-                                                        <td><input type="radio" name="ratings[1]" value="3" class="radio"></td>
-                                                        <td><input type="radio" name="ratings[1]" value="4" class="radio"></td>
-                                                        <td><input type="radio" name="ratings[1]" value="5" class="radio"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Price</td>
-                                                        <td><input type="radio" name="ratings[2]" value="6" class="radio"></td>
-                                                        <td><input type="radio" name="ratings[2]" value="7" class="radio"></td>
-                                                        <td><input type="radio" name="ratings[2]" value="8" class="radio"></td>
-                                                        <td><input type="radio" name="ratings[2]" value="9" class="radio"></td>
-                                                        <td><input type="radio" name="ratings[2]" value="10" class="radio"></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>Value</td>
-                                                        <td><input type="radio" name="ratings[3]" value="11" class="radio"></td>
-                                                        <td><input type="radio" name="ratings[3]" value="12" class="radio"></td>
-                                                        <td><input type="radio" name="ratings[3]" value="13" class="radio"></td>
-                                                        <td><input type="radio" name="ratings[3]" value="14" class="radio"></td>
-                                                        <td><input type="radio" name="ratings[3]" value="15" class="radio"></td>
-                                                    </tr>
-                                                </table>
-                                            </fieldset>
-                                        </div>
-
-                                        <div class="rating_contact">
-                                            <ul id="review_contact">
-                                                <li>Nickname<span>*</span></li>
-                                                <li><input type="text" name="nickname" class="input-text required-entry" value=""></li>
-                                                <li>Summary of Your Review<span>*</span></li>
-                                                <li><input type="text" name="nickname" class="input-text required-entry" value=""></li>
-                                                <li>Review<span>*</span></li>
-                                                <li><textarea name="detail" cols="5" rows="3" class="required-entry"></textarea></li>
-                                            </ul>
-                                        </div>
-                                        <div class="review_button">
-                                            <button type="submit" title="Submit Review" class="button">Submit Review</button>
-                                        </div>*@
-
-                                    @{
-                                        string urlComment = string.Format("https://localhost:44390/Flowers/DetailCustomers?id={0}", @Model.Code);
-                                    }
-
-                                    <div>
-                                        <h3>Bình luận!</h3>
-                                    </div>
-                                    <div>
-                                        <div id="fb-root"></div>
-                                        <div class="fb-comments" data-href=@urlComment data-width="500" data-numposts="5"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        @*<div id="tab-3" class="tab-pane fade">
+    <!-- End preview Product details area -->
+    <!-- Start Product details tabs area -->
+    <div class="product_collateral_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="my_tabs_description">
+                        <ul class="tab_style">
+                            <li class="active">
+                                <a data-toggle="tab" href="#tab-1">Flower Description</a>
+                            </li>
+                            <li>
+                                <a data-toggle="tab" href="#tab-2">Reviews</a>
+                            </li>
+                            @*<li>
+                                    <a data-toggle="tab" href="#tab-3">Product Tags</a>
+                                </li>*@
+                        </ul>
+                        <div class="tab-content tab_content_style">
+                            <div id="tab-1" class="tab-pane fade in active">
                                 <div class="product_description">
-                                    <div class="product_tag_area">
-                                        <h2>Other people marked this product with these tags:</h2>
-                                        <ul id="product_tags">
-                                            <li><a href="#">fashion</a> <span>(1)</span></li>
-                                            <li><a href="#">Nunc</a> <span>(1)</span></li>
-                                            <li><a href="#">facilisis</a> <span>(1)</span></li>
-                                        </ul>
-                                        <div class="add_tags">
-                                            <h2>Add Your Tags:</h2>
-                                            <input type="text" name="nickname" class="input-text required-entry" value="">
+                                    <p>@Model.Description</p>
+                                </div>
+                            </div>
+                            <div id="tab-2" class="tab-pane fade">
+                                <div class="product_description">
+                                    <ul id="Motorola">
+                                        <li><a href="#">@Model.Name</a> Review by <span class="Motorola_cl">@currentUserName</span></li>
+                                        <li>
+                                            <span>Mời click vào ngôi sao để đánh giá !</span>
+                                            <br />
+                                            <br />
+                                            <div class="stars-outer ratingFlower" data-type="AtDetailView">
+                                                <div class="stars-inner">
+                                                </div>
+                                                <div class="stars-finalinner"></div>
+                                            </div>
+                                            <br />
+                                            <br />
+                                            <div style="text-align:left">
+                                                @using (Html.BeginForm("RatingFlower", "Flowers", FormMethod.Post))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.Hidden("rating", rating)
+                                                    @Html.Hidden("currentFlowerCode", @Model.Code)
+
+                                                    <div class="form-group">
+                                                        <input type="submit" value="Đánh giá" class="btn btn-default" />
+                                                    </div>
+                                                }
+                                            </div>
+                                        </li>
+                                        @*<li>@currentUserName (Posted on 11/2/2015)</li>*@
+                                    </ul>
+                                    <div class="fieldsets">
+                                        @*<h3>You're reviewing: <span>@Model.Description</span></h3>
+                                            <h4>How do you rate this product?*</h4>
+                                            <div class="start_tab_pricing_area">
+                                                <fieldset>
+                                                    <table class="star_pricing_tb">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>1 Star</th>
+                                                            <th>2 Stars</th>
+                                                            <th>3 Stars</th>
+                                                            <th>4 Stars</th>
+                                                            <th>5 Stars</th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Quality</td>
+                                                            <td><input type="radio" name="ratings[1]" value="1" class="radio"></td>
+                                                            <td><input type="radio" name="ratings[1]" value="2" class="radio"></td>
+                                                            <td><input type="radio" name="ratings[1]" value="3" class="radio"></td>
+                                                            <td><input type="radio" name="ratings[1]" value="4" class="radio"></td>
+                                                            <td><input type="radio" name="ratings[1]" value="5" class="radio"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Price</td>
+                                                            <td><input type="radio" name="ratings[2]" value="6" class="radio"></td>
+                                                            <td><input type="radio" name="ratings[2]" value="7" class="radio"></td>
+                                                            <td><input type="radio" name="ratings[2]" value="8" class="radio"></td>
+                                                            <td><input type="radio" name="ratings[2]" value="9" class="radio"></td>
+                                                            <td><input type="radio" name="ratings[2]" value="10" class="radio"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Value</td>
+                                                            <td><input type="radio" name="ratings[3]" value="11" class="radio"></td>
+                                                            <td><input type="radio" name="ratings[3]" value="12" class="radio"></td>
+                                                            <td><input type="radio" name="ratings[3]" value="13" class="radio"></td>
+                                                            <td><input type="radio" name="ratings[3]" value="14" class="radio"></td>
+                                                            <td><input type="radio" name="ratings[3]" value="15" class="radio"></td>
+                                                        </tr>
+                                                    </table>
+                                                </fieldset>
+                                            </div>
+
+                                            <div class="rating_contact">
+                                                <ul id="review_contact">
+                                                    <li>Nickname<span>*</span></li>
+                                                    <li><input type="text" name="nickname" class="input-text required-entry" value=""></li>
+                                                    <li>Summary of Your Review<span>*</span></li>
+                                                    <li><input type="text" name="nickname" class="input-text required-entry" value=""></li>
+                                                    <li>Review<span>*</span></li>
+                                                    <li><textarea name="detail" cols="5" rows="3" class="required-entry"></textarea></li>
+                                                </ul>
+                                            </div>
+                                            <div class="review_button">
+                                                <button type="submit" title="Submit Review" class="button">Submit Review</button>
+                                            </div>*@
+
+                                        @{
+                                            string urlComment = string.Format("https://localhost:44390/Flowers/DetailCustomers?id={0}", @Model.Code);
+                                        }
+
+                                        <div>
+                                            <h3>Bình luận!</h3>
                                         </div>
-                                        <div class="review_button product_tag_add">
-                                            <button type="submit" title="Submit Review" class="button">Add Tags</button>
+                                        <div>
+                                            <div id="fb-root"></div>
+                                            <div class="fb-comments" data-href=@urlComment data-width="500" data-numposts="5"></div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>*@
+                            </div>
+                            @*<div id="tab-3" class="tab-pane fade">
+                                    <div class="product_description">
+                                        <div class="product_tag_area">
+                                            <h2>Other people marked this product with these tags:</h2>
+                                            <ul id="product_tags">
+                                                <li><a href="#">fashion</a> <span>(1)</span></li>
+                                                <li><a href="#">Nunc</a> <span>(1)</span></li>
+                                                <li><a href="#">facilisis</a> <span>(1)</span></li>
+                                            </ul>
+                                            <div class="add_tags">
+                                                <h2>Add Your Tags:</h2>
+                                                <input type="text" name="nickname" class="input-text required-entry" value="">
+                                            </div>
+                                            <div class="review_button product_tag_add">
+                                                <button type="submit" title="Submit Review" class="button">Add Tags</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>*@
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- End Product details tabs area -->
-<!-- Start upsell products area -->
-@Html.Partial("_UpsellFlowers", upsellFlowers)
-<!-- End upsell products area -->
-<!-- Start Related products area -->
-@Html.Partial("_RelatedFlowers", relatedFlowers)
-<!-- End Related products area -->
+    <!-- End Product details tabs area -->
+    <!-- Start upsell products area -->
+    @Html.Partial("_UpsellFlowers", upsellFlowers)
+    <!-- End upsell products area -->
+    <!-- Start Related products area -->
+    @Html.Partial("_RelatedFlowers", relatedFlowers)
+    <!-- End Related products area -->
 
-@section CustomStyles{
-    <style>
-        /*#watchVideo {
-                margin-top: 100px;
+    @section CustomStyles{
+        @Styles.Render("~/customs")
+        <style>
+            #video {
+                /*position: absolute;
+                    z-index: -1;
+                    top: 0;
+                    left: 0;*/
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
             }
-            #video{
-                margin-top: 1px;
-            }
-            #nameOfVid{
-                margin-bottom: 2px;
-            }*/
-        #video {
-            /*position: absolute;
-                z-index: -1;
-                top: 0;
-                left: 0;*/
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        </style>
+    }
 
-        table {
-            margin: 0 auto;
-            text-align: center;
-            border-collapse: collapse;
-            border: 1px solid #d4d4d4;
-            font-size: 20px;
-            background: #fff;
-        }
-
-            table th,
-            table tr:nth-child(2n+2) {
-                background: #e7e7e7;
-            }
-
-            table th,
-            table td {
-                padding: 20px 50px;
-            }
-
-            table th {
-                border-bottom: 1px solid #d4d4d4;
-            }
-
-        .stars-outer {
-            display: inline-block;
-            position: relative;
-            font-family: FontAwesome;
-        }
-
-            .stars-outer::before {
-                content: "\f006 \f006 \f006 \f006 \f006";
-            }
-
-        .stars-inner {
-            position: absolute;
-            top: 0;
-            left: 0;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-        }
-
-            .stars-inner::before {
-                content: "\f005 \f005 \f005 \f005 \f005";
-                color: #f8ce0b;
-            }
-
-        .stars-finalinner {
-            position: absolute;
-            top: 0;
-            left: 0;
-            white-space: nowrap;
-            overflow: hidden;
-            width: 0;
-        }
-
-            .stars-finalinner::before {
-                content: "\f005 \f005 \f005 \f005 \f005";
-                color: red;
-            }
-    </style>
-}
-
-@section scripts{
-    <script>
+    @section scripts{
+        @Scripts.Render("~/bundles/ratingFlower")
+        <script>
         $(document).ready(function(){
     $("#addCart").click(function(event){
        event.preventDefault();
@@ -391,16 +321,6 @@
                         buttons: {
                             okay: function () {
                                 window.location.href = `/ShoppingCart/AddCart/` + `?code=` + code + '&strQuantity=' + quantity;
-                                //$.ajax({
-                                //    type: "POST",
-                                //    url: "/ShoppingCart/AddCart",
-                                //    data: '{code: "' + code + '", quantity: "'+ quantity +'" }',
-                                //    contentType: "application/json; charset=utf-8",
-                                //    dataType: "json",
-                                //    success: function (response) {
-                                //        validation = response;
-                                //    }
-                                //});
                             },
                         }
                     });
@@ -412,16 +332,6 @@
                         buttons: {
                             okay: function () {
                                 window.location.href = `/Accounts/Login/`;
-                                //$.ajax({
-                                //    type: "POST",
-                                //    url: "/ShoppingCart/AddCart",
-                                //    data: '{code: "' + code + '", quantity: "'+ quantity +'" }',
-                                //    contentType: "application/json; charset=utf-8",
-                                //    dataType: "json",
-                                //    success: function (response) {
-                                //        validation = response;
-                                //    }
-                                //});
                             },
                         }
                     });
@@ -435,51 +345,6 @@
                     }
                 })
 })
-    </script>
-    <script>
-        var getRating = @rating;
-        const starTotal = 5;
-        var previousPercentage = 0;
-
-         const ratings = {
-            ratingCourse: getRating,
-        };
-
-        for (const rating in ratings) {
-            // 2
-            const starPercentage = (ratings[rating] / starTotal) * 100;
-            // 3
-            const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
-            // 4
-            document.querySelector(`.${rating} .stars-inner`).style.width = starPercentageRounded;
-            previousPercentage = starPercentage;
-            };
-
-        $(".stars-outer").click(function (e) {
-            var thisOffset = $(this).offset().left;
-            var relX = e.pageX - thisOffset;
-             var perc = relX / $(this).width() * 100;
-          //var perc = (e.pageX - this.offsetLeft) / $(this).outerWidth() * 100;
-            getRating = starTotal / 100 * perc;
-
-             const ratings = {
-            ratingCourse: getRating,
-        };
-
-        for (const rating in ratings) {
-            // 2
-            const starPercentage = (ratings[rating] / starTotal) * 100;
-            //const ratingStarPercentage = (starPercentage / previousPercentage) * 100;
-            // 3
-            const starPercentageRounded = `${(Math.round(starPercentage / 10) * 10)}%`;
-            // 4
-
-            document.querySelector(`.${rating} .stars-finalinner`).style.width = starPercentageRounded;
-            };
-
-             $('#rating').val(getRating);
-        })
-
-    </script>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=583730498876225&autoLogAppEvents=1"></script>
-}
+        </script>
+        <script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v6.0&appId=583730498876225&autoLogAppEvents=1"></script>
+    }
