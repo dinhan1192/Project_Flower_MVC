@@ -19,12 +19,12 @@ body, html {
 }
 
 body {
-	height: 100%;
-	color: #2D3A4A;
-	background-image: url(../img/bg.png);
-	background-repeat: no-repeat;
-	background-position: 50% 100%;
-	background-size: 100% auto;
+    height: 100%;
+    color: #2D3A4A;
+    background-image: url(/img/ckeditor5classic/bg.png);
+    background-repeat: no-repeat;
+    background-position: 50% 100%;
+    background-size: 100% auto;
 }
 
 body * {
@@ -95,15 +95,15 @@ header nav ul li a:hover {
 	text-decoration: underline;
 }
 
-header nav ul li:last-child a::before {
-	content: url(../img/github.svg);
-	width: 1.4em;
-	height: 1.4em;
-	display: inline-block;
-	margin-right: .4em;
-	position: relative;
-	top: .3em;
-}
+    header nav ul li:last-child a::before {
+        content: url(/img/ckeditor5classic/github.svg);
+        width: 1.4em;
+        height: 1.4em;
+        display: inline-block;
+        margin-right: .4em;
+        position: relative;
+        top: .3em;
+    }
 
 header input {
 	display: none;

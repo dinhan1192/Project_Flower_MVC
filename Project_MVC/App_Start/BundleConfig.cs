@@ -28,9 +28,20 @@ namespace Project_MVC
                       "~/Scripts/Customs/checkFileSize.js",
                       "~/Scripts/Customs/checkboxselectallWithPopup.js",
                       "~/Scripts/Customs/twoDropDownListEvent.js",
-                      "~/Scripts/Customs/createPopup.js",
+                      "~/Scripts/Customs/createPopup.js"
+                      ));
+
+            bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
                       "~/Scripts/Customs/ckeditor.js"
                       ));
+
+            bundles.Add(new ScriptBundle("~/bundles/ratingFlower").Include(
+                     "~/Scripts/Customs/ratingFlower.js"
+                     ));
+
+            bundles.Add(new ScriptBundle("~/bundles/displayMultipleRatingFlowers").Include(
+                    "~/Scripts/Customs/displayMultipleRatingFlowers.js"
+                    ));
 
             bundles.Add(new ScriptBundle("~/bundles/cloudinaryAddImage").Include(
                       "~/Scripts/Customs/cloudinaryAddImage.js"
@@ -108,7 +119,8 @@ namespace Project_MVC
             bundles.Add(new StyleBundle("~/customs").Include(
                       "~/Content/Customs/completeAndInComplete.css",
                       "~/Content/Customs/ckeditor.css",
-                      "~/Content/Customs/flowerImageForFunctions.css"
+                      "~/Content/Customs/flowerImageForFunctions.css",
+                      "~/Content/Customs/ratingFlower.css"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/fonts").Include(
