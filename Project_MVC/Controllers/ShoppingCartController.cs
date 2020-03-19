@@ -17,10 +17,12 @@ namespace Project_MVC.Controllers
     {
         private static string SHOPPING_CART_NAME = Constant.ShoppingCart;
         private IUserService userService;
+        private ICRUDService<Flower> mySQLFlowerService;
         private MyDbContext db = new MyDbContext();
         public ShoppingCartController()
         {
             userService = new UserService();
+            mySQLFlowerService = new MySQLFlowerService();
         }
         // GET: ShoppingCart
         public ActionResult Index()
@@ -189,6 +191,7 @@ namespace Project_MVC.Controllers
         public ActionResult DisplayCartAfterCreateOrder(int orderId)
         {
             var order = db.Orders.Find(orderId);
+            ViewBag.ListFlowers = mySQLFlowerService.GetList().Where(s => order.OrderDetails.Select(p => p.FlowerCode).Contains(s.Code)).ToList();
             return View(order);
         }
 
