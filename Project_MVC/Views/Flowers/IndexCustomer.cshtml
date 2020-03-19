@@ -33,6 +33,12 @@
                             }
                         </ul>
                     </div>
+                    @*<div class="sort-by">
+                        <label>Sort By</label>
+                        @Html.Hidden("hidSort", @sort)
+                        @Html.DropDownList("sortFlower", Constant.ListSortFlower as IEnumerable<SelectListItem>)
+                        <a id="linkSort" href="@Url.Action("IndexCustomer", "Flowers")"><i class="fa fa-long-arrow-up"></i></a>
+                    </div>*@
                     <div class="priceing_area">
                         <h2>Price</h2>
                         <div class="info_widget">
@@ -111,22 +117,29 @@
                     </div>
                 </div>
             </div>
+            @*<div class="sort-by">
+                    <label>Sort By</label>
+                    @Html.Hidden("hidSort", @sort)
+                    @Html.DropDownList("sortFlower", Constant.ListSortFlower as IEnumerable<SelectListItem>)
+                    <a id="linkSort" href="@Url.Action("IndexCustomer", "Flowers")"><i class="fa fa-long-arrow-up"></i></a>
+                </div>*@
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                 <div class="my_tabs">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="sort-by">
-                                <label>Sort By</label>
-                                @Html.Hidden("hidSort", @sort)
-                                @Html.DropDownList("sortFlower", Constant.ListSortFlower as IEnumerable<SelectListItem>)
-                                <a id="linkSort" href="@Url.Action("IndexCustomer", "Flowers")"><i class="fa fa-long-arrow-up"></i></a>
-                            </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="sort-by">
+                            <label>Sort By</label>
+                            @Html.Hidden("hidSort", @sort)
+                            @Html.DropDownList("sortFlower", Constant.ListSortFlower as IEnumerable<SelectListItem>)
+                            <a id="linkSort" href="@Url.Action("IndexCustomer", "Flowers")"><i class="fa fa-long-arrow-up"></i></a>
                         </div>
                     </div>
-                    <ul class="tab_style">
+                    <br/>
+                    <br/>
+                    <br/>
+                    @*<ul class="tab_style">
                         <li></li>
                         <li></li>
-                    </ul>
+                    </ul>*@
                     <div class="tab-content tab_content_style">
                         <div id="tab1" class="tab-pane fade in active">
                             <div class="row">
@@ -144,8 +157,15 @@
                                                 <div class="product_details">
                                                     <h2>@item.Name</h2>
                                                     <p>
-                                                        @*<span class="regular_price">$10.00</span>*@
-                                                        <span class="popular_price">@string.Format("{0:C0}", item.Price) VNĐ</span>
+                                                        @if (item.Discount > 0)
+                                                        {
+                                                            <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
+                                                            <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
+                                                        }
                                                     </p>
                                                 </div>
                                                 <div class="product_detail">
@@ -189,8 +209,15 @@
                                                 <div class="product_details">
                                                     <h2>@item.Name</h2>
                                                     <p>
-                                                        @*<span class="regular_price">$10.00</span>*@
-                                                        <span class="popular_price">@string.Format("{0:C0}", item.Price) VNĐ</span>
+                                                        @if (item.Discount > 0)
+                                                        {
+                                                            <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
+                                                            <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
+                                                        }
                                                     </p>
                                                 </div>
                                                 <div class="product_detail">
@@ -233,8 +260,15 @@
                                                 <div class="product_details">
                                                     <h2>@item.Name</h2>
                                                     <p>
-                                                        @*<span class="regular_price">$10.00</span>*@
-                                                        <span class="popular_price">@string.Format("{0:C0}", item.Price) VNĐ</span>
+                                                        @if (item.Discount > 0)
+                                                        {
+                                                            <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
+                                                            <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
+                                                        }
                                                     </p>
                                                 </div>
                                                 <div class="product_detail">
@@ -282,14 +316,12 @@
         var $categoryCode = $("#categoryCode").val();
 
         $("#linkSort").click(function () {
-            debugger;
             var $sort = $("#sortFlower").val();
 
             $(this).attr("href", $(this).attr("href") + "?sortFlower=" + $sort + "&levelOneCategoryCode="
                 + $levelOneCategoryCode + "&categoryCode=" + $categoryCode);
         })
 
-        debugger;
         var amount = $("#amount").val();
 
         $("#search").click(function () {
