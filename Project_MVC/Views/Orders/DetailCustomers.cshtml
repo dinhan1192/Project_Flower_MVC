@@ -1,0 +1,158 @@
+﻿@model Project_MVC.Models.Order
+
+@{
+    ViewBag.Title = "Chi Tiết Hóa Đơn";
+    Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
+}
+
+
+<section>
+    <div class="container">
+        <div class="col-md-12 text-center">
+            <div class="create_account">
+                <h2>@ViewBag.Title</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="row">
+    <div class="col-md-10 col-sm-push-1">
+        <table class="table table-borderless">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.AppUser.FirstName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PaymentTypeId)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShipName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShipAddress)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ShipPhone)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TotalPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CreatedAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpdatedAt)
+                    </th>
+                    <th></th>
+                </tr>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(model => model.AppUser.FirstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PaymentTypeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ShipName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ShipAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.ShipPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.TotalPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.CreatedAt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.UpdatedAt)
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-10 col-sm-push-10">
+        <p>
+            @Html.ActionLink("Back to List", "IndexCustomers")
+        </p>
+    </div>
+</div>
+
+
+
+    @*<div>
+            <h4>Order</h4>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.AppUser.FirstName)1
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.AppUser.FirstName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.PaymentTypeId)2
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.PaymentTypeId)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ShipName)3
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ShipName)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ShipAddress)4
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ShipAddress)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.ShipPhone)5
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.ShipPhone)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.TotalPrice)6
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.TotalPrice)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.CreatedAt)7
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.CreatedAt)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Status)
+                </dt>
+
+
+            </dl>
+        </div>*@

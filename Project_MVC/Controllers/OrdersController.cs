@@ -80,6 +80,65 @@ namespace Project_MVC.Controllers
             return View(Orders.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 
+
+        public ActionResult IndexCustomers(string sortOrder, string searchString, string currentFilter, int? page)
+        {
+
+            ViewBag.CurrentSort = sortOrder;
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            // lúc đầu vừa vào thì sortOrder là null, cho nên gán NameSortParm = name_desc
+            // Ấn vào link Full name thì lúc đó NameSortParm có giá trị là name_desc, sortOrder trên view được gán = NameSortParm cho nên sortOrder != null
+            // và NameSortParm = ""
+            // Ấn tiếp vào link Full Name thì sortOrder = "" cho nên NameSortParm = name_desc
+            ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
+
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            var Orders = mySQLOrderService.GetList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                Orders = Orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
+            }
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    Orders = Orders.OrderByDescending(s => s.ShipName);
+                    break;
+                case "Date":
+                    Orders = Orders.OrderBy(s => s.UpdatedAt);
+                    break;
+                case "date_desc":
+                    Orders = Orders.OrderByDescending(s => s.UpdatedAt);
+                    break;
+                default:
+                    Orders = Orders.OrderBy(s => s.ShipName);
+                    break;
+            }
+
+
+            int pageSize = Constant.PageSize;
+            int pageNumber = (page ?? 1);
+            ThisPage thisPage = new ThisPage()
+            {
+                CurrentPage = pageNumber,
+                TotalPage = Math.Ceiling((double)Orders.Count() / pageSize)
+            };
+            ViewBag.Page = thisPage;
+            // nếu page == null thì lấy giá trị là 1, nếu không thì giá trị là page
+            //return View(students.ToList().ToPagedList(pageNumber, pageSize));
+            var nl = mySQLOrderService.GetList().ToList();
+            return View(Orders.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
+        }
         // GET: Orders/Details/5
         public ActionResult Details(int? id)
         {
@@ -94,6 +153,21 @@ namespace Project_MVC.Controllers
             }
             return View(order);
         }
+
+        public ActionResult DetailCustomers(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Order order = mySQLOrderService.Detail(id);
+            if (order == null || order.IsDeleted())
+            {
+                return HttpNotFound();
+            }
+            return View(order);
+        }
+
 
         // GET: Orders/Create
         //public ActionResult Create()
