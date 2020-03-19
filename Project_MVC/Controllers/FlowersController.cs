@@ -295,7 +295,7 @@ namespace Project_MVC.Controllers
         [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Name,Price,Description,CategoryCode")] Flower flower, string strImageUrl)
+        public ActionResult Create([Bind(Include = "Name,Price,Description,CategoryCode,Discount")] Flower flower, string strImageUrl)
         {
             if (mySQLFlowerService.CreateWithImage(flower, ModelState, strImageUrl, null))
             {
@@ -336,7 +336,7 @@ namespace Project_MVC.Controllers
         [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Code,Name,Price,Description,CategoryCode")] Flower flower, string strImageUrl, string editor)
+        public ActionResult Edit([Bind(Include = "Code,Name,Price,Description,CategoryCode,Discount")] Flower flower, string strImageUrl, string editor)
         {
             //ModelStateDictionary state = ModelState;
             if (flower == null || flower.Code == null)

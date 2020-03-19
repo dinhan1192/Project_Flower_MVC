@@ -121,6 +121,7 @@ namespace Project_MVC.Services
                 existItem.CategoryCode = item.CategoryCode;
                 //existItem.NumberOfLeture = item.NumberOfLeture;
                 existItem.Description = item.Description;
+                existItem.Discount = item.Discount;
                 existItem.UpdatedAt = DateTime.Now;
                 existItem.UpdatedBy = userService.GetCurrentUserName();
                 //var list = existItem.ProductImages;
