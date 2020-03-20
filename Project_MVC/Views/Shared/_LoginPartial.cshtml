@@ -12,7 +12,6 @@
 {
     using (Html.BeginForm("Logout", "Accounts", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
-
         @Html.AntiForgeryToken()
         <li>
             @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + "!", "Index", "Manages", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link active" })
@@ -26,10 +25,14 @@
                     <ul id="account_single_nav_1">
                         <li>
                             @*<input type="submit" value="Log off"/>*@
-                            <a class="nav-link" href="@Url.Action("Index", "Manages")">My Account</a>
+                            <a class="nav-link" href="@Url.Action("Index", "Manages")">Xem tài khoản</a>
                         </li>
                         <li>
-                            <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a>
+                            @*<input type="submit" value="Log off"/>*@
+                            <a class="nav-link" href="@Url.Action("IndexCustomer", "Orders")">Xem các hóa đơn chưa thanh toán</a>
+                        </li>
+                        <li>
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Đăng xuất</a>
                         </li>
                     </ul>
                 </div>
