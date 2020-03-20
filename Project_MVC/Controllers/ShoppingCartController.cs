@@ -311,7 +311,8 @@ namespace Project_MVC.Controllers
 
         public ActionResult RedirectFromPaypal()
         {
-            return View();
+            ViewBag.DisplayMsg = "Thanh toán thành công!";
+            return View("PaidResult");
         }
 
         public ActionResult CancelFromPaypal()
