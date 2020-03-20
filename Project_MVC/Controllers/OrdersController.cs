@@ -14,11 +14,13 @@ namespace Project_MVC.Controllers
     public class OrdersController : Controller
     {
         private IOrderService mySQLOrderService;
+        private IUserService userService;
 
         // GET: Orders
         public OrdersController()
         {
             mySQLOrderService = new MySQLOrderService();
+            userService = new UserService();
         }
 
         public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
@@ -43,41 +45,41 @@ namespace Project_MVC.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var Orders = mySQLOrderService.GetList();
+            var orders = mySQLOrderService.GetList().Where(s => s.UserId == userService.GetCurrentUserId() && s.Status == Order.OrderStatus.Pending);
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                Orders = Orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
+                orders = orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
             }
             switch (sortOrder)
             {
                 case "name_desc":
-                    Orders = Orders.OrderByDescending(s => s.ShipName);
+                    orders = orders.OrderByDescending(s => s.ShipName);
                     break;
                 case "Date":
-                    Orders = Orders.OrderBy(s => s.UpdatedAt);
+                    orders = orders.OrderBy(s => s.UpdatedAt);
                     break;
                 case "date_desc":
-                    Orders = Orders.OrderByDescending(s => s.UpdatedAt);
+                    orders = orders.OrderByDescending(s => s.UpdatedAt);
                     break;
                 default:
-                    Orders = Orders.OrderBy(s => s.ShipName);
+                    orders = orders.OrderBy(s => s.ShipName);
                     break;
             }
            
 
-            int pageSize = Constant.PageSize;
-            int pageNumber = (page ?? 1);
-            ThisPage thisPage = new ThisPage()
-            {
-                CurrentPage = pageNumber,
-                TotalPage = Math.Ceiling((double)Orders.Count() / pageSize)
-            };
-            ViewBag.Page = thisPage;
+            //int pageSize = Constant.PageSize;
+            //int pageNumber = (page ?? 1);
+            //ThisPage thisPage = new ThisPage()
+            //{
+            //    CurrentPage = pageNumber,
+            //    TotalPage = Math.Ceiling((double)orders.Count() / pageSize)
+            //};
+            //ViewBag.Page = thisPage;
             // nếu page == null thì lấy giá trị là 1, nếu không thì giá trị là page
             //return View(students.ToList().ToPagedList(pageNumber, pageSize));
-            var nl = mySQLOrderService.GetList().ToList();
-            return View(Orders.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
+            //var nl = mySQLOrderService.GetList().ToList();
+            return View(orders);
         }
 
         public ActionResult IndexCustomers(string sortOrder, string searchString, string currentFilter, int? page)

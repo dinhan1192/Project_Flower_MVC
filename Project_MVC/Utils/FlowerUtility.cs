@@ -1,4 +1,5 @@
-﻿using Project_MVC.Models;
+﻿using Microsoft.AspNet.Identity.Owin;
+using Project_MVC.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +10,19 @@ namespace Project_MVC.Utils
 {
     public static class FlowerUtility
     {
-        private static MyDbContext db = new MyDbContext();
+        private static MyDbContext _db = new MyDbContext();
+        public static MyDbContext DbContext
+        {
+            get { return _db ?? HttpContext.Current.GetOwinContext().Get<MyDbContext>(); }
+            set { _db = value; }
+        }
 
         public static List<Flower> GetProducts(List<OrderDetail> orderDetails)
         {
             var lstProduct = new List<Flower>();
             foreach (var item in orderDetails)
             {
-                var product = db.Flowers.Find(item.FlowerCode);
+                var product = DbContext.Flowers.Find(item.FlowerCode);
                 lstProduct.Add(product);
             }
 
@@ -25,13 +31,13 @@ namespace Project_MVC.Utils
 
         public static string GetFlowerName(string code)
         {
-            var flower = db.Flowers.Find(code);
+            var flower = DbContext.Flowers.Find(code);
             return flower.Name;
         }
 
         public static string GetFlowerImageUrl(string flowerCode)
         {
-            var flower = db.Flowers.Find(flowerCode);
+            var flower = DbContext.Flowers.Find(flowerCode);
             if(flower != null)
             {
                 var flowerImages = flower.FlowerImages;
@@ -48,10 +54,16 @@ namespace Project_MVC.Utils
             return "";
         }
 
-        //public static int GetReviews()
-        //{
+        public static int GetReviews(string code)
+        {
+            var ratingCount = DbContext.RatingCounts.Count();
+            if(ratingCount == null || ratingCount == 0)
+            {
+                return DbContext.RatingFlowers.Where(s => s.FlowerCode == code).Count();
+            }
 
-        //}
+            return ratingCount;
+        }
 
         [Authorize]
         public static ShoppingCart GetShoppingCart()

@@ -76,8 +76,15 @@ namespace Project_MVC.Services
             DbContext.RatingFlowers.AddOrUpdate(existRatingFlower);
 
             var existRatingCount = DbContext.RatingCounts.Find(existRatingFlower.FlowerCode);
-
-            //DbContext.RatingCounts.AddOrUpdate(ratingCount);
+            if(existRatingCount.NumberOfRating == 0)
+            {
+                existRatingCount.NumberOfRating = DbContext.RatingFlowers.Where(s => s.FlowerCode == existRatingFlower.FlowerCode).Count();
+            }
+            else
+            {
+                existRatingCount.NumberOfRating++;
+            }
+            DbContext.RatingCounts.AddOrUpdate(existRatingCount);
 
             DbContext.SaveChanges();
         }
