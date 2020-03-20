@@ -48,6 +48,11 @@ namespace Project_MVC.Utils
             return "";
         }
 
+        //public static int GetReviews()
+        //{
+
+        //}
+
         [Authorize]
         public static ShoppingCart GetShoppingCart()
         {
