@@ -87,7 +87,17 @@
                                                 <div class="stars-innerDisplay">
                                                 </div>
                                             </div>
-                                            <p>@string.Format("{0:C0}", item.Price) VNĐ</p>
+                                            <p>
+                                                @if (item.Discount > 0)
+                                                {
+                                                    <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
+                                                    <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
+                                                }
+                                                                                    </p>
                                         </div>
                                     </div>
                                 }
@@ -124,6 +134,18 @@
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                 <div class="my_tabs">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <!--Start Search area -->
+                            <form action="#" name="myForm">
+                                <div class="search_box">
+                    <input name="Name" id="itp" class="input_text" type="text" value="Search" />
+                    <button type="submit" class="btn-search">
+                        <span><i class="fa fa-search"></i></span>
+                    </button>
+                </div>
+                            </form>
+                            <!--End Search area -->
+                        </div>
                         <div class="sort-by">
                             <label>Sort By</label>
                             @Html.Hidden("hidSort", @sort)
@@ -176,7 +198,7 @@
                                                     <div class="product_button">
                                                         <div class="cart_details">
                                                             @*<a id="addCart" href="@Url.Action("AddCart", "ShoppingCart",new { code = item.Code, quantity = 1 }, null)">Add to cart</a>*@
-                                                            <a href="javascript:void(0);" id="addCart" data-flowerName="@item.Name" data-code="@item.Code" data-quantity="1">Add to cart</a>
+                                                            <a href="@Url.Action("AddCart", "ShoppingCart",new { code = item.Code, quantity = 1 }, null)" id="addCart" data-flowerName="@item.Name" data-code="@item.Code" data-quantity="1">Add to cart</a>
                                                         </div>
                                                         <div class="cart_details">
                                                             <a href="#" target="expand"><i class="fa fa-expand"></i></a>
@@ -226,7 +248,7 @@
                                                     </div>
                                                     <div class="product_button">
                                                         <div class="cart_details">
-                                                            <a href="javascript:void(0);" id="addCart" data-flowerName="@item.Name" data-code="@item.Code" data-quantity="1">Add to cart</a>
+                                                            <a href="@Url.Action("AddCart", "ShoppingCart",new { code = item.Code, quantity = 1 }, null)" id="addCart" data-flowerName="@item.Name" data-code="@item.Code" data-quantity="1">Add to cart</a>
                                                         </div>
                                                         <div class="cart_details">
                                                             <a href="#" target="expand"><i class="fa fa-expand"></i></a>
@@ -276,7 +298,7 @@
                                                     </div>
                                                     <div class="product_button">
                                                         <div class="cart_details">
-                                                            <a href="javascript:void(0);" id="addCart" data-flowerName="@item.Name" data-code="@item.Code" data-quantity="1">Add to cart</a>
+                                                            <a href="@Url.Action("AddCart", "ShoppingCart",new { code = item.Code, quantity = 1 }, null)" id="addCart" data-flowerName="@item.Name" data-code="@item.Code" data-quantity="1">Add to cart</a>
                                                         </div>
                                                         <div class="cart_details">
                                                             <a href="#" target="expand"><i class="fa fa-expand"></i></a>
