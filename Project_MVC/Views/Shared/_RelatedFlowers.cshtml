@@ -36,20 +36,12 @@
                                             </div>
                                         </div>
                                         <div class="product_rating">
-                                            <a href="#">1 Review(s) <span>I</span></a>
+                                            <a href="#">@FlowerUtility.GetReviews(item.Code) Review(s) <span>I</span></a>
                                             <a href="#"> Add Your Review</a>
                                         </div>
                                         <p>
-                                            @if (item.Discount > 0)
-                                            {
-                                                <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
-                                                <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
-                                            }
-                                            else
-                                            {
-                                                <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
-                                            }
-                                                                            </p>
+                                            @string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))
+                                        </p>
                                     </div>
                                 </div>
                             </div>
