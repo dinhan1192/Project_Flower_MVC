@@ -52,7 +52,18 @@ namespace Project_MVC.Services
 
         public bool Delete(Order item, ModelStateDictionary state)
         {
-            throw new NotImplementedException();
+            if (state.IsValid)
+            {
+                item.Status = OrderStatus.Deleted;
+                item.DeletedAt = DateTime.Now;
+                item.DeletedBy = userService.GetCurrentUserName();
+                DbContext.Orders.AddOrUpdate(item);
+                DbContext.SaveChanges();
+
+                return true;
+            }
+
+            return false;
         }
 
         public Order Detail(int? id)
