@@ -118,7 +118,7 @@ namespace Project_MVC.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                flowers = flowers.Where(s => s.Name.Contains(searchString) || s.Code.Contains(searchString));
+                flowers = flowers.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper()) || s.Code.ToUpper().Contains(searchString.ToUpper()));
             }
 
             if (!String.IsNullOrEmpty(sortFlower))
