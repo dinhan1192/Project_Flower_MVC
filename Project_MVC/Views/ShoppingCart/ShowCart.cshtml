@@ -63,7 +63,7 @@
                                     <td><input type="text" name="quantity" id="quantity" value="@item.Value.Quantity" /></td>
                                     <td>@string.Format("{0:C0}", @item.Value.Price) VNĐ</td>
                                     <td>
-                                        <a href="javascript:void(0);" id="removeFromCart" data-name="@item.Value.FlowerName" data-code="@item.Value.FlowerCode">Remove</a>
+                                        <a href="javascript:void(0);" id="removeFromCart" data-name="@item.Value.FlowerName" data-returnCategoryCode="@categoryCode" data-code="@item.Value.FlowerCode">Remove</a>
                                     </td>
                                 </tr>
                             }
@@ -77,15 +77,18 @@
                         <div class="shopping_button">
                             <button type="button" onclick="location.href='@Url.Action("IndexCustomer", "Flowers", new { categoryCode = categoryCode })'" ; title="shop" class="continue_shopping">Tiếp tục chọn hoa</button>
                         </div>
-                        <div class="shopping_button">
-                            <button type="button" onclick="location.href='@Url.Action("ClearShoppingCart", "ShoppingCart", new { isLogout = false })'" return false;" title="shop" class="continue_shopping">Xóa giỏ hàng</button>
-                        </div>
-                        <div class="shopping_button">
-                            <span id="errmsg"></span>
-                            <button type="submit" class="continue_shopping" value="">Sửa giỏ hàng</button>
-                            <span id="errmsg"></span>
-                            @*<button type="submit" onclick="location.href='@Url.Action("UpdateCart", "ShoppingCart")'" class="continue_shopping">Update Shopping Cart</button>*@
-                        </div>
+                        @if (cart.GetCartItems() != null && cart.GetCartItems().Count != 0)
+                        {
+                            <div class="shopping_button">
+                                <button type="button" onclick="location.href='@Url.Action("ClearShoppingCart", "ShoppingCart", new { categoryCode = categoryCode })'" return false;" title="shop" class="continue_shopping">Xóa giỏ hàng</button>
+                            </div>
+                            <div class="shopping_button">
+                                <span id="errmsg"></span>
+                                <button type="submit" class="continue_shopping" value="">Sửa giỏ hàng</button>
+                                <span id="errmsg"></span>
+                                @*<button type="submit" onclick="location.href='@Url.Action("UpdateCart", "ShoppingCart")'" class="continue_shopping">Update Shopping Cart</button>*@
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -109,7 +112,7 @@
                     </table>
                 </div>
                 <div class="check_out_simble review_button">
-                    <button onclick="location.href='@Url.Action("CreateOrder", "ShoppingCart")'" class="button">Tạo đơn hàng</button>
+                    <button id="createOrder" data-info="@cart.GetCartItems().Count" data-categoryCode="@categoryCode" class="button">Tạo đơn hàng</button>
                 </div>
             </div>
         </div>
@@ -130,7 +133,8 @@
 
             $("#removeFromCart").click(function () {
                 var code = $(this).attr("data-code");
-                var removeUrl = "/ShoppingCart/RemoveCart?code=" + code;
+                var returnCategoryCode = $(this).attr("data-returnCategoryCode")
+                var removeUrl = "/ShoppingCart/RemoveCart?code=" + code + "&returnCategoryCode=" + returnCategoryCode;
                 var name = $(this).attr("data-name")
                 $.confirm({
                     async: false,
@@ -155,6 +159,26 @@
                         },
                     }
                 });
+            });
+
+            $("#createOrder").click(function () {
+                debugger;
+                var cartCount = $(this).attr("data-info");
+                var categoryCode = $(this).attr("data-categoryCode");
+                if (cartCount === null || cartCount === "0") {
+                    $.confirm({
+                        async: false,
+                        title: 'Giỏ hàng rỗng!',
+                        content: 'Bạn cần chọn hoa!',
+                        buttons: {
+                            okay: function () {
+                                window.location.href = "@Url.Action("IndexCustomer", "Flowers")" + "?categoryCode=" + categoryCode;
+                            },
+                        }
+                    });
+                } else {
+                                window.location.href = "@Url.Action("CreateOrder", "ShoppingCart")";
+                }
             });
         });
     </script>
