@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Revenues of Months and <a href="@Url.Action("IndexYear", "DashBoard")" class="btn btn-primary" id="watchYear">Watch the Revenues of Years</a></h2>
+
+<div id="chartContainer"></div>
+
+@section scripts{
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript">
+ 
+	window.onload = function () {
+		var chart = new CanvasJS.Chart("chartContainer", {
+			theme: "light2",
+			animationEnabled: true,
+			title: {
+				text: "Revenues of Months"
+			},
+			subtitles: [
+				{ text: "Try Resizing the Browser" }
+			],
+			data: [
+			{
+				type: "column", //change type to bar, line, area, pie, etc
+				dataPoints: @Html.Raw(ViewBag.DataPoints)
+			}
+			]
+		});
+		chart.render();
+	};
+</script>
+    }
+
