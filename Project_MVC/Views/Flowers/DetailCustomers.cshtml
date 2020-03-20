@@ -99,7 +99,7 @@
                             </div>
                         </div>
                         <div class="product_rating">
-                            <a href="#">1 Review(s) <span>I</span></a>
+                            <a href="#">@FlowerUtility.GetReviews(@Model.Code) Review(s) <span>I</span></a>
                             <a href="#"> Add Your Review</a>
                         </div>
                         <div class="pricing_rate">
@@ -122,7 +122,7 @@
                     <div class="product_options_area">
                         <div class="add-to-cart">
                             <input type="text" id="quantityFlower" title="Qty" value="1" class="qty" />
-                            <a class="btn btn-primary" data-code="@Model.Code" data-flowerName="@Model.Name" id="addCart"><span>Add to Cart</span></a>&nbsp;<span id="errmsg"></span>
+                            <button class="cart_button" data-code="@Model.Code" data-flowerName="@Model.Name" id="addCart"><span>Add to Cart</span></button>&nbsp;<span id="errmsg"></span>
                         </div>
                     </div>
                 </div>
