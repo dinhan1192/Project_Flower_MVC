@@ -27,6 +27,14 @@ namespace Project_MVC.Services
             };
 
             DbContext.RatingFlowers.Add(item);
+
+            var ratingCount = new RatingCount()
+            {
+                Code = flowerCode,
+                NumberOfRating = 1
+            };
+
+            DbContext.RatingCounts.Add(ratingCount);
             DbContext.SaveChanges();
         }
 
@@ -66,6 +74,11 @@ namespace Project_MVC.Services
             var existRatingFlower = DbContext.RatingFlowers.Find(ratingFlowerId);
             existRatingFlower.Rating = rating;
             DbContext.RatingFlowers.AddOrUpdate(existRatingFlower);
+
+            var existRatingCount = DbContext.RatingCounts.Find(existRatingFlower.FlowerCode);
+
+            //DbContext.RatingCounts.AddOrUpdate(ratingCount);
+
             DbContext.SaveChanges();
         }
     }
