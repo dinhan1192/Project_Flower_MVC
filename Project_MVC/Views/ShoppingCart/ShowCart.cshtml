@@ -61,7 +61,7 @@
                                     </td>
                                     <td>@item.Value.FlowerName</td>
                                     <td><input type="text" name="quantity" id="quantity" value="@item.Value.Quantity" /></td>
-                                    <td>@item.Value.Price</td>
+                                    <td>@string.Format("{0:C0}", @item.Value.Price) VNĐ</td>
                                     <td>
                                         <a href="javascript:void(0);" id="removeFromCart" data-name="@item.Value.FlowerName" data-returnCategoryCode="@categoryCode" data-code="@item.Value.FlowerCode">Remove</a>
                                     </td>
@@ -107,7 +107,7 @@
                     <table class="total_rate">
                         <tr>
                             <th>Grand Total</th>
-                            <th><b>@cart.GetTotalPrice()</b></th>
+                            <th>@string.Format("{0:C0}", @cart.GetTotalPrice()) VNĐ</th>
                         </tr>
                     </table>
                 </div>
