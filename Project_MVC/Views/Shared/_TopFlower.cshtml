@@ -1,4 +1,13 @@
 ﻿@model IEnumerable<Project_MVC.Models.Flower>
+@using Project_MVC.Utils
+@using Project_MVC.Services
+
+@{ 
+    var userService = new UserService();
+    var currentUserName = userService.GetCurrentUserName();
+}
+
+@Html.Hidden("currentUserName", (object)currentUserName)
 
 <div class="feature_area">
     <div class="container">
@@ -12,22 +21,34 @@
         <div class="row">
             @foreach (var item in Model.OrderByDescending(s => s.Rating).Take(4))
             {
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                     <div class="product_list">
-                        <div class="single_product" >
-                            <a href="@Url.Action("IndexCustomer", "Flowers", new { id = item.Code })" target="main">
+                        <div class="single_product">
+                            <a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Code })" target="main">
                                 @*<img src="/images/webdesign.jpg" alt="Image placeholder">*@
                                 @if (item.FlowerImages != null && item.FlowerImages.Count > 0)
                                 {
                                     <img style="width:258px; height:308px;" src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="Image placeholder" />
                                 }
                             </a>
-                                <div class="product_details">
-                                    <h2>@item.Name</h2>
-                                    <p><span class="popular_price">@string.Format("{0:C0}", item.Price) VNĐ</span></p>
-                           
+                            <div class="product_details">
+                                <h2>@item.Name</h2>
+                                <p>
+                                    <span class="popular_price">
+                                        @if (item.Discount > 0)
+                                        {
+                                            <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
+                                            <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
+                                        }
+                                    </span>
+                                </p>
+
                             </div>
-                            
+
                             <div class="product_detail">
                                 <div class="star_icon">
                                     <div class="stars-outer" data-rating="@item.Rating" data-type="AtPartialView">
@@ -37,7 +58,7 @@
                                 </div>
                                 <div class="product_button">
                                     <div class="cart_details">
-                                        <a href="@Url.Action("AddCart", "ShoppingCart",new { code = item.Code, quantity = 1 }, null)" target="blank">Add to cart</a>
+                                        <a href="javascript:void(0)" id="addCart" data-flowerName="@item.Name" data-code="@item.Code" data-quantity="1">Add to cart</a>
                                     </div>
                                     <div class="cart_details">
                                         <a href="#" target="expand"><i class="fa fa-expand"></i></a>
@@ -51,32 +72,44 @@
                     </div>
                 </div>
             }
-            </div>
-            
+        </div>
+
         <div class="row">
             <div class="product_bottom_area">
                 @foreach (var item in Model.OrderByDescending(s => s.Rating).Skip(4).Take(4))
                 {
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="product_list">
-                            <div class="single_product" >
-                                    <a href="@Url.Action("IndexCustomer", "Flowers", new { id = item.Code })" target="main">
-                                        @*<img src="/images/webdesign.jpg" alt="Image placeholder">*@
-                                        @if (item.FlowerImages != null && item.FlowerImages.Count > 0)
-                                        {
-                                            <img style="width:258px; height:308px;" src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="Image placeholder" />
-                                        }
-                                    </a>
-                                        <div class="product_details">
-                                            <h2>@item.Name</h2>
-                                            <p><span class="popular_price">@string.Format("{0:C0}", item.Price) VNĐ</span></p>
-                                    
+                            <div class="single_product">
+                                <a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Code })" target="main">
+                                    @*<img src="/images/webdesign.jpg" alt="Image placeholder">*@
+                                    @if (item.FlowerImages != null && item.FlowerImages.Count > 0)
+                                    {
+                                        <img style="width:258px; height:308px;" src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="Image placeholder" />
+                                    }
+                                </a>
+                                <div class="product_details">
+                                    <h2>@item.Name</h2>
+                                    <p>
+                                        <span class="popular_price">
+                                            @if (item.Discount > 0)
+                                            {
+                                                <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
+                                                <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
+                                            }
+                                            else
+                                            {
+                                                <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
+                                            }
+                                        </span>
+                                    </p>
+
                                 </div>
                                 @*<a href="product.html" target="main"><img src="img/product/pr5.png" alt="" /></a>
-                        <div class="product_details">
-                            <h2>Traditional Sympathy Basket</h2>
-                            <p><span class="regular_price">$170.00</span> <span class="popular_price">$150.00</span></p>
-                        </div>*@
+                                    <div class="product_details">
+                                        <h2>Traditional Sympathy Basket</h2>
+                                        <p><span class="regular_price">$170.00</span> <span class="popular_price">$150.00</span></p>
+                                    </div>*@
                                 <div class="product_detail">
                                     <div class="star_icon">
                                         <div class="stars-outer" data-rating="@item.Rating" data-type="AtPartialView">
@@ -86,7 +119,7 @@
                                     </div>
                                     <div class="product_button">
                                         <div class="cart_details">
-                                            <a href="@Url.Action("AddCart", "ShoppingCart",new { code = item.Code, quantity = 1 }, null)" target="blank">Add to cart</a>
+                                            <a href="javascript:void(0)" id="addCart" data-flowerName="@item.Name" data-code="@item.Code" data-quantity="1">Add to cart</a>
                                         </div>
                                         <div class="cart_details">
                                             <a href="#" target="expand"><i class="fa fa-expand"></i></a>
@@ -97,17 +130,72 @@
                                     </div>
                                 </div>
                                 @*<div class="sale_product">
-                            <h5>Sale</h5>
-                        </div>*@
+                                        <h5>Sale</h5>
+                                    </div>*@
                             </div>
                         </div>
                     </div>
                 }
-                </div>
-                
+            </div>
+
         </div>
     </div>
 </div>
 
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/Customs/displayMultipleRatingFlowers.js"></script>
+<script>
+    var arrAddCart = document.querySelectorAll("#addCart");
+    $.each(arrAddCart, function (i, val) {
+        $(this).click(function () {
+            var thisUserAccount = $("#currentUserName").val();
+            if (thisUserAccount != null && thisUserAccount != '') {
+                var $buttonClicked = $(this);
+                var code = $buttonClicked.attr('data-code');
+                var quantity = $buttonClicked.attr('data-quantity');
+                var name = $buttonClicked.attr('data-flowerName');
+                $.confirm({
+                    async: false,
+                    title: 'Chúc mừng chọn hoa!',
+                    content: 'Bạn đã chọn ' + name + '!',
+                    buttons: {
+                        okay: function () {
+                            window.location.href = `/ShoppingCart/AddCart/` + `?code=` + code + '&strQuantity=' + quantity;
+                            //$.ajax({
+                            //    type: "POST",
+                            //    url: "/ShoppingCart/AddCart",
+                            //    data: '{code: "' + code + '", quantity: "'+ quantity +'" }',
+                            //    contentType: "application/json; charset=utf-8",
+                            //    dataType: "json",
+                            //    success: function (response) {
+                            //        validation = response;
+                            //    }
+                            //});
+                        },
+                    }
+                });
+            } else {
+                $.confirm({
+                    async: false,
+                    title: 'Mời Login',
+                    content: 'Bạn phải đăng nhập trước khi chọn hoa!',
+                    buttons: {
+                        okay: function () {
+                            window.location.href = `/Accounts/Login/`;
+                            //$.ajax({
+                            //    type: "POST",
+                            //    url: "/ShoppingCart/AddCart",
+                            //    data: '{code: "' + code + '", quantity: "'+ quantity +'" }',
+                            //    contentType: "application/json; charset=utf-8",
+                            //    dataType: "json",
+                            //    success: function (response) {
+                            //        validation = response;
+                            //    }
+                            //});
+                        },
+                    }
+                });
+            }
+        });
+    })
+</script>

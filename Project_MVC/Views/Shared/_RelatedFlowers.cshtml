@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Project_MVC.Models.Flower>
 @using Project_MVC.Models
+@using Project_MVC.Utils
 
 <div class="related_products_area">
     <div class="container">
@@ -25,9 +26,9 @@
                         {
                             <div class="col-lg-3">
                                 <div class="single_upsell">
-                                    <a href="#"><img src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="" /></a>
+                                    <a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Code })"><img src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="" /></a>
                                     <div class="upsell_details">
-                                        <h2><a href="">@item.Name</a></h2>
+                                        <h2><a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Code })">@item.Name</a></h2>
                                         <div class="product_rating">
                                             <div class="stars-outer" data-rating="@item.Rating" data-type="AtPartialView">
                                                 <div class="stars-innerDisplay">
@@ -35,10 +36,12 @@
                                             </div>
                                         </div>
                                         <div class="product_rating">
-                                            <a href="#">1 Review(s) <span>I</span></a>
+                                            <a href="#">@FlowerUtility.GetReviews(item.Code) Review(s) <span>I</span></a>
                                             <a href="#"> Add Your Review</a>
                                         </div>
-                                        <p>@string.Format("{0:C0}", item.Price) VNĐ</p>
+                                        <p>
+                                            @string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))
+                                        </p>
                                     </div>
                                 </div>
                             </div>

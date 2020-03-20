@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Project_MVC.Models.Order>
+
+@{
+    ViewBag.Title = "Các Hóa Đơn Chưa Thanh Tóa";
+    Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
+}
+<section>
+    <div class="container">
+        <div class="col-md-12 text-center">
+            <div class="create_account">
+                <h2>@ViewBag.Title</h2>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="col-md-10 col-sm-push-1">
+    <table class="table table-borderless">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.PaymentTypeId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShipName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShipAddress)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShipPhone)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TotalPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UpdatedAt)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PaymentTypeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShipName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShipAddress)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ShipPhone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdatedAt)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Xem Chi Tiết", "DisplayCartAfterCreateOrder", "ShoppingCart" , new { orderId = item.Id }, null)
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    @*</div>*@

@@ -192,7 +192,7 @@ namespace Project_MVC.Controllers
             return View();
         }
 
-        public ActionResult DisplayCartAfterCreateOrder(int orderId)
+        public ActionResult DisplayCartAfterCreateOrder(int? orderId)
         {
             var order = db.Orders.Find(orderId);
             ViewBag.ListFlowers = mySQLFlowerService.GetList().Where(s => order.OrderDetails.Select(p => p.FlowerCode).Contains(s.Code)).ToList();
@@ -311,7 +311,8 @@ namespace Project_MVC.Controllers
 
         public ActionResult RedirectFromPaypal()
         {
-            return View();
+            ViewBag.DisplayMsg = "Thanh toán thành công!";
+            return View("PaidResult");
         }
 
         public ActionResult CancelFromPaypal()
