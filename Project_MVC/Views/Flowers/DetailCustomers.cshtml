@@ -105,7 +105,7 @@
                         <div class="pricing_rate">
                             <p class="stack">Availability:<span class="in-stock"> In stock</span></p>
                             <p class="rating_dollor rating_margin"><span class="rating_value_one dollor_size">@Model.Price</span> <span class="rating_value_two">@Utility.NewPrice(Model.Price, Model.Discount)</span></p>
-                            <p class="blog_texts">@Model.Description</p>
+                            <p class="blog_texts">@Html.Raw(Model.Description)</p>
                         </div>
                         <div class="product_blog_button">
                             <div class="cart_blog_details blog_icon_border">
@@ -150,7 +150,7 @@
                         <div class="tab-content tab_content_style">
                             <div id="tab-1" class="tab-pane fade in active">
                                 <div class="product_description">
-                                    <p>@Model.Description</p>
+                                    <p>@Html.Raw(Model.Description)</p>
                                 </div>
                             </div>
                             <div id="tab-2" class="tab-pane fade">

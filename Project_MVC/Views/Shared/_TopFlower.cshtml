@@ -1,4 +1,5 @@
 ﻿@model IEnumerable<Project_MVC.Models.Flower>
+    @using Project_MVC.Utils
 
 <div class="feature_area">
     <div class="container">
@@ -15,7 +16,7 @@
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12" >
                     <div class="product_list">
                         <div class="single_product" >
-                            <a href="@Url.Action("IndexCustomer", "Flowers", new { id = item.Code })" target="main">
+                            <a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Code })" target="main">
                                 @*<img src="/images/webdesign.jpg" alt="Image placeholder">*@
                                 @if (item.FlowerImages != null && item.FlowerImages.Count > 0)
                                 {
@@ -24,7 +25,17 @@
                             </a>
                                 <div class="product_details">
                                     <h2>@item.Name</h2>
-                                    <p><span class="popular_price">@string.Format("{0:C0}", item.Price) VNĐ</span></p>
+                                    <p><span class="popular_price">
+    @if (item.Discount > 0)
+    {
+        <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
+        <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
+    }
+    else
+    {
+        <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
+    }
+                                </span></p>
                            
                             </div>
                             
@@ -60,7 +71,7 @@
                     <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                         <div class="product_list">
                             <div class="single_product" >
-                                    <a href="@Url.Action("IndexCustomer", "Flowers", new { id = item.Code })" target="main">
+                                    <a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Code })" target="main">
                                         @*<img src="/images/webdesign.jpg" alt="Image placeholder">*@
                                         @if (item.FlowerImages != null && item.FlowerImages.Count > 0)
                                         {
@@ -69,7 +80,17 @@
                                     </a>
                                         <div class="product_details">
                                             <h2>@item.Name</h2>
-                                            <p><span class="popular_price">@string.Format("{0:C0}", item.Price) VNĐ</span></p>
+                                            <p><span class="popular_price">
+    @if (item.Discount > 0)
+    {
+        <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
+        <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
+    }
+    else
+    {
+        <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
+    }
+                                        </span></p>
                                     
                                 </div>
                                 @*<a href="product.html" target="main"><img src="img/product/pr5.png" alt="" /></a>
