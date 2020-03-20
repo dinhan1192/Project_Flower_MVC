@@ -20,5 +20,17 @@ namespace Project_MVC.Models
         public virtual Flower Flower { get; set; }
         public int Quantity { get; set; }
         public double UnitPrice { get; set; }
+        public OrderDetailStatus Status { get; set; }
+
+
+        public enum OrderDetailStatus
+        {
+            NotDeleted = 0, Deleted = -1
+        }
+
+        internal bool IsDeleted()
+        {
+            return this.Status == OrderDetailStatus.Deleted;
+        }
     }
 }

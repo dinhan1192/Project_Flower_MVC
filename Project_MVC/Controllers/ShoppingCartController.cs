@@ -62,6 +62,10 @@ namespace Project_MVC.Controllers
             int i = 0;
             string hidCategoryCode = Request["hidCategoryCode"];
             string[] strQuantities = frc.GetValues("quantity");
+            if (strQuantities == null || strQuantities.Count() == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid Quantity");
+            }
             int[] intQuantities = Array.ConvertAll(strQuantities, s => int.TryParse(s, out i) ? i : 0);
             var check = intQuantities.Where(s => s <= 0).ToList();
             if (check.Count > 0)
@@ -83,7 +87,7 @@ namespace Project_MVC.Controllers
             return RedirectToAction("IndexCustomer", "Flowers", new { categoryCode = hidCategoryCode });
         }
 
-        public ActionResult RemoveCart(string code, string returnUrl)
+        public ActionResult RemoveCart(string code, string returnUrl, string returnCategoryCode)
         {
             var flower = db.Flowers.Find(code);
             if (flower == null)
@@ -99,7 +103,7 @@ namespace Project_MVC.Controllers
 
             if (string.IsNullOrEmpty(returnUrl))
             {
-                return Redirect("/ShoppingCart/ShowCart");
+                return RedirectToAction("ShowCart", new { categoryCode = returnCategoryCode });
             }
             else
             {
@@ -107,10 +111,10 @@ namespace Project_MVC.Controllers
             }
         }
 
-        public ActionResult ClearShoppingCart()
+        public ActionResult ClearShoppingCart(string categoryCode)
         {
             ClearCart();
-            return RedirectToAction("ShowCart");
+            return RedirectToAction("ShowCart", new { categoryCode = categoryCode });
         }
 
         public ActionResult GetListOrders(int? page, string sortOrder, DateTime? start, DateTime? end)
@@ -233,7 +237,8 @@ namespace Project_MVC.Controllers
                     FlowerCode = cartItem.Value.FlowerCode,
                     OrderId = order.Id,
                     Quantity = cartItem.Value.Quantity,
-                    UnitPrice = cartItem.Value.Price
+                    UnitPrice = cartItem.Value.Price,
+                    Status = OrderDetail.OrderDetailStatus.NotDeleted
                 };
                 order.OrderDetails.Add(orderDetail);
             }
