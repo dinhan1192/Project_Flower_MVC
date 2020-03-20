@@ -80,7 +80,7 @@ namespace Project_MVC.Controllers
         {
             if(string.IsNullOrEmpty(levelOneCategoryCode) && string.IsNullOrEmpty(categoryCode))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.CurrentUserName = userService.GetCurrentUserName();

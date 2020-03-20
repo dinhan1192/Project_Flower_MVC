@@ -6,7 +6,6 @@
     var shoppingCart = FlowerUtility.GetShoppingCart();
     var count = shoppingCart.GetCartItems().Count;
     var categoryCode = ViewBag.CategoryCode;
-    var returnUrl = Request.RawUrl;
 }
 @if (Request.IsAuthenticated)
 
@@ -45,7 +44,7 @@
                     {
                         <div class="cart_single">
                             <a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Value.FlowerCode })"><img style="width:50px;height:50px;" src="@FlowerUtility.GetFlowerImageUrl(item.Value.FlowerCode)" alt="" /></a>
-                            <h2><a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Value.FlowerCode })">@item.Value.FlowerName</a> <a href="@Url.Action("RemoveCart", "ShoppingCart", new { code = item.Value.FlowerCode, returnUrl = returnUrl })"><span><i class="fa fa-trash"></i></span></a></h2>
+                            <h2><a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Value.FlowerCode })">@item.Value.FlowerName</a> <a href="@Url.Action("RemoveCart", "ShoppingCart", new { code = item.Value.FlowerCode, returnUrl = Request.RawUrl })"><span><i class="fa fa-trash"></i></span></a></h2>
                             <p>@item.Value.Quantity x @item.Value.Price</p>
                         </div>
                     }
