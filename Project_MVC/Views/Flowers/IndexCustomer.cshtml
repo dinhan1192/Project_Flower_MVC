@@ -88,15 +88,7 @@
                                                 </div>
                                             </div>
                                             <p>
-                                                @if (item.Discount > 0)
-                                                {
-                                                    <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
-                                                    <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
-                                                }
-                                                else
-                                                {
-                                                    <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
-                                                }
+                                                @Utility.NewPrice(item.Price, item.Discount).ToString("C", FlowerUtility.UnitedStates)
                                             </p>
                                         </div>
                                     </div>
@@ -139,12 +131,12 @@
                             <form action="#" name="myForm">
                                 <div class="search_box">
                                     @*@using (Html.BeginForm("IndexCustomer", "Flowers", FormMethod.Get))
-                                    {*@
-                                        @*<input name="Name" id="itp" class="input_text" type="text" value="Search" />*@
-                                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "input_text" })
-                                        <a id="searchFlower" href="javascript:void(0)" class="btn-search">
-                                            <span><i class="fa fa-search"></i></span>
-                                        </a>
+                                        {*@
+                                    @*<input name="Name" id="itp" class="input_text" type="text" value="Search" />*@
+                                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "input_text" })
+                                    <a id="searchFlower" href="javascript:void(0)" class="btn-search">
+                                        <span><i class="fa fa-search"></i></span>
+                                    </a>
                                 </div>
                             </form>
                             <!--End Search area -->
@@ -182,12 +174,12 @@
                                                     <p>
                                                         @if (item.Discount > 0)
                                                         {
-                                                            <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
-                                                            <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
+                                                            <span class="regular_price">@item.Price.ToString("C", FlowerUtility.UnitedStates)</span>
+                                                            <span class="popular_price">@Utility.NewPrice(item.Price, item.Discount).ToString("C", FlowerUtility.UnitedStates)</span>
                                                         }
                                                         else
                                                         {
-                                                            <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
+                                                            <span class="popular_price">@item.Price.ToString("C", FlowerUtility.UnitedStates)</span>
                                                         }
                                                     </p>
                                                 </div>
@@ -233,12 +225,12 @@
                                                     <p>
                                                         @if (item.Discount > 0)
                                                         {
-                                                            <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
-                                                            <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
+                                                            <span class="regular_price">@item.Price.ToString("C", FlowerUtility.UnitedStates)</span>
+                                                            <span class="popular_price">@Utility.NewPrice(item.Price, item.Discount).ToString("C", FlowerUtility.UnitedStates)</span>
                                                         }
                                                         else
                                                         {
-                                                            <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
+                                                            <span class="popular_price">@item.Price.ToString("C", FlowerUtility.UnitedStates)</span>
                                                         }
                                                     </p>
                                                 </div>
@@ -283,12 +275,12 @@
                                                     <p>
                                                         @if (item.Discount > 0)
                                                         {
-                                                            <span class="regular_price">@string.Format("{0:C0}", item.Price)</span>
-                                                            <span class="popular_price">@string.Format("{0:C0}", Utility.NewPrice(item.Price, item.Discount))</span>
+                                                            <span class="regular_price">@item.Price.ToString("C", FlowerUtility.UnitedStates)</span>
+                                                            <span class="popular_price">@Utility.NewPrice(item.Price, item.Discount).ToString("C", FlowerUtility.UnitedStates)</span>
                                                         }
                                                         else
                                                         {
-                                                            <span class="popular_price">@string.Format("{0:C0}", item.Price)</span>
+                                                            <span class="popular_price">@item.Price.ToString("C", FlowerUtility.UnitedStates)</span>
                                                         }
                                                     </p>
                                                 </div>
