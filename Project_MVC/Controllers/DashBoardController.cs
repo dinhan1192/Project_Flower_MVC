@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Project_MVC.Models;
+using Project_MVC.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,23 +11,36 @@ namespace Project_MVC.Controllers
 {
     public class DashBoardController : Controller
     {
+        private IOrderService orderService;
+
+        public DashBoardController()
+        {
+            orderService = new MySQLOrderService();
+        }
+
         // GET: DashBoard
         public ActionResult IndexMonth()
         {
-            List<DataPoint> dataPoints = new List<DataPoint>{
-                new DataPoint(1, 22),
-                new DataPoint(2, 36),
-                new DataPoint(3, 42),
-                new DataPoint(4, 51),
-                new DataPoint(5, 46),
-                new DataPoint(6, 46),
-                new DataPoint(7, 46),
-                new DataPoint(8, 46),
-                new DataPoint(9, 46),
-                new DataPoint(10, 46),
-                new DataPoint(11, 46),
-                new DataPoint(12, 46),
-            };
+            var lstRevenueMonth = orderService.GetListRevenuesMonth();
+            var dataPoints = new List<DataPoint>();
+            foreach (var item in lstRevenueMonth)
+            {
+                dataPoints.Add(new DataPoint(item.RevenueOf, item.TotalRevenue));
+            }
+            //List<DataPoint> dataPoints = new List<DataPoint>{
+            //    new DataPoint("1", 100),
+            //    new DataPoint("2", 236),
+            //    new DataPoint("3", 142),
+            //    new DataPoint("4", 351),
+            //    new DataPoint("5", 646),
+            //    new DataPoint("6", 746),
+            //    new DataPoint("7", 246),
+            //    new DataPoint("8", 846),
+            //    new DataPoint("9", 946),
+            //    new DataPoint("10", 2246),
+            //    new DataPoint("11", 2346),
+            //    new DataPoint("12", 1546),
+            //};
 
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
             return View();
@@ -34,13 +48,12 @@ namespace Project_MVC.Controllers
 
         public ActionResult IndexYear()
         {
-            List<DataPoint> dataPoints = new List<DataPoint>{
-                new DataPoint(2020, 22),
-                new DataPoint(2020, 36),
-                new DataPoint(2020, 42),
-                new DataPoint(2020, 51),
-                new DataPoint(2020, 46),
-            };
+            var lstRevenueYear = orderService.GetListRevenuesYear();
+            var dataPoints = new List<DataPoint>();
+            foreach (var item in lstRevenueYear)
+            {
+                dataPoints.Add(new DataPoint(item.RevenueOf, item.TotalRevenue));
+            }
 
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
             return View();
