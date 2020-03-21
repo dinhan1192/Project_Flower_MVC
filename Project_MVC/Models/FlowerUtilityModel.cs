@@ -10,4 +10,10 @@ namespace Project_MVC.Models
         public int Count { get; set; }
         public string CategoryCode { get; set; }
     }
+
+    public class DateTimeModel
+    {
+        public DateTime? startDate { get; set; }
+        public DateTime? endDate { get; set; }
+    }
 }

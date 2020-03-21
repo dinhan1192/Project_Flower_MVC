@@ -118,6 +118,8 @@ namespace Project_MVC.Services
                 existItem.ShipName = item.ShipName;
                 existItem.ShipAddress = item.ShipAddress;
                 existItem.TotalPrice = item.TotalPrice;
+                existItem.PaymentTypeId = item.PaymentTypeId;
+                existItem.Status = item.Status;
                 existItem.UpdatedAt = DateTime.Now;
                 existItem.UpdatedBy = userService.GetCurrentUserName();
                 DbContext.Orders.AddOrUpdate(existItem);

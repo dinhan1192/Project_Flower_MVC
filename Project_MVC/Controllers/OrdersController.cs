@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using Project_MVC.Models;
 using Project_MVC.Services;
+using Project_MVC.Utils;
+using static Project_MVC.Models.Order;
 
 namespace Project_MVC.Controllers
 {
@@ -23,9 +25,10 @@ namespace Project_MVC.Controllers
             userService = new UserService();
         }
 
-        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
+        public ActionResult Index(string sortOrder, string searchString, 
+            string currentFilter, int? page, string status, 
+            string paymentType, string start, string end)
         {
-
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             // lúc đầu vừa vào thì sortOrder là null, cho nên gán NameSortParm = name_desc
@@ -51,6 +54,34 @@ namespace Project_MVC.Controllers
             {
                 orders = orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
             }
+
+            if (!String.IsNullOrEmpty(status))
+            {
+                orders = orders.Where(s => s.Status == (OrderStatus)Enum.Parse(typeof(OrderStatus), status));
+            }
+
+            if (!String.IsNullOrEmpty(paymentType))
+            {
+                orders = orders.Where(s => s.PaymentTypeId == (PaymentType)Enum.Parse(typeof(PaymentType), paymentType));
+            }
+
+            var compareDate = new DateTimeModel();
+
+            if (!string.IsNullOrEmpty(start))
+            {
+                var compareStartDate = DateTime.Parse(start).Date + new TimeSpan(0, 0, 0);
+                orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
+                compareDate.startDate = compareStartDate;
+            }
+            if (!string.IsNullOrEmpty(end))
+            {
+                var compareEndDate = DateTime.Parse(end).Date + new TimeSpan(23, 59, 59);
+                orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
+                compareDate.endDate = compareEndDate;
+            }
+
+            ViewBag.CompareDate = compareDate;
+
             switch (sortOrder)
             {
                 case "name_desc":
@@ -201,7 +232,7 @@ namespace Project_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,UserId,PaymentTypeId,ShipName,ShipAddress,ShipPhone,TotalPrice,CreatedAt,UpdatedAt,DeletedAt,CreatedBy,UpdatedBy,DeletedBy,Status")] Order order)
+        public ActionResult Edit([Bind(Include = "Id,PaymentTypeId,ShipName,ShipAddress,ShipPhone,TotalPrice,Status")] Order order)
         {
             if (order == null)
             {
