@@ -2,6 +2,7 @@
 using Project_MVC.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,6 +17,9 @@ namespace Project_MVC.Utils
             get { return _db ?? HttpContext.Current.GetOwinContext().Get<MyDbContext>(); }
             set { _db = value; }
         }
+
+        public static readonly CultureInfo UnitedStates =
+        CultureInfo.GetCultureInfo("en-US");
 
         public static List<Flower> GetProducts(List<OrderDetail> orderDetails)
         {
