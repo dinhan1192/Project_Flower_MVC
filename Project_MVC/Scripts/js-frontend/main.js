@@ -128,21 +128,19 @@ Search Box js active
     /*==========================
    Product Pricing js active
    ==========================*/
-    var minSliderPrice = 20000;
-    var maxSliderPrice = 1000000;
     $("#slider-range").slider({
         range: true,
-        min: 20000,
-        max: 1000000,
-        values: [20000, 1000000],
+        min: 20,
+        max: 1000,
+        values: [20, 1000],
         slide: function (event, ui) {
-            var min = ui.values[0].toLocaleString('vi', { style: 'currency', currency: 'VND' });
-            var max = ui.values[1].toLocaleString('vi', { style: 'currency', currency: 'VND' });
+            var min = ui.values[0].toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
+            var max = ui.values[1].toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 });
             $("#amount").val(min + "  " + max);
         }
     });
-    $("#amount").val($("#slider-range").slider("values", 0).toLocaleString('vi', { style: 'currency', currency: 'VND' }) +
-        "  " + $("#slider-range").slider("values", 1).toLocaleString('vi', { style: 'currency', currency: 'VND' }));
+    $("#amount").val($("#slider-range").slider("values", 0).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }) +
+        "  " + $("#slider-range").slider("values", 1).toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 0 }));
 
 
 
