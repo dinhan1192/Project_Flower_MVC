@@ -16,4 +16,10 @@ namespace Project_MVC.Models
         public DateTime? startDate { get; set; }
         public DateTime? endDate { get; set; }
     }
+
+    public class Revenue
+    {
+        public string RevenueOf { get; set; }
+        public double TotalRevenue { get; set; }
+    }
 }

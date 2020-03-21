@@ -78,7 +78,7 @@ namespace Project_MVC.Services
 
         public IEnumerable<Order> GetList()
         {
-            return DbContext.Orders.Where(s => s.Status !=  OrderStatus.Deleted);
+            return DbContext.Orders.Where(s => s.Status != OrderStatus.Deleted);
         }
 
         public int? UpdateStatus(Order item)
@@ -116,8 +116,8 @@ namespace Project_MVC.Services
             if (state.IsValid)
             {
                 existItem.ShipName = item.ShipName;
+                existItem.ShipPhone = item.ShipPhone;
                 existItem.ShipAddress = item.ShipAddress;
-                existItem.TotalPrice = item.TotalPrice;
                 existItem.PaymentTypeId = item.PaymentTypeId;
                 existItem.Status = item.Status;
                 existItem.UpdatedAt = DateTime.Now;
@@ -130,6 +130,46 @@ namespace Project_MVC.Services
 
             return false;
             //throw new NotImplementedException();
+        }
+
+        public IEnumerable<Revenue> GetListRevenuesMonth()
+        {
+            var thisYear = DateTime.Now.Year;
+            var lstOrder = DbContext.Orders.Where(s => s.Status == OrderStatus.Paid || s.Status == OrderStatus.Done && s.UpdatedAt.Value.Year == thisYear).ToList();
+            var lstRevenuesMonth = new List<Revenue>();
+            if (lstOrder != null && lstOrder.Count > 0)
+            {
+                for (var i = Constant.FirstMonthOfYear; i <= Constant.EndMonthOfYear; i++)
+                {
+                    lstRevenuesMonth.Add(new Revenue()
+                    {
+                        RevenueOf = string.Format("{0}", i),
+                        TotalRevenue = lstOrder.Where(s => s.UpdatedAt.Value.Month == i).Sum(s => s.TotalPrice)
+                    });
+                }
+            }
+
+            return lstRevenuesMonth;
+        }
+
+        public IEnumerable<Revenue> GetListRevenuesYear()
+        {
+            var thisYear = DateTime.Now.Year;
+            var lstOrder = DbContext.Orders.Where(s => s.Status == OrderStatus.Paid || s.Status == OrderStatus.Done && s.UpdatedAt.Value.Year >= thisYear - 4).ToList();
+            var lstRevenuesYear = new List<Revenue>();
+            if (lstOrder != null && lstOrder.ToList().Count > 0)
+            {
+                for (var i = thisYear - 4; i <= thisYear; i++)
+                {
+                    lstRevenuesYear.Add(new Revenue()
+                    {
+                        RevenueOf = string.Format("{0}", i),
+                        TotalRevenue = lstOrder.Where(s => s.UpdatedAt.Value.Year == i).Sum(s => s.TotalPrice)
+                    });
+                }
+            }
+
+            return lstRevenuesYear;
         }
     }
 }

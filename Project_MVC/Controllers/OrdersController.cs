@@ -232,7 +232,7 @@ namespace Project_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,PaymentTypeId,ShipName,ShipAddress,ShipPhone,TotalPrice,Status")] Order order)
+        public ActionResult Edit([Bind(Include = "Id,PaymentTypeId,ShipName,ShipAddress,ShipPhone,Status")] Order order)
         {
             if (order == null)
             {
