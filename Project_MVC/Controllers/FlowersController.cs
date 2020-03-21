@@ -145,12 +145,12 @@ namespace Project_MVC.Controllers
                 //var culture = System.Globalization.CultureInfo.GetCultureInfo("vn");
                 var nbspace = "\u00A0";
                 var text = HttpUtility.HtmlDecode(HttpUtility.HtmlDecode(nbspace));
-                var newStrAmount = amount.Replace(".", string.Empty).Replace(" ", string.Empty).Replace(text, string.Empty);
+                var newStrAmount = amount.Replace(",", string.Empty).Replace(" ", string.Empty).Replace(text, string.Empty);
                 var arrCharDong = newStrAmount.Where(s => !char.IsDigit(s)).ToArray();
                 var amounts = newStrAmount.Replace(arrCharDong.FirstOrDefault(), ',').Split(',');
-                amounts = amounts.Take(amounts.Count() - 1).ToArray();
+                amounts = amounts.Skip(1).ToArray();
                 var min = Double.Parse(amounts.First());
-                var max = Convert.ToInt32(amounts.Last());
+                var max = Double.Parse(amounts.Last());
                 levelOneCategoryCode = GetLevelOneCategoryCode(flowers);
                 var lstCategories = mySQLCategoryService.GetList().Where(s => s.ParentCode == levelOneCategoryCode);
                 ViewBag.Categories = lstCategories;
