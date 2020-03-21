@@ -1,11 +1,23 @@
 ﻿@model IEnumerable<Project_MVC.Models.Order>
 @using Project_MVC.Models
+@using Project_MVC.Utils
+
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var thisPage = ViewBag.Page as ThisPage;
     var url = "/Orders/Delete/";
-
+    var compareDate = ViewBag.CompareDate as DateTimeModel;
+    var startDate = "";
+    var endDate = "";
+    if(compareDate.startDate != null)
+    {
+        startDate = Utility.GetDateString(compareDate.startDate.Value, "MM/dd/yyyy");
+    }
+    if(compareDate.endDate != null)
+    {
+        endDate = Utility.GetDateString(compareDate.endDate.Value, "MM/dd/yyyy");
+    }
 }
 
 <h2>Index</h2>
@@ -14,11 +26,21 @@
     </p>*@
 @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
 {
-    <p>
-        Find by Flower Category Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
-        <input type="submit" value="Search" />
-    </p>
+<p>
+    Enter Ship Name or User Name:
+    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+    Choose Status:
+    @Html.DropDownList("Status", EnumHelper.GetSelectList(typeof(Order.OrderStatus)), "Select Status", new { @class = "form-control" })
+    Choose Payment Type:
+    @Html.DropDownList("PaymentType", EnumHelper.GetSelectList(typeof(Order.PaymentType)), "Select Payment Type", new { @class = "form-control" })
+    Choose Date Range:
+    <input type="text" name="dateRange" value="@ViewBag.startDate - @ViewBag.endDate" />
+    @Html.Hidden("start", startDate)
+    @Html.Hidden("end", endDate)
+    <input type="submit" value="Search" />
+</p>
 }
+
 <table class="table">
     <tr>
         <th>
@@ -101,4 +123,43 @@
 @Html.AntiForgeryToken()
 @section scripts{
     @Scripts.Render("~/bundles/custom");
+    <script>
+        var start = moment().subtract(29, 'days');
+        var end = moment();
+        var newStart = "@startDate";
+        var newEnd = "@endDate";
+        if (newStart != null && newStart != "") {
+            start = newStart;
+        }
+
+        if (newEnd != null && newEnd != "") {
+            end = newEnd;
+        }
+
+        //function cb(newStartDate, newEndDate) {
+        //    $('input[name="dateRange"]').html(newStartDate.format('MMMM D, YYYY') + ' - ' + newEndDate.format('MMMM D, YYYY'));
+        //    //console.log(newStartDate.format('MMMM D, YYYY') + ' - ' + newEndDate.format('MMMM D, YYYY'));
+        //}
+
+        $('input[name="dateRange"]').daterangepicker({
+            startDate: start,
+            endDate: end,
+            ranges: {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        });
+
+    $('input[name="dateRange"]').on('apply.daterangepicker', function (ev, picker) {
+        debugger;
+            window.location.href = `/Orders/Index?start=${picker.startDate.format("D/MM/YYYY")}&end=${picker.endDate.format("D/MM/YYYY")}`;
+            //console.log(newStartDate.format('MMMM D, YYYY') + ' - ' + newEndDate.format('MMMM D, YYYY'));
+            //console.log("123");
+            //this.outerHTML = newStartDate.format("D/MM/YYYY") + ' - ' + newEndDate.format("D/MM/YYYY");
+        });
+    </script>
 }
