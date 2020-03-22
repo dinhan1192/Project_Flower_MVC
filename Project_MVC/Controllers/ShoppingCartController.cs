@@ -195,7 +195,20 @@ namespace Project_MVC.Controllers
         public ActionResult DisplayCartAfterCreateOrder(int? orderId)
         {
             var order = db.Orders.Find(orderId);
-            ViewBag.ListFlowers = mySQLFlowerService.GetList().Where(s => order.OrderDetails.Select(p => p.FlowerCode).Contains(s.Code)).ToList();
+            //ViewBag.ListFlowers = mySQLFlowerService.GetList().Where(s => order.OrderDetails.Select(p => p.FlowerCode).Contains(s.Code)).ToList();
+            var lstFlowersModel = new List<FlowersInOrderModel>();
+            foreach (var item in order.OrderDetails)
+            {
+                var flowerModel = new FlowersInOrderModel()
+                {
+                    FlowerName = mySQLFlowerService.Detail(item.FlowerCode).Name,
+                    ImageUrl = mySQLFlowerService.Detail(item.FlowerCode).FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl,
+                    Quantity = item.Quantity,
+                    TotalPricePerFlower = item.Quantity * item.UnitPrice
+                };
+                lstFlowersModel.Add(flowerModel);
+            }
+            ViewBag.ListFlowersInOrder = lstFlowersModel;
             return View(order);
         }
 

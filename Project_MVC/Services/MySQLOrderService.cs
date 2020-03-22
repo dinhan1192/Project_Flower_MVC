@@ -132,7 +132,7 @@ namespace Project_MVC.Services
             //throw new NotImplementedException();
         }
 
-        public IEnumerable<Revenue> GetListRevenuesMonth(string year)
+        public IEnumerable<RevenueModel> GetListRevenuesMonth(string year)
         {
             var intYear = DateTime.Now.Year;
             if (!string.IsNullOrEmpty(year))
@@ -140,12 +140,12 @@ namespace Project_MVC.Services
                 intYear = Convert.ToInt32(year);
             }
             var lstOrder = DbContext.Orders.Where(s => (s.Status == OrderStatus.Paid || s.Status == OrderStatus.Done) && s.UpdatedAt.Value.Year == intYear).ToList();
-            var lstRevenuesMonth = new List<Revenue>();
+            var lstRevenuesMonth = new List<RevenueModel>();
             if (lstOrder != null && lstOrder.Count > 0)
             {
                 for (var i = Constant.FirstMonthOfYear; i <= Constant.EndMonthOfYear; i++)
                 {
-                    lstRevenuesMonth.Add(new Revenue()
+                    lstRevenuesMonth.Add(new RevenueModel()
                     {
                         RevenueOf = string.Format("{0}", i),
                         TotalRevenue = lstOrder.Where(s => s.UpdatedAt.Value.Month == i).Sum(s => s.TotalPrice)
@@ -156,16 +156,16 @@ namespace Project_MVC.Services
             return lstRevenuesMonth;
         }
 
-        public IEnumerable<Revenue> GetListRevenuesYear()
+        public IEnumerable<RevenueModel> GetListRevenuesYear()
         {
             var thisYear = DateTime.Now.Year;
             var lstOrder = DbContext.Orders.Where(s => s.Status == OrderStatus.Paid || s.Status == OrderStatus.Done && s.UpdatedAt.Value.Year >= thisYear - 4).ToList();
-            var lstRevenuesYear = new List<Revenue>();
+            var lstRevenuesYear = new List<RevenueModel>();
             if (lstOrder != null && lstOrder.ToList().Count > 0)
             {
                 for (var i = thisYear - 4; i <= thisYear; i++)
                 {
-                    lstRevenuesYear.Add(new Revenue()
+                    lstRevenuesYear.Add(new RevenueModel()
                     {
                         RevenueOf = string.Format("{0}", i),
                         TotalRevenue = lstOrder.Where(s => s.UpdatedAt.Value.Year == i).Sum(s => s.TotalPrice)

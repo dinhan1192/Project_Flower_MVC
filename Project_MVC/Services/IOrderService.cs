@@ -11,8 +11,8 @@ namespace Project_MVC.Services
     interface IOrderService
     {
         IEnumerable<Order> GetList();
-        IEnumerable<Revenue> GetListRevenuesMonth(string year);
-        IEnumerable<Revenue> GetListRevenuesYear();
+        IEnumerable<RevenueModel> GetListRevenuesMonth(string year);
+        IEnumerable<RevenueModel> GetListRevenuesYear();
         int? UpdateStatus(Order item);
         Order Detail(int? id);
         bool Update(Order existItem, Order item, ModelStateDictionary state);
