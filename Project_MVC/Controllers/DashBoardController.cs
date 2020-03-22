@@ -19,9 +19,15 @@ namespace Project_MVC.Controllers
         }
 
         // GET: DashBoard
-        public ActionResult IndexMonth()
+        public ActionResult IndexMonth(string searchString, string currentFilter)
         {
-            var lstRevenueMonth = orderService.GetListRevenuesMonth();
+            if (string.IsNullOrEmpty(searchString))
+            {
+                searchString = currentFilter;
+            }
+
+            ViewBag.CurrentFilter = searchString;
+            var lstRevenueMonth = orderService.GetListRevenuesMonth(searchString);
             var dataPoints = new List<DataPoint>();
             foreach (var item in lstRevenueMonth)
             {

@@ -132,10 +132,14 @@ namespace Project_MVC.Services
             //throw new NotImplementedException();
         }
 
-        public IEnumerable<Revenue> GetListRevenuesMonth()
+        public IEnumerable<Revenue> GetListRevenuesMonth(string year)
         {
-            var thisYear = DateTime.Now.Year;
-            var lstOrder = DbContext.Orders.Where(s => s.Status == OrderStatus.Paid || s.Status == OrderStatus.Done && s.UpdatedAt.Value.Year == thisYear).ToList();
+            var intYear = DateTime.Now.Year;
+            if (!string.IsNullOrEmpty(year))
+            {
+                intYear = Convert.ToInt32(year);
+            }
+            var lstOrder = DbContext.Orders.Where(s => (s.Status == OrderStatus.Paid || s.Status == OrderStatus.Done) && s.UpdatedAt.Value.Year == intYear).ToList();
             var lstRevenuesMonth = new List<Revenue>();
             if (lstOrder != null && lstOrder.Count > 0)
             {
