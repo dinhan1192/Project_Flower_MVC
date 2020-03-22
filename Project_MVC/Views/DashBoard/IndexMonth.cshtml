@@ -4,7 +4,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Revenues of Months and <a href="@Url.Action("IndexYear", "DashBoard")" class="btn btn-primary" id="watchYear">Watch the Revenues of Years</a></h2>
+<div align="right">
+    <a href="@Url.Action("IndexYear", "DashBoard")" class="btn btn-primary" id="watchYear">Watch the Revenues of Years</a>
+</div>
+
 <div>
     @using (Html.BeginForm("IndexMonth", "DashBoard", FormMethod.Get))
     {
@@ -20,7 +23,7 @@
 @section scripts{
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script type="text/javascript">
- 
+
 	window.onload = function () {
 		var chart = new CanvasJS.Chart("chartContainer", {
 			theme: "light2",
@@ -40,6 +43,6 @@
 		});
 		chart.render();
 	};
-</script>
-    }
+    </script>
+}
 

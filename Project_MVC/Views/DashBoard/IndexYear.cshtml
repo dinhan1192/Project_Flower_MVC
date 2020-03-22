@@ -4,7 +4,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Revenues of Years and <a href="@Url.Action("IndexMonth", "DashBoard")" class="btn btn-primary" id="watchYear">Watch the Revenues of Months</a></h2>
+<div align="right">
+    <a href="@Url.Action("IndexMonth", "DashBoard")" class="btn btn-primary" id="watchYear">Watch the Revenues of Months</a>
+</div>
 
 <div id="chartContainer"></div>
 
