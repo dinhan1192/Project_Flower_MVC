@@ -5,6 +5,15 @@
 }
 
 <h2>Revenues of Months and <a href="@Url.Action("IndexYear", "DashBoard")" class="btn btn-primary" id="watchYear">Watch the Revenues of Years</a></h2>
+<div>
+    @using (Html.BeginForm("IndexMonth", "DashBoard", FormMethod.Get))
+    {
+        <p>
+            Find by Year: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+            <input type="submit" value="Search" />
+        </p>
+    }
+</div>
 
 <div id="chartContainer"></div>
 
