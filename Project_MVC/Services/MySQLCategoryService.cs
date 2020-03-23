@@ -34,6 +34,7 @@ namespace Project_MVC.Services
 
         public bool CreateWithImage(Category item, ModelStateDictionary state, string strImageUrl, IEnumerable<HttpPostedFileBase> videos)
         {
+            item.Code = item.ParentCode + item.Code;
             Validate(item, state);
             if (state.IsValid)
             {
