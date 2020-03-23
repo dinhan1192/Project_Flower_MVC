@@ -142,9 +142,9 @@ namespace Project_MVC
                  "~/Content/Front-end/css/bootstrap.min.css",
                  "~/Content/Front-end/css/custom.css",
                  "~/Content/Front-end/css/meanmenu.min.css",
-                 "~/Content/Front-end/css/responsive.css",
                  "~/Content/Front-end/css/main.css",
                  "~/Content/Front-end/css/style.css",
+                 "~/Content/Front-end/css/responsive.css",
                  "~/Content/css/jquery-confirmPopup.css"
                  ));
             bundles.Add(new ScriptBundle("~/Js-frontend").Include(

@@ -108,11 +108,11 @@
                                 @if (Model.Discount > 0)
                                 {
                                     <span class="rating_value_one dollor_size">@Model.Price.ToString("C", FlowerUtility.UnitedStates)</span>
-                                    <span class="rating_value_two">@Utility.NewPrice(Model.Price, Model.Discount).ToString("C", FlowerUtility.UnitedStates)</span>
+                                    <span style="color:red" class="rating_value_two">@Utility.NewPrice(Model.Price, Model.Discount).ToString("C", FlowerUtility.UnitedStates)</span>
                                 }
                                 else
                                 {
-                                    <span class="rating_value_two">@Model.Price.ToString("C", FlowerUtility.UnitedStates)</span>
+                                    <span style="color:red" class="rating_value_two">@Model.Price.ToString("C", FlowerUtility.UnitedStates)</span>
                                 }
                             </p>
                             <p class="blog_texts">@Html.Raw(Model.Description)</p>
