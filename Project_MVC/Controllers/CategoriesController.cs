@@ -46,7 +46,7 @@ namespace Project_MVC.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                flowerCategories = flowerCategories.Where(s => s.Name.Contains(searchString));
+                flowerCategories = flowerCategories.Where(s => s.Name.Contains(searchString) || s.Code.Contains(searchString));
             }
             switch (sortOrder)
             {

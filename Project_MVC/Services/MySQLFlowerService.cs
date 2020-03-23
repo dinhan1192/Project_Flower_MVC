@@ -103,7 +103,7 @@ namespace Project_MVC.Services
 
         public IEnumerable<Flower> GetList()
         {
-            return DbContext.Flowers.Where(s => s.Status != FlowerStatus.Deleted).ToList();
+            return DbContext.Flowers.Where(s => s.Status == FlowerStatus.NotDeleted).ToList();
         }
 
         public bool Update(Flower existItem, Flower item, ModelStateDictionary state)

@@ -97,11 +97,11 @@ namespace Project_MVC.Controllers
             ViewBag.CurrentFilter = searchString;
 
             var flowers = mySQLFlowerService.GetList();
-           
+
             if (!String.IsNullOrEmpty(levelOneCategoryCode))
             {
                 var categories = mySQLCategoryService.GetList().Where(s => s.ParentCode == levelOneCategoryCode);
-                flowers = categories.SelectMany(s => s.Flowers).ToList();
+                flowers = categories.SelectMany(s => s.Flowers).Where(s => s.Status == Flower.FlowerStatus.NotDeleted).ToList();
                 ViewBag.Categories = categories;
                 //categoryCode = categories.FirstOrDefault().Code;
             }
@@ -178,7 +178,8 @@ namespace Project_MVC.Controllers
 
             // nếu page == null thì lấy giá trị là 1, nếu không thì giá trị là page
             //return View(students.ToList().ToPagedList(pageNumber, pageSize));
-          
+
+            var list = flowers.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList();
             return View(flowers.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 

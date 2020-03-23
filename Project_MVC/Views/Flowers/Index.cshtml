@@ -1,5 +1,6 @@
 ﻿@model IEnumerable<Project_MVC.Models.Flower>
 @using Project_MVC.Models
+@using Project_MVC.Utils
 
 @{
     ViewBag.Title = "Index";
@@ -70,7 +71,7 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @string.Format("{0:C0}", item.Price)
+                @item.Price.ToString("C", FlowerUtility.UnitedStates)
                 @*@Html.DisplayFor(modelItem => item.Price)*@
             </td>
             <td>
