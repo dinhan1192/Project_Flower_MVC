@@ -107,12 +107,12 @@
                             <p class="rating_dollor rating_margin">
                                 @if (Model.Discount > 0)
                                 {
-                                    <span class="rating_value_one dollor_size">@Model.Price</span>
-                                    <span class="rating_value_two">@Utility.NewPrice(Model.Price, Model.Discount)</span>
+                                    <span class="rating_value_one dollor_size">$@Model.Price</span>
+                                    <span class="rating_value_two">$@Utility.NewPrice(Model.Price, Model.Discount)</span>
                                 }
                                 else
                                 {
-                                    <span class="rating_value_two">@Model.Price</span>
+                                    <span class="rating_value_two">$@Model.Price</span>
                                 }
                             </p>
                             <p class="blog_texts">@Html.Raw(Model.Description)</p>

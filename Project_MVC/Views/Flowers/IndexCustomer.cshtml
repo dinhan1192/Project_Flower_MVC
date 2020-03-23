@@ -82,7 +82,7 @@
                                             <img style="width:70px; height:83px;" src="@item.FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl" alt="Image placeholder" />
                                         }
                                         <div class="product_clothing_details">
-                                            <h2><a href="#">@item.Name</a></h2>
+                                            <h2><a href="@Url.Action("DetailCustomers", "Flowers", new { id = item.Code })">@item.Name</a></h2>
                                             <div class="stars-outer" data-rating="@item.Rating">
                                                 <div class="stars-innerDisplay">
                                                 </div>
