@@ -1,65 +1,65 @@
-﻿@model  Project_MVC.Models.Order
+﻿@model  Project_MVC.Models.CartInformation
 @using Project_MVC.Utils
 @using Project_MVC.Models
 @{
     ViewBag.Title = "CreateOrder";
     Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
 
-    var cartInfo = new CartInformation();
+    //var cartInfo = new CartInformation();
 }
-    <div class="shopping_details_des">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12" style="margin-left:160px;">
-                    <div class="tieude" style="margin-left:340px;">
-                        <h1><b>Tạo đơn hàng</b></h1>
-                    </div><br />
-                    @using (Html.BeginForm("CreateOrder", "ShoppingCart", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                <div class="shopping_form">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <h4>Họ tên người nhận:</h4>
-                                @Html.EditorFor(m => cartInfo.ShipName)
-                                @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
+<div class="shopping_details_des">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12" style="margin-left:160px;">
+                <div class="tieude" style="margin-left:340px;">
+                    <h1><b>Tạo đơn hàng</b></h1>
+                </div><br />
+                @using (Html.BeginForm("CreateOrder", "ShoppingCart", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="shopping_form">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <h4>Họ tên người nhận:</h4>
+                                    @Html.EditorFor(model => model.ShipName)
+                                    @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <h4>Điện thoại người nhận:</h4>
+                                    @Html.EditorFor(model => model.ShipPhone)
+                                    @Html.ValidationMessageFor(model => model.ShipPhone, "", new { @class = "text-danger" })
+                                </div>
                             </div>
                         </div>
-                        <div class="clearfix"></div>
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <h4>Điện thoại người nhận:</h4>
-                                @Html.EditorFor(m => cartInfo.ShipPhone)
-                                @Html.ValidationMessageFor(model => model.ShipPhone, "", new { @class = "text-danger" })
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <h4>Địa chỉ người nhận:</h4>
+                                    @Html.EditorFor(model => model.ShipAddress)
+                                    @Html.ValidationMessageFor(model => model.ShipAddress, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <h4>Loại thanh toán:</h4>
+                                    @Html.DropDownListFor(model => model.PaymentTypeId, EnumHelper.GetSelectList(typeof(Order.PaymentType)))
+                                    @*Ngôn ngữ: @Html.DropDownListFor(m => cartInfo.Language, new SelectList(Utils.GetDict(), "Value", "Key"))*@
+                                </div>
                             </div>
                         </div>
+                        <div class="clearfix"></div><br />
+                        <button type="submit" class="btn btn-danger col" style="margin-left:410px;" value="Lưu đơn hàng">Lưu đơn hàng</button>
                     </div>
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <h4>Địa chỉ người nhận:</h4>
-                                @Html.EditorFor(m => cartInfo.ShipAddress)
-                                @Html.ValidationMessageFor(model => model.ShipAddress, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-                        <div class="clearfix"></div>
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <h4>Loại thanh toán:</h4>
-                                @Html.DropDownListFor(m => cartInfo.PaymentTypeId, EnumHelper.GetSelectList(typeof(Order.PaymentType)))
-                                @*Ngôn ngữ: @Html.DropDownListFor(m => cartInfo.Language, new SelectList(Utils.GetDict(), "Value", "Key"))*@
-                            </div>
-                        </div>
-                    </div>
-                    <div class="clearfix"></div><br />
-                    <button type="submit" class="btn btn-danger col" style="margin-left:410px;" value="Lưu đơn hàng">Lưu đơn hàng</button>
-                </div>
-                            
-                        
-                    }
 
-                    @*<h2>Estimate Shipping and Tax</h2>
+
+                }
+
+                @*<h2>Estimate Shipping and Tax</h2>
                     <h3>Enter your destination to get shipping and tax.</h3>
                     <div class="shopping_form">
                         <h4>Country<span>*</span></h4>
@@ -68,7 +68,7 @@
                         <div class="review_button product_tag_add">
                             <button type="submit" title="Submit Review" class="button">Get a Quote</button>
                         </div>*@
-                </div>
             </div>
         </div>
     </div>
+</div>

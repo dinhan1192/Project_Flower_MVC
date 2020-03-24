@@ -219,58 +219,63 @@ namespace Project_MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateOrder(CartInformation cartInfo)
+        public ActionResult CreateOrder([Bind(Include = "ShipName,ShipPhone,ShipAddress,PaymentTypeId")]CartInformation cartInfo)
         {
             // load cart trong session.
-            var shoppingCart = LoadShoppingCart();
-            if (shoppingCart.GetCartItems().Count <= 0)
+            if (ModelState.IsValid)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad request");
-            }
-            // chuyển thông tin shopping cart thành Order.
-            var order = new Order
-            {
-                TotalPrice = shoppingCart.GetTotalPrice(),
-                UserId = userService.GetCurrentUserId(),
-                // can sua Language
-                //Language = cartInfo.Language,
-                PaymentTypeId = (PaymentType)Enum.Parse(typeof(PaymentType), cartInfo.PaymentTypeId),
-                ShipName = cartInfo.ShipName,
-                ShipPhone = cartInfo.ShipPhone,
-                ShipAddress = cartInfo.ShipAddress,
-                OrderDetails = new List<OrderDetail>(),
-                CreatedBy = userService.GetCurrentUserName(),
-                UpdatedBy = userService.GetCurrentUserName()
-            };
-            // Tạo order detail từ cart item.
-            foreach (var cartItem in shoppingCart.GetCartItems())
-            {
-                var orderDetail = new OrderDetail()
+                var shoppingCart = LoadShoppingCart();
+                if (shoppingCart.GetCartItems().Count <= 0)
                 {
-                    FlowerCode = cartItem.Value.FlowerCode,
-                    OrderId = order.Id,
-                    Quantity = cartItem.Value.Quantity,
-                    UnitPrice = cartItem.Value.Price,
-                    Status = OrderDetail.OrderDetailStatus.NotDeleted
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad request");
+                }
+                // chuyển thông tin shopping cart thành Order.
+                var order = new Order
+                {
+                    TotalPrice = shoppingCart.GetTotalPrice(),
+                    UserId = userService.GetCurrentUserId(),
+                    // can sua Language
+                    //Language = cartInfo.Language,
+                    PaymentTypeId = (PaymentType)Enum.Parse(typeof(PaymentType), cartInfo.PaymentTypeId),
+                    ShipName = cartInfo.ShipName,
+                    ShipPhone = cartInfo.ShipPhone,
+                    ShipAddress = cartInfo.ShipAddress,
+                    OrderDetails = new List<OrderDetail>(),
+                    CreatedBy = userService.GetCurrentUserName(),
+                    UpdatedBy = userService.GetCurrentUserName()
                 };
-                order.OrderDetails.Add(orderDetail);
-            }
-            db.Orders.Add(order);
-            db.SaveChanges();
-            ClearCart();
-            //// lưu vào database.
-            //var transaction = db.Database.BeginTransaction();
-            //try
-            //{
+                // Tạo order detail từ cart item.
+                foreach (var cartItem in shoppingCart.GetCartItems())
+                {
+                    var orderDetail = new OrderDetail()
+                    {
+                        FlowerCode = cartItem.Value.FlowerCode,
+                        OrderId = order.Id,
+                        Quantity = cartItem.Value.Quantity,
+                        UnitPrice = cartItem.Value.Price,
+                        Status = OrderDetail.OrderDetailStatus.NotDeleted
+                    };
+                    order.OrderDetails.Add(orderDetail);
+                }
+                db.Orders.Add(order);
+                db.SaveChanges();
+                ClearCart();
+                //// lưu vào database.
+                //var transaction = db.Database.BeginTransaction();
+                //try
+                //{
 
-            //    transaction.Commit();
-            //}
-            //catch (Exception e)
-            //{
-            //    Console.WriteLine(e);
-            //    transaction.Rollback();
-            //}
-            return RedirectToAction("DisplayCartAfterCreateOrder", new { orderId = order.Id });
+                //    transaction.Commit();
+                //}
+                //catch (Exception e)
+                //{
+                //    Console.WriteLine(e);
+                //    transaction.Rollback();
+                //}
+                return RedirectToAction("DisplayCartAfterCreateOrder", new { orderId = order.Id });
+            }
+
+            return View(cartInfo);
         }
 
 
