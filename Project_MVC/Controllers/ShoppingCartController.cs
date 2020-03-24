@@ -214,6 +214,11 @@ namespace Project_MVC.Controllers
 
         public ActionResult CreateOrder()
         {
+            var shoppingCart = LoadShoppingCart();
+            if (shoppingCart.GetCartItems().Count <= 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad request");
+            }
             return View();
         }
 
