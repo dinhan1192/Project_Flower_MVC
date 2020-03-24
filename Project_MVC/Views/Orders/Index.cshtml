@@ -26,19 +26,55 @@
     </p>*@
 @using (Html.BeginForm("Index", "Orders", FormMethod.Get))
 {
-    <p>
-        Enter Ship Name or User Name:
-        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
-        Choose Status:
-        @Html.DropDownList("Status", EnumHelper.GetSelectList(typeof(Order.OrderStatus)), "Select Status", new { @class = "form-control" })
-        Choose Payment Type:
-        @Html.DropDownList("PaymentType", EnumHelper.GetSelectList(typeof(Order.PaymentType)), "Select Payment Type", new { @class = "form-control" })
-        Choose Date Range:
-        <input type="text" name="dateRange" value="@ViewBag.startDate - @ViewBag.endDate" />
-        @Html.Hidden("start", startDate)
-        @Html.Hidden("end", endDate)
-        <input type="submit" value="Search" />
-    </p>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <p>Enter Ship Name or User Name:</p>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <p>
+                            Choose Status:
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DropDownList("Status", EnumHelper.GetSelectList(typeof(Order.OrderStatus)), "Select Status", new { @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <p>Choose Payment Type:</p>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DropDownList("PaymentType", EnumHelper.GetSelectList(typeof(Order.PaymentType)), "Select Payment Type", new { @class = "form-control" })
+                    </div>
+                </div>
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    <div class="col-md-4">
+                        <p>Choose Date Range:</p>
+                    </div>
+                    <div class="col-md-8">
+                        <input type="text" name="dateRange" value="@ViewBag.startDate - @ViewBag.endDate" />
+                        @Html.Hidden("start", startDate)
+                        @Html.Hidden("end", endDate)
+                        <input type="submit" value="Search" style="margin-left:15px;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+
 }
 
 <table class="table">
