@@ -1,98 +1,115 @@
 ﻿@model  Project_MVC.Models.Order
 @using Project_MVC.Utils
+@using Project_MVC.Models
+@using Project_MVC.Services
 @{
     ViewBag.Title = "DisplayCartAfterCreateOrder";
     Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
+    var order = ViewBag.ListFlowers as ShoppingCart;
+    var ListFlowers = new MySQLFlowerService();
+    var CategoryCode = ViewBag.CategoryCode;
+    var lstFlowersInOrder = ViewBag.ListFlowersInOrder as List<FlowersInOrderModel>;
 }
 
-<div class="container">
-    <div class="row">
-        <div class="title" style="text-align:center">
-            <h2><b>Thông tin đơn hàng</b></h2>
-        </div><br />
-        <div class="col-md-12" style="margin-left:160px">
-            <div class="col-md-6">
-                <div class="form-group">
-                    @Html.LabelFor(model => @HttpContext.Current.User.Identity.Name, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.DisplayFor(model => @HttpContext.Current.User.Identity.Name, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => @HttpContext.Current.User.Identity.Name, "", new { @class = "text-danger" })
+    <div class="container">
+        <div class="row">
+            <div class="title1" style="text-align:center; margin-left: 40px;">
+                <h2><b>Thông tin đơn hàng</b></h2>
+            </div><br />
+            <div class="col-md-12" style="margin-left:160px">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        @Html.LabelFor(model => @HttpContext.Current.User.Identity.Name, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DisplayFor(model => @HttpContext.Current.User.Identity.Name, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => @HttpContext.Current.User.Identity.Name, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DisplayFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DisplayFor(model => model.PaymentTypeId, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.PaymentTypeId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CreatedAt, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DisplayFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CreatedAt, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DisplayFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
-                <div class="clearfix"></div><br />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.TotalPrice, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.DisplayFor(model => model.TotalPrice, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TotalPrice, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="clearfix"></div><br />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.DisplayFor(model => model.PaymentTypeId, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PaymentTypeId, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="clearfix"></div><br />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CreatedAt, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.DisplayFor(model => model.CreatedAt, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CreatedAt, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="clearfix"></div><br />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.DisplayFor(model => model.Status, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-md-6">
-                <div class="clearfix"></div><br />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ShipName, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.DisplayFor(model => model.ShipName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
+                <div class="col-md-6">
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShipName, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DisplayFor(model => model.ShipName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShipPhone, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DisplayFor(model => model.ShipPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ShipPhone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShipAddress, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DisplayFor(model => model.ShipAddress, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ShipAddress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.UpdatedAt, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.DisplayFor(model => model.UpdatedAt, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.UpdatedAt, "", new { @class = "text-danger" })
+                        </div>
                     </div>
                 </div>
-                <div class="clearfix"></div><br />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ShipPhone, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.DisplayFor(model => model.ShipPhone, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ShipPhone, "", new { @class = "text-danger" })
+                <div class="col-md-10" style="margin-left:10px;">
+                    <div class="clearfix"></div><br />
+                    <div class="title2" style="text-align:center">
+                        <h2><b>Danh Sách Sản phẩm Đã đặt hàng</b></h2><br />
+                    </div>
+                        <div class="shopping-cart-table">
+                            <table class="cart_items">
+                                    @Html.Partial("~/Views/Orders/_FlowersInOrder.cshtml", lstFlowersInOrder)
+                            </table>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div><br />
+                    <div class="form-group  btn btn-success" style="margin-left:380px">
+                        @*<input type="submit" name="btnConfirm" value="Check Out with Paypal" />*@
+                        @Html.ActionLink("Thanh Toán", "ValidateCommand", new { orderId = Model.Id })
                     </div>
                 </div>
-                <div class="clearfix"></div><br />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ShipAddress, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.DisplayFor(model => model.ShipAddress, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ShipAddress, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="clearfix"></div><br />
-                <div class="form-group">
-                    @Html.LabelFor(model => model.UpdatedAt, htmlAttributes: new { @class = "control-label col-md-3" })
-                    <div class="col-md-9">
-                        @Html.DisplayFor(model => model.UpdatedAt, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.UpdatedAt, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-            </div>
-            <div class="clearfix"></div><br />
-            <div class="form-group  btn btn-success" style="margin-left:265px">
-                @*<input type="submit" name="btnConfirm" value="Check Out with Paypal" />*@
-                @Html.ActionLink("Thanh Toán", "ValidateCommand", new { orderId = Model.Id })
-            </div>
         </div>
     </div>
-            
-</div><br />
+<br />
