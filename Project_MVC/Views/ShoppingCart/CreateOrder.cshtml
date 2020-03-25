@@ -7,32 +7,13 @@
 
     //var cartInfo = new CartInformation();
 }
-<<<<<<< HEAD
-    <div class="shopping_details_des">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12" style="margin-left:155px;">
-                    <div class="tieude" style="margin-left:330px;">
-                        <h1><b>Tạo đơn hàng</b></h1>
-                    </div>
-                    @using (Html.BeginForm("CreateOrder", "ShoppingCart", FormMethod.Post))
-                    {
-                        @Html.AntiForgeryToken()
-                <div class="shopping_form">
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <div class="col-md-8">
-                                <h4>Họ tên người nhận:</h4>
-                                @Html.EditorFor(m => cartInfo.ShipName)
-                                @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
-=======
 <div class="shopping_details_des">
     <div class="container">
         <div class="row">
             <div class="col-md-12" style="margin-left:160px;">
                 <div class="tieude" style="margin-left:340px;">
                     <h1><b>Tạo đơn hàng</b></h1>
-                </div><br />
+                </div>
                 @using (Html.BeginForm("CreateOrder", "ShoppingCart", FormMethod.Post))
                 {
                     @Html.AntiForgeryToken()
@@ -44,7 +25,7 @@
                                     @Html.EditorFor(model => model.ShipName)
                                     @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
                                 </div>
->>>>>>> 44c00e92e094d9e278533302d27d8187eefe87f3
+
                             </div>
                             <div class="clearfix"></div>
                             <div class="form-group">
