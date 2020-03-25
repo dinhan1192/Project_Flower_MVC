@@ -130,7 +130,7 @@
                 @Html.DisplayFor(modelItem => item.ShipPhone)
             </td>
             <td style="text-align:right;">
-                @Html.DisplayFor(modelItem => item.TotalPrice)
+                @item.TotalPrice.ToString("C", FlowerUtility.UnitedStates)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CreatedAt)
