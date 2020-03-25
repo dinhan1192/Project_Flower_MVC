@@ -1,80 +1,187 @@
-﻿@model IEnumerable<Project_MVC.Models.OwnerOfCourse>
-
+﻿
 @{
     ViewBag.Title = "about";
     Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
 }
 
-<section class="site-hero site-hero-innerpage overlay" data-stellar-background-ratio="0.5" style="background-image: url(/images/big_image_1.jpg);">
+<div class="breadcrumbs-area">
     <div class="container">
-        <div class="row align-items-center site-hero-inner justify-content-center">
-            <div class="col-md-8 text-center">
-
-                <div class="mb-5 element-animate">
-                    <h1>Tại sao chúng tôi bắt đầu kinh doanh E-Learning</h1>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="breadcrumb-single blog_top_area">
+                    <ul id="breadcrumbs">
+                        <li><a href=""><i class="fa fa-home"></i>Home</a></li>
+                        <li><span>Ι</span></li>
+                        <li>Page</li>
+                        <li><span>Ι</span></li>
+                        <li>About Us</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-</section>
-<!-- END section -->
-
-
-<section class="site-section bg-light">
+</div>
+<!--End breadcrumbs area -->
+<!--Start about hope area -->
+<div class="about_hope_area">
     <div class="container">
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-7 text-center">
-                <h2>Chúng tôi chia sẻ suy nghĩ của chúng tôi</h2>
-                <p class="lead">Steve Jobs đã từng nói “Hãy học lập trình. Nó dạy bạn cách suy nghĩ” và sự thật là như vậy...</p>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="about_hope_text">
+                    <h1>WELCOME TO <strong>FC Flower</strong></h1>
+                    <p>Lorem ipsum scelerisque molestie id molestie magna ante etiam sollicitudin tempus consectetur conubia, urna eros nunc curabitur viverra rutrum tortor luctus torquent mollis est dictum euismod</p>
+                    <ul id="about_hope_details">
+                        <li><i class="fa fa-angle-right"></i> We have a love for flowers.</li>
+                        <li><i class="fa fa-angle-right"></i> we bring you the most beautiful flowers.</li>
+                        <li><i class="fa fa-angle-right"></i> We bring nature to your party.</li>
+                    </ul>
+                    <div class="about_read_more">
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="about_hope_image">
+                    <img src="/img/author/team30.jpg" alt="" />
+                </div>
             </div>
         </div>
-        <!-- <div class="row align-items-center">
-
-          <div class="col-md-5">
-            <h2 class="mb-4">First, We Love To Teach</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur reprehenderit laboriosam, eius ipsa consequuntur eos. Nulla dolorem repudiandae mollitia distinctio eos pariatur dolores, voluptate impedit. Eaque quos, sapiente ipsum possimus.</p>
-            <p>Odio ducimus id vero tempora eaque rem voluptatibus tempore sequi ea quod, odit commodi voluptas! Nesciunt dolorum ea repudiandae. Officia eos impedit sapiente tempore, a dolore minus eaque culpa facere.</p>
-            <p>Qui dolore quaerat expedita fugiat aperiam consequatur pariatur quod perspiciatis alias magni, recusandae esse dolorem beatae commodi quo labore earum harum odio voluptatibus non, error perferendis at delectus. Ab, amet.</p>
-          </div>
-          <div class="col-md-1"></div>
-          <div class="col-md-6 overflow">
-            <img src="images/img_2.jpg" alt="" class="img-fluid">
-          </div>
-        </div> -->
-
-        <div class="row mb-5 align-items-center">
-
-            <div class="col-md-6 overflow order-1">
-                <img src="/images/img_1.jpg" alt="" class="img-fluid">
-            </div>
-            <div class="col-md-1 order-2"></div>
-            <div class="col-md-5 order-3">
-                <h2 class="mb-4">Đầu tiên, Chúng tôi thích dạy</h2>
-                <p>Việc dạy và hướng đẫn cho nhưng người bắt đầu tìm hiểu hay mới bắt đầu một ngôn ngữ mới rất thú vị bởi mỗi ngôn ngữ có độ khó riêng và cái hay cũng riêng biệt chính vì vậy khi hiểu được một vấn đề hiện hữu thì họ sẽ trở nên hứng thú với nó hơn hay cũng có thể gọi đây là nghề có thể truyền cảm hứng cho nhưng người tới sau .</p>
-                <p>Lập trình là việc của những người chăm chỉ, trong đó, đặc biệt là bộ não sẽ phải hoạt động điên cuồng. Những lập trình viên tốt nghĩ về công việc của mình 24/7. Họ viết ra những dòng code tuyệt vời nhất trong bồn tắm hay những giấc mơ. Tại sao? Bởi hầu hết các công việc quan trọng đều không được hoàn thành tại chính nơi làm việc của nó, bản thân Einstein cũng đã tháo gỡ nút thắt trong thuyết tương đối của mình khi mơ. Làm phần mềm không phải đơn giản chỉ cần dành nhiều thời gian làm việc hay thêm người vào là có thể hoàn thành..</p>
-                <p>Các lập trình viên giỏi thường không dành nhiều thời gian để code, trái lại những người code liên tục từ lúc này sang lúc khác lại là những người lười biếng, vô tâm, kiêu ngạo và ít chịu tìm tòi nhất. Người lập trình tốt là người biết vận dụng linh hoạt mọi giải pháp mình từng vận dụng qua cho mọi vấn đề họ gặp phải; người lập trình tồi là người viết nên những đoạn code dài dòng, rắc rối, bố cục lung tung và khó để chỉnh sửa.</p>
-            </div>
-
-        </div>
-
-        <div class="row align-items-center">
-
-            <div class="col-md-6 overflow order-3">
-                <img src="/images/img_2.jpg" alt="" class="img-fluid">
-            </div>
-            <div class="col-md-1 order-2"></div>
-            <div class="col-md-5 order-1">
-                <h2 class="mb-4">Chúng tôi đam mê về web</h2>
-                <p>Đam mê code không phải phải lúc nào cũng dành thời gian cho code, cuộc sống còn có nhiều thứ cần phải quan tâm. Giải trí, sức khỏe, gia đình, bạn bè, xã hội… Cái vòng tuần hoàn “Eat – Sleep – Code” ấy chỉ là cách nói vui bởi người đam mê code dành nhiều thời gian cho code thôi, không có nghĩa là họ bỏ qua tất cả các vấn đề khác ngoài việc ăn, ngủ và code.</p>
-                <p>Sau mỗi bài toán, mỗi dự án thành công, bạn sẽ thấy khả năng lập trình của mình ngày càng tiến bộ. Lập trình càng giỏi, bạn sẽ càng thấy thích lập trình, thích những thứ mình làm hơn!.</p>
-                <p>Đa phần, các bạn cảm thấy chán nản, lạc lối vì học code quá khó, học hoài mà không làm gì ra hồn. Để có được đam mê, các bạn hãy tiến từng bước nhỏ, từ giải bài tập, cho tới làm các dự án nhỏ, rồi làm nhiều thứ hay ho hơn để nâng cao khả năng lập trình của mình..</p>
-            </div>
-
-        </div>
-
     </div>
-</section>
-<!-- END section -->
-
-@Html.Partial("_Teachers", Model)
-<!-- END section -->
+</div>
+<!--End about hope area -->
+<!--Start skill area -->
+@*<div class="about_skill_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="about_skills">
+                    <h2>OUR <strong> SKILL</strong></h2>
+                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+          
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="single-skill-about">
+                    <div class="progress-circular">
+                        <input type="text" class="knob" value="0" data-rel="50" data-linecap="round" data-width="175" data-bgcolor="#F5F5F5" data-fgcolor="#ff343b" data-thickness=".04" data-readonly="true" disabled>
+                        <h4 class="progress-h4">Emploies in Team</h4>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="single-skill-about">
+                    <div class="progress-circular">
+                        <input type="text" class="knob" value="0" data-rel="65" data-linecap="round" data-width="175" data-bgcolor="#F5F5F5" data-fgcolor="#ff343b" data-thickness=".04" data-readonly="true" disabled>
+                        <h4 class="progress-h4">Product Delivery</h4>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="single-skill-about">
+                    <div class="progress-circular">
+                        <input type="text" class="knob" value="0" data-rel="85" data-linecap="round" data-width="175" data-bgcolor="#F5F5F5" data-fgcolor="#ff343b" data-thickness=".04" data-readonly="true" disabled>
+                        <h4 class="progress-h4">Worldwide Clients</h4>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="single-skill-about">
+                    <div class="progress-circular">
+                        <input type="text" class="knob" value="0" data-rel="90" data-linecap="round" data-width="175" data-bgcolor="#F5F5F5" data-fgcolor="#ff343b" data-thickness=".04" data-readonly="true" disabled>
+                        <h4 class="progress-h4">Projects Done</h4>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>*@
+<!--End skill area -->
+<!--Start Creative Member area -->
+<div class="creative_member_area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="creative_member_text">
+                    <h2>OUR <strong> MEMBER</strong></h2>
+                    <p>Florists team with many years of experience.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="single_creative_member">
+                    <div class="creative_author">
+                        <img src="/img/author/m14.jpg" alt="" />
+                    </div>
+                    <div class="member_info">
+                        <span class="member_name">Havier Macherano</span>
+                        <span class="member_role">Ranchers</span>
+                    </div>
+                    <div class="member_icons">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <svg xml:space="preserve" enable-background="new 0 0 52 52" viewbox="0 0 52 52" height="52px" width="52px" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1"><path d="M51.673,0H0v51.5c0.244-5.359,3.805-10.412,7.752-13.003l36.169-23.74c4.264-2.799,7.761-8.663,7.752-14.297V0L51.673,0z" /></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="single_creative_member">
+                    <div class="creative_author">
+                        <img src="/img/author/m15.jpg" alt="" />
+                    </div>
+                    <div class="member_info">
+                        <span class="member_name">Luka Biglia</span>
+                        <span class="member_role">Farmer</span>
+                    </div>
+                    <div class="member_icons">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <svg xml:space="preserve" enable-background="new 0 0 52 52" viewbox="0 0 52 52" height="52px" width="52px" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1"><path d="M51.673,0H0v51.5c0.244-5.359,3.805-10.412,7.752-13.003l36.169-23.74c4.264-2.799,7.761-8.663,7.752-14.297V0L51.673,0z" /></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="single_creative_member">
+                    <div class="creative_author">
+                        <img src="/img/author/m16.jpg" alt="" />
+                    </div>
+                    <div class="member_info">
+                        <span class="member_name">Anzo Perez</span>
+                        <span class="member_role">Farmer</span>
+                    </div>
+                    <div class="member_icons">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <svg xml:space="preserve" enable-background="new 0 0 52 52" viewbox="0 0 52 52" height="52px" width="52px" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1"><path d="M51.673,0H0v51.5c0.244-5.359,3.805-10.412,7.752-13.003l36.169-23.74c4.264-2.799,7.761-8.663,7.752-14.297V0L51.673,0z" /></svg>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="single_creative_member">
+                    <div class="creative_author">
+                        <img src="/img/author/m17.jpg" alt="" />
+                    </div>
+                    <div class="member_info">
+                        <span class="member_name">Martin Demichelis</span>
+                        <span class="member_role">Farmer</span>
+                    </div>
+                    <div class="member_icons">
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                        <svg xml:space="preserve" enable-background="new 0 0 52 52" viewbox="0 0 52 52" height="52px" width="52px" y="0px" x="0px" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" version="1.1"><path d="M51.673,0H0v51.5c0.244-5.359,3.805-10.412,7.752-13.003l36.169-23.74c4.264-2.799,7.761-8.663,7.752-14.297V0L51.673,0z" /></svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

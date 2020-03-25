@@ -23,7 +23,7 @@
                 @foreach (AuthenticationDescription p in loginProviders)
                 {
                     <div class="btn btn-default">
-                        <button type="submit" class="" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">Đăng nhập bằng @p.AuthenticationType</button>
+                        <button type="submit" class="" id="@p.AuthenticationType" name="provider" value="@p.AuthenticationType" title="Log in using your @p.Caption account">Login With @p.AuthenticationType</button>
                     </div>
                     
                 }
