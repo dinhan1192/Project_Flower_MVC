@@ -25,7 +25,7 @@ namespace Project_MVC.Models
         //[Range(1, Int32.MaxValue, ErrorMessage = "Number of Lectures can not be smaller than 1")]
         //public int NumberOfLeture { get; set; }
         [Required]
-        [DisplayName("Price (VNĐ)")]
+        [DisplayName("Price ($)")]
         public double Price { get; set; }
         [DisplayName("Discount (%)")]
         public double Discount { get; set; }
