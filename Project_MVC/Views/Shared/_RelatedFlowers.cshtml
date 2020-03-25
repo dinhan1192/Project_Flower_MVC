@@ -39,7 +39,7 @@
                                             <a href="#">@FlowerUtility.GetReviews(item.Code) Review(s) <span>I</span></a>
                                             <a href="#"> Add Your Review</a>
                                         </div>
-                                        <p style="color: red;">@item.Price.ToString("C", FlowerUtility.UnitedStates)</p>
+                                        <p style="color: red;">@Utility.NewPrice(item.Price, item.Discount).ToString("C", FlowerUtility.UnitedStates)</p>
                                     </div>
                                 </div>
                             </div>
