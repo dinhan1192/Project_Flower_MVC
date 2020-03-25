@@ -1,17 +1,32 @@
 ﻿@{
-    ViewBag.Title = "PaidResult";
+    ViewBag.Title = "Paid Result";
     Layout = "~/Views/Shared/_LayoutCustomerPage.cshtml";
 }
-
-<h2>PaidResult</h2>
-
 <div class="container">
-    <div class="header clearfix">
-
-        <h3 class="text-muted">Kết quả thanh toán</h3>
+    <div class="row">
+        <div class="col-sm-4 col-sm-push-5">
+            <div class="create_account">
+                <h2>@ViewBag.Title</h2>
+            </div>
+        </div>
     </div>
-    <div class="table-responsive">
-        @ViewBag.DisplayMsg
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-sm-push-3">
+            <div class="table-responsive">
+                <h3 class="">Payment results:@ViewBag.DisplayMsg</h3>
+            </div>
+        </div>
     </div>
 </div>
 
+@*<div class="container">
+        <div class="header clearfix">
+
+            <h3 class="text-muted">Kết quả thanh toán</h3>
+        </div>
+        <div class="table-responsive">
+            @ViewBag.DisplayMsg
+        </div>
+    </div>*@
