@@ -195,6 +195,10 @@ namespace Project_MVC.Controllers
         public ActionResult DisplayCartAfterCreateOrder(int? orderId)
         {
             var order = db.Orders.Find(orderId);
+            if(order == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Not Found");
+            }
             //ViewBag.ListFlowers = mySQLFlowerService.GetList().Where(s => order.OrderDetails.Select(p => p.FlowerCode).Contains(s.Code)).ToList();
             var lstFlowersModel = new List<FlowersInOrderModel>();
             foreach (var item in order.OrderDetails)
