@@ -358,13 +358,20 @@ namespace Project_MVC.Controllers
 
         public ActionResult RedirectFromPaypal()
         {
-            ViewBag.DisplayMsg = "Thanh toán thành công!";
-            return View("PaidResult");
+            var messageView = "Thanh toán thành công!";
+            return RedirectToAction("PaidResult", new { message = messageView });
+        }
+
+        public ActionResult PaidResult(string message)
+        {
+            ViewBag.DisplayMsg = message;
+            return View();
         }
 
         public ActionResult CancelFromPaypal()
         {
-            return View();
+            var messageView = "Cancel from Payment!";
+            return RedirectToAction("PaidResult", new { message = messageView });
         }
 
         public ActionResult NotifyFromPaypal()
