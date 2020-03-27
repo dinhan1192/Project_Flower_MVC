@@ -9,6 +9,9 @@ using System.Web.Mvc;
 using System.Configuration;
 using static Project_MVC.Models.Order;
 using Project_MVC.Utils;
+using System.Threading.Tasks;
+using Project_MVC.App_Start;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace Project_MVC.Controllers
 {
@@ -16,8 +19,21 @@ namespace Project_MVC.Controllers
     public class ShoppingCartController : Controller
     {
         private static string SHOPPING_CART_NAME = Constant.ShoppingCart;
+        private static string CurrentOrder = Constant.ShoppingCart;
         private IUserService userService;
         private ICRUDService<Flower> mySQLFlowerService;
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
         private MyDbContext db = new MyDbContext();
         public ShoppingCartController()
         {
@@ -228,7 +244,7 @@ namespace Project_MVC.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult CreateOrder([Bind(Include = "ShipName,ShipPhone,ShipAddress,PaymentTypeId")]CartInformation cartInfo)
+        public async Task<ActionResult> CreateOrder([Bind(Include = "ShipName,ShipPhone,ShipAddress,PaymentTypeId")]CartInformation cartInfo)
         {
             // load cart trong session.
             if (ModelState.IsValid)
@@ -269,6 +285,10 @@ namespace Project_MVC.Controllers
                 db.Orders.Add(order);
                 db.SaveChanges();
                 ClearCart();
+                var strHomeUrl = @"https://flowermvcatttversion02.azurewebsites.net//Home/Index";
+                await UserManager.SendEmailAsync(userService.GetCurrentUserId(),
+                    "Congratulation: You have successfully created order!",
+                    "Thank for choosing our flowers! Please click <a href=\"" + strHomeUrl + "\">here</a> to go to our Homepage!");
                 //// lưu vào database.
                 //var transaction = db.Database.BeginTransaction();
                 //try
@@ -358,6 +378,8 @@ namespace Project_MVC.Controllers
             var paypal = new PayPalModel(useSandbox);
 
             var order = db.Orders.Find(orderId);
+            Session[CurrentOrder] = order;
+
             var lstPaypal = new List<string>();
 
             foreach (var item in order.OrderDetails)
@@ -372,6 +394,8 @@ namespace Project_MVC.Controllers
 
             paypal.item_name = lstPaypal.First();
             paypal.amount = order.TotalPrice.ToString();
+            var strParam = orderId + "," + userService.GetCurrentUserName() + "," + userService.GetCurrentUserId();
+            paypal.notify_url = paypal.notify_url + "?strParam=" + strParam;
             //paypal.notify_url = "https://localhost:44320/IPN/Receive";
             //paypal.actionURL = "https://www.sandbox.paypal.com/cgi-bin/webscr";
             //paypal.no_shipping = "1";

@@ -81,10 +81,10 @@ namespace Project_MVC.Services
             return DbContext.Orders.Where(s => s.Status != OrderStatus.Deleted);
         }
 
-        public int? UpdateStatus(Order item)
+        public int? UpdateStatus(Order item, string userName)
         {
-            item.UpdatedAt = null;
-            item.UpdatedBy = userService.GetCurrentUserName();
+            item.UpdatedAt = DateTime.Now;
+            item.UpdatedBy = userName;
             item.Status = OrderStatus.Paid;
             DbContext.Orders.AddOrUpdate(item);
             DbContext.SaveChanges();
