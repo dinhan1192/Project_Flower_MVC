@@ -54,7 +54,15 @@ namespace Project_MVC.Controllers
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                orders = orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
+                int id;
+                if (Int32.TryParse(searchString, out id))
+                {
+                    orders = orders.Where(s => s.Id == id);
+                }
+                else
+                {
+                    orders = orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
+                }
             }
 
             if (!String.IsNullOrEmpty(status))
@@ -115,7 +123,9 @@ namespace Project_MVC.Controllers
             return View(orders.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 
-        public ActionResult IndexCustomer(string sortOrder, string searchString, string currentFilter, int? page)
+        public ActionResult IndexCustomer(string sortOrder, string searchString, 
+            string currentFilter, int? page, string start, string end, string status,
+            string paymentType)
         {
 
             ViewBag.CurrentSort = sortOrder;
@@ -137,12 +147,48 @@ namespace Project_MVC.Controllers
 
             ViewBag.CurrentFilter = searchString;
 
-            var orders = mySQLOrderService.GetList().Where(s => s.UserId == userService.GetCurrentUserId() && s.Status == Order.OrderStatus.Pending);
+            var orders = mySQLOrderService.GetList().Where(s => s.UserId == userService.GetCurrentUserId());
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                orders = orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
+                int id;
+                if (Int32.TryParse(searchString, out id))
+                {
+                    orders = orders.Where(s =>  s.Id == id);
+                }
+                else
+                {
+                    orders = orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
+                }
             }
+
+            if (!String.IsNullOrEmpty(status))
+            {
+                orders = orders.Where(s => s.Status == (OrderStatus)Enum.Parse(typeof(OrderStatus), status));
+            }
+
+            if (!String.IsNullOrEmpty(paymentType))
+            {
+                orders = orders.Where(s => s.PaymentTypeId == (PaymentType)Enum.Parse(typeof(PaymentType), paymentType));
+            }
+
+            var compareDate = new DateTimeModel();
+
+            if (!string.IsNullOrEmpty(start))
+            {
+                var compareStartDate = DateTime.ParseExact(start, "dd/MM/yyyy", null).Date + new TimeSpan(0, 0, 0);
+                orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
+                compareDate.startDate = compareStartDate;
+            }
+            if (!string.IsNullOrEmpty(end))
+            {
+                var compareEndDate = DateTime.ParseExact(start, "dd/MM/yyyy", null).Date + new TimeSpan(23, 59, 59);
+                orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
+                compareDate.endDate = compareEndDate;
+            }
+
+            ViewBag.CompareDate = compareDate;
+
             switch (sortOrder)
             {
                 case "name_desc":
@@ -160,18 +206,19 @@ namespace Project_MVC.Controllers
             }
 
 
-            //int pageSize = Constant.PageSize;
-            //int pageNumber = (page ?? 1);
-            //ThisPage thisPage = new ThisPage()
-            //{
-            //    CurrentPage = pageNumber,
-            //    TotalPage = Math.Ceiling((double)orders.Count() / pageSize)
-            //};
-            //ViewBag.Page = thisPage;
+            int pageSize = Constant.PageSize;
+            int pageNumber = (page ?? 1);
+            ThisPage thisPage = new ThisPage()
+            {
+                CurrentPage = pageNumber,
+                TotalPage = Math.Ceiling((double)orders.Count() / pageSize),
+                CurrentType = Constant.Customer
+            };
+            ViewBag.Page = thisPage;
             // nếu page == null thì lấy giá trị là 1, nếu không thì giá trị là page
             //return View(students.ToList().ToPagedList(pageNumber, pageSize));
             //var nl = mySQLOrderService.GetList().ToList();
-            return View(orders);
+            return View(orders.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 
         // GET: Orders/Details/5

@@ -2,12 +2,13 @@
 @using Project_MVC.Utils
 @using Project_MVC.Services
 
-@{ 
+@{
     var userService = new UserService();
     var currentUserName = userService.GetCurrentUserName();
 }
 
 @Html.Hidden("currentUserName", (object)currentUserName)
+@Html.Hidden("currentUrl", HttpContext.Current.Request.Url)
 
 <div class="feature_area">
     <div class="container">
@@ -146,6 +147,7 @@
 <script src="~/Scripts/Customs/displayMultipleRatingFlowers.js"></script>
 <script>
     var arrAddCart = document.querySelectorAll("#addCart");
+    var currentUrl = $("#currentUrl").val();
     $.each(arrAddCart, function (i, val) {
         $(this).click(function () {
             var thisUserAccount = $("#currentUserName").val();
@@ -156,11 +158,24 @@
                 var name = $buttonClicked.attr('data-flowerName');
                 $.confirm({
                     async: false,
-                    title: 'Chúc mừng chọn hoa!',
-                    content: 'Bạn đã chọn ' + name + '!',
+                    title: 'Successfully added flower!',
+                    content: name + ' was successfully added to your cart!',
                     buttons: {
-                        okay: function () {
+                        "Go To Cart": function () {
                             window.location.href = `/ShoppingCart/AddCart/` + `?code=` + code + '&strQuantity=' + quantity;
+                            //$.ajax({
+                            //    type: "POST",
+                            //    url: "/ShoppingCart/AddCart",
+                            //    data: '{code: "' + code + '", quantity: "'+ quantity +'" }',
+                            //    contentType: "application/json; charset=utf-8",
+                            //    dataType: "json",
+                            //    success: function (response) {
+                            //        validation = response;
+                            //    }
+                            //});
+                        },
+                        "Stay On This Page": function () {
+                            window.location.href = `/ShoppingCart/AddCart/` + `?code=` + code + '&strQuantity=' + quantity + '&returnUrl=' + currentUrl;
                             //$.ajax({
                             //    type: "POST",
                             //    url: "/ShoppingCart/AddCart",
@@ -177,8 +192,8 @@
             } else {
                 $.confirm({
                     async: false,
-                    title: 'Mời Login',
-                    content: 'Bạn phải đăng nhập trước khi chọn hoa!',
+                    title: 'Please Login!',
+                    content: 'You must Login before buying flowers!',
                     buttons: {
                         okay: function () {
                             window.location.href = `/Accounts/Login/`;

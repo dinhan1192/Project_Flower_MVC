@@ -46,7 +46,7 @@ namespace Project_MVC.Controllers
             return View();
         }
 
-        public ActionResult AddCart(string code, string strQuantity)
+        public ActionResult AddCart(string code, string strQuantity, string returnUrl)
         {
             int quantity = Utility.GetInt(strQuantity);
             // Check số lượng có hợp lệ không?
@@ -67,9 +67,40 @@ namespace Project_MVC.Controllers
             sc.AddCart(flower, quantity);
             // lưu thông tin cart vào session.
             SaveShoppingCart(sc);
-            return RedirectToAction("ShowCart", new { categoryCode = flower.CategoryCode });
+
+            if (string.IsNullOrEmpty(returnUrl))
+            {
+                return RedirectToAction("ShowCart", new { categoryCode = flower.CategoryCode });
+            }
+            else
+            {
+                return Redirect(returnUrl);
+            }
         }
 
+        public ActionResult UpdatePerFlower(string code, string quantity, string returnCategoryCode)
+        {
+            // Check số lượng có hợp lệ không?
+            int intQuantity = Convert.ToInt32(quantity);
+            if (intQuantity == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid Quantity");
+            }
+            // Check sản phẩm có hợp lệ không?
+            var flower = db.Flowers.Find(code);
+            if (flower == null || flower.IsDeleted())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Product's' not found");
+            }
+            // Lấy thông tin shopping cart từ session.
+            var sc = LoadShoppingCart();
+            // Thêm sản phẩm vào shopping cart.
+            sc.UpdateFlowerInCart(flower, intQuantity);
+            // lưu thông tin cart vào session.
+            SaveShoppingCart(sc);
+            return RedirectToAction("ShowCart", new { categoryCode = returnCategoryCode });
+            //return Redirect("ShowCart");
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult UpdateCart(FormCollection frc)
@@ -100,7 +131,8 @@ namespace Project_MVC.Controllers
             sc.UpdateCart(intQuantities);
             // lưu thông tin cart vào session.
             SaveShoppingCart(sc);
-            return RedirectToAction("IndexCustomer", "Flowers", new { categoryCode = hidCategoryCode });
+            return RedirectToAction("ShowCart", new { categoryCode = hidCategoryCode });
+            //return Redirect("ShowCart");
         }
 
         public ActionResult RemoveCart(string code, string returnUrl, string returnCategoryCode)
@@ -211,7 +243,7 @@ namespace Project_MVC.Controllers
         public ActionResult DisplayCartAfterCreateOrder(int? orderId)
         {
             var order = db.Orders.Find(orderId);
-            if(order == null)
+            if (order == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound, "Not Found");
             }
@@ -285,10 +317,10 @@ namespace Project_MVC.Controllers
                 db.Orders.Add(order);
                 db.SaveChanges();
                 ClearCart();
-                var strHomeUrl = @"https://flowermvcatttversion02.azurewebsites.net//Home/Index";
+                var strHomeUrl = @"https://flowermvcatttversion02.azurewebsites.net/ShoppingCart/DisplayCartAfterCreateOrder?orderId=" + order.Id;
                 await UserManager.SendEmailAsync(userService.GetCurrentUserId(),
                     "Congratulation: You have successfully created order!",
-                    "Thank for choosing our flowers! Please click <a href=\"" + strHomeUrl + "\">here</a> to go to our Homepage!");
+                    "Thank for choosing our flowers! Please click <a href=\"" + strHomeUrl + "\">here</a> to have a look at your cart!");
                 //// lưu vào database.
                 //var transaction = db.Database.BeginTransaction();
                 //try
@@ -356,22 +388,23 @@ namespace Project_MVC.Controllers
 
         #region Paypal
 
-        public ActionResult RedirectFromPaypal()
+        public ActionResult RedirectFromPaypal(string orderId)
         {
-            var messageView = "Thanh toán thành công!";
-            return RedirectToAction("PaidResult", new { message = messageView });
+            var messageView = "Successfully Paid!";
+            return RedirectToAction("PaidResult", new { message = messageView, orderIdView = orderId });
         }
 
-        public ActionResult PaidResult(string message)
+        public ActionResult PaidResult(string message, string orderIdView)
         {
             ViewBag.DisplayMsg = message;
+            ViewBag.OrderId = orderIdView;
             return View();
         }
 
-        public ActionResult CancelFromPaypal()
+        public ActionResult CancelFromPaypal(string orderId)
         {
             var messageView = "Cancel from Payment!";
-            return RedirectToAction("PaidResult", new { message = messageView });
+            return RedirectToAction("PaidResult", new { message = messageView, orderIdView = orderId });
         }
 
         public ActionResult NotifyFromPaypal()
@@ -403,6 +436,8 @@ namespace Project_MVC.Controllers
             paypal.amount = order.TotalPrice.ToString();
             var strParam = orderId + "," + userService.GetCurrentUserName() + "," + userService.GetCurrentUserId();
             paypal.notify_url = paypal.notify_url + "?strParam=" + strParam;
+            paypal.@return = paypal.@return + "?orderId=" + orderId;
+            paypal.cancel_return = paypal.cancel_return + "?orderId=" + orderId;
             //paypal.notify_url = "https://localhost:44320/IPN/Receive";
             //paypal.actionURL = "https://www.sandbox.paypal.com/cgi-bin/webscr";
             //paypal.no_shipping = "1";

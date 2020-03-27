@@ -37,7 +37,7 @@
 
                             @foreach (var item in cart.GetCartItems())
                             {
-                                <tr>
+                                <tr class="updateQuantity">
                                     <td>@item.Value.FlowerCode</td>
                                     @{
                                         var flower = flowerService.Detail(item.Value.FlowerCode);
@@ -56,10 +56,11 @@
                                         <img src="@firstFlowerImage.ImageUrl" alt="Smiley face" height="200" width="200">
                                     </td>
                                     <td>@item.Value.FlowerName</td>
-                                    <td><input type="text" name="quantity" id="quantity" value="@item.Value.Quantity" /></td>
+                                    <td><input type="number" name="quantity" id="quantity" value="@item.Value.Quantity" /></td>
                                     <td>@item.Value.Price.ToString("C", FlowerUtility.UnitedStates)</td>
                                     <td>
                                         <a href="javascript:void(0);" id="removeFromCart" data-name="@item.Value.FlowerName" data-returnCategoryCode="@categoryCode" data-code="@item.Value.FlowerCode">Remove</a>
+                                        <a href="javascript:void(0);" id="updatePerFlower" name="updatePerFlower" data-name="@item.Value.FlowerName" data-returnCategoryCode="@categoryCode" data-code="@item.Value.FlowerCode" data-quantity="@item.Value.Quantity">Update</a>
                                     </td>
                                 </tr>
                             }
@@ -117,6 +118,7 @@
     <script>
         $(document).ready(function () {
             var lstQuantities = document.querySelectorAll('[name="quantity"]');
+              var lstUpdate = document.querySelectorAll('[name="updatePerFlower"]');
             $.each(lstQuantities, function () {
                 $(this).keypress(function (e) {
                     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -124,7 +126,57 @@
                         return false;
                     }
                 })
+
+                $(this).bind('keyup mouseup', function () {
+                    debugger;
+                    $(this).closest('.updateQuantity').find('#updatePerFlower').attr('data-quantity', $(this).val());
+                    //var quantity = $(this).closest('tr').find('#updatePerFlower').attr('data-quantity');
             });
+
+//            $('#quantity').each(function () {
+//                $(this).bind('keyup mouseup', function () {
+//                    debugger;
+//                    $(this).closest('tr').find('#updateCart').attr('data-quantity', $(this).val());
+//});
+                //$(this).bind('change', function () {
+                //    debugger;
+                //    $(this).closest('#updateCart').attr('data-quantity', $(this).val());
+                //})
+            })
+
+            $.each(lstUpdate, function () {
+                 $(this).click(function () {
+                debugger;
+                var quantity = $(this).attr('data-quantity');
+                var code = $(this).attr("data-code");
+                var returnCategoryCode = $(this).attr("data-returnCategoryCode")
+                var removeUrl = "/ShoppingCart/UpdatePerFlower?code=" + code + "&quantity=" + quantity + "&returnCategoryCode=" + returnCategoryCode;
+                var name = $(this).attr("data-name")
+                $.confirm({
+                    async: false,
+                    title: 'Update Quantity!',
+                    content: 'Do you want to update quantity for this "' + name,
+                    buttons: {
+                        confirm: function () {
+                            window.location.href = removeUrl;
+                            //$.ajax({
+                            //    type: "POST",
+                            //    url: "/ShoppingCart/AddCart",
+                            //    data: '{code: "' + code + '", quantity: "'+ quantity +'" }',
+                            //    contentType: "application/json; charset=utf-8",
+                            //    dataType: "json",
+                            //    success: function (response) {
+                            //        validation = response;
+                            //    }
+                            //});
+                        },
+                        cancel: function () {
+                            window.location.href = `/ShoppingCart/ShowCart/`;
+                        },
+                    }
+                });
+            });
+            })
 
             $("#removeFromCart").click(function () {
                 var code = $(this).attr("data-code");

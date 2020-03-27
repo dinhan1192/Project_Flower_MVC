@@ -80,6 +80,16 @@ namespace Project_MVC.Models
             SetCartItems(lstCartItems);
         }
 
+        public void UpdateFlowerInCart(Flower flower, int quantity)
+        {
+            if (_cartItems.ContainsKey(flower.Code))
+            {
+                var item = _cartItems[flower.Code];
+                item.Quantity = quantity;
+                _cartItems[flower.Code] = item;
+            }
+        }
+
         public void RemoveFromCart(string productCode)
         {
             _cartItems.Remove(productCode);
