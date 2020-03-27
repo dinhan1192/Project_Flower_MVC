@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.Owin;
+using Project_MVC.App_Start;
+using Project_MVC.Services;
+using Project_MVC.Utils;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -12,23 +16,59 @@ namespace Project_MVC.Controllers
 {
     public class IPNController : Controller
     {
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public HttpStatusCodeResult Receive()
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
         {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+
+        private IUserService userService;
+        private IOrderService orderService;
+        public IPNController()
+        {
+            userService = new UserService();
+            orderService = new MySQLOrderService();
+        }
+
+        //[ValidateAntiForgeryToken]
+        [HttpPost]
+        public async Task<HttpStatusCodeResult> Receive(string strParam)
+        {
+            //var order = orderService.Detail(Utility.GetNullableInt(orderId));
+            //order.ShipName = Request.Url.ToString();
+            //orderService.UpdateStatus(order);
+            //UserManager.SendEmailAsync(userService.GetCurrentUserId(),
+            //    "Congratulation: You have successfully paid!",
+            //    "Thank for buying our flowers! Please click <a href=\"" + Url.Action("Index", "Home") + "\">here</a> to go to our Homepage!");
+            string[] arrParams = strParam.Split(',');
+            var orderId = arrParams[0];
+            var userName = arrParams[1];
+            var userId = arrParams[2];
+
             //Store the IPN received from PayPal
             LogRequest(Request);
 
             //Fire and forget verification task
-            Task.Run(() => VerifyTask(Request));
+            //Task.Run(() => VerifyTask(Request));
+            await VerifyTask(Request, orderId, userName, userId);
 
             //Reply back a 200 code
             return new HttpStatusCodeResult(HttpStatusCode.OK);
         }
 
-        private void VerifyTask(HttpRequestBase ipnRequest)
+        private async Task VerifyTask(HttpRequestBase ipnRequest, string orderId, string userName, string userId)
         {
             var verificationResponse = string.Empty;
+            //var orderId = ipnRequest.Params.Get("orderId");
+            //var userName = ipnRequest.Params.Get("userName");
+            //var userId = ipnRequest.Params.Get("userId");
 
             try
             {
@@ -60,7 +100,7 @@ namespace Project_MVC.Controllers
                 //Capture exception for manual investigation
             }
 
-            ProcessVerificationResponse(verificationResponse);
+            await ProcessVerificationResponse(verificationResponse, orderId, userName, userId);
         }
 
 
@@ -69,7 +109,7 @@ namespace Project_MVC.Controllers
             // Persist the request values into a database or temporary data store
         }
 
-        private void ProcessVerificationResponse(string verificationResponse)
+        private async Task ProcessVerificationResponse(string verificationResponse, string orderId, string userName, string userId)
         {
             if (verificationResponse.Equals("VERIFIED"))
             {
@@ -78,6 +118,14 @@ namespace Project_MVC.Controllers
                 // check that Receiver_email is your Primary PayPal email
                 // check that Payment_amount/Payment_currency are correct
                 // process payment
+
+                var order = orderService.Detail(Utility.GetNullableInt(orderId));
+                orderService.UpdateStatus(order, userName);
+                var strHomeUrl = @"https://flowermvcatttversion02.azurewebsites.net//Home/Index";
+                await UserManager.SendEmailAsync(userId,
+                    "Congratulation: You have successfully paid!",
+                    "Thank for buying our flowers! Please click <a href=\"" + strHomeUrl + "\">here</a> to go to our Homepage!");
+
             }
             else if (verificationResponse.Equals("INVALID"))
             {

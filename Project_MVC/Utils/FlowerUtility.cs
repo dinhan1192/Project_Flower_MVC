@@ -84,6 +84,18 @@ namespace Project_MVC.Utils
         public static void ClearCart()
         {
             HttpContext.Current.Session.Remove(Constant.ShoppingCart);
+            HttpContext.Current.Session.Remove(Constant.CurrentOrder);
+        }
+
+        [Authorize]
+        public static Order GetCurrentOrder()
+        {
+            // lấy thông tin giỏ hàng ra.
+            if (!(HttpContext.Current.Session[Constant.CurrentOrder] is Order or))
+            {
+                or = new Order();
+            }
+            return or;
         }
     }
 }

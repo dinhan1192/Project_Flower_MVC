@@ -71,13 +71,13 @@ namespace Project_MVC.Controllers
 
             if (!string.IsNullOrEmpty(start))
             {
-                var compareStartDate = DateTime.Parse(start).Date + new TimeSpan(0, 0, 0);
+                var compareStartDate = DateTime.ParseExact(start, "dd/MM/yyyy", null).Date + new TimeSpan(0, 0, 0);
                 orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
                 compareDate.startDate = compareStartDate;
             }
             if (!string.IsNullOrEmpty(end))
             {
-                var compareEndDate = DateTime.Parse(end).Date + new TimeSpan(23, 59, 59);
+                var compareEndDate = DateTime.ParseExact(start, "dd/MM/yyyy", null).Date + new TimeSpan(23, 59, 59);
                 orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
                 compareDate.endDate = compareEndDate;
             }

@@ -13,7 +13,7 @@ namespace Project_MVC.Services
         IEnumerable<Order> GetList();
         IEnumerable<RevenueModel> GetListRevenuesMonth(string year);
         IEnumerable<RevenueModel> GetListRevenuesYear();
-        int? UpdateStatus(Order item);
+        int? UpdateStatus(Order item, string userName);
         Order Detail(int? id);
         bool Update(Order existItem, Order item, ModelStateDictionary state);
         bool Delete(Order item, ModelStateDictionary state);
