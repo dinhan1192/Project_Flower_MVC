@@ -31,7 +31,7 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <div class="col-md-5">
-                        <p>Enter Ship Name or User Name:</p>
+                        <p>Enter Ship Name - User Name - OrderId:</p>
                     </div>
                     <div class="col-md-6">
                         @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
@@ -81,6 +81,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.PaymentTypeId)
             </th>
             <th>
@@ -117,6 +120,9 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.PaymentTypeId)
             </td>

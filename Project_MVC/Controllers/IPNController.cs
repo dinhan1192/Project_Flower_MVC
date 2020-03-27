@@ -121,10 +121,10 @@ namespace Project_MVC.Controllers
 
                 var order = orderService.Detail(Utility.GetNullableInt(orderId));
                 orderService.UpdateStatus(order, userName);
-                var strHomeUrl = @"https://flowermvcatttversion02.azurewebsites.net//Home/Index";
+                var strHomeUrl = @"https://flowermvcatttversion02.azurewebsites.net/ShoppingCart/DisplayCartAfterCreateOrder?orderId=" + orderId;
                 await UserManager.SendEmailAsync(userId,
                     "Congratulation: You have successfully paid!",
-                    "Thank for buying our flowers! Please click <a href=\"" + strHomeUrl + "\">here</a> to go to our Homepage!");
+                    "Thank for buying our flowers! Please click <a href=\"" + strHomeUrl + "\">here</a> to have a look at your cart!");
 
             }
             else if (verificationResponse.Equals("INVALID"))

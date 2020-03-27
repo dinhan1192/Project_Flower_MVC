@@ -9,7 +9,6 @@ namespace Project_MVC.Models
     public class Order
     {
         public int? Id { get; set; }
-        [ForeignKey("AppUser")]
         public string UserId { get; set; }
         public PaymentType PaymentTypeId { get; set; }
         public string ShipName { get; set; }
@@ -23,6 +22,7 @@ namespace Project_MVC.Models
         public string UpdatedBy { get; set; }
         public string DeletedBy { get; set; }
         public OrderStatus Status { get; set; }
+        [ForeignKey("UserId")]
         public virtual AppUser AppUser { get; set; }
 
         public enum OrderStatus

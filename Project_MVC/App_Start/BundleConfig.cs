@@ -145,6 +145,7 @@ namespace Project_MVC
                  "~/Content/Front-end/css/main.css",
                  "~/Content/Front-end/css/style.css",
                  "~/Content/Front-end/css/responsive.css",
+                 "~/Content/vendors/bootstrap-daterangepicker/daterangepicker.css",
                  "~/Content/css/jquery-confirmPopup.css"
                  ));
             bundles.Add(new ScriptBundle("~/Js-frontend").Include(
@@ -161,6 +162,8 @@ namespace Project_MVC
                 "~/Scripts/js-frontend/owl.carousel.min.js",
                 "~/Scripts/js-frontend/plugins.js",
                 "~/Scripts/js-frontend/main.js",
+                "~/Scripts/vendors/moment/min/moment.min.js",
+                "~/Scripts/vendors/bootstrap-daterangepicker/daterangepicker.js",
                 "~/Scripts/Customs/jquery-confirmPopup.js"
                 ));
             bundles.Add(new ScriptBundle("~/Modernizr").Include(
