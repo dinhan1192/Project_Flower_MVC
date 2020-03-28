@@ -80,7 +80,7 @@
                                 <button type="button" onclick="location.href='@Url.Action("ClearShoppingCart", "ShoppingCart", new { categoryCode = categoryCode })'" return false;" title="shop" class="continue_shopping">Delete cart</button>
                             </div>
                             <div class="shopping_button">
-                                <button type="submit" class="continue_shopping" value="">Repair Cart</button>
+                                <button type="submit" class="continue_shopping" value="">Update Cart</button>
                                 <span id="errmsg"></span>
                                 @*<button type="submit" onclick="location.href='@Url.Action("UpdateCart", "ShoppingCart")'" class="continue_shopping">Update Shopping Cart</button>*@
                             </div>
@@ -108,7 +108,7 @@
                     </table>
                 </div>
                 <div class="check_out_simble review_button">
-                    <button id="createOrder" data-info="@cart.GetCartItems().Count" data-categoryCode="@categoryCode" class="button">Save Order</button>
+                    <button id="createOrder" data-info="@cart.GetCartItems().Count" data-categoryCode="@categoryCode" class="button">Create Order</button>
                 </div>
             </div>
         </div>
