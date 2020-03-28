@@ -14,7 +14,7 @@
     {
         @Html.AntiForgeryToken()
         <li>
-            @Html.ActionLink("Xin chào " + User.Identity.GetUserName() + "!", "Index", "Manages", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link active" })
+            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manages", routeValues: null, htmlAttributes: new { title = "Manage", @class = "nav-link active" })
             @*@if (RolesUtil.IsInAnyRole(User, new string[] { Constant.Admin, Constant.Employee }))
                 {
                     <span> &nbsp; &nbsp; &nbsp;</span>
@@ -25,14 +25,14 @@
                     <ul id="account_single_nav_1">
                         <li>
                             @*<input type="submit" value="Log off"/>*@
-                            <a class="nav-link" href="@Url.Action("Index", "Manages")">Xem tài khoản</a>
+                            <a class="nav-link" href="@Url.Action("Index", "Manages")">View account</a>
                         </li>
                         <li>
                             @*<input type="submit" value="Log off"/>*@
-                            <a class="nav-link" href="@Url.Action("IndexCustomer", "Orders")">Xem các hóa đơn của mình</a>
+                            <a class="nav-link" href="@Url.Action("IndexCustomer", "Orders")">View outstanding invoices</a>
                         </li>
                         <li>
-                            <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Đăng xuất</a>
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log out</a>
                         </li>
                     </ul>
                 </div>
@@ -67,11 +67,11 @@ else
         <li class="nav-item">
         <li>
             @*@Html.ActionLink("Đăng nhập", "Login", "Accounts", new { }, new { @class = "nav-link active" })*@
-            @Html.ActionLink("Đăng nhập", "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link active" })
+            @Html.ActionLink("Sign in", "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link active" })
         </li>
         <li>
             @*@Html.ActionLink("Đăng ký", "Register", "Accounts", new { }, new { @class = "nav-link" })*@
-            @Html.ActionLink("Đăng ký", "Register", "Accounts", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })
+            @Html.ActionLink("Sign up", "Register", "Accounts", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })
         </li>
     </ul>
 }
