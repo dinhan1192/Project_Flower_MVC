@@ -10,6 +10,10 @@ using Project_MVC.Models;
 using Project_MVC.Services;
 using Project_MVC.Utils;
 using static Project_MVC.Models.Order;
+using ClosedXML.Excel;
+using System.IO;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace Project_MVC.Controllers
 {
@@ -27,6 +31,24 @@ namespace Project_MVC.Controllers
             userService = new UserService();
         }
 
+        public ActionResult ExportToExcel()
+        {
+            var gv = new GridView();
+            gv.DataSource = mySQLOrderService.GetList().ToList();
+            gv.DataBind();
+            Response.ClearContent();
+            Response.Buffer = true;
+            Response.AddHeader("content-disposition", "attachment; filename=Orders.xls");
+            Response.ContentType = "application/ms-excel";
+            Response.Charset = "";
+            StringWriter objStringWriter = new StringWriter();
+            HtmlTextWriter objHtmlTextWriter = new HtmlTextWriter(objStringWriter);
+            gv.RenderControl(objHtmlTextWriter);
+            Response.Output.Write(objStringWriter.ToString());
+            Response.Flush();
+            Response.End();
+            return RedirectToAction("Index");
+        }
         public ActionResult Index(string sortOrder, string searchString, 
             string currentFilter, int? page, string status, 
             string paymentType, string start, string end)
