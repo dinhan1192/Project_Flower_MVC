@@ -72,15 +72,15 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="shopping_cart_main">
                         <div class="shopping_button">
-                            <button type="button" onclick="location.href='@Url.Action("IndexCustomer", "Flowers", new { categoryCode = categoryCode })'" ; title="shop" class="continue_shopping">Tiếp tục chọn hoa</button>
+                            <button type="button" onclick="location.href='@Url.Action("IndexCustomer", "Flowers", new { categoryCode = categoryCode })'" ; title="shop" class="continue_shopping">Continue picking Flowers</button>
                         </div>
                         @if (cart.GetCartItems() != null && cart.GetCartItems().Count != 0)
                         {
                             <div class="shopping_button">
-                                <button type="button" onclick="location.href='@Url.Action("ClearShoppingCart", "ShoppingCart", new { categoryCode = categoryCode })'" return false;" title="shop" class="continue_shopping">Xóa giỏ hàng</button>
+                                <button type="button" onclick="location.href='@Url.Action("ClearShoppingCart", "ShoppingCart", new { categoryCode = categoryCode })'" return false;" title="shop" class="continue_shopping">Delete cart</button>
                             </div>
                             <div class="shopping_button">
-                                <button type="submit" class="continue_shopping" value="">Sửa giỏ hàng</button>
+                                <button type="submit" class="continue_shopping" value="">Repair Cart</button>
                                 <span id="errmsg"></span>
                                 @*<button type="submit" onclick="location.href='@Url.Action("UpdateCart", "ShoppingCart")'" class="continue_shopping">Update Shopping Cart</button>*@
                             </div>
@@ -108,7 +108,7 @@
                     </table>
                 </div>
                 <div class="check_out_simble review_button">
-                    <button id="createOrder" data-info="@cart.GetCartItems().Count" data-categoryCode="@categoryCode" class="button">Tạo đơn hàng</button>
+                    <button id="createOrder" data-info="@cart.GetCartItems().Count" data-categoryCode="@categoryCode" class="button">Save Order</button>
                 </div>
             </div>
         </div>

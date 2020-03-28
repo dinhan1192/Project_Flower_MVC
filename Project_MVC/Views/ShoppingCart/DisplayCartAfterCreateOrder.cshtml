@@ -14,7 +14,7 @@
 <div class="container">
     <div class="row">
         <div class="title1" style="text-align:center; margin-left: 40px;">
-            <h2><b>Thông tin đơn hàng</b></h2>
+            <h2><b>Order Information</b></h2>
         </div><br />
               <div class="col-md-12" style="margin-left:160px">
                   <div class="col-md-6">
@@ -96,7 +96,7 @@
                   <div class="col-md-10" style="margin-left:10px;">
                       <div class="clearfix"></div><br />
                       <div class="title2" style="text-align:center">
-                          <h2><b>Danh Sách Sản phẩm Đã đặt hàng</b></h2><br />
+                          <h2><b>List of ordered products</b></h2><br />
                       </div>
                       <div class="shopping-cart-table">
                           <table class="cart_items">
@@ -115,7 +115,7 @@
                           {
                               <div class="form-group  btn btn-success" style="margin-left:380px">
                                   @*<input type="submit" name="btnConfirm" value="Check Out with Paypal" />*@
-                                  @Html.ActionLink("Thanh Toán", "ValidateCommand", new { orderId = Model.Id })
+                                  @Html.ActionLink("Payment", "ValidateCommand", new { orderId = Model.Id })
                               </div>
                           }
                           break;
