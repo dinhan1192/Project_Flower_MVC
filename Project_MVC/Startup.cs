@@ -73,8 +73,8 @@ namespace Project_MVC
             //});
 
             app.UseFacebookAuthentication(
-               appId: "2499932460279194",
-               appSecret: "acecd01381f9c19070525c82ec3a04bf");
+               appId: "923045878132923",
+               appSecret: "3b6cf2034bdaf43e7c73f0e81b0bd3ee");
 
             app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             {

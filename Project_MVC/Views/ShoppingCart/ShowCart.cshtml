@@ -150,7 +150,7 @@
                 var quantity = $(this).attr('data-quantity');
                 var code = $(this).attr("data-code");
                 var returnCategoryCode = $(this).attr("data-returnCategoryCode")
-                var removeUrl = "/ShoppingCart/UpdatePerFlower?code=" + code + "&quantity=" + quantity + "&returnCategoryCode=" + returnCategoryCode;
+                var updateUrl = "/ShoppingCart/UpdatePerFlower?code=" + code + "&quantity=" + quantity + "&returnCategoryCode=" + returnCategoryCode;
                 var name = $(this).attr("data-name")
                 $.confirm({
                     async: false,
@@ -158,7 +158,7 @@
                     content: 'Do you want to update quantity for this "' + name,
                     buttons: {
                         confirm: function () {
-                            window.location.href = removeUrl;
+                            window.location.href = updateUrl;
                             //$.ajax({
                             //    type: "POST",
                             //    url: "/ShoppingCart/AddCart",
@@ -171,7 +171,7 @@
                             //});
                         },
                         cancel: function () {
-                            window.location.href = `/ShoppingCart/ShowCart/`;
+                            $.alert('Canceled!');
                         },
                     }
                 });
@@ -202,7 +202,7 @@
                             //});
                         },
                         cancel: function () {
-                            window.location.href = `/ShoppingCart/ShowCart/`;
+                            $.alert('Canceled!');
                         },
                     }
                 });
