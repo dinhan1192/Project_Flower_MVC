@@ -240,19 +240,22 @@
             chart.render();
 
             var chartPie = new CanvasJS.Chart("chartPie",
-	{
+                {
+        theme: "light2",
+	animationEnabled: true,
 		title:{
-			text: "Gaming Consoles Sold in 2012"
+			text: "Flowers Revenues Rate"
 		},
-		legend: {
-			maxWidth: 350,
-			itemWidth: 120
-		},
+		//legend: {
+		//	maxWidth: 350,
+		//	itemWidth: 120
+		//},
 		data: [
 		{
 			type: "pie",
-			showInLegend: true,
-			legendText: "{indexLabel}",
+			startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} - {y}",
 			dataPoints: arrRevenuesPieChart
 		}
 		]

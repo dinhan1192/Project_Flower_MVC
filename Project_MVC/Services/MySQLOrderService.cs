@@ -156,14 +156,23 @@ namespace Project_MVC.Services
             orders = orders.OrderBy(s => s.UpdatedAt).ToList();
             if (orders != null && orders.Count > 0)
             {
-                foreach (var item in orders)
+                //foreach (var item in orders)
+                //{
+                //    lstRevenues.Add(new RevenueModel()
+                //    {
+                //        TimeGetRevenue = item.UpdatedAt.Value,
+                //        TotalRevenue = item.TotalPrice
+                //    });
+                //}
+
+                orders.ForEach(o =>
                 {
                     lstRevenues.Add(new RevenueModel()
                     {
-                        TimeGetRevenue = item.UpdatedAt.Value,
-                        TotalRevenue = item.TotalPrice
+                        TimeGetRevenue = o.UpdatedAt.Value,
+                        TotalRevenue = o.TotalPrice
                     });
-                }
+                });
             }
 
             return lstRevenues;
@@ -196,12 +205,14 @@ namespace Project_MVC.Services
 
             var lstRevenues = new List<RevenuePieChartModel>();
             orders = orders.OrderBy(s => s.UpdatedAt);
+            var orderDetails = orders.SelectMany(s => s.OrderDetails);
+            var totalRevenue = orderDetails.Sum(s => (s.UnitPrice * s.Quantity));
             if (orders != null && orders.ToList().Count > 0)
             {
                 lstRevenues = orders.SelectMany(s => s.OrderDetails).GroupBy(s => s.FlowerCode).Select(cl => new RevenuePieChartModel
                 {
                     FlowerName = cl.FirstOrDefault().Flower.Name,
-                    TotalRevenue = cl.Sum(c => (c.UnitPrice * c.Quantity))
+                    FlowerRevenueRate = cl.Sum(c => (c.UnitPrice * c.Quantity)) * 100 / totalRevenue
                 }).ToList();
             }
 

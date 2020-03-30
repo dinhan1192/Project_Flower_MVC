@@ -15,6 +15,7 @@ using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
+using Microsoft.Ajax.Utilities;
 
 namespace Project_MVC.Controllers
 {
@@ -147,18 +148,22 @@ namespace Project_MVC.Controllers
             //Chart:
             var lstRevenues = mySQLOrderService.GetListRevenues(start, end);
             var dataPoints = new List<DataPoint>();
-            foreach (var item in lstRevenues)
+            lstRevenues.ForEach(s =>
             {
-                dataPoints.Add(new DataPoint(item.TimeGetRevenue, item.TotalRevenue));
-            }
+                dataPoints.Add(new DataPoint(s.TimeGetRevenue, s.TotalRevenue));
+            });
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
 
             var lstRevenuesPieChart = mySQLOrderService.GetListRevenuesForPieChart(start, end);
             var dataPointsPieChart = new List<DataPoint>();
-            foreach (var item in lstRevenuesPieChart)
+            lstRevenuesPieChart.ForEach(s =>
             {
-                dataPointsPieChart.Add(new DataPoint(item.TotalRevenue, item.FlowerName));
-            }
+                dataPointsPieChart.Add(new DataPoint(s.FlowerRevenueRate, s.FlowerName));
+            });
+            //foreach (var item in lstRevenuesPieChart)
+            //{
+            //    dataPointsPieChart.Add(new DataPoint(item.TotalRevenue, item.FlowerName));
+            //}
             ViewBag.DataPointsPieChart = JsonConvert.SerializeObject(dataPointsPieChart);
             return View(orders.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }

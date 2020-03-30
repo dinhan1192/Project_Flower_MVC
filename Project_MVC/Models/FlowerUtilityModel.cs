@@ -27,7 +27,7 @@ namespace Project_MVC.Models
     public class RevenuePieChartModel
     {
         public string FlowerName { get; set; }
-        public double TotalRevenue { get; set; }
+        public double FlowerRevenueRate { get; set; }
     }
 
     public class FlowersInOrderModel

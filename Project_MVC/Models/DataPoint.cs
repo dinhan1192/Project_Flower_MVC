@@ -17,10 +17,10 @@ namespace Project_MVC.Models
             this.Y = y;
         }
 
-        public DataPoint(double y, string indexLabel)
+        public DataPoint(double y, string label)
         {
             this.Y = y;
-            this.IndexLabel = indexLabel;
+            this.Label = label;
         }
 
         //Explicitly setting the name to be used while serializing to JSON.
@@ -33,7 +33,7 @@ namespace Project_MVC.Models
         [DataMember(Name = "y")]
         public Nullable<double> Y = null;
 
-        [DataMember(Name = "indexLabel")]
-        public string IndexLabel = null;
+        [DataMember(Name = "label")]
+        public string Label = null;
     }
 }
