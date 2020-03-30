@@ -79,58 +79,10 @@
                             <!-- End Dropdown shop -->
 
                             <li>
-                                <a href="shop.html"><span class="Lookbook">Lookbook</span></a>
-                                <div class="look_mega_menu">
-                                    <div class="look_single">
-                                        <h3>Rose</h3>
-                                        <div class="items_list_lk">
-                                            <a href="shop.html"><i class="fa fa-angle-right"></i>Yellow Rose</a>
-                                            <a href="shop.html"><i class="fa fa-angle-right"></i>White Rose</a>
-                                        </div>
-                                    </div>
-                                    <div class="look_single">
-                                        <h3>Orchids</h3>
-                                        <div class="items_list_lk">
-                                            <a href="shop.html"><i class="fa fa-angle-right"></i>Orchids Samurai</a>
-                                            <a href="shop.html"><i class="fa fa-angle-right"></i>Orchids Phalaenopsis</a>
-                                        </div>
-                                    </div>
-                                    <div class="look_single">
-                                        <h3>Chrysanthemum</h3>
-                                        <div class="items_list_lk">
-                                            <a href="shop.html"><i class="fa fa-angle-right"></i>Red Chrysanthemum</a>
-                                            <a href="shop.html"><i class="fa fa-angle-right"></i> Yellow Chrysanthemum</a>
-                                        </div>
-                                    </div>
-                                    <div class="look_menu_img">
-                                        <a href="#"><img src="~/img/banner/banner-1.jpg" alt="" /></a>
-                                        <a href="#"><img src="~/img/banner/banner-2.jpg" alt="" /></a>
-                                    </div>
-                                </div>
+                                <a href="@Url.Action("About", "Home")"><span class="Accessaries">About Us</span></a>
                             </li>
                             <li>
-                                <a href="blog-right-sidebar.html"><span class="Footwear">Blog</span></a>
-                                <div class="home_mega_menu">
-                                    <a href="blog-left-sidebar.html">Blog Left Sidebar</a>
-                                    <a href="blog-right-sidebar.html">Blog Right Sidebar </a>
-                                    <a href="single-blog.html">Single Blog </a>
-                                </div>
-                            </li>
-                            <li>
-                                <a href="shop.html"><span class="Sales">Clothing</span></a>
-                            </li>
-                            <li>
-                                <a href="shop.html"><span class="Accessaries">Pages</span></a>
-                                <div class="home_mega_menu">
-                                    <a href="@Url.Action("About", "Home")">About Us</a>
-                                    <a href="@Url.Action("Contact", "Home")">Contact</a>
-                                    <a href="cart.html">Cart</a>
-                                    <a href="product.html">Product</a>
-                                    <a href="checkout.html">Checkout</a>
-                                    <a href="my-account.html">My Account</a>
-                                    <a href="wishlist.html">Wishlist</a>
-                                    <a href="404.html">404 page</a>
-                                </div>
+                                <a href="@Url.Action("Contact", "Home")"><span class="Accessaries">Contact</span></a>
                             </li>
                             @if (RolesUtil.IsInAnyRole(User, new string[] { Constant.Admin, Constant.Employee }))
                             {
@@ -139,8 +91,8 @@
                                 </li>
                             }
                             @*<li>
-                                    <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Đến trang Admin</span></a>
-                                </li>*@
+            <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Đến trang Admin</span></a>
+        </li>*@
                         </ul>
                     </div>
                     <!--End desktop menu area -->
