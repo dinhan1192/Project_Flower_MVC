@@ -186,13 +186,15 @@
                 'Last 7 Days': [moment().subtract(6, 'days'), moment()],
                 'Last 30 Days': [moment().subtract(29, 'days'), moment()],
                 'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                 'Last 10 Months': [moment().subtract(10, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                'Last 10 Years': [moment().subtract(10, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
             }
         });
 
         $('input[name="dateRange"]').on('apply.daterangepicker', function (ev, picker) {
-            $("#start").val(picker.startDate.format("D/MM/YYYY"));
-            $("#end").val(picker.endDate.format("D/MM/YYYY"));
+            $("#start").val(picker.startDate.format("DD/MM/YYYY"));
+            $("#end").val(picker.endDate.format("DD/MM/YYYY"));
             //window.location.href = `/Orders/Index?start=${picker.startDate.format("D/MM/YYYY")}&end=${picker.endDate.format("D/MM/YYYY")}`;
             //console.log(newStartDate.format('MMMM D, YYYY') + ' - ' + newEndDate.format('MMMM D, YYYY'));
             //console.log("123");
