@@ -221,13 +221,13 @@ namespace Project_MVC.Controllers
 
             if (!string.IsNullOrEmpty(start))
             {
-                var compareStartDate = DateTime.ParseExact(start, "dd/MM/yyyy", null).Date + new TimeSpan(0, 0, 0);
+                var compareStartDate = Utility.GetNullableDate(start).Value.Date + new TimeSpan(0, 0, 0);
                 orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
                 compareDate.startDate = compareStartDate;
             }
             if (!string.IsNullOrEmpty(end))
             {
-                var compareEndDate = DateTime.ParseExact(end, "dd/MM/yyyy", null).Date + new TimeSpan(23, 59, 59);
+                var compareEndDate = Utility.GetNullableDate(end).Value.Date + new TimeSpan(23, 59, 59);
                 orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
                 compareDate.endDate = compareEndDate;
             }
@@ -328,6 +328,20 @@ namespace Project_MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Order order = mySQLOrderService.Detail(id);
+            var lstFlowersModel = new List<FlowersInOrderModel>();
+            foreach (var item in order.OrderDetails)
+            {
+                var flowerModel = new FlowersInOrderModel()
+                {
+                    Id = item.Id,
+                    FlowerName = mySQLFlowerService.Detail(item.FlowerCode).Name,
+                    ImageUrl = mySQLFlowerService.Detail(item.FlowerCode).FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl,
+                    Quantity = item.Quantity,
+                    TotalPricePerFlower = item.Quantity * item.UnitPrice
+                };
+                lstFlowersModel.Add(flowerModel);
+            }
+            ViewBag.ListFlowersInOrder = lstFlowersModel;
             if (order == null || order.IsDeleted())
             {
                 return HttpNotFound();
