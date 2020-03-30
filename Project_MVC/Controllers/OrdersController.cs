@@ -14,6 +14,7 @@ using ClosedXML.Excel;
 using System.IO;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Newtonsoft.Json;
 
 namespace Project_MVC.Controllers
 {
@@ -101,13 +102,13 @@ namespace Project_MVC.Controllers
 
             if (!string.IsNullOrEmpty(start))
             {
-                var compareStartDate = DateTime.ParseExact(start, "dd/MM/yyyy", null).Date + new TimeSpan(0, 0, 0);
+                var compareStartDate = Utility.GetNullableDate(start).Value.Date + new TimeSpan(0, 0, 0);
                 orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
                 compareDate.startDate = compareStartDate;
             }
             if (!string.IsNullOrEmpty(end))
             {
-                var compareEndDate = DateTime.ParseExact(start, "dd/MM/yyyy", null).Date + new TimeSpan(23, 59, 59);
+                var compareEndDate = Utility.GetNullableDate(end).Value.Date + new TimeSpan(23, 59, 59);
                 orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
                 compareDate.endDate = compareEndDate;
             }
@@ -142,6 +143,23 @@ namespace Project_MVC.Controllers
             // nếu page == null thì lấy giá trị là 1, nếu không thì giá trị là page
             //return View(students.ToList().ToPagedList(pageNumber, pageSize));
             //var nl = mySQLOrderService.GetList().ToList();
+
+            //Chart:
+            var lstRevenues = mySQLOrderService.GetListRevenues(start, end);
+            var dataPoints = new List<DataPoint>();
+            foreach (var item in lstRevenues)
+            {
+                dataPoints.Add(new DataPoint(item.TimeGetRevenue, item.TotalRevenue));
+            }
+            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
+
+            var lstRevenuesPieChart = mySQLOrderService.GetListRevenuesForPieChart(start, end);
+            var dataPointsPieChart = new List<DataPoint>();
+            foreach (var item in lstRevenuesPieChart)
+            {
+                dataPointsPieChart.Add(new DataPoint(item.TotalRevenue, item.FlowerName));
+            }
+            ViewBag.DataPointsPieChart = JsonConvert.SerializeObject(dataPointsPieChart);
             return View(orders.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 
@@ -204,7 +222,7 @@ namespace Project_MVC.Controllers
             }
             if (!string.IsNullOrEmpty(end))
             {
-                var compareEndDate = DateTime.ParseExact(start, "dd/MM/yyyy", null).Date + new TimeSpan(23, 59, 59);
+                var compareEndDate = DateTime.ParseExact(end, "dd/MM/yyyy", null).Date + new TimeSpan(23, 59, 59);
                 orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
                 compareDate.endDate = compareEndDate;
             }

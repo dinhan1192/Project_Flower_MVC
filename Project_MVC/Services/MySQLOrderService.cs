@@ -1,11 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
 using Microsoft.AspNet.Identity.Owin;
 using Project_MVC.Models;
+using Project_MVC.Utils;
+using static Project_MVC.Models.Flower;
 using static Project_MVC.Models.Order;
 
 namespace Project_MVC.Services
@@ -20,10 +25,12 @@ namespace Project_MVC.Services
         }
 
         private IUserService userService;
+        private ICRUDService<Flower> mySQLFlowerService;
 
         public MySQLOrderService()
         {
             userService = new UserService();
+            mySQLFlowerService = new MySQLFlowerService();
         }
 
         //public int? Create(Order item)
@@ -132,48 +139,93 @@ namespace Project_MVC.Services
             //throw new NotImplementedException();
         }
 
-        public IEnumerable<RevenueModel> GetListRevenuesMonth(string year)
+        public IEnumerable<RevenueModel> GetListRevenues(string start, string end)
         {
-            var intYear = DateTime.Now.Year;
-            if (!string.IsNullOrEmpty(year))
+            var orders = DbContext.Orders.Where(s => s.Status == OrderStatus.Done).ToList();
+            var compareStartDate = DateTime.Now.AddDays(-29);
+            var compareEndDate = DateTime.Now;
+
+            if (!string.IsNullOrEmpty(start) && !string.IsNullOrEmpty(end))
             {
-                intYear = Convert.ToInt32(year);
+                compareStartDate = Utility.GetNullableDate(start).Value.Date + new TimeSpan(0, 0, 0);
+                compareEndDate = Utility.GetNullableDate(end).Value.Date + new TimeSpan(23, 59, 59);
             }
-            var lstOrder = DbContext.Orders.Where(s => (s.Status == OrderStatus.Paid || s.Status == OrderStatus.Done) && s.UpdatedAt.Value.Year == intYear).ToList();
-            var lstRevenuesMonth = new List<RevenueModel>();
-            if (lstOrder != null && lstOrder.Count > 0)
+
+            orders = orders.Where(s => s.UpdatedAt >= compareStartDate && s.UpdatedAt <= compareEndDate).ToList();
+            var lstRevenues = new List<RevenueModel>();
+            orders = orders.OrderBy(s => s.UpdatedAt).ToList();
+            if (orders != null && orders.Count > 0)
             {
-                for (var i = Constant.FirstMonthOfYear; i <= Constant.EndMonthOfYear; i++)
+                foreach (var item in orders)
                 {
-                    lstRevenuesMonth.Add(new RevenueModel()
+                    lstRevenues.Add(new RevenueModel()
                     {
-                        RevenueOf = string.Format("{0}", i),
-                        TotalRevenue = lstOrder.Where(s => s.UpdatedAt.Value.Month == i).Sum(s => s.TotalPrice)
+                        TimeGetRevenue = item.UpdatedAt.Value,
+                        TotalRevenue = item.TotalPrice
                     });
                 }
             }
 
-            return lstRevenuesMonth;
+            return lstRevenues;
         }
 
-        public IEnumerable<RevenueModel> GetListRevenuesYear()
+        public IEnumerable<RevenuePieChartModel> GetListRevenuesForPieChart(string start, string end)
         {
-            var thisYear = DateTime.Now.Year;
-            var lstOrder = DbContext.Orders.Where(s => s.Status == OrderStatus.Paid || s.Status == OrderStatus.Done && s.UpdatedAt.Value.Year >= thisYear - 4).ToList();
-            var lstRevenuesYear = new List<RevenueModel>();
-            if (lstOrder != null && lstOrder.ToList().Count > 0)
+            var orders = DbContext.Orders.Where(s => s.Status == OrderStatus.Done);
+
+            if (!string.IsNullOrEmpty(start))
             {
-                for (var i = thisYear - 4; i <= thisYear; i++)
-                {
-                    lstRevenuesYear.Add(new RevenueModel()
-                    {
-                        RevenueOf = string.Format("{0}", i),
-                        TotalRevenue = lstOrder.Where(s => s.UpdatedAt.Value.Year == i).Sum(s => s.TotalPrice)
-                    });
-                }
+                var compareStartDate = Utility.GetNullableDate(start).Value.Date + new TimeSpan(0, 0, 0);
+                orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
+            }
+            else
+            {
+                var compareStartDate = DateTime.Now.AddDays(-29);
+                orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
+            }
+            if (!string.IsNullOrEmpty(end))
+            {
+                var compareEndDate = Utility.GetNullableDate(end).Value.Date + new TimeSpan(23, 59, 59);
+                orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
+            }
+            else
+            {
+                var compareEndDate = DateTime.Now;
+                orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
             }
 
-            return lstRevenuesYear;
+            var lstRevenues = new List<RevenuePieChartModel>();
+            orders = orders.OrderBy(s => s.UpdatedAt);
+            if (orders != null && orders.ToList().Count > 0)
+            {
+                lstRevenues = orders.SelectMany(s => s.OrderDetails).GroupBy(s => s.FlowerCode).Select(cl => new RevenuePieChartModel
+                {
+                    FlowerName = cl.FirstOrDefault().Flower.Name,
+                    TotalRevenue = cl.Sum(c => (c.UnitPrice * c.Quantity))
+                }).ToList();
+            }
+
+            return lstRevenues;
         }
     }
+
+    //public IEnumerable<RevenueModel> GetListRevenuesYear()
+    //{
+    //    var thisYear = DateTime.Now.Year;
+    //    var lstOrder = DbContext.Orders.Where(s => s.Status == OrderStatus.Paid || s.Status == OrderStatus.Done && s.UpdatedAt.Value.Year >= thisYear - 4).ToList();
+    //    var lstRevenuesYear = new List<RevenueModel>();
+    //    if (lstOrder != null && lstOrder.ToList().Count > 0)
+    //    {
+    //        for (var i = thisYear - 4; i <= thisYear; i++)
+    //        {
+    //            lstRevenuesYear.Add(new RevenueModel()
+    //            {
+    //                RevenueOf = string.Format("{0}", i),
+    //                TotalRevenue = lstOrder.Where(s => s.UpdatedAt.Value.Year == i).Sum(s => s.TotalPrice)
+    //            });
+    //        }
+    //    }
+
+    //    return lstRevenuesYear;
+    //}
 }

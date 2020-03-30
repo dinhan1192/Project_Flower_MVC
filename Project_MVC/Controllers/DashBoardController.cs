@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Project_MVC.Models;
 using Project_MVC.Services;
+using Project_MVC.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,58 +12,56 @@ namespace Project_MVC.Controllers
 {
     public class DashBoardController : Controller
     {
-        private IOrderService orderService;
+        private IOrderService mySQLOrderService;
 
         public DashBoardController()
         {
-            orderService = new MySQLOrderService();
+            mySQLOrderService = new MySQLOrderService();
         }
 
         // GET: DashBoard
-        public ActionResult IndexMonth(string searchString, string currentFilter)
+        public ActionResult Index(string start, string end)
         {
-            if (string.IsNullOrEmpty(searchString))
+            var compareDate = new DateTimeModel();
+            var orders = mySQLOrderService.GetList();
+
+            if (!string.IsNullOrEmpty(start))
             {
-                searchString = currentFilter;
+                var compareStartDate = Utility.GetNullableDate(start).Value.Date + new TimeSpan(0, 0, 0);
+                orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
+                compareDate.startDate = compareStartDate;
+            }
+            if (!string.IsNullOrEmpty(end))
+            {
+                var compareEndDate = Utility.GetNullableDate(end).Value.Date + new TimeSpan(23, 59, 59);
+                orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
+                compareDate.endDate = compareEndDate;
             }
 
-            ViewBag.CurrentFilter = searchString;
-            var lstRevenueMonth = orderService.GetListRevenuesMonth(searchString);
+            ViewBag.CompareDate = compareDate;
+
+            var lstRevenues = mySQLOrderService.GetListRevenues(start, end);
             var dataPoints = new List<DataPoint>();
-            foreach (var item in lstRevenueMonth)
+            foreach (var item in lstRevenues)
             {
-                dataPoints.Add(new DataPoint(item.RevenueOf, item.TotalRevenue));
+                dataPoints.Add(new DataPoint(item.TimeGetRevenue, item.TotalRevenue));
             }
-            //List<DataPoint> dataPoints = new List<DataPoint>{
-            //    new DataPoint("1", 100),
-            //    new DataPoint("2", 236),
-            //    new DataPoint("3", 142),
-            //    new DataPoint("4", 351),
-            //    new DataPoint("5", 646),
-            //    new DataPoint("6", 746),
-            //    new DataPoint("7", 246),
-            //    new DataPoint("8", 846),
-            //    new DataPoint("9", 946),
-            //    new DataPoint("10", 2246),
-            //    new DataPoint("11", 2346),
-            //    new DataPoint("12", 1546),
-            //};
-
+            var list = dataPoints.ToList();
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
             return View();
         }
 
-        public ActionResult IndexYear()
-        {
-            var lstRevenueYear = orderService.GetListRevenuesYear();
-            var dataPoints = new List<DataPoint>();
-            foreach (var item in lstRevenueYear)
-            {
-                dataPoints.Add(new DataPoint(item.RevenueOf, item.TotalRevenue));
-            }
+        //public ActionResult IndexYear()
+        //{
+        //    var lstRevenueYear = orderService.GetListRevenuesYear();
+        //    var dataPoints = new List<DataPoint>();
+        //    foreach (var item in lstRevenueYear)
+        //    {
+        //        dataPoints.Add(new DataPoint(item.RevenueOf, item.TotalRevenue));
+        //    }
 
-            ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
-            return View();
-        }
+        //    ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
+        //    return View();
+        //}
     }
 }

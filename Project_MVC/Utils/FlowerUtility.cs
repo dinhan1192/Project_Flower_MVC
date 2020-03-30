@@ -11,7 +11,7 @@ namespace Project_MVC.Utils
 {
     public static class FlowerUtility
     {
-        private static MyDbContext _db = new MyDbContext();
+        private static MyDbContext _db;
         public static MyDbContext DbContext
         {
             get { return _db ?? HttpContext.Current.GetOwinContext().Get<MyDbContext>(); }

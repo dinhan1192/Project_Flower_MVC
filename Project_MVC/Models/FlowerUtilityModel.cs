@@ -20,7 +20,13 @@ namespace Project_MVC.Models
 
     public class RevenueModel
     {
-        public string RevenueOf { get; set; }
+        public DateTime TimeGetRevenue { get; set; }
+        public double TotalRevenue { get; set; }
+    }
+
+    public class RevenuePieChartModel
+    {
+        public string FlowerName { get; set; }
         public double TotalRevenue { get; set; }
     }
 

@@ -1,0 +1,132 @@
+﻿@using Project_MVC.Models
+@using Project_MVC.Utils
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var compareDate = ViewBag.CompareDate as DateTimeModel;
+    var startDate = "";
+    var endDate = "";
+    if (compareDate.startDate != null)
+    {
+        startDate = Utility.GetDateString(compareDate.startDate.Value, "MM/dd/yyyy");
+    }
+    if (compareDate.endDate != null)
+    {
+        endDate = Utility.GetDateString(compareDate.endDate.Value, "MM/dd/yyyy");
+    }
+}
+
+<div align="right">
+    <a href="@Url.Action("IndexYear", "DashBoard")" class="btn btn-primary" id="watchYear">Watch the Revenues of Years</a>
+</div>
+
+<div>
+    @using (Html.BeginForm("Index", "DashBoard", FormMethod.Get))
+    {
+        <div class="form-group">
+            <div class="col-md-5">
+                <p>Choose Date Range:</p>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="dateRange" value="@startDate - @endDate" />
+                @Html.Hidden("start", startDate)
+                @Html.Hidden("end", endDate)
+                <input type="submit" value="Search" style="margin-left:15px;" />
+            </div>
+        </div>
+    }
+</div>
+
+<div id="chartContainer"></div>
+
+@section scripts{
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script>
+        var arrRevenues = @Html.Raw(ViewBag.DataPoints);
+        arrRevenues.forEach(convert2DateTime);
+
+        function convert2DateTime(item) {
+             var a = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)(?:([\+-])(\d{2})\:(\d{2}))?Z?$/.exec(item.x);
+            if (a) {
+                item.x = new Date(+a[1], +a[2] - 1, +a[3], +a[4], +a[5], +a[6]);
+      }
+}
+
+        window.onload = function () {
+            var chart = new CanvasJS.Chart("chartContainer",
+                {
+                     title: {
+                        text: "Revenue Chart"
+                    },
+                    axisX: {
+                        title: "DateTime",
+                        gridThickness: 2
+                    },
+                    axisY: {
+                        title: "Revenue",
+                        valueFormatter: function (e) {
+                            if (e.value < 1000) {
+                                return "$" + e.value;
+                            }
+                            else {
+                                return "$#,###,#0";
+                            }
+                        }
+                    },
+                    data: [{
+                        type: "area", //change type to bar, line, area, pie, etc
+                        dataPoints: arrRevenues,
+                }]
+                });
+            chart.render();
+        }
+    </script>
+    <script>
+        var start = moment().subtract(7, 'days');
+        var end = moment();
+        var newStart = $("#start").val();
+        var newEnd = $("#end").val();
+        if (newStart != null && newStart != "") {
+            newStart = newStart.split("/");
+            start = new Date(newStart[2], newStart[1] - 1, newStart[0]);
+        }
+
+        if (newEnd != null && newEnd != "") {
+            newEnd = newEnd.split("/");
+            end = new Date(newEnd[2], newEnd[1] - 1, newEnd[0]);
+        }
+
+        //function cb(newStartDate, newEndDate) {
+        //    $('input[name="dateRange"]').html(newStartDate.format('MMMM D, YYYY') + ' - ' + newEndDate.format('MMMM D, YYYY'));
+        //    //console.log(newStartDate.format('MMMM D, YYYY') + ' - ' + newEndDate.format('MMMM D, YYYY'));
+        //}
+
+        $('input[name="dateRange"]').daterangepicker({
+            startDate: start,
+            endDate: end,
+            ranges:
+            {
+                'Today': [moment(), moment()],
+                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+                'This Month': [moment().startOf('month'), moment().endOf('month')],
+                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                'Last 10 Months': [moment().subtract(10, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                'Last 10 Years': [moment().subtract(10, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
+            }
+        });
+
+        $('input[name="dateRange"]').on('apply.daterangepicker', function (ev, picker) {
+            $("#start").val(picker.startDate.format("DD/MM/YYYY"));
+            $("#end").val(picker.endDate.format("DD/MM/YYYY"));
+            //window.location.href = `/Orders/Index?start=${picker.startDate.format("D/MM/YYYY")}&end=${picker.endDate.format("D/MM/YYYY")}`;
+            //console.log(newStartDate.format('MMMM D, YYYY') + ' - ' + newEndDate.format('MMMM D, YYYY'));
+            //console.log("123");
+            //this.outerHTML = newStartDate.format("D/MM/YYYY") + ' - ' + newEndDate.format("D/MM/YYYY");
+        });
+    </script>
+}
+
