@@ -328,6 +328,20 @@ namespace Project_MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Order order = mySQLOrderService.Detail(id);
+            var lstFlowersModel = new List<FlowersInOrderModel>();
+            foreach (var item in order.OrderDetails)
+            {
+                var flowerModel = new FlowersInOrderModel()
+                {
+                    Id = item.Id,
+                    FlowerName = mySQLFlowerService.Detail(item.FlowerCode).Name,
+                    ImageUrl = mySQLFlowerService.Detail(item.FlowerCode).FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl,
+                    Quantity = item.Quantity,
+                    TotalPricePerFlower = item.Quantity * item.UnitPrice
+                };
+                lstFlowersModel.Add(flowerModel);
+            }
+            ViewBag.ListFlowersInOrder = lstFlowersModel;
             if (order == null || order.IsDeleted())
             {
                 return HttpNotFound();
