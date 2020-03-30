@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -9,18 +11,29 @@ namespace Project_MVC.Models
     [DataContract]
     public class DataPoint
     {
-        public DataPoint(string label, double y)
+        public DataPoint(DateTime x, double y)
         {
-            this.Label = label;
+            this.X = x;
             this.Y = y;
         }
 
+        public DataPoint(double y, string indexLabel)
+        {
+            this.Y = y;
+            this.IndexLabel = indexLabel;
+        }
+
         //Explicitly setting the name to be used while serializing to JSON.
-        [DataMember(Name = "label")]
-        public string Label = null;
+        //[JsonProperty]
+        //[JsonConverter(typeof(IsoDateTimeConverter))]
+        [DataMember(Name = "x")]
+        public Nullable<DateTime> X = null;
 
         //Explicitly setting the name to be used while serializing to JSON.
         [DataMember(Name = "y")]
         public Nullable<double> Y = null;
+
+        [DataMember(Name = "indexLabel")]
+        public string IndexLabel = null;
     }
 }

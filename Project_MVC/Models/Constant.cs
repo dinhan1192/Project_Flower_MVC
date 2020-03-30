@@ -8,7 +8,7 @@ namespace Project_MVC.Models
 {
     public static class Constant
     {
-        public const int PageSize = 3;
+        public const int PageSize = 10;
         public const int PageSizeOnCustomerPage = 12;
         public const int PageVideoSize = 1;
         public const int FirstMonthOfYear = 1;
@@ -26,6 +26,8 @@ namespace Project_MVC.Models
         public const string CreateProduct = "CreateProduct";
         public const string ShoppingCart = "ShoppingCart";
         public const string CurrentOrder = "CurrentOrder";
+        public const string DeleteUnknownOrders = "DeleteUnknownOrders";
+        public const string SeedRandomOrders = "SeedRandomOrders";
 
         #region Images
 

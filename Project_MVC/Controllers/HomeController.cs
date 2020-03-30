@@ -1,5 +1,6 @@
 ﻿using Project_MVC.Models;
 using Project_MVC.Services;
+using Project_MVC.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,6 +21,9 @@ namespace Project_MVC.Controllers
         public ActionResult Index()
         {
             var list = mySQLFlowerService.GetList();
+            //SeedUtility.SeedRandomOrder(Constant.DeleteUnknownOrders);
+            //SeedUtility.SeedRandomOrder(Constant.SeedRandomOrders);
+
             return View(list);
         }
 
