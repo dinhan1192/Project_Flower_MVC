@@ -1,0 +1,38 @@
+/*
+   firstbox
+*/
+.firstbox {
+    width: 200px;
+    height: 80px;
+    background-color: white;
+    padding-top: 23px;
+    text-align: center;
+    border: 1px solid #cecece;
+    -webkit-box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px -2px black;
+}
+
+.secondbox {
+    width: 670px;
+    height: 80px;
+    background-color: white;
+    padding-top: 10px;
+    text-align: center;
+    border: 1px solid #cecece;
+    -webkit-box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px -2px black;
+}
+.secondbox2{
+    margin-left:100px;
+}
+
+.tablebox {
+    width: 1250px;
+    height: 910px;
+    background-color: white;
+    padding-top: 10px;
+    text-align: center;
+    border: 1px solid #cecece;
+    -webkit-box-shadow: 0px 0px 5px -2px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px -2px black;
+}

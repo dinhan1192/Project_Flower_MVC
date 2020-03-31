@@ -10,91 +10,110 @@
     string ids = "";
     var thisType = "AtView";
 }
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-@using (Html.BeginForm("Index", "Categories", FormMethod.Get))
-{
-    <p>
-        Find by Flower Category Name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
-        <input type="submit" value="Search" />
-    </p>
-}
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Code)
-        </th>
-        <th>
-            @Html.ActionLink("Flower Category Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MaxPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MinPrice)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ParentCode)
-        </th>
-        <th>
-            Category Image
-        </th>
-        <th>
-            @Html.ActionLink("Updated At", "Index", new { sortOrder = ViewBag.DateSortParm })
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Code)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MaxPrice)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.MinPrice)
-            </td>
-            <td>
-                @Html.Raw(item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ParentCode)
-            </td>
-            <td>
-                @if (!string.IsNullOrEmpty(item.ImageUrl))
+@Styles.Render("~/box")
+<h1>Table</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3 firstbox">
+                <div class="form-group">
+                    <button class="btn btn-danger">@Html.ActionLink("Create New", "Create")</button>
+                </div>
+            </div>
+            <div class="col-md-9 secondbox secondbox2">
+                @using (Html.BeginForm("Index", "Categories", FormMethod.Get))
                 {
-                    <img src="@item.ImageUrl" width="80" height="80" />
+                    <div class="form-group">
+                        <div class="col-md-3">
+                            <p>Find by Flower Category Name:</p>
+                        </div>
+                        <div class="col-md-4">
+                            @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control col-md-4" })
+                        </div>
+                        <div class="col-md-3">
+                            <button class="btn btn-success" type="submit">Search</button>
+                        </div>
+                    </div>
                 }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreatedAt)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Code }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Code }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Code },
-                     new { @class = "btn btn-danger btn-delete-notify", @id = "delete-" + item.Code, data_request_url = @url })
-            </td>
-        </tr>
-    }
+            </div>
+        </div>
+    </div><br />
+        <div class="col-md-11 tablebox">
+            <table class="table table-bordered" style="text-align:center">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Code)
+                    </th>
+                    <th>
+                        @Html.ActionLink("Flower Category Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MaxPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.MinPrice)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ParentCode)
+                    </th>
+                    <th>
+                        Category Image
+                    </th>
+                    <th>
+                        @Html.ActionLink("Updated At", "Index", new { sortOrder = ViewBag.DateSortParm })
+                    </th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MaxPrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.MinPrice)
+                        </td>
+                        <td>
+                            @Html.Raw(item.Description)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ParentCode)
+                        </td>
+                        <td>
+                            @if (!string.IsNullOrEmpty(item.ImageUrl))
+                            {
+                                <img src="@item.ImageUrl" width="80" height="80" />
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.Code }, new { @class = "btn btn-primary" }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Code }, new { @class = "btn btn-success" }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Code },
+                                 new { @class = "btn btn-danger btn-delete-notify", @id = "delete-" + item.Code, data_request_url = @url })
+                        </td>
+                    </tr>
+                }
 
-</table>
+            </table>
+        </div>
+    </div>
 @Html.Partial("_Paginate", thisPage)
 
 @Html.AntiForgeryToken()
 @section scripts{
     @Scripts.Render("~/bundles/custom");
 }
+
+
