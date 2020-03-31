@@ -23,15 +23,19 @@ namespace Project_MVC.Models
         public string Name { get; set; }
         [AllowHtml]
         public string Description { get; set; }
-        [DisplayName("Category Image")]
+        [DisplayName("Image")]
         public string ImageUrl { get; set; }
-        public double? MaxPrice { get; set; }
-        public double? MinPrice { get; set; }
+        [DisplayName("Created At")]
         public DateTime? CreatedAt { get; set; }
+        [DisplayName("Updated At")]
         public DateTime? UpdatedAt { get; set; }
+        [DisplayName("DeletedBy At")]
         public DateTime? DeletedAt { get; set; }
+        [DisplayName("Created By")]
         public string CreatedBy { get; set; }
+        [DisplayName("Updated By")]
         public string UpdatedBy { get; set; }
+        [DisplayName("Deleted By")]
         public string DeletedBy { get; set; }
         public CategoryStatus Status { get; set; }
         public virtual ICollection<Flower> Flowers { get; set; }

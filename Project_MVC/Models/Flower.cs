@@ -32,11 +32,17 @@ namespace Project_MVC.Models
         public decimal? Rating { get; set; }
         [AllowHtml]
         public string Description { get; set; }
+        [DisplayName("Created At")]
         public DateTime? CreatedAt { get; set; }
+        [DisplayName("Updated At")]
         public DateTime? UpdatedAt { get; set; }
+        [DisplayName("Deleted At")]
         public DateTime? DeletedAt { get; set; }
+        [DisplayName("Created By")]
         public string CreatedBy { get; set; }
+        [DisplayName("Updated By")]
         public string UpdatedBy { get; set; }
+        [DisplayName("Deleted By")]
         public string DeletedBy { get; set; }
         public FlowerStatus Status { get; set; }
         [ForeignKey("Category")]

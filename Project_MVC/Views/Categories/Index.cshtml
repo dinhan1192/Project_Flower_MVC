@@ -10,8 +10,9 @@
     string ids = "";
     var thisType = "AtView";
 }
-@Styles.Render("~/box")
-<h1>Table</h1>
+
+
+<h1>Index</h1>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
@@ -38,80 +39,72 @@
             </div>
         </div>
     </div><br />
-        <div class="col-md-11 tablebox">
-            <table class="table table-bordered" style="text-align:center">
+    <div class="col-md-11 tablebox">
+        <table class="table table-bordered" style="text-align:center">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Code)
+                </th>
+                <th>
+                    @Html.ActionLink("Flower Category Name", "Index", new { sortOrder = ViewBag.NameSortParm })
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ParentCode)
+                </th>
+                <th>
+                    Category Image
+                </th>
+                <th>
+                    @Html.ActionLink("Updated At", "Index", new { sortOrder = ViewBag.DateSortParm })
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
                 <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Code)
-                    </th>
-                    <th>
-                        @Html.ActionLink("Flower Category Name", "Index", new { sortOrder = ViewBag.NameSortParm })
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.MaxPrice)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.MinPrice)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ParentCode)
-                    </th>
-                    <th>
-                        Category Image
-                    </th>
-                    <th>
-                        @Html.ActionLink("Updated At", "Index", new { sortOrder = ViewBag.DateSortParm })
-                    </th>
-                    <th></th>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.Raw(item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ParentCode)
+                    </td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(item.ImageUrl))
+                        {
+                            <img src="@item.ImageUrl" width="80" height="80" />
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CreatedAt)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Code }, new { @class = "btn btn-primary" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Code }, new { @class = "btn btn-success" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Code },
+                             new { @class = "btn btn-danger btn-delete-notify", @id = "delete-" + item.Code, data_request_url = @url })
+                    </td>
                 </tr>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Code)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MaxPrice)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.MinPrice)
-                        </td>
-                        <td>
-                            @Html.Raw(item.Description)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ParentCode)
-                        </td>
-                        <td>
-                            @if (!string.IsNullOrEmpty(item.ImageUrl))
-                            {
-                                <img src="@item.ImageUrl" width="80" height="80" />
-                            }
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CreatedAt)
-                        </td>
-                        <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.Code }, new { @class = "btn btn-primary" }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.Code }, new { @class = "btn btn-success" }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.Code },
-                                 new { @class = "btn btn-danger btn-delete-notify", @id = "delete-" + item.Code, data_request_url = @url })
-                        </td>
-                    </tr>
-                }
+            }
 
-            </table>
-        </div>
+        </table>
     </div>
+</div>
 @Html.Partial("_Paginate", thisPage)
 
 @Html.AntiForgeryToken()
+@section CustomStyles{
+    @Styles.Render("~/box")
+}
+
 @section scripts{
     @Scripts.Render("~/bundles/custom");
 }
