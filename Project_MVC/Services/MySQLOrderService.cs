@@ -205,7 +205,7 @@ namespace Project_MVC.Services
 
             var lstRevenues = new List<RevenuePieChartModel>();
             orders = orders.OrderBy(s => s.UpdatedAt);
-            var orderDetails = orders.SelectMany(s => s.OrderDetails);
+            var orderDetails = orders.SelectMany(s => s.OrderDetails).ToList();
             var totalRevenue = orderDetails.Sum(s => (s.UnitPrice * s.Quantity));
             if (orders != null && orders.ToList().Count > 0)
             {
