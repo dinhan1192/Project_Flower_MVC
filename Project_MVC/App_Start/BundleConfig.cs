@@ -169,9 +169,12 @@ namespace Project_MVC
             bundles.Add(new ScriptBundle("~/Modernizr").Include(
                 "~/Scripts/js-frontend/vendor/modernizr-2.8.3.min.js"
                 ));
+
             //End layout user
 
-
+            bundles.Add(new StyleBundle("~/box").Include(
+                    "~/Content/LayoutAdminPage/box.css"
+                ));
             // BundleTable.EnableOptimizations = true;
         }
     }
