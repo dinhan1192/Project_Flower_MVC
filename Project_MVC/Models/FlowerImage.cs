@@ -18,7 +18,9 @@ namespace Project_MVC.Models
         public string ImageUrl { get; set; }
         public virtual Flower Flower { get; set; }
         //public virtual OwnerOfCourse OwnerOfCourse { get; set; }
+        [DisplayName("Created At")]
         public DateTime? CreatedAt { get; set; }
+        [DisplayName("Created By")]
         public string CreatedBy { get; set; }
     }
 }
