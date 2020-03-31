@@ -94,17 +94,12 @@
                     </td>
                 </tr>
             }
-
         </table>
+        @Html.Partial("_Paginate", thisPage)
     </div>
 </div>
-@Html.Partial("_Paginate", thisPage)
 
 @Html.AntiForgeryToken()
-@section CustomStyles{
-    @Styles.Render("~/box")
-}
-
 @section scripts{
     @Scripts.Render("~/bundles/custom");
 }
