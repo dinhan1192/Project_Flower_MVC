@@ -28,6 +28,7 @@ namespace Project_MVC.Models
         public const string CurrentOrder = "CurrentOrder";
         public const string DeleteUnknownOrders = "DeleteUnknownOrders";
         public const string SeedRandomOrders = "SeedRandomOrders";
+        public const string WebURL = @"https://flowerattt.azurewebsites.net/";
 
         #region Images
 
