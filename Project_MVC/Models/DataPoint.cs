@@ -17,6 +17,12 @@ namespace Project_MVC.Models
             this.Y = y;
         }
 
+        //public DataPoint(string x, double y)
+        //{
+        //    this.MonthYear = x;
+        //    this.Y = y;
+        //}
+
         public DataPoint(double y, string label)
         {
             this.Y = y;
@@ -35,5 +41,8 @@ namespace Project_MVC.Models
 
         [DataMember(Name = "label")]
         public string Label = null;
+
+        //[DataMember(Name = "x")]
+        //public string MonthYear = null;
     }
 }

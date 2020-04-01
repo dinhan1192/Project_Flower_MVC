@@ -122,10 +122,10 @@ namespace Project_MVC.Controllers
                     orders = orders.OrderByDescending(s => s.ShipName);
                     break;
                 case "Date":
-                    orders = orders.OrderBy(s => s.UpdatedAt);
+                    orders = orders.OrderBy(s => s.CreatedAt);
                     break;
                 case "date_desc":
-                    orders = orders.OrderByDescending(s => s.UpdatedAt);
+                    orders = orders.OrderByDescending(s => s.CreatedAt);
                     break;
                 default:
                     orders = orders.OrderBy(s => s.ShipName);
@@ -133,7 +133,7 @@ namespace Project_MVC.Controllers
             }
 
 
-            int pageSize = Constant.PageSize;
+            int pageSize = 300;
             int pageNumber = (page ?? 1);
             ThisPage thisPage = new ThisPage()
             {
@@ -150,7 +150,14 @@ namespace Project_MVC.Controllers
             var dataPoints = new List<DataPoint>();
             lstRevenues.ForEach(s =>
             {
-                dataPoints.Add(new DataPoint(s.TimeGetRevenue, s.TotalRevenue));
+                if (s.MonthYear == null)
+                {
+                    dataPoints.Add(new DataPoint(s.TimeGetRevenue, s.TotalRevenue));
+                }
+                else
+                {
+                    dataPoints.Add(new DataPoint(s.TotalRevenue, s.MonthYear));
+                }
             });
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
 
