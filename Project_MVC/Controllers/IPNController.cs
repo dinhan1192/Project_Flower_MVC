@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
 using Project_MVC.App_Start;
+using Project_MVC.Models;
 using Project_MVC.Services;
 using Project_MVC.Utils;
 using System;
@@ -121,7 +122,8 @@ namespace Project_MVC.Controllers
 
                 var order = orderService.Detail(Utility.GetNullableInt(orderId));
                 orderService.UpdateStatus(order, userName);
-                var strHomeUrl = @"https://flowermvcatttversion02.azurewebsites.net/ShoppingCart/DisplayCartAfterCreateOrder?orderId=" + orderId;
+                var strHomeUrl = Constant.WebURL + @"ShoppingCart/DisplayCartAfterCreateOrder?orderId=" + order.Id;
+
                 await UserManager.SendEmailAsync(userId,
                     "Congratulation: You have successfully paid!",
                     "Thank for buying our flowers! Please click <a href=\"" + strHomeUrl + "\">here</a> to have a look at your cart!");

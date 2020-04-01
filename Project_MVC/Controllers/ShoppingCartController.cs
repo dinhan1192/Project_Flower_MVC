@@ -317,7 +317,7 @@ namespace Project_MVC.Controllers
                 db.Orders.Add(order);
                 db.SaveChanges();
                 ClearCart();
-                var strHomeUrl = @"https://flowermvcatttversion02.azurewebsites.net/ShoppingCart/DisplayCartAfterCreateOrder?orderId=" + order.Id;
+                var strHomeUrl = Constant.WebURL + @"ShoppingCart/DisplayCartAfterCreateOrder?orderId=" + order.Id;
                 await UserManager.SendEmailAsync(userService.GetCurrentUserId(),
                     "Congratulation: You have successfully created order!",
                     "Thank for choosing our flowers! Please click <a href=\"" + strHomeUrl + "\">here</a> to have a look at your cart!");
