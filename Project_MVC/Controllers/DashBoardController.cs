@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 using Project_MVC.Models;
 using Project_MVC.Services;
 using Project_MVC.Utils;
@@ -42,11 +43,17 @@ namespace Project_MVC.Controllers
 
             var lstRevenues = mySQLOrderService.GetListRevenues(start, end);
             var dataPoints = new List<DataPoint>();
-            foreach (var item in lstRevenues)
+            lstRevenues.ForEach(s =>
             {
-                dataPoints.Add(new DataPoint(item.TimeGetRevenue, item.TotalRevenue));
-            }
-            var list = dataPoints.ToList();
+                if (s.MonthYear == null)
+                {
+                    dataPoints.Add(new DataPoint(s.TimeGetRevenue, s.TotalRevenue));
+                }
+                else
+                {
+                    dataPoints.Add(new DataPoint(s.TotalRevenue, s.MonthYear));
+                }
+            });
             ViewBag.DataPoints = JsonConvert.SerializeObject(dataPoints);
             return View();
         }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -141,7 +142,6 @@ namespace Project_MVC.Services
 
         public IEnumerable<RevenueModel> GetListRevenues(string start, string end)
         {
-            var orders = DbContext.Orders.Where(s => s.Status == OrderStatus.Done).ToList();
             var compareStartDate = DateTime.Now.AddDays(-29);
             var compareEndDate = DateTime.Now;
 
@@ -151,30 +151,72 @@ namespace Project_MVC.Services
                 compareEndDate = Utility.GetNullableDate(end).Value.Date + new TimeSpan(23, 59, 59);
             }
 
-            orders = orders.Where(s => s.UpdatedAt >= compareStartDate && s.UpdatedAt <= compareEndDate).ToList();
+            var orders = DbContext.Orders
+                .Where(s => s.Status == OrderStatus.Done)
+                .Where(s => s.CreatedAt >= compareStartDate && s.CreatedAt <= compareEndDate);
+            TimeSpan diff = compareEndDate.Subtract(compareStartDate);
             var lstRevenues = new List<RevenueModel>();
-            orders = orders.OrderBy(s => s.UpdatedAt).ToList();
-            if (orders != null && orders.Count > 0)
+
+            if (diff.TotalDays <= 7)
             {
-                //foreach (var item in orders)
-                //{
-                //    lstRevenues.Add(new RevenueModel()
-                //    {
-                //        TimeGetRevenue = item.UpdatedAt.Value,
-                //        TotalRevenue = item.TotalPrice
-                //    });
-                //}
-
-                orders.ForEach(o =>
+                orders = orders.OrderBy(s => s.CreatedAt);
+                if (orders != null && orders.ToList().Count > 0)
                 {
-                    lstRevenues.Add(new RevenueModel()
-                    {
-                        TimeGetRevenue = o.UpdatedAt.Value,
-                        TotalRevenue = o.TotalPrice
-                    });
-                });
+                    orders.ForEach(s => lstRevenues.Add(
+                        new RevenueModel()
+                        {
+                            TimeGetRevenue = s.CreatedAt.Value,
+                            TotalRevenue = s.TotalPrice
+                        })
+                );
+                }
             }
-
+            else if(diff.TotalDays <= 31)
+            {
+                var lstParams = orders.GroupBy(s => DbFunctions.TruncateTime(s.CreatedAt))
+                .Select(s => new { time = s.Key, revenue = s.Sum(o => o.TotalPrice) }).ToList();
+                if (lstParams != null && lstParams.ToList().Count > 0)
+                {
+                    lstParams.ForEach(s => lstRevenues.Add(
+                        new RevenueModel()
+                        {
+                            TimeGetRevenue = s.time ?? DateTime.Now,
+                            TotalRevenue = s.revenue
+                        })
+                );
+                }
+            } else if (diff.TotalDays <= 365)
+            {
+                var lstParams = orders.OrderBy(s => s.CreatedAt).ToList();
+                    
+                var newlistParams = lstParams.GroupBy(s => s.CreatedAt.Value.Month.ToString().FirstOrDefault())
+                .Select(s => new { time = s.Key, revenue = s.Sum(o => o.TotalPrice) }).ToList();
+                if (newlistParams != null && newlistParams.ToList().Count > 0)
+                {
+                    newlistParams.ForEach(s => lstRevenues.Add(
+                        new RevenueModel()
+                        {
+                            MonthYear = new DateTime(2018, Convert.ToInt32(s.time.ToString()), 1).ToString("MMMM", FlowerUtility.UnitedStates),
+                            TotalRevenue = s.revenue
+                        })
+                );
+                }
+            } else
+            {
+                var lstParams = orders.GroupBy(s => s.CreatedAt.Value.Year)
+                .Select(s => new { time = s.Key, revenue = s.Sum(o => o.TotalPrice) }).ToList();
+                if (lstParams != null && lstParams.ToList().Count > 0)
+                {
+                    lstParams.ForEach(s => lstRevenues.Add(
+                        new RevenueModel()
+                        {
+                            MonthYear = s.time.ToString(),
+                            TotalRevenue = s.revenue
+                        })
+                );
+                }
+            }
+            
             return lstRevenues;
         }
 
@@ -204,7 +246,7 @@ namespace Project_MVC.Services
             }
 
             var lstRevenues = new List<RevenuePieChartModel>();
-            orders = orders.OrderBy(s => s.UpdatedAt);
+            orders = orders.OrderBy(s => s.CreatedAt);
             var orderDetails = orders.SelectMany(s => s.OrderDetails).ToList();
             var totalRevenue = orderDetails.Sum(s => (s.UnitPrice * s.Quantity));
             if (orders != null && orders.ToList().Count > 0)
@@ -215,6 +257,16 @@ namespace Project_MVC.Services
                     FlowerRevenueRate = cl.Sum(c => (c.UnitPrice * c.Quantity)) * 100 / totalRevenue
                 }).ToList();
             }
+
+            var itemRevenue = new RevenuePieChartModel()
+            {
+                FlowerName = "Remaining",
+                FlowerRevenueRate = lstRevenues.OrderByDescending(s => s.FlowerRevenueRate)
+                .Skip(4).Sum(c => c.FlowerRevenueRate)
+            };
+
+            lstRevenues = lstRevenues.OrderByDescending(s => s.FlowerRevenueRate).Take(4).ToList();
+            lstRevenues.Add(itemRevenue);
 
             return lstRevenues;
         }
