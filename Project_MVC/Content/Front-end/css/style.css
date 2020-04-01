@@ -3217,7 +3217,7 @@ ul.pagination li.active:hover a{
     display: block;
     font-size: 0.9em;
     margin-bottom: 0;
-    opacity: 0.5;
+    opacity: 1;
 }
 .member_icons {
     background-color: #ff343b;
