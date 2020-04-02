@@ -74,7 +74,7 @@ namespace Project_MVC.Controllers
             }
             else
             {
-                return Redirect(returnUrl);
+                return Json(sc);
             }
         }
 
@@ -341,6 +341,11 @@ namespace Project_MVC.Controllers
             return View(cartInfo);
         }
 
+        public ActionResult LoadShoppingCartPartialView()
+        {
+            LoadShoppingCart();
+            return PartialView("_LoginPartial");
+        }
 
 
         private void ClearCart()
