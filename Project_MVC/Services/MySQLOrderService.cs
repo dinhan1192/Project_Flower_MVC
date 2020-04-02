@@ -196,7 +196,7 @@ namespace Project_MVC.Services
                     newlistParams.ForEach(s => lstRevenues.Add(
                         new RevenueModel()
                         {
-                            MonthYear = new DateTime(2018, Convert.ToInt32(s.time.ToString()), 1).ToString("MMMM", FlowerUtility.UnitedStates),
+                            MonthYear = new DateTime(2018, Convert.ToInt32(s.time.ToString()), 1).ToString("MMMM yyyy", FlowerUtility.UnitedStates),
                             TotalRevenue = s.revenue
                         })
                 );
