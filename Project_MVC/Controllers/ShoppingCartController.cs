@@ -78,6 +78,7 @@ namespace Project_MVC.Controllers
             }
         }
 
+        [HttpPost]
         public ActionResult UpdatePerFlower(string code, string quantity, string returnCategoryCode)
         {
             // Check số lượng có hợp lệ không?
@@ -98,7 +99,8 @@ namespace Project_MVC.Controllers
             sc.UpdateFlowerInCart(flower, intQuantity);
             // lưu thông tin cart vào session.
             SaveShoppingCart(sc);
-            return RedirectToAction("ShowCart", new { categoryCode = returnCategoryCode });
+            return Json(intQuantity);
+            //return RedirectToAction("ShowCart", new { categoryCode = returnCategoryCode });
             //return Redirect("ShowCart");
         }
         [HttpPost]
