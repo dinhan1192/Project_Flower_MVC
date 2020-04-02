@@ -5,6 +5,7 @@
 @{
     var shoppingCart = FlowerUtility.GetShoppingCart();
     var count = shoppingCart.GetCartItems().Count;
+    //var count = shoppingCart.GetCartItems().Sum(s => s.Value.Quantity);
     var categoryCode = ViewBag.CategoryCode;
 }
 <ul id="account_nav">
