@@ -78,6 +78,7 @@ namespace Project_MVC.Controllers
             }
         }
 
+        [HttpPost]
         public ActionResult UpdatePerFlower(string code, string quantity, string returnCategoryCode)
         {
             // Check số lượng có hợp lệ không?
@@ -98,7 +99,8 @@ namespace Project_MVC.Controllers
             sc.UpdateFlowerInCart(flower, intQuantity);
             // lưu thông tin cart vào session.
             SaveShoppingCart(sc);
-            return RedirectToAction("ShowCart", new { categoryCode = returnCategoryCode });
+            return Json(intQuantity);
+            //return RedirectToAction("ShowCart", new { categoryCode = returnCategoryCode });
             //return Redirect("ShowCart");
         }
         [HttpPost]
@@ -317,7 +319,7 @@ namespace Project_MVC.Controllers
                 db.Orders.Add(order);
                 db.SaveChanges();
                 ClearCart();
-                var strHomeUrl = @"https://flowermvcatttversion02.azurewebsites.net/ShoppingCart/DisplayCartAfterCreateOrder?orderId=" + order.Id;
+                var strHomeUrl = Constant.WebURL + @"ShoppingCart/DisplayCartAfterCreateOrder?orderId=" + order.Id;
                 await UserManager.SendEmailAsync(userService.GetCurrentUserId(),
                     "Congratulation: You have successfully created order!",
                     "Thank for choosing our flowers! Please click <a href=\"" + strHomeUrl + "\">here</a> to have a look at your cart!");

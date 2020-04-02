@@ -22,6 +22,7 @@ namespace Project_MVC.Models
     public class RevenueModel
     {
         public DateTime TimeGetRevenue { get; set; }
+        public string MonthYear { get; set; }
         public double TotalRevenue { get; set; }
     }
 

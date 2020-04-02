@@ -45,14 +45,22 @@
     <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
     <script>
         var arrRevenues = @Html.Raw(ViewBag.DataPoints);
+        var newArrRev = [];
         arrRevenues.forEach(convert2DateTime);
 
         function convert2DateTime(item) {
-             var a = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)(?:([\+-])(\d{2})\:(\d{2}))?Z?$/.exec(item.x);
-            if (a) {
-                item.x = new Date(+a[1], +a[2] - 1, +a[3], +a[4], +a[5], +a[6]);
+            if (item.label == null) {
+                var a = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}(?:\.\d*)?)(?:([\+-])(\d{2})\:(\d{2}))?Z?$/.exec(item.x);
+                if (a) {
+                    item.x = new Date(+a[1], +a[2] - 1, +a[3], +a[4], +a[5], +a[6]);
+                    var sendData = {x : item.x, y : item.y};
+                    newArrRev.push(sendData);
+                }
+            } else {
+                    var sendData = {y : item.y, label : item.label};
+                newArrRev.push(sendData);
+            }
       }
-}
 
         window.onload = function () {
             var chart = new CanvasJS.Chart("chartContainer",
@@ -65,7 +73,7 @@
                         gridThickness: 2
                     },
                     axisY: {
-                        title: "Revenue",
+                        title: "Revenue ($)",
                         valueFormatter: function (e) {
                             if (e.value < 1000) {
                                 return "$" + e.value;
@@ -77,7 +85,7 @@
                     },
                     data: [{
                         type: "area", //change type to bar, line, area, pie, etc
-                        dataPoints: arrRevenues,
+                        dataPoints: newArrRev,
                 }]
                 });
             chart.render();
