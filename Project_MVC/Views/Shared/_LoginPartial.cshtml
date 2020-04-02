@@ -8,7 +8,6 @@
     var categoryCode = ViewBag.CategoryCode;
 }
 @if (Request.IsAuthenticated)
-
 {
     using (Html.BeginForm("Logout", "Accounts", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
@@ -38,7 +37,7 @@
                 </div>
             </div>
         </li>
-        <li>
+        <li id="cartLoad">
             @if (count != 0)
             {
                 <a href="@Url.Action("ShowCart", "ShoppingCart", new { categoryCode = categoryCode })"><i class="fa fa-shopping-cart"></i>Cart <span class="cart_zero">@count</span></a>
@@ -63,16 +62,13 @@
 }
 else
 {
-    <ul class="navbar-nav navbar-right">
-        <li class="nav-item">
-        <li>
-            @*@Html.ActionLink("Đăng nhập", "Login", "Accounts", new { }, new { @class = "nav-link active" })*@
-            @Html.ActionLink("Sign in", "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link active" })
-        </li>
-        <li>
-            @*@Html.ActionLink("Đăng ký", "Register", "Accounts", new { }, new { @class = "nav-link" })*@
-            @Html.ActionLink("Sign up", "Register", "Accounts", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })
-        </li>
-    </ul>
+    <li>
+        @*@Html.ActionLink("Đăng nhập", "Login", "Accounts", new { }, new { @class = "nav-link active" })*@
+        @Html.ActionLink("Sign in", "Login", "Accounts", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "nav-link active" })
+    </li>
+    <li>
+        @*@Html.ActionLink("Đăng ký", "Register", "Accounts", new { }, new { @class = "nav-link" })*@
+        @Html.ActionLink("Sign up", "Register", "Accounts", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "nav-link" })
+    </li>
 }
 

@@ -175,15 +175,42 @@
                             //});
                         },
                         "Stay On This Page": function () {
-                            window.location.href = `/ShoppingCart/AddCart/` + `?code=` + code + '&strQuantity=' + quantity + '&returnUrl=' + currentUrl;
-                            //$.ajax({
-                            //    type: "POST",
-                            //    url: "/ShoppingCart/AddCart",
-                            //    data: '{code: "' + code + '", quantity: "'+ quantity +'" }',
+                            //window.location.href = `/ShoppingCart/AddCart/` + `?code=` + code + '&strQuantity=' + quantity + '&returnUrl=' + currentUrl;
+                            debugger;
+
+                            $.ajax({
+                                type: "POST",
+                                url: "/ShoppingCart/AddCart",
+                                cache: false,
+                                data: '{code: "' + code + '", strQuantity: "' + quantity + '", returnUrl: "' + currentUrl + '" }',
+                                contentType: "application/json; charset=utf-8",
+                                dataType: "json",
+                                success: function (response) {
+                                    debugger;
+                                    //$("#cartLoad").load("/Home/Index");
+                                    //window.setInterval(function () {
+                                    //    $.get('/Home/Index', function (result) {
+                                    //    });
+                                    //}, 10000);
+                                    //var auto_refresh = setInterval(function () {
+                                    //    $('#cartLoad').fadeOut('fast', function () {
+                                    //        $(this).load(currentUrl, function () {
+                                    //            $(this).fadeIn('fast');
+                                    //        });
+                                    //    });
+                                    //}, 15000);
+                                    $("#account_nav").load('@Url.Action("LoadShoppingCartPartialView","ShoppingCart")');
+                                }
+                            });
+
+                            // $.ajax({
+                            //    type: "GET",
+                            //    url: "/Home/Index",
+                            //    data: '{shoppingCart: "' + sc + '"}',
                             //    contentType: "application/json; charset=utf-8",
                             //    dataType: "json",
                             //    success: function (response) {
-                            //        validation = response;
+                            //        return response;
                             //    }
                             //});
                         },
