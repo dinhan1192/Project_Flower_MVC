@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -34,9 +35,12 @@ namespace Project_MVC.Models
     {
         [Key]
         public int? Id { get; set; }
+        [DisplayName("Flower Name")]
         public string FlowerName { get; set; }
+        [DisplayName("Image")] 
         public string ImageUrl { get; set; }
         public int Quantity { get; set; }
+        [DisplayName("Total Price")]
         public double TotalPricePerFlower { get; set; }
     }
 }

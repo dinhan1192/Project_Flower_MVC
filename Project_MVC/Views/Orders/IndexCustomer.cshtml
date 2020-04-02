@@ -30,37 +30,60 @@
 </section>
 @using (Html.BeginForm("IndexCustomer", "Orders", FormMethod.Get))
 {
-<div class="table">
-        <div class="row">
+    <div class="col-sm-push-1 col-md-11 tablebox ">
+        <div class="col-md-6">
             <div class="form-group">
-                <div class="col-md-3 col-sm-push-3 ">
-                    <p class="">Enter Ship Name - OrderId:</p>
+                <div class="col-md-5 ">
+                    <p>Enter Ship Name - Order Id:</p>
+                </div>
+                <div class="col-md-6">
                     @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
                 </div>
-                <div class="col-md-3 col-sm-push-3">
-                    <p>Choose Payment Type:</p>
-                    @Html.DropDownList("PaymentType", EnumHelper.GetSelectList(typeof(Order.PaymentType)), "Select Payment Type", new { @class = "form-control" })
+            </div>
+            <div class="clearfix"></div><br />
+            <div class="form-group">
+                <div class="col-md-5">
+                    <p>Choose Status:</p>
                 </div>
-
-                <div class="clearfix"></div><br />
-
-                <div class="col-md-3 col-sm-push-3">
-                    <p>
-                        Choose Status:
-                        @Html.DropDownList("Status", EnumHelper.GetSelectList(typeof(Order.OrderStatus)), "Select Status", new { @class = "form-control" })
-                    </p>
-                </div>
-                <div class="col-md-3 col-sm-push-3">
-                    <p>Choose Date Range:</p>
-                    <input type="text" name="dateRange" value="@startDate - @endDate" />
-                    @Html.Hidden("start", startDate)
-                    @Html.Hidden("end", endDate)
-                    <input type="submit" value="Search" class="btn btn-default" style="margin-left:15px;" />
+                <div class="col-md-6">
+                    @Html.DropDownList("Status", EnumHelper.GetSelectList(typeof(Order.OrderStatus)), "Select Status", new { @class = "form-control" })
                 </div>
             </div>
         </div>
+
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="col-md-4 ">
+                    <p>Choose Payment Type:</p>
+                </div>
+                <div class="col-md-6">
+                    @Html.DropDownList("PaymentType", EnumHelper.GetSelectList(typeof(Order.PaymentType)), "Select Payment Type", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="clearfix"></div><br />
+
+            <div class="form-group">
+                <div class="col-md-4 ">
+                    <p>Choose Date Range:</p>
+                </div>
+                <div class="col-md-8">
+                    <input type="text" name="dateRange" value="@startDate - @endDate " style="background: #fff; cursor: pointer; padding: 7px 10px; border: 1px solid #ccc; width: 180px" />
+                    @Html.Hidden("start", startDate)
+                    @Html.Hidden("end", endDate)
+                    <input class="btn btn-success" type="submit" value="Search" style="margin-left:1px;" />
+                </div>
+            </div>
+        </div>
+
     </div>
+    <br />
+
 }
+
+<div class="clearfix"></div>
+<br />
+
 <div class="row">
     <div class="col-sm-push-1 col-md-10">
         @using (Html.BeginForm("IndexCustomer", "Orders", FormMethod.Get))
@@ -187,7 +210,7 @@
                 'Last 30 Days': [moment().subtract(29, 'days'), moment()],
                 'This Month': [moment().startOf('month'), moment().endOf('month')],
                 'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
-                 'Last 10 Months': [moment().subtract(10, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
+                'Last 10 Months': [moment().subtract(10, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
                 'Last 10 Years': [moment().subtract(10, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')]
             }
         });
@@ -205,50 +228,50 @@
 
 
 @*<div class="row">
-    <div class="col-md-12">
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="col-md-5">
-                    <p>Enter Ship Name - OrderId:</p>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <p>Enter Ship Name - OrderId:</p>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="clearfix"></div><br />
-            <div class="form-group">
-                <div class="col-md-5">
-                    <p>
-                        Choose Status:
-                    </p>
-                </div>
-                <div class="col-md-6">
-                    @Html.DropDownList("Status", EnumHelper.GetSelectList(typeof(Order.OrderStatus)), "Select Status", new { @class = "form-control" })
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="col-md-5">
-                    <p>Choose Payment Type:</p>
-                </div>
-                <div class="col-md-6">
-                    @Html.DropDownList("PaymentType", EnumHelper.GetSelectList(typeof(Order.PaymentType)), "Select Payment Type", new { @class = "form-control" })
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <p>
+                            Choose Status:
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DropDownList("Status", EnumHelper.GetSelectList(typeof(Order.OrderStatus)), "Select Status", new { @class = "form-control" })
+                    </div>
                 </div>
             </div>
-            <div class="clearfix"></div><br />
-            <div class="form-group">
-                <div class="col-md-5">
-                    <p>Choose Date Range:</p>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <p>Choose Payment Type:</p>
+                    </div>
+                    <div class="col-md-6">
+                        @Html.DropDownList("PaymentType", EnumHelper.GetSelectList(typeof(Order.PaymentType)), "Select Payment Type", new { @class = "form-control" })
+                    </div>
                 </div>
-                <div class="col-md-6">
-                    <input type="text" name="dateRange" value="@startDate - @endDate" />
-                    @Html.Hidden("start", startDate)
-                    @Html.Hidden("end", endDate)
-                    <input type="submit" value="Search" class="btn btn-default" style="margin-left:15px;" />
+                <div class="clearfix"></div><br />
+                <div class="form-group">
+                    <div class="col-md-5">
+                        <p>Choose Date Range:</p>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" name="dateRange" value="@startDate - @endDate" />
+                        @Html.Hidden("start", startDate)
+                        @Html.Hidden("end", endDate)
+                        <input type="submit" value="Search" class="btn btn-default" style="margin-left:15px;" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<br />*@
+    <br />*@

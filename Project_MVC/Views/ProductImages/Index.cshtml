@@ -10,49 +10,82 @@
 
 
 }
-<h2>Manage Product Images</h2>
+<h1>Manage Product Images</h1>
+<div class="clearfix"></div>
+<br />
+<div class="form-horizontal">
+    <div class="col-md-9 secondbox ">
+        @using (Html.BeginForm("Index", "ProductImages", FormMethod.Get))
+        {
+            <br />
+            <div class="form-group">
+                <div class="col-md-4 control-label ">
+                    <p>Find by Flower Name or Code:</p>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control col-md-4" })
+                </div>
+                <div class="col-md-3">
+                    <button class="btn btn-success" type="submit">Search</button>
+                </div>
+            </div>
+            @*<p>
+                Find by Flower Name or Code: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                <input type="submit" value="Search" />
+            </p>*@
+            <div class="clearfix"></div>
+            <br />
+        }
+    </div>
+</div>
 
-@using (Html.BeginForm("Index", "ProductImages", FormMethod.Get))
-{
-    <p>
-        Find by Flower Name or Code: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
-        <input type="submit" value="Search" />
-    </p>
-}
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Flower.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageUrl)
-        </th>
-        <th></th>
-    </tr>
+<div class="clearfix"></div>
+<br />
 
-    @foreach (var item in Model)
-    {
+
+<H2>List FLowers</H2>
+<div class="col-md-11 tablebox">
+    <table class="table table-bordered table-hover" style="text-align:center;">
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Flower.Name)
-            </td>
-            <td>
-                <img src="@item.ImageUrl" width="80" height="80" />
-            </td>
-            <td>
-                @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id },
-          new { @class = "btn btn-danger btn-delete-notify", @id = "delete-" + item.Id, data_request_url = @url })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Flower.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ImageUrl)
+            </th>
+            <th></th>
         </tr>
-    }
 
-</table>
-@Html.Partial("_Paginate", thisPage)
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Flower.Name)
+                </td>
+                <td>
+                    <img src="@item.ImageUrl" width="80" height="80" />
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id },
+              new { @class = "btn btn-danger btn-delete-notify", @id = "delete-" + item.Id, data_request_url = @url })
+                </td>
+            </tr>
+        }
+
+    </table>
+    @Html.Partial("_Paginate", thisPage)
+
+</div>
 
 
-    @Html.AntiForgeryToken()
-    @section scripts{
-        @Scripts.Render("~/bundles/custom");
-    }
+@Html.AntiForgeryToken()
+@section scripts{
+    @Scripts.Render("~/bundles/custom");
+    <style>
+          .control-label {text-align:left!important;padding-top:7px!important;}
+@*@media (max-width: 768px) { .control-label {font-size:.7em;} }
+@media (min-width: 769px) { .control-label {font-size:.9em;} }*@
+    </style>
+}

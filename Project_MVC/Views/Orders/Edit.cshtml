@@ -10,144 +10,143 @@
 
 <h1>Edit</h1>
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
 
-<div class="form-horizontal">
-    <h1>Order</h1>
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
+    <div class="form-horizontal">
+        <h1>Order</h1>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
 
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
-<div class="col-md-12 tablebox ">
-    <div class="col-md-6">
-        <div class="form-group">
-            <div class="col-md-">
-                @Html.LabelFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "control-label col-md-4" })
-            </div>
-            <div class="col-md-6">
-                @Html.EnumDropDownListFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PaymentTypeId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("UserId", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+                </div>
+            </div>*@
+        <div class="row">
+            <div class="col-md-12 tablebox ">
+                <div class="col-md-6">
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EnumDropDownListFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PaymentTypeId, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShipName, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.ShipName, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShipAddress, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.ShipAddress, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ShipAddress, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ShipPhone, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EditorFor(model => model.ShipPhone, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.ShipPhone, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-3" })
+                        <div class="col-md-9">
+                            @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="clearfix"></div><br />
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-9">
+                            <input class="btn btn-success" type="submit" value="Save" class="btn btn-default" />
+                        </div>
+                    </div>
 
-        <div class="form-group">
-            <div class="col-md-">
-                @Html.LabelFor(model => model.ShipName, htmlAttributes: new { @class = "control-label col-md-4" })
-            </div>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.ShipName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-">
-                @Html.LabelFor(model => model.ShipAddress, htmlAttributes: new { @class = "control-label col-md-4" })
-            </div>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.ShipAddress, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShipAddress, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <div class="col-md-">
-                @Html.LabelFor(model => model.ShipPhone, htmlAttributes: new { @class = "control-label col-md-4" })
-            </div>
-            <div class="col-md-6">
-                @Html.EditorFor(model => model.ShipPhone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShipPhone, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
-            <div class="col-md-">
-                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-4" })
-            </div>
-            <div class="col-md-6">
-                @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6">
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input class="btn btn-success" type="submit" value="Save" class="btn btn-default" />
             </div>
         </div>
     </div>
-
-</div>
-</div>
-    }
-
-</br>
+}
+    </br>
 <H2>List FLowers</H2>
-    <div class="col-md-11 tablebox">
-        @Html.Partial("_FlowersInOrder", lstFlowersInOrder)
+    </br>
+<div class="col-md-11 tablebox">
+    @Html.Partial("_FlowersInOrder", lstFlowersInOrder)
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section CustomStyles{
+    <style>
+          .control-label {text-align:left!important;padding-top:7px!important;}
+@*@media (max-width: 768px) { .control-label {font-size:.7em;} }
+@media (min-width: 769px) { .control-label {font-size:.9em;} }*@
+    </style>
+}
+
+
+
+@*<div class="form-group">
+        @Html.LabelFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.PaymentTypeId, "", new { @class = "text-danger" })
+        </div>
     </div>
-    <div>
-        @Html.ActionLink("Back to List", "Index")
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ShipName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ShipName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
+        </div>
     </div>
 
-
-
-    @*<div class="form-group">
-            @Html.LabelFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.PaymentTypeId, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ShipAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ShipAddress, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ShipAddress, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShipName, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ShipName, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShipName, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ShipPhone, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ShipPhone, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ShipPhone, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShipAddress, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ShipAddress, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShipAddress, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ShipPhone, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.ShipPhone, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.ShipPhone, "", new { @class = "text-danger" })
-            </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>*@
+    </div>*@
