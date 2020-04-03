@@ -340,7 +340,7 @@ namespace Project_MVC.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new AppUser { UserName = model.Email, Email = model.Email, Gender = AppUser.GenderStatus.Other };
+                var user = new AppUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true, Gender = AppUser.GenderStatus.Other };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
