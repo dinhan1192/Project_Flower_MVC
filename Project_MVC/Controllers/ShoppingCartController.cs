@@ -155,6 +155,10 @@ namespace Project_MVC.Controllers
             {
                 return RedirectToAction("ShowCart", new { categoryCode = returnCategoryCode });
             }
+            else if(returnUrl.Contains("LoadShoppingCartPartialView"))
+            {
+                return Redirect(Request.UrlReferrer.ToString());
+            }
             else
             {
                 return Redirect(returnUrl);
