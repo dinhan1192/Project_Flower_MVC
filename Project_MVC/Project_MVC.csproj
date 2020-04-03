@@ -47,11 +47,29 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ClosedXML, Version=0.94.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ClosedXML.0.94.2\lib\net46\ClosedXML.dll</HintPath>
+    </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.7.2.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.7.2\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcelNumberFormat, Version=1.0.3.0, Culture=neutral, PublicKeyToken=23c6f5d73be07eca, processorArchitecture=MSIL">
+      <HintPath>..\packages\ExcelNumberFormat.1.0.3\lib\net20\ExcelNumberFormat.dll</HintPath>
+    </Reference>
+    <Reference Include="Faker.Net.4.7, Version=1.3.77.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Faker.Net.1.3.77\lib\net472\Faker.Net.4.7.dll</HintPath>
+    </Reference>
+    <Reference Include="FastMember, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\FastMember.1.3.0\lib\net45\FastMember.dll</HintPath>
+    </Reference>
+    <Reference Include="FizzWare.NBuilder, Version=1.0.0.0, Culture=neutral, PublicKeyToken=5651b03e12e42c12, processorArchitecture=MSIL">
+      <HintPath>..\packages\NBuilder.6.1.0\lib\net40\FizzWare.NBuilder.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.3\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
@@ -99,6 +117,9 @@
     <Reference Include="MySql.Data.Entity.EF6, Version=6.10.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <HintPath>..\packages\MySql.Data.Entity.6.10.9\lib\net452\MySql.Data.Entity.EF6.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
       <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
@@ -113,6 +134,14 @@
     <Reference Include="System.Drawing.Design" />
     <Reference Include="System.IdentityModel.Tokens.Jwt, Version=5.1.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\System.IdentityModel.Tokens.Jwt.5.1.2\lib\net451\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.FileSystem.Primitives.4.0.1\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Packaging, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.IO.Packaging.4.0.0\lib\net46\System.IO.Packaging.dll</HintPath>
     </Reference>
     <Reference Include="System.Management" />
     <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -129,6 +158,7 @@
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard2.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Web.DynamicData" />
@@ -187,9 +217,6 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="Twilio, Version=5.37.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Twilio.5.37.2\lib\net451\Twilio.dll</HintPath>
     </Reference>
@@ -204,6 +231,7 @@
     <Reference Include="WebMatrix.Data, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.3.2.7\lib\net45\WebMatrix.Data.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -218,14 +246,21 @@
     <Compile Include="Controllers\AccountsController.cs" />
     <Compile Include="Controllers\AppRolesController.cs" />
     <Compile Include="Controllers\AppUsersController.cs" />
+    <Compile Include="Controllers\DashBoardController.cs" />
+    <Compile Include="Controllers\FlowersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IPNController.cs" />
     <Compile Include="Controllers\ManagesController.cs" />
+    <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\ProductImagesController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002170154542_InitializeDatabase.cs" />
-    <Compile Include="Migrations\202002170154542_InitializeDatabase.Designer.cs">
-      <DependentUpon>202002170154542_InitializeDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\202003040914253_InitializeDatabase.cs" />
+    <Compile Include="Migrations\202003040914253_InitializeDatabase.Designer.cs">
+      <DependentUpon>202003040914253_InitializeDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
@@ -234,28 +269,39 @@
     <Compile Include="Models\CartInformation.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Constant.cs" />
+    <Compile Include="Models\DataPoint.cs" />
+    <Compile Include="Models\FlowerUtilityModel.cs" />
+    <Compile Include="Models\IdCount.cs" />
     <Compile Include="Models\MyDbContext.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OrderDetail.cs" />
-    <Compile Include="Models\Product.cs" />
-    <Compile Include="Models\ProductCategory.cs" />
-    <Compile Include="Models\ProductImage.cs" />
+    <Compile Include="Models\Flower.cs" />
+    <Compile Include="Models\Category.cs" />
+    <Compile Include="Models\FlowerImage.cs" />
+    <Compile Include="Models\PayPalModel.cs" />
     <Compile Include="Models\Project_MVCContextFake.cs" />
+    <Compile Include="Models\RatingCount.cs" />
     <Compile Include="Models\ShoppingCart\ShoppingCart.cs" />
     <Compile Include="Models\ThisPage.cs" />
-    <Compile Include="Models\UserProduct.cs" />
+    <Compile Include="Models\RatingFlower.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ICRUDService.cs" />
-    <Compile Include="Services\ICustomerLectureInteractService.cs" />
+    <Compile Include="Services\IRatingFlowerService.cs" />
     <Compile Include="Services\IImageService.cs" />
     <Compile Include="Services\IOrderService.cs" />
     <Compile Include="Services\IUserService.cs" />
     <Compile Include="Services\IValidateService.cs" />
+    <Compile Include="Services\MySQLFlowerService.cs" />
     <Compile Include="Services\MySQLImageService.cs" />
+    <Compile Include="Services\MySQLCategoryService.cs" />
+    <Compile Include="Services\MySQLOrderService.cs" />
     <Compile Include="Services\MySQLValidateService.cs" />
+    <Compile Include="Services\RatingFlowerService.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utils\FlowerUtility.cs" />
     <Compile Include="Utils\MenuUtil.cs" />
+    <Compile Include="Utils\SeedUtility.cs" />
     <Compile Include="Utils\Utility.cs" />
     <Compile Include="Utils\Utils.cs" />
   </ItemGroup>
@@ -272,8 +318,32 @@
     <Content Include="Content\css\sb-admin.css" />
     <Content Include="Content\css\sb-admin.min.css" />
     <Content Include="Content\Customs\completeAndInComplete.css" />
+    <Content Include="Content\Customs\ckeditor.css" />
+    <Content Include="Content\Customs\flowerImageForFunctions.css" />
+    <Content Include="Content\Customs\ratingFlower.css" />
+    <Content Include="Content\Front-end\css\animate.css" />
+    <Content Include="Content\Front-end\css\bootstrap.min.css" />
+    <Content Include="Content\Front-end\css\custom.css" />
+    <Content Include="Content\Front-end\css\font-awesome.min.css" />
+    <Content Include="Content\Front-end\css\img\bkg_title.png" />
+    <Content Include="Content\Front-end\css\img\btn-slider.png" />
+    <Content Include="Content\Front-end\css\img\btn-slider3.png" />
+    <Content Include="Content\Front-end\css\jquery-ui.css" />
+    <Content Include="Content\Front-end\css\jquery.fancybox.css" />
+    <Content Include="Content\Front-end\css\main.css" />
+    <Content Include="Content\Front-end\css\meanmenu.min.css" />
+    <Content Include="Content\Front-end\css\nivo-slider.css" />
+    <Content Include="Content\Front-end\css\normalize.css" />
+    <Content Include="Content\Front-end\css\owl.carousel.css" />
+    <Content Include="Content\Front-end\css\owl.my_theme.css" />
+    <Content Include="Content\Front-end\css\owl.transitions.css" />
+    <Content Include="Content\Front-end\css\responsive.css" />
+    <Content Include="Content\Front-end\css\style.css" />
+    <Content Include="Content\Front-end\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Front-end\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\LayoutAdminPage\bootstrap.css" />
     <Content Include="Content\LayoutAdminPage\bootstrap.min.css" />
+    <Content Include="Content\LayoutAdminPage\box.css" />
     <Content Include="Content\LayoutAdminPage\customAdmin.css" />
     <Content Include="Content\LayoutAdminPage\fontawesome.css" />
     <Content Include="Content\LayoutAdminPage\mdb.css" />
@@ -3798,10 +3868,133 @@
     <Content Include="Content\vendor\jquery\jquery.slim.js" />
     <Content Include="Content\vendor\jquery\jquery.slim.min.js" />
     <Content Include="favicon.ico" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="images\angularjs.jpg" />
+    <Content Include="img\arrow\bkg_newsletter-1.png" />
+    <Content Include="img\arrow\bkg_newsletter.png" />
+    <Content Include="img\arrow\btn_trash.gif" />
+    <Content Include="img\arrow\pager_arrow_right.gif" />
+    <Content Include="img\author\avatar.png" />
+    <Content Include="img\author\m14.jpg" />
+    <Content Include="img\author\m15.jpg" />
+    <Content Include="img\author\m16.jpg" />
+    <Content Include="img\author\m17.jpg" />
+    <Content Include="img\author\team30.jpg" />
+    <Content Include="img\back-top.jpg" />
+    <Content Include="img\banner\2.jpg" />
+    <Content Include="img\banner\3.jpg" />
+    <Content Include="img\banner\banner-1.jpg" />
+    <Content Include="img\banner\banner-2.jpg" />
+    <Content Include="img\banner\banner-3.jpg" />
+    <Content Include="img\banner\banner-home-3.jpg" />
+    <Content Include="img\banner\banner-home1.jpg" />
+    <Content Include="img\banner\banner-home2.jpg" />
+    <Content Include="img\banner\banner_left.jpg" />
+    <Content Include="img\banner\category.jpg" />
+    <Content Include="img\bestseller\10.jpg" />
+    <Content Include="img\bestseller\11_1.jpg" />
+    <Content Include="img\bestseller\16.jpg" />
+    <Content Include="img\bestseller\4.jpg" />
+    <Content Include="img\bestseller\6_1.jpg" />
+    <Content Include="img\bestseller\8.jpg" />
+    <Content Include="img\ckeditor5classic\bg.png" />
+    <Content Include="img\bg_hover.jpg" />
+    <Content Include="img\bg_hover2.jpg" />
+    <Content Include="img\bg_hover2_white.png" />
+    <Content Include="img\bg_hover_white.png" />
+    <Content Include="img\bkg-products.png" />
+    <Content Include="img\bkg_newsletter-1.png" />
+    <Content Include="img\bkg_tesi.jpg" />
+    <Content Include="img\bkg_title.png" />
+    <Content Include="img\bkg_title2.png" />
+    <Content Include="img\blank.gif" />
+    <Content Include="img\blog-post-image\cl-1.jpg" />
+    <Content Include="img\blog-post-image\cl-2.jpg" />
+    <Content Include="img\blog-post-image\cl-3.jpg" />
+    <Content Include="img\blog-post-image\cl-4.jpg" />
+    <Content Include="img\branding-image\brand1.jpg" />
+    <Content Include="img\branding-image\brand2.jpg" />
+    <Content Include="img\branding-image\brand3.jpg" />
+    <Content Include="img\branding-image\brand4.jpg" />
+    <Content Include="img\btn-slider.png" />
+    <Content Include="img\btn-slider3.png" />
+    <Content Include="img\cart\cart-1.jpg" />
+    <Content Include="img\cart\cart-2.jpg" />
+    <Content Include="img\cart\wishlist1.jpg" />
+    <Content Include="img\cart\wishlist2.jpg" />
+    <Content Include="img\cart\wishlist3.jpg" />
+    <Content Include="img\collection-image\banner-1.jpg" />
+    <Content Include="img\collection-image\banner-11.jpg" />
+    <Content Include="img\collection-image\banner-12.jpg" />
+    <Content Include="img\collection-image\banner-13.jpg" />
+    <Content Include="img\collection-image\banner-2.jpg" />
+    <Content Include="img\fancybox_loading%402x.gif" />
+    <Content Include="img\fancybox_loading.gif" />
+    <Content Include="img\fancybox_overlay.png" />
+    <Content Include="img\fancybox_sprite%402x.png" />
+    <Content Include="img\fancybox_sprite.png" />
+    <Content Include="img\feature-image\1.jpg" />
+    <Content Include="img\feature-image\10.jpg" />
+    <Content Include="img\feature-image\11_1.jpg" />
+    <Content Include="img\feature-image\14_3.jpg" />
+    <Content Include="img\feature-image\16.jpg" />
+    <Content Include="img\feature-image\17_2_1_1.jpg" />
+    <Content Include="img\feature-image\23.jpg" />
+    <Content Include="img\feature-image\24.jpg" />
+    <Content Include="img\feature-image\4.jpg" />
+    <Content Include="img\feature-image\6_1.jpg" />
+    <Content Include="img\feature-image\8.jpg" />
+    <Content Include="img\ckeditor5classic\github.svg" />
+    <Content Include="img\ckeditor5classic\logo.svg" />
+    <Content Include="img\Google\13.png" />
+    <Content Include="img\logo\logo-home-2.png" />
+    <Content Include="img\logo\logo.png" />
+    <Content Include="img\logo\logo3.png" />
+    <Content Include="img\logo\logo4.png" />
+    <Content Include="img\payment\payment.png" />
+    <Content Include="img\product\1.jpg" />
+    <Content Include="img\product\12_1.jpg" />
+    <Content Include="img\product\13_4.jpg" />
+    <Content Include="img\product\14_3.jpg" />
+    <Content Include="img\product\16.jpg" />
+    <Content Include="img\product\17_2_1_1.jpg" />
+    <Content Include="img\product\18_1.jpg" />
+    <Content Include="img\product\19_1.jpg" />
+    <Content Include="img\product\4.jpg" />
+    <Content Include="img\product\6_1.jpg" />
+    <Content Include="img\product\blog-big-1.jpg" />
+    <Content Include="img\product\blog-big-2.jpg" />
+    <Content Include="img\product\blog-big-3.jpg" />
+    <Content Include="img\product\blog-big-4.jpg" />
+    <Content Include="img\product\blog-big-5.jpg" />
+    <Content Include="img\product\pr1.png" />
+    <Content Include="img\product\pr10.png" />
+    <Content Include="img\product\pr11.png" />
+    <Content Include="img\product\pr12.png" />
+    <Content Include="img\product\pr2.png" />
+    <Content Include="img\product\pr3.png" />
+    <Content Include="img\product\pr4.png" />
+    <Content Include="img\product\pr5.png" />
+    <Content Include="img\product\pr6.png" />
+    <Content Include="img\product\pr7.png" />
+    <Content Include="img\product\pr8.png" />
+    <Content Include="img\product\pr9.png" />
+    <Content Include="img\product\shop-cart-1.jpg" />
+    <Content Include="img\slider-image\1.jpg" />
+    <Content Include="img\slider-image\2.jpg" />
+    <Content Include="img\slider-image\3.jpg" />
+    <Content Include="img\slider-image\4.jpg" />
+    <Content Include="img\slider\home-3.jpg" />
+    <Content Include="img\slider\home3-1.jpg" />
+    <Content Include="img\slider\slider-1.jpg" />
+    <Content Include="img\slider\slider-2.jpg" />
+    <Content Include="img\slider\slider-3.jpg" />
+    <Content Include="img\social\capcha.jpg" />
+    <Content Include="img\social\shareicon.png" />
+    <Content Include="img\ckeditor5classic\umbrellas.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\vendor\bootstrap\js\bootstrap.bundle.js.map" />
@@ -4313,6 +4506,23 @@
     <Content Include="Content\vendors\moment\CHANGELOG.md" />
     <Content Include="Content\vendors\moment\LICENSE" />
     <Content Include="Content\vendors\moment\README.md" />
+    <Content Include=".editorconfig" />
+    <Content Include="Content\Front-end\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Front-end\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Front-end\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Front-end\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Front-end\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Front-end\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\flowerATTT - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\flowerATTT - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\flowerMVCATTT - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\flowerMVCATTTVersion02 - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\ProjectMVC20200325040038 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap3-typeahead.min.js" />
     <Content Include="Scripts\build\css\custom.css" />
@@ -4330,14 +4540,18 @@
     <Content Include="Scripts\Customs\chart.js" />
     <Content Include="Scripts\Customs\checkboxselectallWithPopup.js" />
     <Content Include="Scripts\Customs\checkFileSize.js" />
+    <Content Include="Scripts\Customs\ckeditor.js" />
+    <Content Include="Scripts\Customs\cloudinaryAddImage.js" />
     <Content Include="Scripts\Customs\customerMustWatchVideo.js" />
     <Content Include="Scripts\Customs\createPopup.js" />
     <Content Include="Scripts\Customs\deleteNotify.js" />
     <Content Include="Scripts\Customs\autocomplete.js" />
+    <Content Include="Scripts\Customs\displayMultipleRatingFlowers.js" />
     <Content Include="Scripts\Customs\initializations.js" />
     <Content Include="Scripts\Customs\jquery-confirmPopup.js" />
     <Content Include="Scripts\Customs\map.js" />
     <Content Include="Scripts\Customs\preventSeekingVideo.js" />
+    <Content Include="Scripts\Customs\ratingFlower.js" />
     <Content Include="Scripts\Customs\setStyleDefault.js" />
     <Content Include="Scripts\Customs\twoDropDownListEvent.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -4349,6 +4563,22 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\js-frontend\bootstrap.min.js" />
+    <Content Include="Scripts\js-frontend\jquery.appear.js" />
+    <Content Include="Scripts\js-frontend\jquery.easing.1.3.min.js" />
+    <Content Include="Scripts\js-frontend\jquery.fancybox.pack.js" />
+    <Content Include="Scripts\js-frontend\jquery.knob.js" />
+    <Content Include="Scripts\js-frontend\jquery.meanmenu.js" />
+    <Content Include="Scripts\js-frontend\jquery.nivo.slider.pack.js" />
+    <Content Include="Scripts\js-frontend\jquery.scrollUp.js" />
+    <Content Include="Scripts\js-frontend\main.js" />
+    <Content Include="Scripts\js-frontend\nivo-plugin.js" />
+    <Content Include="Scripts\js-frontend\owl.carousel.min.js" />
+    <Content Include="Scripts\js-frontend\plugins.js" />
+    <Content Include="Scripts\js-frontend\price-slider.js" />
+    <Content Include="Scripts\js-frontend\vendor\jquery-1.11.3.min.js" />
+    <Content Include="Scripts\js-frontend\vendor\modernizr-2.8.3.min.js" />
+    <Content Include="Scripts\js-frontend\wow.js" />
     <Content Include="Scripts\js\demo\chart-area-demo.js" />
     <Content Include="Scripts\js\demo\chart-bar-demo.js" />
     <Content Include="Scripts\js\demo\chart-pie-demo.js" />
@@ -4481,6 +4711,8 @@
     <Content Include="Scripts\vendors\bootstrap\dist\css\bootstrap.css" />
     <Content Include="Scripts\vendors\bootstrap\dist\css\bootstrap.min.css" />
     <Content Include="Scripts\vendors\bootstrap\dist\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\vendors\bootstrap\dist\js\bootstrap.bundle.js" />
+    <Content Include="Scripts\vendors\bootstrap\dist\js\bootstrap.bundle.min.js" />
     <Content Include="Scripts\vendors\bootstrap\dist\js\bootstrap.js" />
     <Content Include="Scripts\vendors\bootstrap\dist\js\bootstrap.min.js" />
     <Content Include="Scripts\vendors\bootstrap\dist\js\npm.js" />
@@ -8398,9 +8630,43 @@
     <Content Include="Scripts\vendors\moment\README.md" />
     <Content Include="Views\AppRoles\Index.cshtml" />
     <Content Include="Views\AppRoles\Details.cshtml" />
+    <Content Include="Views\Categories\Create.cshtml" />
+    <Content Include="Views\Categories\Delete.cshtml" />
+    <Content Include="Views\Categories\Details.cshtml" />
+    <Content Include="Views\Categories\Edit.cshtml" />
+    <Content Include="Views\Categories\Index.cshtml" />
+    <Content Include="Views\Flowers\Create.cshtml" />
+    <Content Include="Views\Flowers\Delete.cshtml" />
+    <Content Include="Views\Flowers\Details.cshtml" />
+    <Content Include="Views\Flowers\Edit.cshtml" />
+    <Content Include="Views\Flowers\Index.cshtml" />
+    <Content Include="Views\ProductImages\Index.cshtml" />
+    <Content Include="Views\Shared\_FooterBar.cshtml" />
+    <Content Include="Views\Shared\_HeaderBar.cshtml" />
+    <Content Include="Views\Flowers\IndexCustomer.cshtml" />
+    <Content Include="Views\Shared\_TopFlower.cshtml" />
+    <Content Include="Views\Flowers\DetailCustomers.cshtml" />
+    <Content Include="Views\ShoppingCart\DisplayCartAfterCreateOrder.cshtml" />
+    <Content Include="Views\ShoppingCart\GetListOrders.cshtml" />
+    <Content Include="Views\ShoppingCart\GetListProductsInOrder.cshtml" />
+    <Content Include="Views\ShoppingCart\PaidResult.cshtml" />
+    <Content Include="Views\ShoppingCart\ShowCart.cshtml" />
+    <Content Include="Views\ShoppingCart\ValidateCommand.cshtml" />
+    <Content Include="Views\Shared\_UpsellFlowers.cshtml" />
+    <Content Include="Views\Shared\_RelatedFlowers.cshtml" />
+    <Content Include="Views\ShoppingCart\CreateOrder.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\IndexCustomer.cshtml" />
+    <Content Include="Views\DashBoard\Index.cshtml" />
+    <Content Include="Views\Orders\_FlowersInOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\IPN\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -8416,16 +8682,16 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002170154542_InitializeDatabase.resx">
-      <DependentUpon>202002170154542_InitializeDatabase.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Content\vendors\moment\moment.d.ts" />
     <TypeScriptCompile Include="Scripts\vendors\moment\moment.d.ts" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202003040914253_InitializeDatabase.resx">
+      <DependentUpon>202003040914253_InitializeDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -8461,7 +8727,9 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets'))" />
   </Target>
+  <Import Project="..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets" Condition="Exists('..\packages\NETStandard.Library.2.0.3\build\netstandard2.0\NETStandard.Library.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
