@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNet.Identity.Owin;
 using Project_MVC.Models;
+using Project_MVC.Services;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -16,6 +17,13 @@ namespace Project_MVC.Utils
         {
             get { return _db ?? HttpContext.Current.GetOwinContext().Get<MyDbContext>(); }
             set { _db = value; }
+        }
+
+        private static IUserService userService;
+
+        static FlowerUtility()
+        {
+            userService = new UserService();
         }
 
         public static readonly CultureInfo UnitedStates =
@@ -96,6 +104,14 @@ namespace Project_MVC.Utils
                 or = new Order();
             }
             return or;
+        }
+
+        public static bool CheckCurrentUserEmailConfirmed()
+        {
+            var userId = userService.GetCurrentUserId();
+
+            var user = DbContext.Users.FirstOrDefault(u => u.Id == userId);
+            return user.EmailConfirmed;
         }
     }
 }
