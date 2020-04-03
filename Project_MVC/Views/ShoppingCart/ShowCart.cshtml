@@ -8,6 +8,7 @@
     var cart = ViewBag.shoppingCart as ShoppingCart;
     var flowerService = new MySQLFlowerService();
     var categoryCode = ViewBag.CategoryCode;
+    var returnUrl = ViewBag.ReturnUrl;
 }
 
 @Html.Hidden("hidQuantity")
@@ -66,11 +67,11 @@
                                     <td>@TotalPricePerFlower.ToString("C", FlowerUtility.UnitedStates)</td>
                                     <td>
                                         @*<a class="btn btn-info btn-sm" href="javascript:void(0);" id="updatePerFlower" name="updatePerFlower" data-name="@item.Value.FlowerName" data-returnCategoryCode="@categoryCode" data-code="@item.Value.FlowerCode" data-quantity="@item.Value.Quantity">
-                                            <svg class="bi bi-brush" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M15.213 1.018a.572.572 0 01.756.05.57.57 0 01.057.746C15.085 3.082 12.044 7.107 9.6 9.55c-.71.71-1.42 1.243-1.952 1.596-.508.339-1.167.234-1.599-.197-.416-.416-.53-1.047-.212-1.543.346-.542.887-1.273 1.642-1.977 2.521-2.35 6.476-5.44 7.734-6.411z" />
-                                                <path d="M7 12a2 2 0 01-2 2c-1 0-2 0-3.5-.5s.5-1 1-1.5 1.395-2 2.5-2a2 2 0 012 2z" />
-                                            </svg>
-                                        </a>*@
+                                                <svg class="bi bi-brush" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M15.213 1.018a.572.572 0 01.756.05.57.57 0 01.057.746C15.085 3.082 12.044 7.107 9.6 9.55c-.71.71-1.42 1.243-1.952 1.596-.508.339-1.167.234-1.599-.197-.416-.416-.53-1.047-.212-1.543.346-.542.887-1.273 1.642-1.977 2.521-2.35 6.476-5.44 7.734-6.411z" />
+                                                    <path d="M7 12a2 2 0 01-2 2c-1 0-2 0-3.5-.5s.5-1 1-1.5 1.395-2 2.5-2a2 2 0 012 2z" />
+                                                </svg>
+                                            </a>*@
                                         <a class="btn btn-info btn-sm" href="javascript:void(0);" id="removeFromCart" data-name="@item.Value.FlowerName" data-returnCategoryCode="@categoryCode" data-code="@item.Value.FlowerCode">
                                             <svg class="bi bi-trash" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M5.5 5.5A.5.5 0 016 6v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm2.5 0a.5.5 0 01.5.5v6a.5.5 0 01-1 0V6a.5.5 0 01.5-.5zm3 .5a.5.5 0 00-1 0v6a.5.5 0 001 0V6z" />
@@ -88,16 +89,38 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="shopping_cart_main">
                         <div class="shopping_button">
-                            <button type="button" onclick="location.href='@Url.Action("IndexCustomer", "Flowers", new { categoryCode = categoryCode })'" ; title="shop" class="continue_shopping">Continue picking Flowers</button>
+                            @if (string.IsNullOrEmpty(returnUrl))
+                            {
+                                <button type="button" onclick="location.href='@Url.Action("IndexCustomer", "Flowers", new { categoryCode = categoryCode })'" ; title="shop" class="continue_shopping">Continue picking Flowers</button>
+                            }
+                            else if (returnUrl.Contains("LoadShoppingCartPartialView"))
+                            {
+                                <button type="button" onclick="location.href='@Request.UrlReferrer.ToString()'" ; title="shop" class="continue_shopping">Continue picking Flowers</button>
+                            }
+                            else
+                            {
+                                <button type="button" onclick="location.href='@returnUrl'" ; title="shop" class="continue_shopping">Continue picking Flowers</button>
+                            }
                         </div>
                         @if (cart.GetCartItems() != null && cart.GetCartItems().Count != 0)
                         {
                             <div class="shopping_button">
-                                <button type="button" onclick="location.href='@Url.Action("ClearShoppingCart", "ShoppingCart", new { categoryCode = categoryCode })'" return false;" title="shop" class="continue_shopping">Remove cart</button>
+                                @if (string.IsNullOrEmpty(returnUrl))
+                                {
+                                    <button type="button" onclick="location.href='@Url.Action("ClearShoppingCart", "ShoppingCart", new { categoryCode = categoryCode })'" return false;" title="shop" class="continue_shopping">Remove cart</button>
+                                }
+                                else if (returnUrl.Contains("LoadShoppingCartPartialView"))
+                                {
+                                    <button type="button" onclick="location.href='@Url.Action("ClearShoppingCart", "ShoppingCart", new { categoryCode = categoryCode, returnUrl = @Request.UrlReferrer.ToString() })'" return false;" title="shop" class="continue_shopping">Remove cart</button>
+                                }
+                                else
+                                {
+                                    <button type="button" onclick="location.href='@Url.Action("ClearShoppingCart", "ShoppingCart", new { categoryCode = categoryCode, returnUrl = returnUrl })'" return false;" title="shop" class="continue_shopping">Remove cart</button>
+                                }
                             </div>
                             <div class="shopping_button">
                                 @*<button type="submit" class="continue_shopping" value="">Update Cart</button>
-                                <span id="errmsg"></span>*@
+                                    <span id="errmsg"></span>*@
                             </div>
                         }
                     </div>

@@ -165,10 +165,10 @@ namespace Project_MVC.Controllers
             }
         }
 
-        public ActionResult ClearShoppingCart(string categoryCode)
+        public ActionResult ClearShoppingCart(string categoryCode, string returnUrl)
         {
             ClearCart();
-            return RedirectToAction("ShowCart", new { categoryCode = categoryCode });
+            return RedirectToAction("ShowCart", new { categoryCode = categoryCode, returnUrl = returnUrl });
         }
 
         public ActionResult GetListOrders(int? page, string sortOrder, DateTime? start, DateTime? end)
@@ -239,10 +239,11 @@ namespace Project_MVC.Controllers
             //return View(resultAsPagedList);
         }
 
-        public ActionResult ShowCart(string categoryCode)
+        public ActionResult ShowCart(string categoryCode, string returnUrl)
         {
             ViewBag.shoppingCart = LoadShoppingCart();
             ViewBag.CategoryCode = categoryCode;
+            ViewBag.ReturnUrl = returnUrl;
             return View();
         }
 
