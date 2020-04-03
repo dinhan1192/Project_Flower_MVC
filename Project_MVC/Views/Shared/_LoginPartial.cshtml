@@ -42,7 +42,7 @@
             <li id="cartLoad">
                 @if (count != 0)
                 {
-                    <a href="@Url.Action("ShowCart", "ShoppingCart", new { categoryCode = categoryCode })"><i class="fa fa-shopping-cart"></i>Cart <span class="cart_zero">@count</span></a>
+                    <a href="@Url.Action("ShowCart", "ShoppingCart", new { categoryCode = categoryCode, returnUrl = Request.Url })"><i class="fa fa-shopping-cart"></i>Cart <span class="cart_zero">@count</span></a>
                     <div class="cart_down_area">
                         @foreach (var item in shoppingCart.GetCartItems())
                         {
