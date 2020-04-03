@@ -1,83 +1,172 @@
 ﻿@model Project_MVC.Models.Flower
+@using Project_MVC.Utils
+
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h1>Details</h1>
 
-<div>
-    <h4>Flower</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Category.Name)
-        </dt>
+<div class="form-horizontal">
+    <div class="col-md-12 tablebox ">
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="control-label col-md-3">
+                    @Html.DisplayNameFor(model => model.Category.Name):
+                </div>
+                <div class="control-label col-md-5">
+                    @Html.DisplayFor(model => model.Category.Name)
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Category.Name)
-        </dd>
+            <div class="form-group">
+                <div class="control-label col-md-3 ">
+                    @Html.DisplayNameFor(model => model.Code):
+                </div>
+                <div class="control-label col-md-5 ">
+                    @Html.DisplayFor(model => model.Code)
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Code)
-        </dt>
+            <div class="form-group">
+                <div class="control-label col-md-3">
+                    @Html.DisplayNameFor(model => model.Name):
+                </div>
+                <div class="control-label col-md-5 ">
+                    @Html.DisplayFor(model => model.Name)
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Code)
-        </dd>
+            <div class="form-group">
+                <div class="control-label col-md-3">
+                    @Html.DisplayNameFor(model => model.Price):
+                </div>
+                <div class="control-label col-md-5 ">
+                    @Model.Price.ToString("C", FlowerUtility.UnitedStates)
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <div class="control-label col-md-3">
+                    @Html.DisplayNameFor(model => model.Discount):
+                </div>
+                <div class="control-label col-md-5">
+                    @Html.DisplayFor(model => model.Discount)
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+            <div class="form-group">
+                <div class="control-label col-md-3">
+                    @Html.DisplayNameFor(model => model.Rating):
+                </div>
+                <div class="control-label col-md-5">
+                    @Html.DisplayFor(model => model.Rating)
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <div class="form-group">
+                <div class="control-label col-md-3">
+                    @Html.DisplayNameFor(model => model.UpdatedAt):
+                </div>
+                <div class="control-label col-md-5 ">
+                    @Html.DisplayFor(model => model.UpdatedAt)
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Discount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Discount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Rating)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Rating)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.Raw(Model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>
-
-    </dl>
+            <div class="form-group">
+                <div class="control-label col-md-3">
+                    @Html.DisplayNameFor(model => model.Description):
+                </div>
+                <div class="control-label col-md-9">
+                    @Html.Raw(Model.Description)
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Code }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+
+
+@section CustomStyles{
+    <style>
+          .control-label {text-align:left!important;padding-top:7px!important;}
+@*@media (max-width: 768px) { .control-label {font-size:.7em;} }
+@media (min-width: 769px) { .control-label {font-size:.9em;} }*@
+    </style>
+}
+@*<div>
+        <h4>Flower</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Category.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Category.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Code)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Code)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Discount)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Discount)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Rating)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Rating)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+
+            <dd>
+                @Html.Raw(Model.Description)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UpdatedAt)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UpdatedAt)
+            </dd>
+
+        </dl>
+    </div>*@

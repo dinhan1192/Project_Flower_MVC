@@ -7,89 +7,106 @@
     var category = "Category";
 }
 
-<h2>Edit</h2>
+<h1>Edit</h1>
 
 @using (Html.BeginForm("Edit", "Flowers", FormMethod.Post, new
 { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
+    <div class="container">
+        <div class="form-horizontal">
+            <h1>Flower</h1>
+            <hr />
+            <div class="row">
+                <div class="">
+                    <div class="col-md-12 tablebox ">
+                        <div class="col-md-6">
+                            <div class="clearfix"></div><br />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="clearfix"></div><br />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.CategoryNameAndCode, htmlAttributes: new { @class = "control-label col-md-4" })
+                                <div class="col-md-8">
+                                    @Html.TextBoxFor(model => model.CategoryNameAndCode, new { @class = "form-control typeahead", @id = "AutoComplete", @name = "AutoComplete", data_provide = "typeahead", data_request_url = @url, data_type = category })
+                                    @Html.HiddenFor(model => model.CategoryCode, new { @id = "hidCode" + category })
+                                    @Html.ValidationMessageFor(model => model.CategoryNameAndCode, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="clearfix"></div><br />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-7">
+                                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="clearfix"></div><br />
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-3" })
+                                <div class="col-md-7">
+                                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
 
-    <div class="form-horizontal">
-        <h4>Flower</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Code)
+                        <div class="clearfix"></div><br />
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "myEditor" } })
+                                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            <div class="clearfix"></div><br />
+                            <div class="col-md-9">
+                                <div class="form-group">
+                                    @Html.Label("Image", htmlAttributes: new { @class = "control-label col-md-2" })
+                                    <div class="col-md-3">
+                                        <div id="upload_widget" class="cloudinary-button">Upload files</div>
+                                        @Html.Hidden("strImageUrl")
+                                        <div class="images"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div><br />
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="col-md-offset-2 col-md-6">
+                                        <input type="submit" value="Create" class="btn btn-success" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div><br />
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "myEditor" } })
-                @*<div id="editor">
-                        <p id="editorDescription">@Model.Description</p>
-                    </div>*@
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CategoryNameAndCode, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.CategoryNameAndCode, new { @class = "form-control typeahead", @id = "AutoComplete", @name = "AutoComplete", data_provide = "typeahead", data_request_url = @url, data_type = category })
-                @Html.HiddenFor(model => model.CategoryCode, new { @id = "hidCode" + category })
-                @Html.ValidationMessageFor(model => model.CategoryNameAndCode, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.Label("Image", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @*<input type='file' multiple id='fileUpload' name="images" accept="image/*" />*@
-                <div id="upload_widget" class="cloudinary-button">Upload files</div>
-                <div class="images"></div>
-                @Html.Hidden("strImageUrl")
-                @*@Html.TextBoxFor(model => model.ProductImageFile, null, new { htmlAttributes = new {  type="file", @class="input-file" } })*@
-                @*@Html.ValidationMessageFor(model => model.ProductImageFile, "", new { @class = "text-danger" })*@
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+            <div>
+                @Html.ActionLink("Back to List", "Index")
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
-
 @section CustomStyles{
-    @Styles.Render("~/customs")
+    @*@Styles.Render("~/customs")*@
+    <style>
+          .control-label {text-align:left!important;padding-top:7px!important;}
+@*@media (max-width: 768px) { .control-label {font-size:.7em;} }
+@media (min-width: 769px) { .control-label {font-size:.9em;} }*@
+    </style>
 }
 
 @section Scripts {
@@ -98,3 +115,62 @@
     @Scripts.Render("~/bundles/cloudinaryAddImage")
     @Scripts.Render("~/bundles/ckeditor")
 }
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+@Html.HiddenFor(model => model.Code)
+
+@*<div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Discount, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @id = "myEditor" } })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryNameAndCode, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.CategoryNameAndCode, new { @class = "form-control typeahead", @id = "AutoComplete", @name = "AutoComplete", data_provide = "typeahead", data_request_url = @url, data_type = category })
+            @Html.HiddenFor(model => model.CategoryCode, new { @id = "hidCode" + category })
+            @Html.ValidationMessageFor(model => model.CategoryNameAndCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Image", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div id="upload_widget" class="cloudinary-button">Upload files</div>
+            <div class="images"></div>
+            @Html.Hidden("strImageUrl")
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>*@
