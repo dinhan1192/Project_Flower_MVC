@@ -184,11 +184,24 @@ namespace Project_MVC.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(AppUser appUser, string returnUrl)
         {
             if (Request.IsAuthenticated)
             {
                 FlowerUtility.ClearCart();
+            }
+
+            if (string.IsNullOrEmpty(appUser.UserName))
+            {
+                ModelState.AddModelError("UserName", "UserName is required.");
+                return View(appUser);
+            }
+
+            if (string.IsNullOrEmpty(appUser.Password))
+            {
+                ModelState.AddModelError("Password", "Password is required.");
+                return View(appUser);
             }
 
             var user = UserManager.Find(appUser.UserName, appUser.Password);
@@ -237,11 +250,6 @@ namespace Project_MVC.Controllers
             {
                 ModelState.AddModelError("UserName", "UserName hoặc Password nhập sai");
             }
-
-            //if (user.EmailConfirmed == false)
-            //{
-            //    ModelState.AddModelError("UserName", "Email chưa confirm");
-            //}
 
             return View(appUser);
         }
