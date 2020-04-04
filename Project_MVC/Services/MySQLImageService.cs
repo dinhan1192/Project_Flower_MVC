@@ -49,6 +49,7 @@ namespace Project_MVC.Services
             var ratingFlowersList = DbContext.RatingFlowers.Where(s => s.FlowerCode == code
             && s.UserId == userId).ToList();
             var type = "";
+            decimal oldRating = 0;
 
             if (ratingFlowersList.Count == 0 || ratingFlowersList == null)
             {
@@ -57,11 +58,11 @@ namespace Project_MVC.Services
             }
             else
             {
-                ratingFlowerService.UpdateRating(rating, ratingFlowersList.FirstOrDefault().Id);
+                oldRating = ratingFlowerService.UpdateRating(rating, ratingFlowersList.FirstOrDefault().Id);
                 type = Constant.UpdateRating;
             }
 
-            ratingFlowerService.UpdateFlowerRating(rating, code, type);
+            ratingFlowerService.UpdateFlowerRating(rating, code, type, oldRating);
             //existProduct.Rating = rating;
 
             return true;

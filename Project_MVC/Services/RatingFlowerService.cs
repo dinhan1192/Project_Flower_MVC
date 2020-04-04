@@ -28,22 +28,47 @@ namespace Project_MVC.Services
 
             DbContext.RatingFlowers.Add(item);
 
-            var ratingCount = new RatingCount()
+            var existRatingCount = DbContext.RatingCounts.Find(item.FlowerCode);
+            if (existRatingCount != null)
             {
-                Code = flowerCode,
-                NumberOfRating = 1
-            };
+                if (existRatingCount.NumberOfRating == 0)
+                {
+                    existRatingCount.NumberOfRating = DbContext.RatingFlowers.Where(s => s.FlowerCode == item.FlowerCode).Count();
+                }
+                else
+                {
+                    existRatingCount.NumberOfRating++;
+                }
 
-            DbContext.RatingCounts.Add(ratingCount);
+                DbContext.RatingCounts.AddOrUpdate(existRatingCount);
+            }
+            else
+            {
+                var ratingCount = new RatingCount()
+                {
+                    Code = item.FlowerCode,
+                    NumberOfRating = DbContext.RatingFlowers.Where(s => s.FlowerCode == item.FlowerCode).Count() + 1
+                };
+
+                DbContext.RatingCounts.Add(ratingCount);
+            }
+
+            //var ratingCount = new RatingCount()
+            //{
+            //    Code = flowerCode,
+            //    NumberOfRating = 1
+            //};
+
+            //DbContext.RatingCounts.Add(ratingCount);
             DbContext.SaveChanges();
         }
 
-        public string UpdateFlowerRating(decimal rating, string flowerCode, string type)
+        public string UpdateFlowerRating(decimal rating, string flowerCode, string type, decimal oldRating)
         {
             var existFlower = DbContext.Flowers.Find(flowerCode);
             var listRatingFlower = DbContext.RatingFlowers.Where(s => s.FlowerCode == flowerCode).ToList();
-            var countRatingFlower = listRatingFlower.Count;
-            if (countRatingFlower != 0 && listRatingFlower != null)
+            var countRatingFlower = DbContext.RatingCounts.Where(s => s.Code == flowerCode).FirstOrDefault();
+            if (countRatingFlower != null && listRatingFlower != null)
             {
                 if (existFlower.Rating == null)
                 {
@@ -53,10 +78,10 @@ namespace Project_MVC.Services
                 switch (type)
                 {
                     case Constant.CreateRating:
-                        existFlower.Rating = (existFlower.Rating + rating) / countRatingFlower;
+                        existFlower.Rating = (existFlower.Rating + rating) / countRatingFlower.NumberOfRating;
                         break;
                     case Constant.UpdateRating:
-                        existFlower.Rating = listRatingFlower.Select(s => s.Rating).Sum() / countRatingFlower;
+                        existFlower.Rating = (existFlower.Rating * countRatingFlower.NumberOfRating - oldRating + rating) / countRatingFlower.NumberOfRating;
                         break;
                     default:
                         break;
@@ -69,24 +94,28 @@ namespace Project_MVC.Services
             return DbContext.Flowers.Find(flowerCode).Code;
         }
 
-        public void UpdateRating(decimal rating, int? ratingFlowerId)
+        public decimal UpdateRating(decimal rating, int? ratingFlowerId)
         {
             var existRatingFlower = DbContext.RatingFlowers.Find(ratingFlowerId);
+            var oldRating = existRatingFlower.Rating;
             existRatingFlower.Rating = rating;
             DbContext.RatingFlowers.AddOrUpdate(existRatingFlower);
 
             var existRatingCount = DbContext.RatingCounts.Find(existRatingFlower.FlowerCode);
-            if(existRatingCount.NumberOfRating == 0)
+            if(existRatingCount == null)
             {
-                existRatingCount.NumberOfRating = DbContext.RatingFlowers.Where(s => s.FlowerCode == existRatingFlower.FlowerCode).Count();
-            }
-            else
-            {
-                existRatingCount.NumberOfRating++;
-            }
-            DbContext.RatingCounts.AddOrUpdate(existRatingCount);
+                var ratingCount = new RatingCount()
+                {
+                    Code = existRatingFlower.FlowerCode,
+                    NumberOfRating = DbContext.RatingFlowers.Where(s => s.FlowerCode == existRatingFlower.FlowerCode).Count()
+                };
 
+                DbContext.RatingCounts.Add(ratingCount);
+            }
+            
             DbContext.SaveChanges();
+
+            return oldRating;
         }
     }
 }

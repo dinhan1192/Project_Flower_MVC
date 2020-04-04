@@ -10,9 +10,9 @@ namespace Project_MVC.Services
     interface IRatingFlowerService
     {
         void CreateRating(decimal rating, string flowerCode, string userId);
-        void UpdateRating(decimal rating, int? ratingFlowerId);
+        decimal UpdateRating(decimal rating, int? ratingFlowerId);
         //void UpdateFlowerRating(string flowerCode);
-        string UpdateFlowerRating(decimal rating, string flowerCode, string type);
+        string UpdateFlowerRating(decimal rating, string flowerCode, string type, decimal oldRating);
         //CustomerLectureInteract DetailByLectureIdAndUserId(int? lectureId);
         //List<CustomerLectureInteract> GetListByLectureId(int? lectureId);
     }

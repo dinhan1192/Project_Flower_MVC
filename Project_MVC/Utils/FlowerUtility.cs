@@ -68,13 +68,13 @@ namespace Project_MVC.Utils
 
         public static int GetReviews(string code)
         {
-            var ratingCount = DbContext.RatingCounts.Count();
-            if(ratingCount == null || ratingCount == 0)
+            var ratingCount = DbContext.RatingCounts.Where(s => s.Code == code).FirstOrDefault();
+            if(ratingCount == null)
             {
                 return DbContext.RatingFlowers.Where(s => s.FlowerCode == code).Count();
             }
 
-            return ratingCount;
+            return ratingCount.NumberOfRating;
         }
 
         [Authorize]
