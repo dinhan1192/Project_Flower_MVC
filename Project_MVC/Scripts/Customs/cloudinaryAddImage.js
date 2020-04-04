@@ -1,5 +1,4 @@
-﻿debugger;
-var strUrl = $('#strImageUrl').val();
+﻿var strUrl = $('#strImageUrl').val();
 var arrUrl = [];
 if (strUrl != null && strUrl != '') {
     var str = strUrl.substring(1, strUrl.length);
@@ -7,7 +6,6 @@ if (strUrl != null && strUrl != '') {
 }
 
 $.each(arrUrl, function (i, val) {
-    debugger;
     $('.images').prepend($('<img>', { id: 'theFlowerImg', src: val }))
 })
 
@@ -21,7 +19,6 @@ var myWidget = cloudinary.createUploadWidget({
 }, (error, result) => {
     if (!error && result && result.event === "success") {
         //console.log('Done! Here is the image info: ', result.info.secure_url);
-        debugger;
         strUrl = strUrl + ',' + result.info.secure_url;
         $('#strImageUrl').val(strUrl);
         //$('.images').append("<img id='theImg' src='" + result.info.secure_url + "'/>")
@@ -35,7 +32,6 @@ var myWidget = cloudinary.createUploadWidget({
 )
 
 function image(url) {
-    debugger;
     var image = document.createElement("IMG");
     image.alt = "Alt information for image";
     image.setAttribute('class', 'photo');
