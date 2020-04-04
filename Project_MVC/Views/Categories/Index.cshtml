@@ -87,10 +87,19 @@
                         @Html.DisplayFor(modelItem => item.CreatedAt)
                     </td>
                     <td>
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Code }, new { @class = "btn btn-primary" }) |
-                        @Html.ActionLink("Details", "Details", new { id = item.Code }, new { @class = "btn btn-success" }) |
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Code },
-                             new { @class = "btn btn-danger btn-delete-notify", @id = "delete-" + item.Code, data_request_url = @url })
+                        <a href="@Url.Action("Edit", new { id = item.Code })">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </a>
+                        <a href="@Url.Action("Details", new { id = item.Code })">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+                        @Html.ActionLink(" ", "Delete", new { id = item.Code },
+               new { @class = "glyphicon glyphicon-remove btn-delete-notify", @id = "delete-" + item.Code, data_request_url = @url })
+
+                        @*@Html.ActionLink("Edit", "Edit", new { id = item.Code }, new { @class = "btn btn-primary" }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.Code }, new { @class = "btn btn-success" }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.Code },
+                                 new { @class = "btn btn-danger btn-delete-notify", @id = "delete-" + item.Code, data_request_url = @url })*@
                     </td>
                 </tr>
             }
