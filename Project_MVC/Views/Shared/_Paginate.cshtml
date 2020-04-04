@@ -38,29 +38,29 @@
         @if (currentPage > 1)
         {
             <li class="page-item">
-                @Html.ActionLink("First", "Index" + @type, new { page = 1, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode }, new { @class = "page-link" })
+                @Html.ActionLink("First", "Index" + @type, new { page = 1, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode, filter = Json.Encode(Model) }, new { @class = "page-link" })
             </li>
             <li class="page-item">
-                @Html.ActionLink("Previous", "Index" + @type, new { page = currentPage - 1, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode }, new { @class = "page-link" })
+                @Html.ActionLink("Previous", "Index" + @type, new { page = currentPage - 1, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode, filter = Json.Encode(Model) }, new { @class = "page-link" })
             </li>
             <li class="page-item">
-                @Html.ActionLink(previousPageInString, "Index" + @type, new { page = currentPage - 1, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode }, new { @class = "page-link" })
+                @Html.ActionLink(previousPageInString, "Index" + @type, new { page = currentPage - 1, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode, filter = Json.Encode(Model) }, new { @class = "page-link" })
             </li>
         }
         <li class="page-item active">
             @*<a class="page-link" href="@Url.Content(~/Index?page = @currentPage)">@currentPage</a>*@
-            @Html.ActionLink(currentPageInString, "Index" + @type, new { page = currentPage, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode }, new { @class = "page-link" })
+            @Html.ActionLink(currentPageInString, "Index" + @type, new { page = currentPage, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode, filter = Json.Encode(Model) }, new { @class = "page-link" })
         </li>
         @if (currentPage < totalPage)
         {
             <li class="page-item">
-                @Html.ActionLink(nextPageInString, "Index" + @type, new { page = currentPage + 1, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode }, new { @class = "page-link" })
+                @Html.ActionLink(nextPageInString, "Index" + @type, new { page = currentPage + 1, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode, filter = Json.Encode(Model) }, new { @class = "page-link" })
             </li>
             <li class="page-item">
-                @Html.ActionLink("Next", "Index" + @type, new { page = currentPage + 1, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode }, new { @class = "page-link" })
+                @Html.ActionLink("Next", "Index" + @type, new { page = currentPage + 1, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode, filter = Json.Encode(Model) }, new { @class = "page-link" })
             </li>
             <li class="page-item">
-                @Html.ActionLink("Final", "Index" + @type, new { page = totalPage, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode }, new { @class = "page-link" })
+                @Html.ActionLink("Final", "Index" + @type, new { page = totalPage, categoryCode = categoryCode, levelOneCategoryCode = levelOneCategoryCode, filter = Json.Encode(Model) }, new { @class = "page-link" })
             </li>
         }
     </ul>

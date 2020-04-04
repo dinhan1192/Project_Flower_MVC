@@ -51,10 +51,20 @@ namespace Project_MVC.Controllers
             Response.End();
             return RedirectToAction("Index");
         }
-        public ActionResult Index(string sortOrder, string searchString, 
-            string currentFilter, int? page, string status, 
-            string paymentType, string start, string end)
+        public ActionResult Index(string sortOrder, string searchString,
+            string currentFilter, int? page, string status,
+            string paymentType, string start, string end, string filter)
         {
+            if (!string.IsNullOrEmpty(filter))
+            {
+                var filterThisPage = JsonConvert.DeserializeObject<ThisPage>(filter);
+                currentFilter = filterThisPage.SearchString;
+                paymentType = filterThisPage.PaymentType;
+                status = filterThisPage.Status;
+                start = filterThisPage.StartDate;
+                end = filterThisPage.EndDate;
+            }
+
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             // lúc đầu vừa vào thì sortOrder là null, cho nên gán NameSortParm = name_desc
@@ -138,7 +148,12 @@ namespace Project_MVC.Controllers
             ThisPage thisPage = new ThisPage()
             {
                 CurrentPage = pageNumber,
-                TotalPage = Math.Ceiling((double)orders.Count() / pageSize)
+                TotalPage = Math.Ceiling((double)orders.Count() / pageSize),
+                SearchString = searchString,
+                PaymentType = paymentType,
+                Status = status,
+                StartDate = start,
+                EndDate = end
             };
             ViewBag.Page = thisPage;
             // nếu page == null thì lấy giá trị là 1, nếu không thì giá trị là page
@@ -175,10 +190,19 @@ namespace Project_MVC.Controllers
             return View(orders.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 
-        public ActionResult IndexCustomer(string sortOrder, string searchString, 
+        public ActionResult IndexCustomer(string sortOrder, string searchString,
             string currentFilter, int? page, string start, string end, string status,
-            string paymentType)
+            string paymentType, string filter)
         {
+            if (!string.IsNullOrEmpty(filter))
+            {
+                var filterThisPage = JsonConvert.DeserializeObject<ThisPage>(filter);
+                currentFilter = filterThisPage.SearchString;
+                paymentType = filterThisPage.PaymentType;
+                status = filterThisPage.Status;
+                start = filterThisPage.StartDate;
+                end = filterThisPage.EndDate;
+            }
 
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
@@ -206,7 +230,7 @@ namespace Project_MVC.Controllers
                 int id;
                 if (Int32.TryParse(searchString, out id))
                 {
-                    orders = orders.Where(s =>  s.Id == id);
+                    orders = orders.Where(s => s.Id == id);
                 }
                 else
                 {
@@ -264,7 +288,12 @@ namespace Project_MVC.Controllers
             {
                 CurrentPage = pageNumber,
                 TotalPage = Math.Ceiling((double)orders.Count() / pageSize),
-                CurrentType = Constant.Customer
+                CurrentType = Constant.Customer,
+                SearchString = searchString,
+                PaymentType = paymentType,
+                Status = status,
+                StartDate = start,
+                EndDate = end
             };
             ViewBag.Page = thisPage;
             // nếu page == null thì lấy giá trị là 1, nếu không thì giá trị là page
@@ -282,7 +311,7 @@ namespace Project_MVC.Controllers
             }
             Order order = mySQLOrderService.Detail(id);
             var lstFlowersModel = new List<FlowersInOrderModel>();
-            foreach(var item in order.OrderDetails)
+            foreach (var item in order.OrderDetails)
             {
                 var flowerModel = new FlowersInOrderModel()
                 {
