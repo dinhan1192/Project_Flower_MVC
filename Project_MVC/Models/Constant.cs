@@ -9,7 +9,8 @@ namespace Project_MVC.Models
     public static class Constant
     {
         public const int PageSize = 10;
-        public const int PageSizeOnCustomerPage = 18;
+        public const int PageSizeOrdersOnCustomerPage = 18;
+        public const int PageSizeFlowersOnCustomerPage = 9;
         public const int PageVideoSize = 1;
         public const int FirstMonthOfYear = 1;
         public const int EndMonthOfYear = 12;
