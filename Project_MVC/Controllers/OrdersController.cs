@@ -33,6 +33,7 @@ namespace Project_MVC.Controllers
             userService = new UserService();
         }
 
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         public ActionResult ExportToExcel()
         {
             var gv = new GridView();
@@ -51,6 +52,7 @@ namespace Project_MVC.Controllers
             Response.End();
             return RedirectToAction("Index");
         }
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         public ActionResult Index(string sortOrder, string searchString,
             string currentFilter, int? page, string status,
             string paymentType, string start, string end, string filter)
@@ -190,6 +192,7 @@ namespace Project_MVC.Controllers
             return View(orders.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 
+        [Authorize]
         public ActionResult IndexCustomer(string sortOrder, string searchString,
             string currentFilter, int? page, string start, string end, string status,
             string paymentType, string filter)
@@ -303,6 +306,7 @@ namespace Project_MVC.Controllers
         }
 
         // GET: Orders/Details/5
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -357,6 +361,7 @@ namespace Project_MVC.Controllers
         //}
 
         // GET: Orders/Edit/5
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -390,6 +395,7 @@ namespace Project_MVC.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         public ActionResult Edit([Bind(Include = "Id,PaymentTypeId,ShipName,ShipAddress,ShipPhone,Status")] Order order)
         {
             if (order == null)
@@ -424,18 +430,22 @@ namespace Project_MVC.Controllers
         //    return View(order);
         //}
 
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //[HttpPost]
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            var existProductCategory = mySQLOrderService.Detail(id);
+            var existProductCategory = mySQLOrderService.Detail(Convert.ToInt32(id));
             if (existProductCategory == null || existProductCategory.IsDeleted())
             {
                 return new HttpStatusCodeResult(HttpStatusCode.NotFound);
             }
             if (mySQLOrderService.Delete(existProductCategory, ModelState))
             {
-                return RedirectToAction("Index");
+                return Json(true);
             }
             return RedirectToAction("Index");
         }
