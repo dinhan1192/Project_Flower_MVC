@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using Project_MVC.Models;
 using Project_MVC.Services;
 
@@ -21,8 +22,14 @@ namespace Project_MVC.Controllers
             mySQLCategoryService = new MySQLCategoryService();
         }
 
-        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page)
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter, int? page, string filter)
         {
+            if (!string.IsNullOrEmpty(filter))
+            {
+                var filterThisPage = JsonConvert.DeserializeObject<ThisPage>(filter);
+                currentFilter = filterThisPage.SearchString;
+            }
+
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             // lúc đầu vừa vào thì sortOrder là null, cho nên gán NameSortParm = name_desc
@@ -69,7 +76,8 @@ namespace Project_MVC.Controllers
             ThisPage thisPage = new ThisPage()
             {
                 CurrentPage = pageNumber,
-                TotalPage = Math.Ceiling((double)flowerCategories.Count() / pageSize)
+                TotalPage = Math.Ceiling((double)flowerCategories.Count() / pageSize),
+                SearchString = searchString
             };
             ViewBag.Page = thisPage;
             // nếu page == null thì lấy giá trị là 1, nếu không thì giá trị là page

@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
+using Newtonsoft.Json;
 using Project_MVC.Models;
 using Project_MVC.Services;
 
@@ -76,11 +77,19 @@ namespace Project_MVC.Controllers
 
 
         public ActionResult IndexCustomer(string amount, string sortFlower, string levelOneCategoryCode, string categoryCode,
-            string searchString, string currentFilter, int? page)
+            string searchString, string currentFilter, int? page, string filter)
         {
             if(string.IsNullOrEmpty(levelOneCategoryCode) && string.IsNullOrEmpty(categoryCode))
             {
                 return RedirectToAction("Index", "Home");
+            }
+
+            if (!string.IsNullOrEmpty(filter))
+            {
+                var filterThisPage = JsonConvert.DeserializeObject<ThisPage>(filter);
+                currentFilter = filterThisPage.SearchString;
+                amount = filterThisPage.Amount;
+                sortFlower = filterThisPage.SortFlower;
             }
 
             ViewBag.CurrentUserName = userService.GetCurrentUserName();
@@ -165,7 +174,10 @@ namespace Project_MVC.Controllers
                 TotalPage = Math.Ceiling((double)flowers.Count() / pageSize),
                 ProductCategoryCode = categoryCode,
                 LevelOneCategoryCode = levelOneCategoryCode,
-                CurrentType = Constant.Customer
+                CurrentType = Constant.Customer,
+                SearchString = searchString,
+                Amount = amount,
+                SortFlower = sortFlower
             };
             ViewBag.Page = thisPage;
 
@@ -185,8 +197,14 @@ namespace Project_MVC.Controllers
 
         [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         // GET: Products
-        public ActionResult Index(string productCategoryCode, string sortOrder, string searchString, string currentFilter, int? page, string type)
+        public ActionResult Index(string productCategoryCode, string sortOrder, string searchString, string currentFilter, int? page, string type, string filter)
         {
+            if (!string.IsNullOrEmpty(filter))
+            {
+                var filterThisPage = JsonConvert.DeserializeObject<ThisPage>(filter);
+                currentFilter = filterThisPage.SearchString;
+            }
+
             ViewBag.CurrentSort = sortOrder;
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             // lúc đầu vừa vào thì sortOrder là null, cho nên gán NameSortParm = name_desc
@@ -239,7 +257,8 @@ namespace Project_MVC.Controllers
             {
                 CurrentPage = pageNumber,
                 TotalPage = Math.Ceiling((double)flowers.Count() / pageSize),
-                FunctionType = type
+                FunctionType = type,
+                SearchString = searchString
             };
             ViewBag.Page = thisPage;
 

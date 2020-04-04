@@ -288,18 +288,19 @@
   //}
     </script>
     <script>
+        debugger;
         var start = moment().subtract(29, 'days');
         var end = moment();
         var newStart = $("#start").val();
         var newEnd = $("#end").val();
         if (newStart != null && newStart != "") {
             newStart = newStart.split("/");
-            start = new Date(newStart[2], newStart[1] - 1, newStart[0]);
+            start = new Date(newStart[2], newStart[0] - 1, newStart[1]);
         }
 
         if (newEnd != null && newEnd != "") {
             newEnd = newEnd.split("/");
-            end = new Date(newEnd[2], newEnd[1] - 1, newEnd[0]);
+            end = new Date(newEnd[2], newEnd[0] - 1, newEnd[1]);
         }
 
         //function cb(newStartDate, newEndDate) {
