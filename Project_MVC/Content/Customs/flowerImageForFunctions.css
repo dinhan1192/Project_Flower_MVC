@@ -1,6 +1,13 @@
-﻿img#theFlowerImg {
-    width: 100px;
-    height: 100px;
+﻿.images {
+    display: flex;
+    margin-left: 38px;
+    width: 800px;
+    flex-wrap: wrap;
+}
+
+#theFlowerImg {
+    width: 150px;
+    height: 150px;
     margin: 5px 5px 5px 0px;
     padding: 5px 5px 5px 0px;
 }
