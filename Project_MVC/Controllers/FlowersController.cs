@@ -166,7 +166,7 @@ namespace Project_MVC.Controllers
                 flowers = flowers.Where(s => s.Price <= max && s.Price >= min);
             }
 
-            int pageSize = Constant.PageSizeOnCustomerPage;
+            int pageSize = Constant.PageSizeFlowersOnCustomerPage;
             int pageNumber = (page ?? 1);
             ThisPage thisPage = new ThisPage()
             {

@@ -282,7 +282,7 @@ namespace Project_MVC.Controllers
             }
 
 
-            int pageSize = Constant.PageSizeOnCustomerPage;
+            int pageSize = Constant.PageSizeOrdersOnCustomerPage;
             int pageNumber = (page ?? 1);
             ThisPage thisPage = new ThisPage()
             {
