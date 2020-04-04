@@ -118,7 +118,7 @@ namespace Project_MVC
 
             bundles.Add(new StyleBundle("~/customs").Include(
                       "~/Content/Customs/completeAndInComplete.css",
-                      "~/Content/Customs/ckeditor.css",
+                      //"~/Content/Customs/ckeditor.css",
                       "~/Content/Customs/flowerImageForFunctions.css",
                       "~/Content/Customs/ratingFlower.css"
                       ));
