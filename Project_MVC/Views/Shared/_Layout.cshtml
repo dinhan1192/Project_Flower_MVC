@@ -12,7 +12,7 @@
 <body class="nav-md">
     <div class="container body">
         <div class="main_container">
-            <div class="col-md-3 left_col">
+            <div class="col-md-3 left_col menu_fixed">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
                         <a href="@Url.Action("Index", "Products")" class="site_title"><i class="fa fa-archive"></i> <span>SkWELA</span></a>
@@ -46,7 +46,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a><i class="fa fa-folder-open"></i> Manage Categories <span class="fa fa-chevron-down"></span></a>
+                                    <a><i class="fa fa-folder-open"></i>Manage Categories<span class="fa fa-chevron-down"></span></a>
                                     <ul class="nav child_menu">
                                         <li>@Html.ActionLink("Create", "Create", "Categories")</li>
                                         <li>@Html.ActionLink("Categories ", "Index", "Categories")</li>
