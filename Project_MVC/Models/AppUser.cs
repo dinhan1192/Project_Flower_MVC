@@ -41,6 +41,9 @@ namespace Project_MVC.Models
         public DateTime? CreatedAt { get; set; }
         public DateTime? UpdatedAt { get; set; }
         public DateTime? DeletedAt { get; set; }
+        public string UpdatedBy { get; set; }
+        public string DeletedBy { get; set; }
+        public UserStatus Status { get; set; }
 
         public virtual ICollection<RatingFlower> Ratings { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
@@ -50,6 +53,15 @@ namespace Project_MVC.Models
             Male = 1, Female = 0, Other = 2
         }
 
+        public enum UserStatus
+        {
+            NotDeleted = 0, Deleted = -1
+        }
+
+        internal bool IsDeleted()
+        {
+            return this.Status == UserStatus.Deleted;
+        }
 
         public AppUser()
         {
