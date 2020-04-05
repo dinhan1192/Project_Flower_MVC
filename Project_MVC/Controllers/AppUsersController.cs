@@ -9,6 +9,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Diagnostics;
 using Microsoft.AspNet.Identity.EntityFramework;
+using System.Net;
+using Project_MVC.Services;
 
 namespace Project_MVC.Controllers
 {
@@ -16,7 +18,7 @@ namespace Project_MVC.Controllers
     public class AppUsersController : Controller
     {
         // GET: AppUsers
-         private MyDbContext _db;
+        private MyDbContext _db;
         public MyDbContext DbContext
         {
             get { return _db ?? HttpContext.GetOwinContext().Get<MyDbContext>(); }
@@ -33,6 +35,13 @@ namespace Project_MVC.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        private IUserService userService;
+
+        public AppUsersController()
+        {
+            userService = new UserService();
         }
         //public AppUsersController()
         //{
@@ -106,6 +115,42 @@ namespace Project_MVC.Controllers
             };
             ViewBag.Page = thisPage;
             return View(users.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
+        }
+
+        public ActionResult Details(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var user = DbContext.Users.Find(id);
+            if (user == null || user.IsDeleted())
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var existUser = DbContext.Users.Find(id);
+            if (existUser == null || existUser.IsDeleted())
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            if (ModelState.IsValid)
+            {
+                existUser.Status = AppUser.UserStatus.Deleted;
+                existUser.DeletedAt = DateTime.Now;
+                existUser.DeletedBy = userService.GetCurrentUserName();
+            }
+            return RedirectToAction("Index");
         }
     }
 }
