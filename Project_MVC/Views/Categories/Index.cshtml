@@ -42,22 +42,22 @@
     <div class="col-md-11 tablebox">
         <table class="table table-bordered" style="text-align:center">
             <tr>
-                <th>
+                <th class="text-center">
                     @Html.DisplayNameFor(model => model.Code)
                 </th>
-                <th>
+                <th class="text-center">
                     @Html.ActionLink("Flower Category Name", "Index", new { sortOrder = ViewBag.NameSortParm })
                 </th>
-                <th>
+                <th class="text-center">
                     @Html.DisplayNameFor(model => model.Description)
                 </th>
-                <th>
+                <th class="text-center">
                     @Html.DisplayNameFor(model => model.ParentCode)
                 </th>
-                <th>
+                <th class="text-center">
                     Category Image
                 </th>
-                <th>
+                <th class="text-center">
                     @Html.ActionLink("Updated At", "Index", new { sortOrder = ViewBag.DateSortParm })
                 </th>
                 <th></th>

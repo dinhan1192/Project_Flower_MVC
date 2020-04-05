@@ -5,55 +5,102 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detail</h2>
+<h1>Detail</h1>
 
 <div>
-    <h4>AppRole</h4>
+    <h1>AppRole</h1>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
+    <div class="form-horizontal">
+        <div class="col-md-12 tablebox ">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="control-label col-md-4">
+                        @Html.DisplayNameFor(model => model.Name):
+                    </div>
+                    <div class="control-label col-md-5">
+                        @Html.DisplayFor(model => model.Name)
+                    </div>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="control-label col-md-3">
+                        @Html.DisplayNameFor(model => model.CreatedAt):
+                    </div>
+                    <div class="control-label col-md-5">
+                        @Html.DisplayFor(model => model.CreatedAt)
+                    </div>
+                </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedAt)
-        </dd>
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.UpdatedAt)
-        </dd>*@
-
-        @*<dt>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.DeletedAt)
-        </dd>*@
-
-    </dl>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <div class="control-label col-md-2">
+                        @Html.DisplayNameFor(model => model.Description):
+                    </div>
+                    <div class="control-label col-md-10">
+                        @Html.Raw(Model.Description)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="clearfix"></div>
+<br />
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+@section CustomStyles{
+    <style>
+          .control-label {text-align:left!important;padding-top:7px!important;}
+@*@media (max-width: 768px) { .control-label {font-size:.7em;} }
+@media (min-width: 769px) { .control-label {font-size:.9em;} }*@
+    </style>
+}
+
+
+@*<dl class="dl-horizontal">
+    <dt>
+        @Html.DisplayNameFor(model => model.Name)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Name)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.CreatedAt)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.CreatedAt)
+    </dd>*@
+
+@*<dt>
+        @Html.DisplayNameFor(model => model.UpdatedAt)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.UpdatedAt)
+    </dd>*@
+
+@*<dt>
+        @Html.DisplayNameFor(model => model.DeletedAt)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.DeletedAt)
+    </dd>*@
+
+@*</dl>*@

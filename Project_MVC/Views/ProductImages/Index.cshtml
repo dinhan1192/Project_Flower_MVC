@@ -30,9 +30,9 @@
                 </div>
             </div>
             @*<p>
-                Find by Flower Name or Code: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
-                <input type="submit" value="Search" />
-            </p>*@
+                    Find by Flower Name or Code: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string, new { @class = "form-control" })
+                    <input type="submit" value="Search" />
+                </p>*@
             <div class="clearfix"></div>
             <br />
         }
@@ -47,10 +47,10 @@
 <div class="col-md-11 tablebox">
     <table class="table table-bordered table-hover" style="text-align:center;">
         <tr>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.Flower.Name)
             </th>
-            <th>
+            <th class="text-center">
                 @Html.DisplayNameFor(model => model.ImageUrl)
             </th>
             <th></th>
@@ -66,10 +66,9 @@
                     <img src="@item.ImageUrl" width="80" height="80" />
                 </td>
                 <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-                        @Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id },
-              new { @class = "btn btn-danger btn-delete-notify", @id = "delete-" + item.Id, data_request_url = @url })
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id },
+              new { @class = "btn btn-danger btn-delete-notify", @id = "delete-" + item.Id, data_request_url = @url })*@
+                    <a href="javascript:void(0)" class="glyphicon glyphicon-remove btn-delete-notify" id="@item.Id" data-request-url="@url"></a>
                 </td>
             </tr>
         }
