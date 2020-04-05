@@ -1,4 +1,5 @@
-﻿using Project_MVC.Models;
+﻿using Newtonsoft.Json;
+using Project_MVC.Models;
 using Project_MVC.Services;
 using System;
 using System.Collections.Generic;
@@ -22,8 +23,14 @@ namespace Project_MVC.Controllers
         }
 
 
-        public ActionResult Index(string searchString, string currentFilter, int? page)
+        public ActionResult Index(string searchString, string currentFilter, int? page, string filter)
         {
+            if (!string.IsNullOrEmpty(filter))
+            {
+                var filterThisPage = JsonConvert.DeserializeObject<ThisPage>(filter);
+                currentFilter = filterThisPage.SearchString;
+            }
+
             if (searchString != null)
             {
                 page = 1;
@@ -47,7 +54,8 @@ namespace Project_MVC.Controllers
             ThisPage thisPage = new ThisPage()
             {
                 CurrentPage = pageNumber,
-                TotalPage = Math.Ceiling((double)flowerImages.Count() / pageSize)
+                TotalPage = Math.Ceiling((double)flowerImages.Count() / pageSize),
+                SearchString = searchString
             };
             ViewBag.Page = thisPage;
             // nếu page == null thì lấy giá trị là 1, nếu không thì giá trị là page
