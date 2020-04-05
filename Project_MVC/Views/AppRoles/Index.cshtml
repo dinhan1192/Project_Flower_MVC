@@ -3,56 +3,113 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var url = "/AppRoles/Delete/";
 }
 
-<h2>Index</h2>
+<h1>Index</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="col-md-3 firstbox">
+                <div class="form-group">
+                    <button class="btn btn-danger">@Html.ActionLink("Create New", "Create")</button>
+                </div>
+            </div>
+        </div>
+    </div><br />
+    <div class="col-md-11 tablebox">
+        <table class="table table-bordered table-hover" style="text-align:center;">
+            <tr>
+                <th class="">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th class="">
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                @*<th>
+                        @Html.DisplayNameFor(model => model.CreatedAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpdatedAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DeletedAt)
+                    </th>*@
+                <th></th>
+            </tr>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.CreatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UpdatedAt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DeletedAt)
-        </th>*@
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-left">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="text-left">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    @*<td>
+                            @Html.DisplayFor(modelItem => item.CreatedAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UpdatedAt)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DeletedAt)
+                        </td>*@
+                    <td>
+                        <a href="@Url.Action("Details", new { id = item.Id })">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+                        <a href="javascript:void(0)" class="glyphicon glyphicon-remove btn-delete-notify" id="@item.Id" data-request-url="@url"></a>
+                    </td>
+                </tr>
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.CreatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UpdatedAt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DeletedAt)
-        </td>*@
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+        </table>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/custom");
+    <script>
+        var TeamDetailPostBackURL = '/AppUsers/AddRolePopup';
+        $(function () {
+            $(".addRolePopup").click(function () {
+                //console.log("123456")
+                var $buttonClicked = $(this);
+                var id = $buttonClicked.attr('data-parameter');
+                //var id = document.getElementById("addItem-" + "AtView").getAttribute("data-parameter");
+                if (id === '') {
+                    $.alert("Mời chọn User");
+                    return false;
+                }
+                var options = { "backdrop": "static", keyboard: true };
+                $.ajax({
+                    async: false,
+                    type: "GET",
+                    url: TeamDetailPostBackURL,
+                    contentType: "application/json; charset=utf-8",
+                    data: { "Id": id },
+                    datatype: "json",
+                    success: function (data) {
+                        $('#myModalContent').html(data);
+                        $('#myModal').modal(options);
+                        $('#myModal').modal('show');
+
+                    },
+                    error: function () {
+                        alert("Dynamic content load failed.");
+                    }
+                });
+                var thisType = $buttonClicked.attr('data-type');
+                var setValues = document.getElementById('addItem-' + thisType).setAttribute('data-parameter', "")
+            });
+            //$("#closebtn").on('click',function(){
+            //    $('#myModal').modal('hide');
+
+            $("#closbtn").click(function () {
+                $('#myModal').modal('hide');
+            });
+        });
+    </script>
 }
-
-</table>
