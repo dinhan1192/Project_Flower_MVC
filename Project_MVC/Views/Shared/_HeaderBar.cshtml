@@ -82,6 +82,14 @@
                             <li>
                                 <a href="@Url.Action("Contact", "Home")"><span class="Accessaries">Contact</span></a>
                             </li>
+                            <li>
+                            <li>
+                                <a href="@Url.Action("NormalQuestionsAsked", "Home")"><span class="Accessaries">Interaction</span></a>
+                                <div align="right" class="home_mega_menu">
+                                    <a href="@Url.Action("NormalQuestionsAsked", "Home")">Normal Questions</a>
+                                    <a href="@Url.Action("FeedBack", "Home")">Feed Back</a>
+                                </div>
+                            </li>
                             @if (RolesUtil.IsInAnyRole(User, new string[] { Constant.Admin, Constant.Employee }))
                             {
                                 <li>
@@ -89,8 +97,8 @@
                                 </li>
                             }
                             @*<li>
-                                    <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Đến trang Admin</span></a>
-                                </li>*@
+            <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Đến trang Admin</span></a>
+        </li>*@
                         </ul>
                     </div>
                     <!--End desktop menu area -->
