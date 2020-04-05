@@ -27,6 +27,16 @@ namespace Project_MVC.Controllers
             return View(list);
         }
 
+        public ActionResult FeedBack()
+        {
+            return View();
+        }
+
+        public ActionResult NormalQuestionsAsked()
+        {
+            return View();
+        }
+
         public ActionResult About()
         {
             return View();
