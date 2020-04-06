@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@using Project_MVC.Utils
+@using Project_MVC.Models
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -33,11 +36,18 @@
                                     <a href="@Url.Action("Index", "DashBoard")"><i class="fa fa-home"></i> Dashboard </a>
                                 </li>
                                 <li>
-                                    <a><i class="fa fa-user"></i> Manage Users <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li>@Html.ActionLink("Users", "Index", "AppUsers")</li>
-                                        <li>@Html.ActionLink("Roles", "Index", "AppRoles")</li>
-                                    </ul>
+                                    <a href="javascript:void(0);" id="manageUsers"><i class="fa fa-user"></i> Manage Users <span class="fa fa-chevron-down"></span></a>
+                                    @if (RolesUtil.IsInAnyRole(User, new string[] { Constant.Admin }))
+                                    {
+                                        <ul class="nav child_menu">
+                                            <li>
+                                                @Html.ActionLink("Users", "Index", "AppUsers")
+                                            </li>
+                                            <li>
+                                                @Html.ActionLink("Roles", "Index", "AppRoles")
+                                            </li>
+                                        </ul>
+                                    }
                                 </li>
                                 <li>
                                     <a><i class="fa fa-cart-plus"></i> Manager Orders <span class="fa fa-chevron-down"></span></a>
@@ -179,6 +189,26 @@
     @Scripts.Render("~/Js")
     <script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/17.0.0/classic/ckeditor.js"></script>
+    <script>
+        $("#manageUsers").click(function () {
+            $.ajax({
+                async: false,
+                type: 'POST',
+                url: '/AppUsers/CheckUserInRoles/',
+                data: null,
+                success: function (response) {
+                    debugger;
+                    if (response == false) {
+                        $.alert('You are not authorized to access this function!');
+                        return false;
+                    }
+                },
+                error: function (req, status, error) {
+                    $.alert('Something wrong here!');
+                }
+            });
+        });
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 </html>
