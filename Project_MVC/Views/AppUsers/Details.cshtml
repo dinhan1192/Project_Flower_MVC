@@ -1,0 +1,290 @@
+﻿@model Project_MVC.Models.AppUser
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+
+<div>
+    <h1>AppUser</h1>
+    <hr/>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 tablebox ">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="control-label col-md-3">
+                            @Html.DisplayNameFor(model => model.FirstName):
+                        </div>
+                        <div class="control-label col-md-4">
+                            @Html.DisplayFor(model => model.FirstName)
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <div class="control-label col-md-3">
+                            @Html.DisplayNameFor(model => model.LastName):
+                        </div>
+                        <div class="control-label col-md-4">
+                            @Html.DisplayFor(model => model.LastName)
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <div class="control-label col-md-3">
+                            @Html.DisplayNameFor(model => model.UserName):
+                        </div>
+                        <div class="control-label col-md-4">
+                            @Html.DisplayFor(model => model.UserName)
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <div class="control-label col-md-3">
+                            @Html.DisplayNameFor(model => model.Gender):
+                        </div>
+                        <div class="control-label col-md-4">
+                            @Html.DisplayFor(model => model.Gender)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <div class="control-label col-md-3">
+                            @Html.DisplayNameFor(model => model.BirthDay):
+                        </div>
+                        <div class="control-label col-md-4">
+                            @Html.DisplayFor(model => model.BirthDay)
+                        </div>
+                    </div>
+
+                    @*<br />
+                    <div class="form-group">
+                        <div class="control-label col-md-3">
+                            @Html.DisplayNameFor(model => model.Status):
+                        </div>
+                        <div class="control-label col-md-4">
+                            @Html.DisplayFor(model => model.Status)
+                        </div>
+                    </div>*@
+
+                    <br />
+                    <div class="form-group">
+                        <div class="control-label col-md-3">
+                            @Html.DisplayNameFor(model => model.Email):
+                        </div>
+                        <div class="control-label col-md-4">
+                            @Html.DisplayFor(model => model.Email)
+                        </div>
+                    </div>
+
+                    <br />
+                    <div class="form-group">
+                        <div class="control-label col-md-3">
+                            @Html.DisplayNameFor(model => model.PhoneNumber):
+                        </div>
+                        <div class="control-label col-md-4">
+                            @Html.DisplayFor(model => model.PhoneNumber)
+                        </div>
+                    </div>
+
+                </div>
+                <div class="clearfix"></div>
+                <br />
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="clearfix"></div>
+<br />
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+@section CustomStyles{
+    <style>
+          .control-label {text-align:left!important;padding-top:7px!important;}
+@*@media (max-width: 768px) { .control-label {font-size:.7em;} }
+@media (min-width: 769px) { .control-label {font-size:.9em;} }*@
+    </style>
+}
+
+@*<dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDay)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDay)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CreatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedAt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UpdatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeletedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmailConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmailConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PasswordHash)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PasswordHash)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SecurityStamp)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SecurityStamp)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PhoneNumberConfirmed)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PhoneNumberConfirmed)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TwoFactorEnabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TwoFactorEnabled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LockoutEndDateUtc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEndDateUtc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LockoutEnabled)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LockoutEnabled)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AccessFailedCount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AccessFailedCount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserName)
+        </dd>
+
+    </dl>*@
