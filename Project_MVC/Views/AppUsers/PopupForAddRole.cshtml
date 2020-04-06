@@ -77,16 +77,26 @@
         //console.log(name);
         //console.log(id);
         $.ajax({
+            async: false,
             type: 'POST',
             url: TeamDetailPostBackURL,
             data: { "Id": id, "RoleName": name },
-            success: (
-                alert("Successful add Roles to Users!")
-            ),
+            success: function (response) {
+                $.confirm({
+                    async: false,
+                    title: 'Add Roles to Users!',
+                    content: 'Successful add Roles to Users!',
+                    buttons: {
+                        okay: function () {
+                            window.location.href = `/AppUsers/Index`;
+                        }
+                    }
+                });
+            },
             error: function (req, status, error) { }
         });
 
-        window.location.href = `/AppUsers/Index`;
+        //window.location.href = `/AppUsers/Index`;
         //var setValues = document.getElementById("addItem").setAttribute('data-parameter', "")
     });
 

@@ -11,6 +11,7 @@ using System.Diagnostics;
 using Microsoft.AspNet.Identity.EntityFramework;
 using System.Net;
 using Project_MVC.Services;
+using Project_MVC.Utils;
 
 namespace Project_MVC.Controllers
 {
@@ -49,6 +50,16 @@ namespace Project_MVC.Controllers
         //    UserStore<AppUser> userStore = new UserStore<AppUser>(DbContext);
         //    UserManager = new UserManager<AppUser>(userStore);
         //}
+
+        public ActionResult CheckUserInRoles()
+        {
+            if (RolesUtil.IsInAnyRole(User, new string[] { Constant.Admin }))
+            {
+                return Json(true);
+            }
+
+            return Json(false);
+        }
 
         [HttpGet]
         public PartialViewResult AddRolePopup(string Id)
@@ -100,7 +111,7 @@ namespace Project_MVC.Controllers
             //    throw;
             //}
 
-            return RedirectToAction("Index");
+            return Json(true);
         }
         // GET: AppUsers
         public ActionResult Index(int? page)
