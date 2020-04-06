@@ -86,6 +86,19 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    Flower Images
+                </div>
+                <div class="col-md-10 imagesDetailFlowers">
+                    @foreach (var item in Model.FlowerImages)
+                    {
+                        <img id="theFlowerImg" src="@item.ImageUrl"/>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="clearfix"></div>
@@ -97,6 +110,7 @@
 
 
 @section CustomStyles{
+    @Styles.Render("~/customs")
     <style>
           .control-label {text-align:left!important;padding-top:7px!important;}
 @*@media (max-width: 768px) { .control-label {font-size:.7em;} }
