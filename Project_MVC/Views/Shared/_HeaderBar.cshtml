@@ -16,10 +16,12 @@
                     <!--Start Search area -->
                     <form action="#" name="myForm">
                         <div class="search_box">
+                            @*Cần cái input hiddent này mới ko lỗi*@
                             <input name="Name" id="itp" class="input_text" type="hidden" value="Search" />
-                            @*<button type="submit" class="btn-search">
-                                    <span><i class="fa fa-search"></i></span>
-                                </button>*@
+                            @Html.TextBox("SearchStringFlowerCode", ViewBag.CurrentFilterFlowerName as string, new { @class = "input_text" })
+                            <a id="searchFlowerCode" href="javascript:void(0)" class="btn-search">
+                                <span><i class="fa fa-search"></i></span>
+                            </a>
                         </div>
                     </form>
                     <!--End Search area -->
@@ -97,8 +99,8 @@
                                 </li>
                             }
                             @*<li>
-            <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Đến trang Admin</span></a>
-        </li>*@
+                                    <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Đến trang Admin</span></a>
+                                </li>*@
                         </ul>
                     </div>
                     <!--End desktop menu area -->
@@ -184,3 +186,17 @@
         <!--End Mobile Menu area -->
     </div>
 </header>
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script>
+    $("#searchFlowerCode").click(function () {
+        debugger;
+        var searchFlowerCode = $("#SearchStringFlowerCode").val();
+        if (searchFlowerCode == null || searchFlowerCode == "") {
+            $.alert("Please enter Code of Flower!");
+        } else {
+            window.location.href = `/Flowers/DetailCustomers` + `?id=`
+                + searchFlowerCode;
+        }
+    })
+</script>

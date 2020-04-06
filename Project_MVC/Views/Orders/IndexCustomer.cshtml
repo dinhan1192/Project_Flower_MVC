@@ -12,11 +12,11 @@
     var endDate = "";
     if (compareDate.startDate != null)
     {
-        startDate = Utility.GetDateString(compareDate.startDate.Value, "MM/dd/yyyy");
+        startDate = Utility.GetDateString(compareDate.startDate.Value, "dd/MM/yyyy");
     }
     if (compareDate.endDate != null)
     {
-        endDate = Utility.GetDateString(compareDate.endDate.Value, "MM/dd/yyyy");
+        endDate = Utility.GetDateString(compareDate.endDate.Value, "dd/MM/yyyy");
     }
 }
 <section>
@@ -46,7 +46,7 @@
                     <p>Choose Status:</p>
                 </div>
                 <div class="col-md-6">
-                    @Html.DropDownList("Status", EnumHelper.GetSelectList(typeof(Order.OrderStatus)), "Select Status", new { @class = "form-control" })
+                    @Html.DropDownList("Status", ViewBag.DDLStatus as SelectList, "Select Status", new { @class = "form-control" })
                 </div>
             </div>
         </div>
@@ -57,7 +57,7 @@
                     <p>Choose Payment Type:</p>
                 </div>
                 <div class="col-md-6">
-                    @Html.DropDownList("PaymentType", EnumHelper.GetSelectList(typeof(Order.PaymentType)), "Select Payment Type", new { @class = "form-control" })
+                    @Html.DropDownList("PaymentType", ViewBag.DDLPaymentType as SelectList, "Select Payment Type", new { @class = "form-control" })
                 </div>
             </div>
 

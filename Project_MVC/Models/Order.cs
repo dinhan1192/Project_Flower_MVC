@@ -12,6 +12,8 @@ namespace Project_MVC.Models
         public int? Id { get; set; }
         [DisplayName("User Id")]
         public string UserId { get; set; }
+        [NotMapped]
+        public string UserName { get; set; }
         [DisplayName("Payment Type")]
         public PaymentType PaymentTypeId { get; set; }
         [DisplayName("Ship Name")]
