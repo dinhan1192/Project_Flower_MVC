@@ -160,6 +160,7 @@ namespace Project_MVC.Services
             if (diff.TotalDays <= 7)
             {
                 orders = orders.OrderBy(s => s.CreatedAt);
+                var lstOrder = orders.ToList();
                 if (orders != null && orders.ToList().Count > 0)
                 {
                     orders.ForEach(s => lstRevenues.Add(

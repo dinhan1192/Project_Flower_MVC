@@ -293,7 +293,7 @@ namespace Project_MVC.Controllers
             Flower flower = mySQLFlowerService.Detail(id);
             if (flower == null || flower.IsDeleted())
             {
-                return HttpNotFound();
+                return Redirect(Request.UrlReferrer.PathAndQuery);
             }
             ViewBag.Flowers = mySQLFlowerService.GetList();
             ViewBag.CurrentUserName = userService.GetCurrentUserName();

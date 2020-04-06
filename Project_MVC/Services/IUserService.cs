@@ -10,5 +10,6 @@ namespace Project_MVC.Services
     {
         string GetCurrentUserName();
         string GetCurrentUserId();
+        string GetUserNameByUserId(string id);
     }
 }

@@ -16,6 +16,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using Microsoft.Ajax.Utilities;
+using System.Web.Mvc.Html;
 
 namespace Project_MVC.Controllers
 {
@@ -34,14 +35,27 @@ namespace Project_MVC.Controllers
         }
 
         [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
-        public ActionResult ExportToExcel()
+        public JsonResult ExportToExcel(string filter, string startDate, string endDate)
         {
+            var filterThisPage = new ThisPage();
+            if (!string.IsNullOrEmpty(filter))
+            {
+                filterThisPage = JsonConvert.DeserializeObject<ThisPage>(filter);
+            }
+            var orders = GetCurrentOrders(filterThisPage.SearchString, filterThisPage.Status, 
+                filterThisPage.PaymentType, filterThisPage.StartDate, filterThisPage.EndDate);
+            //foreach (var item in orders)
+            //{
+            //    item.UserName = userService.GetUserNameByUserId(item.UserId);
+            //}
+            orders.ForEach(s => { s.UserName = userService.GetUserNameByUserId(s.UserId); });
             var gv = new GridView();
-            gv.DataSource = mySQLOrderService.GetList().ToList();
+            gv.DataSource = orders;
             gv.DataBind();
             Response.ClearContent();
             Response.Buffer = true;
-            Response.AddHeader("content-disposition", "attachment; filename=Orders.xls");
+            var strHeader = string.Format("attachment; filename=Orders - {0} to {1}.xls", startDate, endDate);
+            Response.AddHeader("content-disposition", strHeader);
             Response.ContentType = "application/ms-excel";
             Response.Charset = "";
             StringWriter objStringWriter = new StringWriter();
@@ -50,12 +64,11 @@ namespace Project_MVC.Controllers
             Response.Output.Write(objStringWriter.ToString());
             Response.Flush();
             Response.End();
-            return RedirectToAction("Index");
+            return Json(true, JsonRequestBehavior.AllowGet);
         }
         [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
-        public ActionResult Index(string sortOrder, string searchString,
-            string currentFilter, int? page, string status,
-            string paymentType, string start, string end, string filter)
+        public ActionResult Index(string sortOrder, string searchString, string currentFilter,
+            int? page, string status, string paymentType, string start, string end, string filter)
         {
             if (!string.IsNullOrEmpty(filter))
             {
@@ -75,7 +88,7 @@ namespace Project_MVC.Controllers
             // Ấn tiếp vào link Full Name thì sortOrder = "" cho nên NameSortParm = name_desc
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
-            if (searchString != null)
+            if (!string.IsNullOrEmpty(searchString))
             {
                 page = 1;
             }
@@ -84,49 +97,49 @@ namespace Project_MVC.Controllers
                 searchString = currentFilter;
             }
 
-            ViewBag.CurrentFilter = searchString;
+            //ViewBag.CurrentFilter = searchString;
 
-            var orders = mySQLOrderService.GetList();
+            var orders = GetCurrentOrders(searchString, status, paymentType, start, end);
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                int id;
-                if (Int32.TryParse(searchString, out id))
-                {
-                    orders = orders.Where(s => s.Id == id);
-                }
-                else
-                {
-                    orders = orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
-                }
-            }
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    int id;
+            //    if (Int32.TryParse(searchString, out id))
+            //    {
+            //        orders = orders.Where(s => s.Id == id);
+            //    }
+            //    else
+            //    {
+            //        orders = orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
+            //    }
+            //}
 
-            if (!String.IsNullOrEmpty(status))
-            {
-                orders = orders.Where(s => s.Status == (OrderStatus)Enum.Parse(typeof(OrderStatus), status));
-            }
+            //if (!String.IsNullOrEmpty(status))
+            //{
+            //    orders = orders.Where(s => s.Status == (OrderStatus)Enum.Parse(typeof(OrderStatus), status));
+            //}
 
-            if (!String.IsNullOrEmpty(paymentType))
-            {
-                orders = orders.Where(s => s.PaymentTypeId == (PaymentType)Enum.Parse(typeof(PaymentType), paymentType));
-            }
+            //if (!String.IsNullOrEmpty(paymentType))
+            //{
+            //    orders = orders.Where(s => s.PaymentTypeId == (PaymentType)Enum.Parse(typeof(PaymentType), paymentType));
+            //}
 
-            var compareDate = new DateTimeModel();
+            //var compareDate = new DateTimeModel();
 
-            if (!string.IsNullOrEmpty(start))
-            {
-                var compareStartDate = Utility.GetNullableDate(start).Value.Date + new TimeSpan(0, 0, 0);
-                orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
-                compareDate.startDate = compareStartDate;
-            }
-            if (!string.IsNullOrEmpty(end))
-            {
-                var compareEndDate = Utility.GetNullableDate(end).Value.Date + new TimeSpan(23, 59, 59);
-                orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
-                compareDate.endDate = compareEndDate;
-            }
+            //if (!string.IsNullOrEmpty(start))
+            //{
+            //    var compareStartDate = Utility.GetNullableDate(start).Value.Date + new TimeSpan(0, 0, 0);
+            //    orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
+            //    compareDate.startDate = compareStartDate;
+            //}
+            //if (!string.IsNullOrEmpty(end))
+            //{
+            //    var compareEndDate = Utility.GetNullableDate(end).Value.Date + new TimeSpan(23, 59, 59);
+            //    orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
+            //    compareDate.endDate = compareEndDate;
+            //}
 
-            ViewBag.CompareDate = compareDate;
+            //ViewBag.CompareDate = compareDate;
 
             switch (sortOrder)
             {
@@ -143,7 +156,6 @@ namespace Project_MVC.Controllers
                     orders = orders.OrderBy(s => s.ShipName);
                     break;
             }
-
 
             int pageSize = Constant.PageSize;
             int pageNumber = (page ?? 1);
@@ -192,9 +204,68 @@ namespace Project_MVC.Controllers
             return View(orders.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 
+        public IEnumerable<Order> GetCurrentOrders(string searchString, string status, 
+            string paymentType, string start, string end)
+        {
+            var orders = mySQLOrderService.GetList();
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                int id;
+                if (Int32.TryParse(searchString, out id))
+                {
+                    orders = orders.Where(s => s.Id == id);
+                }
+                else
+                {
+                    orders = orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
+                }
+            }
+
+            ViewBag.CurrentFilter = searchString;
+
+            if (!String.IsNullOrEmpty(status))
+            {
+                orders = orders.Where(s => s.Status == (OrderStatus)Enum.Parse(typeof(OrderStatus), status));
+                ViewBag.DDLStatus = FlowerUtility.SelectListFor((OrderStatus)Enum.Parse(typeof(OrderStatus), status));
+            }
+            else
+            {
+                ViewBag.DDLStatus = FlowerUtility.SelectListFor<OrderStatus>();
+            }
+
+            if (!String.IsNullOrEmpty(paymentType))
+            {
+                orders = orders.Where(s => s.PaymentTypeId == (PaymentType)Enum.Parse(typeof(PaymentType), paymentType));
+                ViewBag.DDLPaymentType = FlowerUtility.SelectListFor((PaymentType)Enum.Parse(typeof(PaymentType), paymentType));
+            }
+            else
+            {
+                ViewBag.DDLPaymentType = FlowerUtility.SelectListFor<PaymentType>();
+            }
+
+            var compareDate = new DateTimeModel();
+
+            if (!string.IsNullOrEmpty(start))
+            {
+                var compareStartDate = Utility.GetNullableDate(start).Value.Date + new TimeSpan(0, 0, 0);
+                orders = orders.Where(s => (s.CreatedAt >= compareStartDate));
+                compareDate.startDate = compareStartDate;
+            }
+            if (!string.IsNullOrEmpty(end))
+            {
+                var compareEndDate = Utility.GetNullableDate(end).Value.Date + new TimeSpan(23, 59, 59);
+                orders = orders.Where(s => (s.CreatedAt <= compareEndDate));
+                compareDate.endDate = compareEndDate;
+            }
+
+            ViewBag.CompareDate = compareDate;
+            return orders;
+        }
+
         [Authorize]
-        public ActionResult IndexCustomer(string sortOrder, string searchString,
-            string currentFilter, int? page, string start, string end, string status,
+        public ActionResult IndexCustomer(string sortOrder, string searchString, string currentFilter,
+            int? page, string start, string end, string status,
             string paymentType, string filter)
         {
             if (!string.IsNullOrEmpty(filter))
@@ -215,7 +286,7 @@ namespace Project_MVC.Controllers
             // Ấn tiếp vào link Full Name thì sortOrder = "" cho nên NameSortParm = name_desc
             ViewBag.DateSortParm = sortOrder == "Date" ? "date_desc" : "Date";
 
-            if (searchString != null)
+            if (!string.IsNullOrEmpty(searchString))
             {
                 page = 1;
             }
@@ -224,49 +295,49 @@ namespace Project_MVC.Controllers
                 searchString = currentFilter;
             }
 
-            ViewBag.CurrentFilter = searchString;
+            var orders = GetCurrentOrders(searchString, status, paymentType, start, end).Where(s => s.UserId == userService.GetCurrentUserId());
 
-            var orders = mySQLOrderService.GetList().Where(s => s.UserId == userService.GetCurrentUserId());
+            //ViewBag.CurrentFilter = searchString;
 
-            if (!String.IsNullOrEmpty(searchString))
-            {
-                int id;
-                if (Int32.TryParse(searchString, out id))
-                {
-                    orders = orders.Where(s => s.Id == id);
-                }
-                else
-                {
-                    orders = orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
-                }
-            }
+            //if (!String.IsNullOrEmpty(searchString))
+            //{
+            //    int id;
+            //    if (Int32.TryParse(searchString, out id))
+            //    {
+            //        orders = orders.Where(s => s.Id == id);
+            //    }
+            //    else
+            //    {
+            //        orders = orders.Where(s => (!string.IsNullOrEmpty(s.ShipName) && s.ShipName.Contains(searchString)) || (!string.IsNullOrEmpty(s.CreatedBy) && s.CreatedBy.Contains(searchString)));
+            //    }
+            //}
 
-            if (!String.IsNullOrEmpty(status))
-            {
-                orders = orders.Where(s => s.Status == (OrderStatus)Enum.Parse(typeof(OrderStatus), status));
-            }
+            //if (!String.IsNullOrEmpty(status))
+            //{
+            //    orders = orders.Where(s => s.Status == (OrderStatus)Enum.Parse(typeof(OrderStatus), status));
+            //}
 
-            if (!String.IsNullOrEmpty(paymentType))
-            {
-                orders = orders.Where(s => s.PaymentTypeId == (PaymentType)Enum.Parse(typeof(PaymentType), paymentType));
-            }
+            //if (!String.IsNullOrEmpty(paymentType))
+            //{
+            //    orders = orders.Where(s => s.PaymentTypeId == (PaymentType)Enum.Parse(typeof(PaymentType), paymentType));
+            //}
 
-            var compareDate = new DateTimeModel();
+            //var compareDate = new DateTimeModel();
 
-            if (!string.IsNullOrEmpty(start))
-            {
-                var compareStartDate = Utility.GetNullableDate(start).Value.Date + new TimeSpan(0, 0, 0);
-                orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
-                compareDate.startDate = compareStartDate;
-            }
-            if (!string.IsNullOrEmpty(end))
-            {
-                var compareEndDate = Utility.GetNullableDate(end).Value.Date + new TimeSpan(23, 59, 59);
-                orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
-                compareDate.endDate = compareEndDate;
-            }
+            //if (!string.IsNullOrEmpty(start))
+            //{
+            //    var compareStartDate = Utility.GetNullableDate(start).Value.Date + new TimeSpan(0, 0, 0);
+            //    orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
+            //    compareDate.startDate = compareStartDate;
+            //}
+            //if (!string.IsNullOrEmpty(end))
+            //{
+            //    var compareEndDate = Utility.GetNullableDate(end).Value.Date + new TimeSpan(23, 59, 59);
+            //    orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
+            //    compareDate.endDate = compareEndDate;
+            //}
 
-            ViewBag.CompareDate = compareDate;
+            //ViewBag.CompareDate = compareDate;
 
             switch (sortOrder)
             {
@@ -274,10 +345,10 @@ namespace Project_MVC.Controllers
                     orders = orders.OrderByDescending(s => s.ShipName);
                     break;
                 case "Date":
-                    orders = orders.OrderBy(s => s.UpdatedAt);
+                    orders = orders.OrderBy(s => s.CreatedAt);
                     break;
                 case "date_desc":
-                    orders = orders.OrderByDescending(s => s.UpdatedAt);
+                    orders = orders.OrderByDescending(s => s.CreatedAt);
                     break;
                 default:
                     orders = orders.OrderBy(s => s.ShipName);
