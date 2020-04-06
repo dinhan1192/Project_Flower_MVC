@@ -11,3 +11,11 @@
     margin: 5px 5px 5px 0px;
     padding: 5px 5px 5px 0px;
 }
+
+.imagesDetailFlowers {
+    display: flex;
+    margin-left: 0px;
+    padding-left: 0px;
+    width: 800px;
+    flex-wrap: wrap;
+}
