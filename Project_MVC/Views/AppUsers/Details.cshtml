@@ -1,8 +1,11 @@
 ﻿@model Project_MVC.Models.AppUser
+@using Project_MVC.Models
 
 @{
     ViewBag.Title = "Details";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var roles = ViewBag.Roles as List<string>;
 }
 
 <h1>Details</h1>
@@ -10,7 +13,7 @@
 
 <div>
     <h1>AppUser</h1>
-    <hr/>
+    <hr />
     <div class="container">
         <div class="row">
             <div class="col-md-12 tablebox ">
@@ -53,6 +56,19 @@
                             @Html.DisplayFor(model => model.Gender)
                         </div>
                     </div>
+
+                    <br />
+                    <div class="form-group">
+                        <div class="control-label col-md-3">
+                            Roles:
+                        </div>
+                        <div class="control-label col-md-4">
+                            @foreach (var item in roles)
+                            {
+                                <span>@item </span>
+                            }
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-md-6">
@@ -66,14 +82,14 @@
                     </div>
 
                     @*<br />
-                    <div class="form-group">
-                        <div class="control-label col-md-3">
-                            @Html.DisplayNameFor(model => model.Status):
-                        </div>
-                        <div class="control-label col-md-4">
-                            @Html.DisplayFor(model => model.Status)
-                        </div>
-                    </div>*@
+                        <div class="form-group">
+                            <div class="control-label col-md-3">
+                                @Html.DisplayNameFor(model => model.Status):
+                            </div>
+                            <div class="control-label col-md-4">
+                                @Html.DisplayFor(model => model.Status)
+                            </div>
+                        </div>*@
 
                     <br />
                     <div class="form-group">

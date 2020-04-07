@@ -12,6 +12,9 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using System.Net;
 using Project_MVC.Services;
 using Project_MVC.Utils;
+using System.Data.Entity.Migrations;
+using System.Web.Security;
+using Microsoft.Ajax.Utilities;
 
 namespace Project_MVC.Controllers
 {
@@ -43,6 +46,8 @@ namespace Project_MVC.Controllers
         public AppUsersController()
         {
             userService = new UserService();
+            //var roleStore = new RoleStore<AppRole>(DbContext);
+            //roleManager = new RoleManager<AppRole>(roleStore);
         }
         //public AppUsersController()
         //{
@@ -116,7 +121,7 @@ namespace Project_MVC.Controllers
         // GET: AppUsers
         public ActionResult Index(int? page)
         {
-            var users = DbContext.Users.ToList();
+            var users = DbContext.Users.Where(s => s.Status == AppUser.UserStatus.NotDeleted).ToList();
             int pageSize = Constant.PageSize;
             int pageNumber = (page ?? 1);
             ThisPage thisPage = new ThisPage()
@@ -135,6 +140,10 @@ namespace Project_MVC.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             var user = DbContext.Users.Find(id);
+            var roles = user.Roles;
+            var lstRoleNames = new List<string>();
+            roles.ForEach(s => lstRoleNames.Add(DbContext.IdentityRoles.Find(s.RoleId).Name));
+            ViewBag.Roles = lstRoleNames;
             if (user == null || user.IsDeleted())
             {
                 return HttpNotFound();
@@ -160,6 +169,8 @@ namespace Project_MVC.Controllers
                 existUser.Status = AppUser.UserStatus.Deleted;
                 existUser.DeletedAt = DateTime.Now;
                 existUser.DeletedBy = userService.GetCurrentUserName();
+                DbContext.Users.AddOrUpdate(existUser);
+                DbContext.SaveChanges();
             }
             return RedirectToAction("Index");
         }
