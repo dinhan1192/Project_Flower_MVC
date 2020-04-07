@@ -82,7 +82,7 @@ namespace Project_MVC.Controllers
         public ActionResult UpdatePerFlower(string code, string quantity, string returnCategoryCode)
         {
             // Check số lượng có hợp lệ không?
-            int intQuantity = Convert.ToInt32(quantity);
+            int intQuantity = Utility.GetInt(quantity);
             if (intQuantity == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Invalid Quantity");
@@ -268,6 +268,20 @@ namespace Project_MVC.Controllers
                 lstFlowersModel.Add(flowerModel);
             }
             ViewBag.ListFlowersInOrder = lstFlowersModel;
+
+            // Paypal
+            //bool useSandbox = Convert.ToBoolean(ConfigurationManager.AppSettings["IsSandbox"]);
+            //var paypal = new PayPalModel(useSandbox);
+            ////Session[CurrentOrder] = order;
+          
+            //paypal.item_name = "Order of " + userService.GetCurrentUserName();
+            //paypal.amount = order.TotalPrice.ToString();
+            //var strParam = orderId + "," + userService.GetCurrentUserName() + "," + userService.GetCurrentUserId();
+            //paypal.notify_url = paypal.notify_url + "?strParam=" + strParam;
+            //paypal.@return = paypal.@return + "?orderId=" + orderId;
+            //paypal.cancel_return = paypal.cancel_return + "?orderId=" + orderId;
+
+            //ViewBag.Paypal = paypal;
             return View(order);
         }
 
@@ -432,19 +446,19 @@ namespace Project_MVC.Controllers
             var order = db.Orders.Find(orderId);
             Session[CurrentOrder] = order;
 
-            var lstPaypal = new List<string>();
+            //var lstPaypal = new List<string>();
 
-            foreach (var item in order.OrderDetails)
-            {
-                var flowerName = FlowerUtility.GetFlowerName(item.FlowerCode);
-                lstPaypal.Add(flowerName);
-                //paypal.amount += "amount_" + itemCount.ToString() + cartItem.Product.Price;
-                //paypal.quantity += "quantity_" + itemCount.ToString() + cartItem.Quantity;
-                //paypal.shipping += "shipping_" + itemCount.ToString() + cartItem.Product.Price;
-                //paypal.handling += "handling_" + itemCount.ToString() + "0";
-            }
+            //foreach (var item in order.OrderDetails)
+            //{
+            //    var flowerName = FlowerUtility.GetFlowerName(item.FlowerCode);
+            //    lstPaypal.Add(flowerName);
+            //    //paypal.amount += "amount_" + itemCount.ToString() + cartItem.Product.Price;
+            //    //paypal.quantity += "quantity_" + itemCount.ToString() + cartItem.Quantity;
+            //    //paypal.shipping += "shipping_" + itemCount.ToString() + cartItem.Product.Price;
+            //    //paypal.handling += "handling_" + itemCount.ToString() + "0";
+            //}
 
-            paypal.item_name = lstPaypal.First();
+            paypal.item_name = "Order of " + userService.GetCurrentUserName();
             paypal.amount = order.TotalPrice.ToString();
             var strParam = orderId + "," + userService.GetCurrentUserName() + "," + userService.GetCurrentUserId();
             paypal.notify_url = paypal.notify_url + "?strParam=" + strParam;

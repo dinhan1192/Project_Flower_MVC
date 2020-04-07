@@ -181,9 +181,13 @@
                     var oldQuantity = $(this).attr("data-quantity");
                     if (quantity == 0) {
                         $.alert({
-                    title: 'Quantity!',
-                    content: 'Quantity must be more than 0',
+                            title: 'Quantity!',
+                            content: 'Quantity must be more than 0',
                         });
+                        $(this).val(oldQuantity);
+                        return false;
+                    } else if(quantity > 2147483647) {
+                        $.alert("Too much quantity!");
                         $(this).val(oldQuantity);
                         return false;
                     }
@@ -227,7 +231,7 @@
             function GetLatestTotalPrice() {
                 var grandTotalPrice = 0;
                 $.each(lstTotalPricePerFlower, function () {
-                    var totalPricePerFlow = $(this).val().substring(1);
+                    var totalPricePerFlow = $(this).val().substring(1).replace(new RegExp(",", "g"), '');
                     grandTotalPrice = grandTotalPrice + parseFloat(totalPricePerFlow);
                 });
 
