@@ -91,31 +91,31 @@
             <table class="table table-bordered table-hover" style="text-align:center;">
                 <thead>
                     <tr>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.Id)
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.PaymentTypeId)
                         </th>
-                        <th>
+                        <th class="text-left">
                             @Html.DisplayNameFor(model => model.ShipName)
                         </th>
-                        <th>
+                        <th class="text-left">
                             @Html.DisplayNameFor(model => model.ShipAddress)
                         </th>
-                        <th>
+                        <th class="text-left">
                             @Html.DisplayNameFor(model => model.ShipPhone)
                         </th>
-                        <th>
+                        <th class="text-right">
                             @Html.DisplayNameFor(model => model.TotalPrice)
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.CreatedAt)
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.UpdatedAt)
                         </th>
-                        <th>
+                        <th class="text-center">
                             @Html.DisplayNameFor(model => model.Status)
                         </th>
                         <th></th>
@@ -125,32 +125,32 @@
                 @foreach (var item in Model)
                 {
                     <tr>
-                        <td>
+                        <td class="text-center">
                             @Html.DisplayFor(modelItem => item.Id)
                         </td>
-                        <td>
+                        <td class="text-center">
                             @Html.DisplayFor(modelItem => item.PaymentTypeId)
                         </td>
-                        <td>
+                        <td class="text-left">
                             @Html.DisplayFor(modelItem => item.ShipName)
                         </td>
-                        <td>
+                        <td class="text-left">
                             @Html.DisplayFor(modelItem => item.ShipAddress)
                         </td>
-                        <td>
+                        <td class="text-left">
                             @Html.DisplayFor(modelItem => item.ShipPhone)
                         </td>
-                        <td>
+                        <td class="text-right">
                             @item.TotalPrice.ToString("C", FlowerUtility.UnitedStates)
                             @*@Html.DisplayFor(modelItem => item.Price)*@
                         </td>
-                        <td>
+                        <td class="text-center">
                             @Html.DisplayFor(modelItem => item.CreatedAt)
                         </td>
-                        <td>
+                        <td class="text-center">
                             @Html.DisplayFor(modelItem => item.UpdatedAt)
                         </td>
-                        <td>
+                        <td class="text-center">
                             @Html.DisplayFor(modelItem => item.Status)
                         </td>
                         <td>
