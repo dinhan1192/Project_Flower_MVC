@@ -18,7 +18,8 @@
         <div class="col-md-12">
             <div class="col-md-3 firstbox">
                 <div class="form-group">
-                    <button class="btn btn-primary">@Html.ActionLink("Create New", "Create")</button>
+                    @*<button class="btn btn-primary">@Html.ActionLink("Create New", "Create")</button>*@
+                    <a href="@Url.Action("Create", "Categories")" class="btn btn-primary">Create New</a>
                 </div>
             </div>
             <div class="col-md-9 secondbox secondbox2">
