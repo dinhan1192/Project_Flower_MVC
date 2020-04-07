@@ -9,7 +9,20 @@
     var ListFlowers = new MySQLFlowerService();
     var CategoryCode = ViewBag.CategoryCode;
     var lstFlowersInOrder = ViewBag.ListFlowersInOrder as List<FlowersInOrderModel>;
+
+    //var paypal = ViewBag.Paypal as PayPalModel;
 }
+
+@*Paypal*@
+@*@Html.Hidden("cmd", paypal.cmd)
+@Html.Hidden("business", paypal.business)
+@Html.Hidden("noShipping", paypal.no_shipping)
+@Html.Hidden("returnUrl", paypal.@return)
+@Html.Hidden("cancelReturn", paypal.cancel_return)
+@Html.Hidden("notifyUrl", paypal.notify_url)
+@Html.Hidden("currencyCode", paypal.currency_code)
+@Html.Hidden("itemName", paypal.item_name)
+@Html.Hidden("amount", paypal.amount)*@
 
 <div class="container">
     <div class="row">
@@ -118,7 +131,8 @@
                     {
                         <div class="form-group  btn btn-success" style="margin-left:380px">
                             @*<input type="submit" name="btnConfirm" value="Check Out with Paypal" />*@
-                            @Html.ActionLink("Payment", "ValidateCommand", new { orderId = Model.Id })
+                            @Html.ActionLink("Payment", "ValidateCommand", new { orderId = Model.Id, id = "paypal-button-container" })
+                            @*<div id="paypal-button-container"></div>*@
                         </div>
                     }
                     break;
@@ -181,3 +195,137 @@
     </div>
 </div>
 <br />
+
+@section scripts{
+    @*<script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD"></script>*@
+    @*<script>
+            // Render the PayPal button into #paypal-button-container
+            paypal.Buttons({
+                style: {
+                    size: 'small',
+                    color: 'gold',
+                    shape: 'pill',
+                    label: 'checkout',
+                    tagline: 'true'
+                },
+
+                // Set up the transaction
+                createOrder: function (data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: '0.01'
+                            }
+                        }]
+                    });
+                },
+
+                // Finalize the transaction
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (details) {
+                        // Show a success message to the buyer
+                        alert('Transaction completed by ' + details.payer.name.given_name + '!');
+                    });
+                }
+
+
+            }).render('#paypal-button-container');
+        </script>*@
+    @*<script>
+            //paypal.Buttons({
+
+            //    // Set up the transaction
+            //    createOrder: function (data, actions) {
+            //        return actions.order.create({
+            //            purchase_units: [{
+            //                amount: {
+            //                    value: '0.01'
+            //                }
+            //            }]
+            //        });
+            //    },
+
+            //    // Finalize the transaction
+            //    onApprove: function (data, actions) {
+            //        return actions.order.capture().then(function (details) {
+            //            // Show a success message to the buyer
+            //            $.alert('Transaction completed by ' + details.payer.name.given_name + '!');
+            //        });
+            //    }
+
+            //    onerror: function (err) {
+            //        return
+            //    }
+
+
+            //}).render('#paypal-button-container');
+            var cmdPaypal = $("#cmd").val;
+            var businessPaypal = $("#business").val;
+            var noShippingPaypal = $("#noShipping").val;
+            var returnUrlPaypal = $("#returnUrl").val;
+            var cancelReturnPaypal = $("#cancelReturn").val;
+            var notifyUrlPaypal = $("#notifyUrl").val;
+            var currencyCodePaypal = $("#currencyCode").val;
+            var itemNamePaypal = $("#itemName").val;
+            var amountPaypal = $("#amount").val;
+            paypal.Button.render({
+                env: 'sandbox', // sandbox | production
+                client: {
+                    sandbox: 'https://www.sandbox.paypal.com/cgi-bin/webscr'
+                },
+
+                style: {
+                    size: 'small',
+                    color: 'gold',
+                    shape: 'pill',
+                    label: 'checkout',
+                    tagline: 'true'
+                },
+
+                // Show the buyer a 'Pay Now' button in the checkout flow
+                commit: true,
+
+                // payment() is called when the button is clicked
+                payment: function (data, actions) {
+                    // Make a call to the REST API to set up the payment
+                    return actions.payment.create({
+                        payment: {
+                            transactions: [
+                                {
+                                    amount: { total: amountPaypal, currency: 'USD' },
+                                    cmd: cmdPaypal,
+                                    business: businessPaypal,
+                                    no_shipping: noShippingPaypal,
+                                    item_name: itemNamePaypal
+                                }
+                            ],
+                            redirect_urls: {
+                                return_url: returnUrlPaypal,
+                                cancel_url: cancelReturnPaypal,
+                                notify_url: notifyUrlPaypal
+                            },
+                        },
+                    });
+                },
+
+                // onAuthorize() is called when the buyer approves the payment
+                onAuthorize: function (data, actions) {
+
+                    // Make a call to the REST API to execute the payment
+                    return actions.payment.execute().then(function () {
+                        actions.redirect();
+                    }
+                    );
+                },
+
+                onCancel: function (data, actions) {
+                    actions.redirect();
+                },
+
+                onerror: function (err) {
+                    $.alert(err);
+                }
+
+            }, '#paypal-button-container');
+        </script>*@
+}
