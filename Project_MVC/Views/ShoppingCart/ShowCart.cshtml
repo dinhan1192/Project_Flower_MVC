@@ -59,12 +59,21 @@
                                         <img src="@firstFlowerImage.ImageUrl" alt="Smiley face" height="200" width="200">
                                     </td>
                                     <td>@item.Value.FlowerName</td>
-                                    <td><input type="number" name="quantity" id="quantity" value="@item.Value.Quantity" data-code="@item.Value.FlowerCode" data-quantity="@item.Value.Quantity" /></td>
+                                    <td>
+                                        <input type="number" name="quantity" id="quantity"
+                                               value="@item.Value.Quantity" data-code="@item.Value.FlowerCode"
+                                               data-quantity="@item.Value.Quantity" data-unitprice="@item.Value.Price" />
+                                    </td>
                                     <td>@item.Value.Price.ToString("C", FlowerUtility.UnitedStates)</td>
                                     @{
                                         var TotalPricePerFlower = item.Value.Quantity * item.Value.Price;
                                     }
-                                    <td>@TotalPricePerFlower.ToString("C", FlowerUtility.UnitedStates)</td>
+                                    <td>
+                                        @*<span class="totalPricePerFlower">@TotalPricePerFlower.ToString("C", FlowerUtility.UnitedStates)</span>*@
+                                        <input type="text" class="totalPricePerFlower" id="totalPricePerFlow" name="totalPricePerFlow"
+                                               readonly style="width:100px;"
+                                               value="@TotalPricePerFlower.ToString("C", FlowerUtility.UnitedStates)" />
+                                    </td>
                                     <td>
                                         @*<a class="btn btn-info btn-sm" href="javascript:void(0);" id="updatePerFlower" name="updatePerFlower" data-name="@item.Value.FlowerName" data-returnCategoryCode="@categoryCode" data-code="@item.Value.FlowerCode" data-quantity="@item.Value.Quantity">
                                                 <svg class="bi bi-brush" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -141,7 +150,7 @@
                     <table class="total_rate">
                         <tr>
                             <th>Grand Total</th>
-                            <th>@cart.GetTotalPrice().ToString("C", FlowerUtility.UnitedStates)</th>
+                            <th><span id="totalPriceCart">@cart.GetTotalPrice().ToString("C", FlowerUtility.UnitedStates)</span></th>
                         </tr>
                     </table>
                 </div>
@@ -156,7 +165,8 @@
     <script>
         $(document).ready(function () {
             var lstQuantities = document.querySelectorAll('[name="quantity"]');
-              var lstUpdate = document.querySelectorAll('[name="updatePerFlower"]');
+            var lstUpdate = document.querySelectorAll('[name="updatePerFlower"]');
+            var lstTotalPricePerFlower = document.querySelectorAll('[name="totalPricePerFlow"]');
             $.each(lstQuantities, function () {
                 $(this).keypress(function (e) {
                     if (e.which != 8 && e.which != 0 && (e.which < 48 || e.which > 57)) {
@@ -167,6 +177,7 @@
 
                 $(this).bind('keyup mouseup', function () {
                     var quantity = $(this).val();
+                    var unitPrice = $(this).attr("data-unitprice");
                     var oldQuantity = $(this).attr("data-quantity");
                     if (quantity == 0) {
                         $.alert({
@@ -191,8 +202,15 @@
             }
                       });
                     $(this).attr("data-quantity", oldQuantity);
+                    var newTotalPricePerFlower = quantity * unitPrice;
+                    $(this).closest('tr').find('.totalPricePerFlower').val(newTotalPricePerFlower
+                        .toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+                    //$(this).parent().next().find('.totalPricePerFlower').innerHTML = newTotalPricePerFlower
+                    //    .toLocaleString('en-US', { style: 'currency', currency: 'USD' });
                     //$(this).closest('.updateQuantity').find('#updatePerFlower').attr('data-quantity', $(this).val());
                     //var quantity = $(this).closest('tr').find('#updatePerFlower').attr('data-quantity');
+
+                    GetLatestTotalPrice();
             });
 
 //            $('#quantity').each(function () {
@@ -205,6 +223,17 @@
                 //    $(this).closest('#updateCart').attr('data-quantity', $(this).val());
                 //})
             })
+
+            function GetLatestTotalPrice() {
+                var grandTotalPrice = 0;
+                $.each(lstTotalPricePerFlower, function () {
+                    var totalPricePerFlow = $(this).val().substring(1);
+                    grandTotalPrice = grandTotalPrice + parseFloat(totalPricePerFlow);
+                });
+
+                document.getElementById('totalPriceCart').innerHTML = grandTotalPrice
+                    .toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+            }
 
             $.each(lstUpdate, function () {
                  $(this).click(function () {
