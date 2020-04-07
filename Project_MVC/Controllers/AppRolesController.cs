@@ -72,5 +72,25 @@ namespace Project_MVC.Controllers
             }
             return View(appRole);
         }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(string id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var existRole = _db.IdentityRoles.Find(id);
+            if (existRole == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.NotFound);
+            }
+            if (ModelState.IsValid)
+            {
+                roleManager.Delete(existRole);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
