@@ -42,7 +42,7 @@ namespace Project_MVC.Controllers
             {
                 filterThisPage = JsonConvert.DeserializeObject<ThisPage>(filter);
             }
-            var orders = GetCurrentOrders(filterThisPage.SearchString, filterThisPage.Status, 
+            var orders = GetCurrentOrders(filterThisPage.SearchString, filterThisPage.Status,
                 filterThisPage.PaymentType, filterThisPage.StartDate, filterThisPage.EndDate);
             //foreach (var item in orders)
             //{
@@ -66,6 +66,36 @@ namespace Project_MVC.Controllers
             Response.End();
             return Json(true, JsonRequestBehavior.AllowGet);
         }
+
+//        public ActionResult ExportToXML(int id)
+//        {
+//            var order = mySQLOrderService.Detail(id);
+//            //var lstFlowersModel = new List<FlowersInOrderModel>();
+//            foreach (var item in order.OrderDetails)
+//            {
+//                var flowerModel = new FlowersInOrderModel()
+//                {
+//                    Id = item.Id,
+//                    FlowerName = mySQLFlowerService.Detail(item.FlowerCode).Name,
+//                    ImageUrl = mySQLFlowerService.Detail(item.FlowerCode).FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl,
+//                    Quantity = item.Quantity,
+//                    TotalPricePerFlower = item.Quantity * item.UnitPrice
+//                };
+//                order.FlowersInOrderModels.Add(flowerModel);
+//            }
+
+//            Response.ClearContent();
+//            Response.Buffer = true;
+//            Response.AddHeader("content-disposition", string.Format("attachment; filename = Invoice-{0}.xml", id));
+//            Response.ContentType = "text/xml";
+
+//            var serializer = new
+//System.Xml.Serialization.XmlSerializer(order.GetType());
+//            serializer.Serialize(Response.OutputStream, order);
+
+//            return View();
+//        }
+
         [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         public ActionResult Index(string sortOrder, string searchString, string currentFilter,
             int? page, string status, string paymentType, string start, string end, string filter)
@@ -204,7 +234,7 @@ namespace Project_MVC.Controllers
             return View(orders.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 
-        public IEnumerable<Order> GetCurrentOrders(string searchString, string status, 
+        public IEnumerable<Order> GetCurrentOrders(string searchString, string status,
             string paymentType, string start, string end)
         {
             var orders = mySQLOrderService.GetList();

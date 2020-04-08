@@ -12,6 +12,7 @@ using System.Web.Mvc;
 namespace Project_MVC.Controllers
 {
     [Authorize(Roles = Constant.Admin)]
+    [CustomAuthorization]
     public class AppRolesController : Controller
     {
         private MyDbContext _db;

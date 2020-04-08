@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -43,5 +44,11 @@ namespace Project_MVC.Models
         public int Quantity { get; set; }
         [DisplayName("Total Price")]
         public double TotalPricePerFlower { get; set; }
+        //[NotMapped]
+        //[DisplayName("Order Id")]
+        //public int? OrderId { get; set; }
+        //[NotMapped]
+        //[ForeignKey("OrderId")]
+        //public virtual Order Order { get; set; }
     }
 }

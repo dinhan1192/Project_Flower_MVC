@@ -60,5 +60,7 @@ namespace Project_MVC.Models
             return this.Status == OrderStatus.Deleted;
         }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+        //[NotMapped]
+        //public virtual ICollection<FlowersInOrderModel> FlowersInOrderModels { get; set; }
     }
 }

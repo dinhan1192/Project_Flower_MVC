@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Project_MVC.App_Start;
 using Project_MVC.Models;
+using Project_MVC.Services;
 using Project_MVC.Utils;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,8 @@ namespace Project_MVC.Controllers
             }
         }
 
+        private IUserService userService;
+
         //public AccountsController()
         //{
         //    //var roleStore = new RoleStore<AppRole>(dbContext);
@@ -66,6 +69,7 @@ namespace Project_MVC.Controllers
         //}
         public AccountsController()
         {
+            userService = new UserService();
         }
 
         private void Validate(AppUser appUser)
@@ -219,20 +223,106 @@ namespace Project_MVC.Controllers
                     return Redirect(returnUrl);
                 }
 
-                var lstRoleName = UserManager.GetRoles(user.Id);
-                string roleName = null;
-                roleName = roleName ?? (lstRoleName.Contains(Constant.Admin) ? Constant.Admin : null);
-                roleName = roleName ?? (lstRoleName.Contains(Constant.Employee) ? Constant.Employee : null);
+                return Redirect("/Home/Index");
 
-                switch (roleName)
+                //var lstRoleName = UserManager.GetRoles(user.Id);
+                //string roleName = null;
+                //roleName = roleName ?? (lstRoleName.Contains(Constant.Admin) ? Constant.Admin : null);
+                //roleName = roleName ?? (lstRoleName.Contains(Constant.Employee) ? Constant.Employee : null);
+
+                //switch (roleName)
+                //{
+                //    case Constant.Admin:
+                //        return Redirect("/Flowers/Index");
+                //    case Constant.Employee:
+                //        return Redirect("/Flowers/Index");
+                //    default:
+                //        return Redirect("/Home/Index");
+                //}
+
+                //if (UserManager.IsInRole(user.Id, Constant.Admin) || UserManager.IsInRole(user.Id, Constant.Employee))
+                //{
+                //    return Redirect("/Products/Index");
+                //} else
+                //{
+                //    return Redirect("/Products/IndexCustomer");
+                //}
+            }
+            else if (user != null && user.EmailConfirmed == false)
+            {
+                ModelState.AddModelError("UserName", "Email chưa confirm");
+            }
+            else
+            {
+                ModelState.AddModelError("UserName", "UserName hoặc Password nhập sai");
+            }
+
+            return View(appUser);
+        }
+
+        [HttpGet]
+        public ActionResult LoginAsAdmin(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            //if (!string.IsNullOrEmpty(returnUrl))
+            //{
+            //    return Redirect(returnUrl);
+            //}
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LoginAsAdmin([Bind(Include = "UserName,Password")]AppUser appUser, string returnUrl)
+        {
+            if (Request.IsAuthenticated)
+            {
+                FlowerUtility.ClearCart();
+            }
+
+            if (string.IsNullOrEmpty(appUser.UserName))
+            {
+                ModelState.AddModelError("UserName", "UserName is required.");
+                return View(appUser);
+            }
+
+            if (string.IsNullOrEmpty(appUser.Password))
+            {
+                ModelState.AddModelError("Password", "Password is required.");
+                return View(appUser);
+            }
+
+            var user = UserManager.Find(appUser.UserName, appUser.Password);
+
+            if (user != null && user.EmailConfirmed == true)
+            {
+                var authenticationManager = System.Web.HttpContext.Current
+                    .GetOwinContext().Authentication;
+                var userIdentity = UserManager.CreateIdentity(
+                    user, DefaultAuthenticationTypes.ApplicationCookie);
+                authenticationManager.SignIn(new AuthenticationProperties() { IsPersistent = false }, userIdentity);
+
+                if (!string.IsNullOrEmpty(returnUrl))
                 {
-                    case Constant.Admin:
-                        return Redirect("/Flowers/Index");
-                    case Constant.Employee:
-                        return Redirect("/Flowers/Index");
-                    default:
-                        return Redirect("/Home/Index");
+                    return Redirect(returnUrl);
                 }
+
+                return Redirect("/Flowers/Index");
+
+                //var lstRoleName = UserManager.GetRoles(user.Id);
+                //string roleName = null;
+                //roleName = roleName ?? (lstRoleName.Contains(Constant.Admin) ? Constant.Admin : null);
+                //roleName = roleName ?? (lstRoleName.Contains(Constant.Employee) ? Constant.Employee : null);
+
+                //switch (roleName)
+                //{
+                //    case Constant.Admin:
+                //        return Redirect("/Flowers/Index");
+                //    case Constant.Employee:
+                //        return Redirect("/Flowers/Index");
+                //    default:
+                //        return Redirect("/Home/Index");
+                //}
 
                 //if (UserManager.IsInRole(user.Id, Constant.Admin) || UserManager.IsInRole(user.Id, Constant.Employee))
                 //{
@@ -549,7 +639,20 @@ namespace Project_MVC.Controllers
         public ActionResult Logout()
         {
             LogoutUser();
-            return RedirectToAction("ClearShoppingCart", "ShoppingCart", new { isLogout = true });
+            var lstRoleName = UserManager.GetRoles(userService.GetCurrentUserId());
+            string roleName = null;
+            roleName = roleName ?? (lstRoleName.Contains(Constant.Admin) ? Constant.Admin : null);
+            roleName = roleName ?? (lstRoleName.Contains(Constant.Employee) ? Constant.Employee : null);
+
+            switch (roleName)
+            {
+                case Constant.Admin:
+                    return RedirectToAction("LoginAsAdmin", "Accounts");
+                case Constant.Employee:
+                    return RedirectToAction("LoginAsAdmin", "Accounts");
+                default:
+                    return RedirectToAction("Login", "Accounts");
+            }
         }
 
         private void LogoutUser()
