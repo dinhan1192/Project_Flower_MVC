@@ -67,6 +67,7 @@ namespace Project_MVC.Controllers
         }
 
         [HttpGet]
+        [CustomAuthorization]
         public PartialViewResult AddRolePopup(string Id)
         {
             ViewBag.userIds = Id;
@@ -84,6 +85,7 @@ namespace Project_MVC.Controllers
         //}
 
         [HttpPost]
+        [CustomAuthorization]
         public ActionResult AddUsers2Roles(string Id, string RoleName)
         {
             var arrUserIds = Id.Split(',');
@@ -119,6 +121,7 @@ namespace Project_MVC.Controllers
             return Json(true);
         }
         // GET: AppUsers
+        [CustomAuthorization]
         public ActionResult Index(int? page)
         {
             var users = DbContext.Users.Where(s => s.Status == AppUser.UserStatus.NotDeleted).ToList();
@@ -133,6 +136,7 @@ namespace Project_MVC.Controllers
             return View(users.Skip(pageSize * (pageNumber - 1)).Take(pageSize).ToList());
         }
 
+        [CustomAuthorization]
         public ActionResult Details(string id)
         {
             if (id == null)
@@ -151,6 +155,7 @@ namespace Project_MVC.Controllers
             return View(user);
         }
 
+        [CustomAuthorization]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)

@@ -22,6 +22,7 @@ namespace Project_MVC
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             HttpConfiguration config = GlobalConfiguration.Configuration;
+            MvcHandler.DisableMvcResponseHeader = true;
 
             config.Formatters.JsonFormatter
                         .SerializerSettings

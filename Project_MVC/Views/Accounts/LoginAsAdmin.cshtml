@@ -1,0 +1,44 @@
+﻿@model  Project_MVC.Models.AppUser
+@using Project_MVC.Models
+
+@{
+    ViewBag.Title = "LoginAsAdmin";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+        <div class="wrap-login100 p-t-30 p-b-50">
+            <span class="login100-form-title p-b-41">
+                Account Login
+            </span>
+            @*<form class="login100-form validate-form p-b-33 p-t-5">*@
+                @using (Html.BeginForm("LoginAsAdmin", "Accounts", FormMethod.Post, new { @class= "login100-form p-b-33 p-t-5"}))
+                {
+                    @Html.AntiForgeryToken();
+                    <div class="wrap-input100">
+                        @*<input class="input100" type="text" name="username" placeholder="User name">*@
+                        @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "input100" } })
+                        @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                        <span class="focus-input100" data-placeholder="&#xe82a;"></span>
+                    </div>
+
+                    <div class="wrap-input100">
+                        @*<input class="input100" type="password" name="pass" placeholder="Password">*@
+                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class="input100" } })
+                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                        <span class="focus-input100" data-placeholder="&#xe80f;"></span>
+                    </div>
+
+                    <div class="container-login100-form-btn m-t-32">
+                        <button class="login100-form-btn" type="submit">
+                                Login
+                            </button>
+                        @*<input type="submit" value="Login" class="login100-form-btn" />*@
+                    </div>
+                }
+            @*</form>*@
+        </div>
+    </div>
+</div>
+
