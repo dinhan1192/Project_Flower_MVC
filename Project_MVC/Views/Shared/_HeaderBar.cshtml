@@ -4,6 +4,7 @@
 @{
     var shoppingCart = FlowerUtility.GetShoppingCart();
     var count = shoppingCart.GetCartItems().Count;
+    var thisPageHeader = ViewBag.Page as ThisPage;
     //var categoryCode = ViewBag.CategoryCode;
     //var returnUrl = Request.RawUrl;
 }
@@ -18,8 +19,8 @@
                         <div class="search_box">
                             @*Cần cái input hiddent này mới ko lỗi*@
                             <input name="Name" id="itp" class="input_text" type="hidden" value="Search" />
-                            @Html.TextBox("SearchStringFlowerCode", ViewBag.CurrentFilterFlowerName as string, new { @class = "input_text" })
-                            <a id="searchFlowerCode" href="javascript:void(0)" class="btn-search">
+                            @Html.TextBox("SearchStringFlowerGlobal", ViewBag.CurrentFilterFlowerGlobal as string, new { @class = "input_text" })
+                            <a id="searchFlowerGlobal" href="javascript:void(0)" class="btn-search">
                                 <span><i class="fa fa-search"></i></span>
                             </a>
                         </div>
@@ -93,11 +94,11 @@
                                 </div>
                             </li>
                             @*@if (RolesUtil.IsInAnyRole(User, new string[] { Constant.Admin, Constant.Employee }))
-                            {
-                                <li>
-                                    <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Admin page</span></a>
-                                </li>
-                            }*@
+                                {
+                                    <li>
+                                        <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Admin page</span></a>
+                                    </li>
+                                }*@
                             @*<li>
                                     <a href="@Url.Action("Index", "Flowers")"><span class="Sales">Đến trang Admin</span></a>
                                 </li>*@
@@ -189,14 +190,13 @@
 
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 <script>
-    $("#searchFlowerCode").click(function () {
-        debugger;
-        var searchFlowerCode = $("#SearchStringFlowerCode").val();
-        if (searchFlowerCode == null || searchFlowerCode == "") {
-            $.alert("Please enter Code of Flower!");
+    $("#searchFlowerGlobal").click(function () {
+        var searchFlowerGlobal = $("#SearchStringFlowerGlobal").val();
+        if (searchFlowerGlobal == null || searchFlowerGlobal == "") {
+            $.alert("Please enter Name or Code of Flowers!");
         } else {
-            window.location.href = `/Flowers/DetailCustomers` + `?id=`
-                + searchFlowerCode;
+            window.location.href = `/Flowers/IndexCustomer` + `?searchFlowerGlobal=`
+                + searchFlowerGlobal;
         }
     })
 </script>

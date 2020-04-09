@@ -103,7 +103,7 @@ namespace Project_MVC.Utils
 
                         o.TotalPrice = orderDetails.Sum(s => (s.UnitPrice * s.Quantity));
                         //DbContext.Orders.AddOrUpdate(o);
-                        //DbContext.OrderDetails.AddOrUpdate(oi => oi.Id, orderDetails.ToArray());
+                        DbContext.OrderDetails.AddOrUpdate(oi => oi.Id, orderDetails.ToArray());
                         //DbContext.Orders.AddOrUpdate(o);
                     });
                     DbContext.Orders.AddOrUpdate(o => o.Id, orders.ToArray());

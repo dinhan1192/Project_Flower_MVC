@@ -13,12 +13,15 @@
     var categoryCode = thisPage.ProductCategoryCode;
 
     var currentUserName = ViewBag.CurrentUserName;
+    var searchFlowerGlobal = ViewBag.CurrentFilterFlowerGlobal;
+    var currentUrl = HttpContext.Current.Request.Url.AbsoluteUri;
 }
 
 @Html.Hidden("currentUserName", (object)currentUserName)
 @Html.Hidden("levelOneCategoryCode", (object)levelOneCategoryCode)
 @Html.Hidden("categoryCode", (object)categoryCode)
-@Html.Hidden("currentUrl", HttpContext.Current.Request.Url)
+@Html.Hidden("currentUrl", @currentUrl)
+@Html.Hidden("filterOnIndexCustomer", Json.Encode(thisPage))
 
 <div class="clothing_product_area">
     <div class="container">
@@ -26,13 +29,20 @@
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <div class="catagory_price_color">
                     <div class="catagory_area">
-                        <h2>CATEGORY</h2>
-                        <ul class="catagory">
-                            @foreach (var category in categories)
-                            {
-                                <li><a href="@Url.Action("IndexCustomer", "Flowers", new { categoryCode = category.Code })"> @category.Name</a></li>
-                            }
-                        </ul>
+                        @if (string.IsNullOrEmpty(searchFlowerGlobal))
+                        {
+                            <h2>CATEGORY</h2>
+                            <ul class="catagory">
+                                @foreach (var category in categories)
+                                {
+                                    <li><a href="@Url.Action("IndexCustomer", "Flowers", new { categoryCode = category.Code })"> @category.Name</a></li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <img src="~/img/slider/home-3.jpg" style="width:240px;height:290px;" />
+                        }
                     </div>
                     @*<div class="sort-by">
                             <label>Sort By</label>
@@ -330,14 +340,20 @@
         //    debugger;
         //    $("#hidSort").val($(this).val());
         //});
+        debugger;
         var $levelOneCategoryCode = $("#levelOneCategoryCode").val();
         var $categoryCode = $("#categoryCode").val();
+        var filterOnIndexCustomer = $("#filterOnIndexCustomer").val();
+        if (filterOnIndexCustomer === "null") {
+            filterOnIndexCustomer = "";
+        }
 
         $("#linkSort").click(function () {
+            debugger;
             var $sort = $("#sortFlower").val();
 
             $(this).attr("href", $(this).attr("href") + "?sortFlower=" + $sort + "&levelOneCategoryCode="
-                + $levelOneCategoryCode + "&categoryCode=" + $categoryCode);
+                + $levelOneCategoryCode + "&categoryCode=" + $categoryCode + "&filter=" + filterOnIndexCustomer);
         })
 
         var amount = $("#amount").val();
@@ -346,10 +362,11 @@
             var $amount = $("#amount").val();
 
             $(this).attr("href", $(this).attr("href") + "?amount=" + $amount + "&levelOneCategoryCode="
-                + $levelOneCategoryCode + "&categoryCode=" + $categoryCode);
+                + $levelOneCategoryCode + "&categoryCode=" + $categoryCode + "&filter=" + filterOnIndexCustomer);
         })
         //document.getElementById("amount").innerHTML = "$4 $2000";
 
+        debugger;
         var arrAddCart = document.querySelectorAll("#addCart");
         var currentUrl = $("#currentUrl").val();
 
@@ -361,13 +378,15 @@
                     var code = $buttonClicked.attr('data-code');
                     var quantity = $buttonClicked.attr('data-quantity');
                     var name = $buttonClicked.attr('data-flowerName');
+                    var type = "StayOnThisPage";
                     $.confirm({
                         async: false,
                         title: 'Successfully added flower!',
                         content: name + ' was successfully added to your cart!',
                         buttons: {
                             "Go To Cart": function () {
-                                window.location.href = `/ShoppingCart/AddCart/` + `?code=` + code + '&strQuantity=' + quantity;
+                                debugger;
+                                window.location.href = `/ShoppingCart/AddCart/` + `?code=` + code + `&strQuantity=` + quantity + `&returnUrl2Previous=` + currentUrl;
                                 //$.ajax({
                                 //    type: "POST",
                                 //    url: "/ShoppingCart/AddCart",
@@ -394,8 +413,7 @@
                                  $.ajax({
                                 type: "POST",
                                 url: "/ShoppingCart/AddCart",
-                                cache: false,
-                                data: '{code: "' + code + '", strQuantity: "' + quantity + '", returnUrl: "' + currentUrl + '" }',
+                                data: '{code: "' + code + '", strQuantity: "' + quantity + '", returnUrl2Previous: "' + currentUrl + '", type: "' + type + '" }',
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
                                 success: function (response) {
@@ -447,8 +465,9 @@
 
         $("#searchFlower").click(function () {
             var searchFlower = $("#SearchString").val();
+
             window.location.href = `/Flowers/IndexCustomer` + `?levelOneCategoryCode=`
-                + $levelOneCategoryCode + `&categoryCode=` + $categoryCode + `&searchString=` + searchFlower;
+                + $levelOneCategoryCode + `&categoryCode=` + $categoryCode + `&searchString=` + searchFlower + `&filter=` + filterOnIndexCustomer;
         })
     </script>
 }

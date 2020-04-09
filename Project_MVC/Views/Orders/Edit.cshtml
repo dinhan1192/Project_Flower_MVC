@@ -19,6 +19,7 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.Id)
+        @Html.Hidden("paymentType", Model.PaymentTypeId)
 
         @*<div class="form-group">
                 @Html.LabelFor(model => model.UserId, "UserId", htmlAttributes: new { @class = "control-label col-md-2" })
@@ -33,9 +34,18 @@
                     <div class="clearfix"></div><br />
                     <div class="form-group">
                         @Html.LabelFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="col-md-9">
-                            @Html.EnumDropDownListFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.PaymentTypeId, "", new { @class = "text-danger" })
+                        <div class="col-md-9" style="text-align:left">
+                            @if (Model.Status == Order.OrderStatus.Pending)
+                            {
+                                @Html.EnumDropDownListFor(model => model.PaymentTypeId, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.PaymentTypeId, "", new { @class = "text-danger" })
+                                <span id="spanPaymentType" hidden></span>
+                            }
+                            else
+                            {
+                                @Html.DisplayFor(model => model.PaymentTypeId)
+                                @Html.HiddenFor(model => model.PaymentTypeId)
+                            }
                         </div>
                     </div>
                     <div class="clearfix"></div><br />
@@ -67,15 +77,22 @@
                     <div class="clearfix"></div><br />
                     <div class="form-group">
                         @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-3" })
-                        <div class="col-md-9">
-                            @Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
-                            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
+                        <div class="col-md-9" style="text-align:left">
+                            @*@Html.EnumDropDownListFor(model => model.Status, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })*@
+                            <span style="color:darkgreen;font-size:20px" id="newStatus">@Html.DisplayFor(model => model.Status)</span>
+                            @if (Model.Status != Order.OrderStatus.Done
+                                && Model.Status != Order.OrderStatus.Cancel
+                                && !(Model.PaymentTypeId == Order.PaymentType.InternetBanking && Model.Status == Order.OrderStatus.Pending))
+                            {
+                                <a href="javascript:void(0)" data-oldStatus="@Model.Status" id="updateStatus" class="btn btn-primary" style="margin-left:70px">Update Status</a>
+                            }
                         </div>
                     </div>
                     <div class="clearfix"></div><br />
                     <div class="form-group">
                         <div class="col-md-offset-2 col-md-9">
-                            <input class="btn btn-success" type="submit" value="Save" class="btn btn-default" />
+                            <input class="btn btn-success" type="submit" value="Save" />
                         </div>
                     </div>
 
@@ -103,6 +120,87 @@
 @*@media (max-width: 768px) { .control-label {font-size:.7em;} }
 @media (min-width: 769px) { .control-label {font-size:.9em;} }*@
     </style>
+}
+
+@section scripts{
+    <script>
+        $("#updateStatus").click(function () {
+            debugger;
+            var oldStatus = $(this).attr("data-oldStatus");
+            var orderId = $("#Id").val();
+            var paymentType = $("#paymentType").val();
+            var check = "check";
+            var updateStatus = "updateStatus";
+            var contentForPopup = "";
+            var cancelOrder = "cancel";
+
+            $.ajax({
+                type: "POST",
+                async: false,
+                url: "/Orders/UpdateStatus",
+                data: '{orderId: "' + orderId + '", oldStatus: "' + oldStatus + '", paymentType: "' + paymentType + '", type: "' + check + '"}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    contentForPopup = response;
+                }
+            });
+
+            $.confirm({
+                async: false,
+                title: 'Update Status!',
+                content: contentForPopup,
+                buttons: {
+                    "Okay": function () {
+                        $.ajax({
+                            type: "POST",
+                            async: false,
+                            url: "/Orders/UpdateStatus",
+                            data: '{orderId: "' + orderId + '", oldStatus: "' + oldStatus + '", paymentType: "' + paymentType + '", type: "' + updateStatus + '"}',
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (response) {
+                                document.getElementById('newStatus').innerHTML = response;
+                                $("#updateStatus").attr("data-oldStatus", response);
+                                if (response == "Done") {
+                                    $("#updateStatus").hide();
+                                }
+                                if (response != "Pending") {
+                                    $("#PaymentTypeId").hide();
+                                    document.getElementById('spanPaymentType').innerHTML = paymentType;
+                                    $("#spanPaymentType").show();
+                                }
+                            }
+                        })
+                    },
+                    "Cancel": function () {
+                        $.alert("Canceled!");
+                    },
+                    "Order Canceled": function () {
+                        $.ajax({
+                            type: "POST",
+                            async: false,
+                            url: "/Orders/UpdateStatus",
+                            data: '{orderId: "' + orderId + '", oldStatus: "' + oldStatus + '", paymentType: "' + paymentType + '", type: "' + updateStatus + '", cancel: "' + cancelOrder + '"}',
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (response) {
+                                document.getElementById('newStatus').innerHTML = response;
+                                $("#updateStatus").attr("data-oldStatus", response);
+                                $("#updateStatus").hide();
+                                if (response != "Pending") {
+                                    debugger;
+                                    $("#PaymentTypeId").hide();
+                                    document.getElementById('spanPaymentType').innerHTML = paymentType;
+                                    $("#spanPaymentType").show();
+                                }
+                            }
+                        })
+                    },
+                }
+            });
+        })
+    </script>
 }
 
 

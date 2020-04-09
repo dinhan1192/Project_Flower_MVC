@@ -46,7 +46,7 @@ namespace Project_MVC.Controllers
             return View();
         }
 
-        public ActionResult AddCart(string code, string strQuantity, string returnUrl)
+        public ActionResult AddCart(string code, string strQuantity, string returnUrl2Previous, string type)
         {
             int quantity = Utility.GetInt(strQuantity);
             // Check số lượng có hợp lệ không?
@@ -68,14 +68,23 @@ namespace Project_MVC.Controllers
             // lưu thông tin cart vào session.
             SaveShoppingCart(sc);
 
-            if (string.IsNullOrEmpty(returnUrl))
+            if (string.IsNullOrEmpty(type))
             {
-                return RedirectToAction("ShowCart", new { categoryCode = flower.CategoryCode });
+                return RedirectToAction("ShowCart", new { returnUrl = Request.UrlReferrer.ToString() });
             }
             else
             {
                 return Json(sc);
             }
+
+            //if (string.IsNullOrEmpty(returnUrl))
+            //{
+            //    return RedirectToAction("ShowCart", new { categoryCode = flower.CategoryCode });
+            //}
+            //else
+            //{
+            //    return Json(sc);
+            //}
         }
 
         [HttpPost]

@@ -127,7 +127,6 @@ namespace Project_MVC.Services
                 existItem.ShipPhone = item.ShipPhone;
                 existItem.ShipAddress = item.ShipAddress;
                 existItem.PaymentTypeId = item.PaymentTypeId;
-                existItem.Status = item.Status;
                 existItem.UpdatedAt = DateTime.Now;
                 existItem.UpdatedBy = userService.GetCurrentUserName();
                 DbContext.Orders.AddOrUpdate(existItem);
@@ -228,22 +227,22 @@ namespace Project_MVC.Services
             if (!string.IsNullOrEmpty(start))
             {
                 var compareStartDate = Utility.GetNullableDate(start).Value.Date + new TimeSpan(0, 0, 0);
-                orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
+                orders = orders.Where(s => (s.CreatedAt >= compareStartDate));
             }
             else
             {
                 var compareStartDate = DateTime.Now.AddDays(-29);
-                orders = orders.Where(s => (s.UpdatedAt >= compareStartDate));
+                orders = orders.Where(s => (s.CreatedAt >= compareStartDate));
             }
             if (!string.IsNullOrEmpty(end))
             {
                 var compareEndDate = Utility.GetNullableDate(end).Value.Date + new TimeSpan(23, 59, 59);
-                orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
+                orders = orders.Where(s => (s.CreatedAt <= compareEndDate));
             }
             else
             {
                 var compareEndDate = DateTime.Now;
-                orders = orders.Where(s => (s.UpdatedAt <= compareEndDate));
+                orders = orders.Where(s => (s.CreatedAt <= compareEndDate));
             }
 
             var lstRevenues = new List<RevenuePieChartModel>();
@@ -270,6 +269,16 @@ namespace Project_MVC.Services
             lstRevenues.Add(itemRevenue);
 
             return lstRevenues;
+        }
+
+        public string AdminUpdateStatus(Order item, string orderStatus)
+        {
+            item.Status = (OrderStatus)Enum.Parse(typeof(OrderStatus), orderStatus);
+            item.UpdatedAt = DateTime.Now;
+            item.UpdatedBy = userService.GetCurrentUserName();
+            DbContext.Orders.AddOrUpdate(item);
+            DbContext.SaveChanges();
+            return orderStatus;
         }
     }
 

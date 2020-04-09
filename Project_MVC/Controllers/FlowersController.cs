@@ -10,6 +10,7 @@ using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 using Project_MVC.Models;
 using Project_MVC.Services;
+using Project_MVC.Utils;
 
 namespace Project_MVC.Controllers
 {
@@ -77,19 +78,32 @@ namespace Project_MVC.Controllers
 
 
         public ActionResult IndexCustomer(string amount, string sortFlower, string levelOneCategoryCode, string categoryCode,
-            string searchString, string currentFilter, int? page, string filter)
+            string searchString, string currentFilter, int? page, string searchFlowerGlobal, string filter)
         {
-            if(string.IsNullOrEmpty(levelOneCategoryCode) && string.IsNullOrEmpty(categoryCode))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             if (!string.IsNullOrEmpty(filter))
             {
                 var filterThisPage = JsonConvert.DeserializeObject<ThisPage>(filter);
-                currentFilter = filterThisPage.SearchString;
-                amount = filterThisPage.Amount;
-                sortFlower = filterThisPage.SortFlower;
+                if (string.IsNullOrEmpty(searchString))
+                {
+                    currentFilter = filterThisPage.SearchString;
+                }
+                if (string.IsNullOrEmpty(amount))
+                {
+                    amount = filterThisPage.Amount;
+                }
+                if (string.IsNullOrEmpty(sortFlower))
+                {
+                    sortFlower = filterThisPage.SortFlower;
+                }
+                if (string.IsNullOrEmpty(searchFlowerGlobal))
+                {
+                    searchFlowerGlobal = filterThisPage.SearchFlowerGlobal;
+                }
+            }
+
+            if (string.IsNullOrEmpty(levelOneCategoryCode) && string.IsNullOrEmpty(categoryCode) && string.IsNullOrEmpty(searchFlowerGlobal))
+            {
+                return RedirectToAction("Index", "Home");
             }
 
             ViewBag.CurrentUserName = userService.GetCurrentUserName();
@@ -125,6 +139,13 @@ namespace Project_MVC.Controllers
                 //ViewBag.Teachers = list;
             }
 
+            if (!String.IsNullOrEmpty(searchFlowerGlobal))
+            {
+                flowers = flowers.Where(s => s.Name.ToUpper().Contains(searchFlowerGlobal.ToUpper()) || s.Code.ToUpper().Contains(searchFlowerGlobal.ToUpper()));
+            }
+
+            ViewBag.CurrentFilterFlowerGlobal = searchFlowerGlobal;
+
             if (!String.IsNullOrEmpty(searchString))
             {
                 flowers = flowers.Where(s => s.Name.ToUpper().Contains(searchString.ToUpper()) || s.Code.ToUpper().Contains(searchString.ToUpper()));
@@ -138,15 +159,18 @@ namespace Project_MVC.Controllers
                         flowers = flowers.OrderBy(s => s.Name);
                         break;
                     case "2":
-                        flowers = flowers.OrderBy(s => s.Price);
+                        flowers = flowers.OrderBy(s => Utility.NewPrice(s.Price, s.Discount));
                         break;
                     default:
                         break;
                 }
 
-                levelOneCategoryCode = GetLevelOneCategoryCode(flowers);
-                var lstCategories = mySQLCategoryService.GetList().Where(s => s.ParentCode == levelOneCategoryCode);
-                ViewBag.Categories = lstCategories;
+                if (string.IsNullOrEmpty(searchFlowerGlobal))
+                {
+                    levelOneCategoryCode = GetLevelOneCategoryCode(flowers);
+                    var lstCategories = mySQLCategoryService.GetList().Where(s => s.ParentCode == levelOneCategoryCode);
+                    ViewBag.Categories = lstCategories;
+                }
             }
 
             if (!String.IsNullOrEmpty(amount))
@@ -160,10 +184,14 @@ namespace Project_MVC.Controllers
                 amounts = amounts.Skip(1).ToArray();
                 var min = Double.Parse(amounts.First());
                 var max = Double.Parse(amounts.Last());
-                levelOneCategoryCode = GetLevelOneCategoryCode(flowers);
-                var lstCategories = mySQLCategoryService.GetList().Where(s => s.ParentCode == levelOneCategoryCode);
-                ViewBag.Categories = lstCategories;
-                flowers = flowers.Where(s => s.Price <= max && s.Price >= min);
+                flowers = flowers.Where(s => Utility.NewPrice(s.Price, s.Discount) <= max && Utility.NewPrice(s.Price, s.Discount) >= min);
+
+                if (string.IsNullOrEmpty(searchFlowerGlobal))
+                {
+                    levelOneCategoryCode = GetLevelOneCategoryCode(flowers);
+                    var lstCategories = mySQLCategoryService.GetList().Where(s => s.ParentCode == levelOneCategoryCode);
+                    ViewBag.Categories = lstCategories;
+                }
             }
 
             int pageSize = Constant.PageSizeFlowersOnCustomerPage;
@@ -177,7 +205,8 @@ namespace Project_MVC.Controllers
                 CurrentType = Constant.Customer,
                 SearchString = searchString,
                 Amount = amount,
-                SortFlower = sortFlower
+                SortFlower = sortFlower,
+                SearchFlowerGlobal = searchFlowerGlobal
             };
             ViewBag.Page = thisPage;
 
