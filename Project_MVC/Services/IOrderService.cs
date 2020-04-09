@@ -14,6 +14,7 @@ namespace Project_MVC.Services
         IEnumerable<RevenueModel> GetListRevenues(string start, string end);
         IEnumerable<RevenuePieChartModel> GetListRevenuesForPieChart(string start, string end);
         int? UpdateStatus(Order item, string userName);
+        string AdminUpdateStatus(Order item, string orderStatus);
         Order Detail(int? id);
         bool Update(Order existItem, Order item, ModelStateDictionary state);
         bool Delete(Order item, ModelStateDictionary state);

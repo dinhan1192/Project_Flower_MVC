@@ -67,34 +67,117 @@ namespace Project_MVC.Controllers
             return Json(true, JsonRequestBehavior.AllowGet);
         }
 
-//        public ActionResult ExportToXML(int id)
-//        {
-//            var order = mySQLOrderService.Detail(id);
-//            //var lstFlowersModel = new List<FlowersInOrderModel>();
-//            foreach (var item in order.OrderDetails)
-//            {
-//                var flowerModel = new FlowersInOrderModel()
-//                {
-//                    Id = item.Id,
-//                    FlowerName = mySQLFlowerService.Detail(item.FlowerCode).Name,
-//                    ImageUrl = mySQLFlowerService.Detail(item.FlowerCode).FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl,
-//                    Quantity = item.Quantity,
-//                    TotalPricePerFlower = item.Quantity * item.UnitPrice
-//                };
-//                order.FlowersInOrderModels.Add(flowerModel);
-//            }
+        //        public ActionResult ExportToXML(int id)
+        //        {
+        //            var order = mySQLOrderService.Detail(id);
+        //            //var lstFlowersModel = new List<FlowersInOrderModel>();
+        //            foreach (var item in order.OrderDetails)
+        //            {
+        //                var flowerModel = new FlowersInOrderModel()
+        //                {
+        //                    Id = item.Id,
+        //                    FlowerName = mySQLFlowerService.Detail(item.FlowerCode).Name,
+        //                    ImageUrl = mySQLFlowerService.Detail(item.FlowerCode).FlowerImages.OrderByDescending(s => s.CreatedAt).FirstOrDefault().ImageUrl,
+        //                    Quantity = item.Quantity,
+        //                    TotalPricePerFlower = item.Quantity * item.UnitPrice
+        //                };
+        //                order.FlowersInOrderModels.Add(flowerModel);
+        //            }
 
-//            Response.ClearContent();
-//            Response.Buffer = true;
-//            Response.AddHeader("content-disposition", string.Format("attachment; filename = Invoice-{0}.xml", id));
-//            Response.ContentType = "text/xml";
+        //            Response.ClearContent();
+        //            Response.Buffer = true;
+        //            Response.AddHeader("content-disposition", string.Format("attachment; filename = Invoice-{0}.xml", id));
+        //            Response.ContentType = "text/xml";
 
-//            var serializer = new
-//System.Xml.Serialization.XmlSerializer(order.GetType());
-//            serializer.Serialize(Response.OutputStream, order);
+        //            var serializer = new
+        //System.Xml.Serialization.XmlSerializer(order.GetType());
+        //            serializer.Serialize(Response.OutputStream, order);
 
-//            return View();
-//        }
+        //            return View();
+        //        }
+
+        [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
+        [HttpPost]
+        public ActionResult UpdateStatus(string orderId, string oldStatus, string paymentType, string type, string cancel)
+        {
+            var order = mySQLOrderService.Detail(Utility.GetNullableInt(orderId));
+            var enumOldStatus = (OrderStatus)Enum.Parse(typeof(OrderStatus), oldStatus);
+            var enumPaymentType = (PaymentType)Enum.Parse(typeof(PaymentType), paymentType);
+
+            if (!string.IsNullOrEmpty(cancel))
+            {
+                return Json(mySQLOrderService.AdminUpdateStatus(order, OrderStatus.Cancel.ToString()));
+            }
+
+            switch (enumPaymentType)
+            {
+                case PaymentType.Cod:
+                    if (enumOldStatus == OrderStatus.Pending)
+                    {
+                        return type == "check" ? Json("Have you confirm with the Customer?")
+                            : Json(mySQLOrderService.AdminUpdateStatus(order, OrderStatus.condirmed.ToString()));
+                    }
+                    else if (enumOldStatus == OrderStatus.condirmed)
+                    {
+                        return type == "check" ? Json("Has the Shipper finish the Shipping?")
+                        : Json(mySQLOrderService.AdminUpdateStatus(order, OrderStatus.Shipping.ToString()));
+                    }
+                    else if (enumOldStatus == OrderStatus.Shipping)
+                    {
+                        return type == "check" ? Json("Has the Customer paid for the Products?")
+                        : Json(mySQLOrderService.AdminUpdateStatus(order, OrderStatus.Done.ToString()));
+
+                    }
+                    return Json("Something wrong here!");
+                case PaymentType.DirectTransfer:
+                    if (enumOldStatus == OrderStatus.Pending)
+                    {
+                        return type == "check" ? Json("Have you confirm with the Customer?")
+                        : Json(mySQLOrderService.AdminUpdateStatus(order, OrderStatus.condirmed.ToString()));
+
+                    }
+                    else if (enumOldStatus == OrderStatus.condirmed)
+                    {
+                        return type == "check" ? Json("Has the Customer pay through Bank?")
+                        : Json(mySQLOrderService.AdminUpdateStatus(order, OrderStatus.Paid.ToString()));
+
+                    }
+                    else if (enumOldStatus == OrderStatus.Paid)
+                    {
+                        return type == "check" ? Json("Do you want to start the Ship Now?")
+                        : Json(mySQLOrderService.AdminUpdateStatus(order, OrderStatus.Shipping.ToString()));
+
+                    }
+                    else if (enumOldStatus == OrderStatus.Shipping)
+                    {
+                        return type == "check" ? Json("Has the Shipper finish the Shipping?")
+                        : Json(mySQLOrderService.AdminUpdateStatus(order, OrderStatus.Done.ToString()));
+
+                    }
+                    return Json("Something wrong here!");
+                case PaymentType.InternetBanking:
+                    if (enumOldStatus == OrderStatus.Paid)
+                    {
+                        return type == "check" ? Json("Has the customer finish the Paid?")
+                        : Json(mySQLOrderService.AdminUpdateStatus(order, OrderStatus.condirmed.ToString()));
+                    }
+                    else if (enumOldStatus == OrderStatus.condirmed)
+                    {
+                        return type == "check" ? Json("Have you confirm with the Customer?") 
+                        : Json(mySQLOrderService.AdminUpdateStatus(order, OrderStatus.Shipping.ToString()));
+                    }
+                    else if (enumOldStatus == OrderStatus.Shipping)
+                    {
+                        return type == "check" ? Json("Has the Shipper finish the Shipping?") 
+                        : Json(mySQLOrderService.AdminUpdateStatus(order, OrderStatus.Done.ToString()));
+                    }
+                    return Json("Something wrong here!");
+                default:
+                    break;
+            }
+
+            return Json("Something wrong here!");
+        }
 
         [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
         public ActionResult Index(string sortOrder, string searchString, string currentFilter,
@@ -497,7 +580,7 @@ namespace Project_MVC.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Authorize(Roles = Constant.Admin + "," + Constant.Employee)]
-        public ActionResult Edit([Bind(Include = "Id,PaymentTypeId,ShipName,ShipAddress,ShipPhone,Status")] Order order)
+        public ActionResult Edit([Bind(Include = "Id,PaymentTypeId,ShipName,ShipAddress,ShipPhone")] Order order)
         {
             if (order == null)
             {

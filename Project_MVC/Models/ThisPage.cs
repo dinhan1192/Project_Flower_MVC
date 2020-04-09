@@ -29,6 +29,7 @@ namespace Project_MVC.Models
 
         public string Amount { get; set; }
         public string SortFlower { get; set; }
+        public string SearchFlowerGlobal { get; set; }
 
         #endregion
     }
