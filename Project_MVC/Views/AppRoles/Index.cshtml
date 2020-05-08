@@ -4,6 +4,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var url = "/AppRoles/Delete/";
+    var rolesOfThis = Model.ToArray();
 }
 
 <h1>Index</h1>
@@ -17,99 +18,181 @@
             </div>
         </div>
     </div><br />
-    <div class="col-md-11 tablebox">
-        <table class="table table-bordered table-hover" style="text-align:center;">
-            <tr>
-                <th class="">
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th class="">
-                    @Html.DisplayNameFor(model => model.Description)
-                </th>
-                @*<th>
+    <div ng-app="rolesApp">
+        <div class="col-md-11 tablebox" ng-controller="rolesCtrl" ng-init="GetAllData()">
+            <table class="table table-bordered table-hover" style="text-align:center;">
+                <tr>
+                    <th class="">
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th class="">
+                        @Html.DisplayNameFor(model => model.Description)
+                    </th>
+                    <th class="">
                         @Html.DisplayNameFor(model => model.CreatedAt)
                     </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.UpdatedAt)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.DeletedAt)
-                    </th>*@
-                <th></th>
-            </tr>
+                    @*<th>
+                            @Html.DisplayNameFor(model => model.CreatedAt)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UpdatedAt)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DeletedAt)
+                        </th>*@
+                    <th></th>
+                </tr>
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td class="text-left">
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td class="text-left">
-                        @Html.DisplayFor(modelItem => item.Description)
-                    </td>
-                    @*<td>
-                            @Html.DisplayFor(modelItem => item.CreatedAt)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.UpdatedAt)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DeletedAt)
-                        </td>*@
+                @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-left">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                            <td class="text-left">
+                                @Html.DisplayFor(modelItem => item.Description)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Details", new { id = item.Id })">
+                                    <span class="glyphicon glyphicon-th-list"></span>
+                                </a>
+                                <a href="javascript:void(0)" class="glyphicon glyphicon-remove btn-delete-notify" id="@item.Id" data-request-url="@url"></a>
+                            </td>
+                        </tr>
+                    }
+
+                @*<tr ng-repeat="x in roles">
+                    <td>{{ x.Name }}</td>
+                    <td>{{ x.Description }}</td>
                     <td>
-                        <a href="@Url.Action("Details", new { id = item.Id })">
+                        <span ng-bind="convertToDate(x.CreatedAt) | date: 'medium' "></span>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", "AppRoles")?id={{x.Id}}">
                             <span class="glyphicon glyphicon-th-list"></span>
                         </a>
-                        <a href="javascript:void(0)" class="glyphicon glyphicon-remove btn-delete-notify" id="@item.Id" data-request-url="@url"></a>
+                        <a href="javascript:void(0);" class="glyphicon glyphicon-remove" ng-click="DeleteRole(x)" id="{{ x.Id }}"></a>
                     </td>
-                </tr>
-            }
-
-        </table>
+                </tr>*@
+            </table>
+        </div>
     </div>
 </div>
+
+@section CustomStyles{
+    @Styles.Render("~/customs");
+}
 
 @section scripts{
     @Scripts.Render("~/bundles/custom");
     @*<script>
-        var TeamDetailPostBackURL = '/AppUsers/AddRolePopup';
-        $(function () {
-            $(".addRolePopup").click(function () {
-                //console.log("123456")
-                var $buttonClicked = $(this);
-                var id = $buttonClicked.attr('data-parameter');
-                //var id = document.getElementById("addItem-" + "AtView").getAttribute("data-parameter");
-                if (id === '') {
-                    $.alert("Mời chọn User");
-                    return false;
-                }
-                var options = { "backdrop": "static", keyboard: true };
-                $.ajax({
+        debugger;
+        var app = angular.module('rolesApp', ['cp.ngConfirm']);
+        app.controller('rolesCtrl', function ($scope, $http, $ngConfirm) {
+            //debugger;
+            //var createdAt = $scope.x.CreatedAt;
+            //$scope.x = {
+            //    CreatedAt: Date.parse(createdAt)
+            //}
+            $scope.convertToDate = function (stringDate) {
+                var newStrDate = stringDate.slice(6, stringDate.length - 2);
+                //var date = Date.parse(newStrDate);
+                return newStrDate;
+            };
+            $scope.GetAllData = function () {
+                $http({
                     async: false,
-                    type: "GET",
-                    url: TeamDetailPostBackURL,
-                    contentType: "application/json; charset=utf-8",
-                    data: { "Id": id },
-                    datatype: "json",
-                    success: function (data) {
-                        $('#myModalContent').html(data);
-                        $('#myModal').modal(options);
-                        $('#myModal').modal('show');
-
-                    },
-                    error: function () {
-                        alert("Dynamic content load failed.");
+                    method: "get",
+                    url: "/AppRoles/GetListRoles"
+                }).then(function (response) {
+                    debugger;
+                    $scope.roles = response.data;
+                    //angular.forEach($scope.roles, function () {
+                    //    debugger;
+                    //    $scope.convertToDate = function (stringDate) {
+                    //        debugger;
+                    //        var newStrDate = stringDate.slice(6, stringDate.length - 2);
+                    //        //var date = Date.parse(newStrDate);
+                    //        return newStrDate;
+                    //    };
+                    //});
+                }, function () {
+                    alert("Error Occur");
+                })
+            };
+            $scope.DeleteRole = function (role) {
+                $ngConfirm({
+                    title: 'Delete!',
+                    content: 'Would you like to delete ' + role.Name,
+                    scope: $scope,
+                    buttons: {
+                        Okay: {
+                            action: function (scope, button) {
+                                debugger;
+                                var newStrDate = role.CreatedAt.slice(6, role.CreatedAt.length - 2);
+                                role.CreatedAt = Date.parse(newStrDate);
+                                $http({
+                                    method: "post",
+                                    url: "/AppRoles/DeleteRoleAngular",
+                                    datatype: "json",
+                                    data: JSON.stringify(role)
+                                }).then(function (response) {
+                                    debugger;
+                                    $ngConfirm(response.data);
+                                    $scope.GetAllData();
+                                })
+                            }
+                        },
+                        Cancel: function (scope, button) {
+                            $ngConfirm('Cancel!');
+                        },
                     }
                 });
-                var thisType = $buttonClicked.attr('data-type');
-                var setValues = document.getElementById('addItem-' + thisType).setAttribute('data-parameter', "")
-            });
-            //$("#closebtn").on('click',function(){
-            //    $('#myModal').modal('hide');
+            };
 
-            $("#closbtn").click(function () {
-                $('#myModal').modal('hide');
-            });
+
         });
+
     </script>*@
+    @*<script>
+            var TeamDetailPostBackURL = '/AppUsers/AddRolePopup';
+            $(function () {
+                $(".addRolePopup").click(function () {
+                    //console.log("123456")
+                    var $buttonClicked = $(this);
+                    var id = $buttonClicked.attr('data-parameter');
+                    //var id = document.getElementById("addItem-" + "AtView").getAttribute("data-parameter");
+                    if (id === '') {
+                        $.alert("Mời chọn User");
+                        return false;
+                    }
+                    var options = { "backdrop": "static", keyboard: true };
+                    $.ajax({
+                        async: false,
+                        type: "GET",
+                        url: TeamDetailPostBackURL,
+                        contentType: "application/json; charset=utf-8",
+                        data: { "Id": id },
+                        datatype: "json",
+                        success: function (data) {
+                            $('#myModalContent').html(data);
+                            $('#myModal').modal(options);
+                            $('#myModal').modal('show');
+
+                        },
+                        error: function () {
+                            alert("Dynamic content load failed.");
+                        }
+                    });
+                    var thisType = $buttonClicked.attr('data-type');
+                    var setValues = document.getElementById('addItem-' + thisType).setAttribute('data-parameter', "")
+                });
+                //$("#closebtn").on('click',function(){
+                //    $('#myModal').modal('hide');
+
+                $("#closbtn").click(function () {
+                    $('#myModal').modal('hide');
+                });
+            });
+        </script>*@
 }

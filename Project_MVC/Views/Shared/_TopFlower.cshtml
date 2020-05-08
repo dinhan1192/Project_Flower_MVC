@@ -146,6 +146,7 @@
 <script src="~/Scripts/jquery-3.3.1.min.js"></script>
 <script src="~/Scripts/Customs/displayMultipleRatingFlowers.js"></script>
 <script>
+    debugger;
     var arrAddCart = document.querySelectorAll("#addCart");
     var currentUrl = $("#currentUrl").val();
     $.each(arrAddCart, function (i, val) {
@@ -156,6 +157,7 @@
                 var code = $buttonClicked.attr('data-code');
                 var quantity = $buttonClicked.attr('data-quantity');
                 var name = $buttonClicked.attr('data-flowerName');
+                var type = "StayOnThisPage";
                 $.confirm({
                     async: false,
                     title: 'Successfully added flower!',
@@ -175,42 +177,19 @@
                             //});
                         },
                         "Stay On This Page": function () {
+                            debugger;
                             //window.location.href = `/ShoppingCart/AddCart/` + `?code=` + code + '&strQuantity=' + quantity + '&returnUrl=' + currentUrl;
                             $.ajax({
                                 type: "POST",
                                 url: "/ShoppingCart/AddCart",
-                                cache: false,
-                                data: '{code: "' + code + '", strQuantity: "' + quantity + '", returnUrl: "' + currentUrl + '" }',
+                                data: '{code: "' + code + '", strQuantity: "' + quantity + '", returnUrl: "' + currentUrl + '", type: "' + type + '" }',
                                 contentType: "application/json; charset=utf-8",
                                 dataType: "json",
                                 success: function (response) {
                                     debugger;
-                                    //$("#cartLoad").load("/Home/Index");
-                                    //window.setInterval(function () {
-                                    //    $.get('/Home/Index', function (result) {
-                                    //    });
-                                    //}, 10000);
-                                    //var auto_refresh = setInterval(function () {
-                                    //    $('#cartLoad').fadeOut('fast', function () {
-                                    //        $(this).load(currentUrl, function () {
-                                    //            $(this).fadeIn('fast');
-                                    //        });
-                                    //    });
-                                    //}, 15000);
                                     $("#account_nav").load('@Url.Action("LoadShoppingCartPartialView","ShoppingCart")');
                                 }
                             });
-
-                            // $.ajax({
-                            //    type: "GET",
-                            //    url: "/Home/Index",
-                            //    data: '{shoppingCart: "' + sc + '"}',
-                            //    contentType: "application/json; charset=utf-8",
-                            //    dataType: "json",
-                            //    success: function (response) {
-                            //        return response;
-                            //    }
-                            //});
                         },
                     }
                 });
