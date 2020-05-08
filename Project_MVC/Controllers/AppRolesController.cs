@@ -37,6 +37,11 @@ namespace Project_MVC.Controllers
             return View(_db.IdentityRoles.ToList());
         }
 
+        public JsonResult GetListRoles()
+        {
+            return Json(_db.IdentityRoles.ToList(), JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult Create()
         {
             return View();
@@ -92,6 +97,30 @@ namespace Project_MVC.Controllers
                 roleManager.Delete(existRole);
             }
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public string DeleteRoleAngular(string id)
+        {
+            if (id == null)
+            {
+                return "Id not found!";
+            }
+            var existRole = _db.IdentityRoles.Find(id);
+            //if (role == null)
+            //{
+            //    return "Role not found!";
+            //}
+            //var existRole = _db.IdentityRoles.Find(role.Id);
+            if (existRole == null)
+            {
+                return "Role not found!";
+            }
+            if (ModelState.IsValid)
+            {
+                roleManager.Delete(existRole);
+            }
+            return "Role Successfully Deleted!";
         }
     }
 }

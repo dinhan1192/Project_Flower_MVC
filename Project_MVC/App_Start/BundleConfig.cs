@@ -29,6 +29,7 @@ namespace Project_MVC
                       "~/Scripts/Customs/checkboxselectallWithPopup.js",
                       "~/Scripts/Customs/twoDropDownListEvent.js",
                       "~/Scripts/Customs/createPopup.js"
+                      //"~/Scripts/Customs/angular-confirm.min.js"
                       ));
 
             bundles.Add(new ScriptBundle("~/bundles/ckeditor").Include(
@@ -121,6 +122,7 @@ namespace Project_MVC
                       //"~/Content/Customs/ckeditor.css",
                       "~/Content/Customs/flowerImageForFunctions.css",
                       "~/Content/Customs/ratingFlower.css"
+                      //"~/Content/Customs/angular-confirm.min.css"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/fonts").Include(
