@@ -18,50 +18,49 @@
             </div>
         </div>
     </div><br />
-    <div ng-app="rolesApp">
-        <div class="col-md-11 tablebox" ng-controller="rolesCtrl" ng-init="GetAllData()">
-            <table class="table table-bordered table-hover" style="text-align:center;">
-                <tr>
-                    <th class="">
-                        @Html.DisplayNameFor(model => model.Name)
-                    </th>
-                    <th class="">
-                        @Html.DisplayNameFor(model => model.Description)
-                    </th>
-                    <th class="">
+    <div class="col-md-11 tablebox">
+        <table class="table table-bordered table-hover" style="text-align:center;">
+            <tr>
+                <th class="">
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th class="">
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th class="">
+                    @Html.DisplayNameFor(model => model.CreatedAt)
+                </th>
+                @*<th>
                         @Html.DisplayNameFor(model => model.CreatedAt)
                     </th>
-                    @*<th>
-                            @Html.DisplayNameFor(model => model.CreatedAt)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.UpdatedAt)
-                        </th>
-                        <th>
-                            @Html.DisplayNameFor(model => model.DeletedAt)
-                        </th>*@
-                    <th></th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.UpdatedAt)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DeletedAt)
+                    </th>*@
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-left">
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="text-left">
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Details", new { id = item.Id })">
+                            <span class="glyphicon glyphicon-th-list"></span>
+                        </a>
+                        <a href="javascript:void(0)" class="glyphicon glyphicon-remove btn-delete-notify" id="@item.Id" data-request-url="@url"></a>
+                    </td>
                 </tr>
+            }
 
-                @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td class="text-left">
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td class="text-left">
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                <a href="@Url.Action("Details", new { id = item.Id })">
-                                    <span class="glyphicon glyphicon-th-list"></span>
-                                </a>
-                                <a href="javascript:void(0)" class="glyphicon glyphicon-remove btn-delete-notify" id="@item.Id" data-request-url="@url"></a>
-                            </td>
-                        </tr>
-                    }
-
-                @*<tr ng-repeat="x in roles">
+            @*<tr ng-repeat="x in roles">
                     <td>{{ x.Name }}</td>
                     <td>{{ x.Description }}</td>
                     <td>
@@ -74,8 +73,7 @@
                         <a href="javascript:void(0);" class="glyphicon glyphicon-remove" ng-click="DeleteRole(x)" id="{{ x.Id }}"></a>
                     </td>
                 </tr>*@
-            </table>
-        </div>
+        </table>
     </div>
 </div>
 
@@ -86,74 +84,74 @@
 @section scripts{
     @Scripts.Render("~/bundles/custom");
     @*<script>
-        debugger;
-        var app = angular.module('rolesApp', ['cp.ngConfirm']);
-        app.controller('rolesCtrl', function ($scope, $http, $ngConfirm) {
-            //debugger;
-            //var createdAt = $scope.x.CreatedAt;
-            //$scope.x = {
-            //    CreatedAt: Date.parse(createdAt)
-            //}
-            $scope.convertToDate = function (stringDate) {
-                var newStrDate = stringDate.slice(6, stringDate.length - 2);
-                //var date = Date.parse(newStrDate);
-                return newStrDate;
-            };
-            $scope.GetAllData = function () {
-                $http({
-                    async: false,
-                    method: "get",
-                    url: "/AppRoles/GetListRoles"
-                }).then(function (response) {
-                    debugger;
-                    $scope.roles = response.data;
-                    //angular.forEach($scope.roles, function () {
-                    //    debugger;
-                    //    $scope.convertToDate = function (stringDate) {
-                    //        debugger;
-                    //        var newStrDate = stringDate.slice(6, stringDate.length - 2);
-                    //        //var date = Date.parse(newStrDate);
-                    //        return newStrDate;
-                    //    };
-                    //});
-                }, function () {
-                    alert("Error Occur");
-                })
-            };
-            $scope.DeleteRole = function (role) {
-                $ngConfirm({
-                    title: 'Delete!',
-                    content: 'Would you like to delete ' + role.Name,
-                    scope: $scope,
-                    buttons: {
-                        Okay: {
-                            action: function (scope, button) {
-                                debugger;
-                                var newStrDate = role.CreatedAt.slice(6, role.CreatedAt.length - 2);
-                                role.CreatedAt = Date.parse(newStrDate);
-                                $http({
-                                    method: "post",
-                                    url: "/AppRoles/DeleteRoleAngular",
-                                    datatype: "json",
-                                    data: JSON.stringify(role)
-                                }).then(function (response) {
+            debugger;
+            var app = angular.module('rolesApp', ['cp.ngConfirm']);
+            app.controller('rolesCtrl', function ($scope, $http, $ngConfirm) {
+                //debugger;
+                //var createdAt = $scope.x.CreatedAt;
+                //$scope.x = {
+                //    CreatedAt: Date.parse(createdAt)
+                //}
+                $scope.convertToDate = function (stringDate) {
+                    var newStrDate = stringDate.slice(6, stringDate.length - 2);
+                    //var date = Date.parse(newStrDate);
+                    return newStrDate;
+                };
+                $scope.GetAllData = function () {
+                    $http({
+                        async: false,
+                        method: "get",
+                        url: "/AppRoles/GetListRoles"
+                    }).then(function (response) {
+                        debugger;
+                        $scope.roles = response.data;
+                        //angular.forEach($scope.roles, function () {
+                        //    debugger;
+                        //    $scope.convertToDate = function (stringDate) {
+                        //        debugger;
+                        //        var newStrDate = stringDate.slice(6, stringDate.length - 2);
+                        //        //var date = Date.parse(newStrDate);
+                        //        return newStrDate;
+                        //    };
+                        //});
+                    }, function () {
+                        alert("Error Occur");
+                    })
+                };
+                $scope.DeleteRole = function (role) {
+                    $ngConfirm({
+                        title: 'Delete!',
+                        content: 'Would you like to delete ' + role.Name,
+                        scope: $scope,
+                        buttons: {
+                            Okay: {
+                                action: function (scope, button) {
                                     debugger;
-                                    $ngConfirm(response.data);
-                                    $scope.GetAllData();
-                                })
-                            }
-                        },
-                        Cancel: function (scope, button) {
-                            $ngConfirm('Cancel!');
-                        },
-                    }
-                });
-            };
+                                    var newStrDate = role.CreatedAt.slice(6, role.CreatedAt.length - 2);
+                                    role.CreatedAt = Date.parse(newStrDate);
+                                    $http({
+                                        method: "post",
+                                        url: "/AppRoles/DeleteRoleAngular",
+                                        datatype: "json",
+                                        data: JSON.stringify(role)
+                                    }).then(function (response) {
+                                        debugger;
+                                        $ngConfirm(response.data);
+                                        $scope.GetAllData();
+                                    })
+                                }
+                            },
+                            Cancel: function (scope, button) {
+                                $ngConfirm('Cancel!');
+                            },
+                        }
+                    });
+                };
 
 
-        });
+            });
 
-    </script>*@
+        </script>*@
     @*<script>
             var TeamDetailPostBackURL = '/AppUsers/AddRolePopup';
             $(function () {
